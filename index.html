@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gulf Salary Calculator</title>
+  <meta name="description" content="Calculate your salary and living costs in Dubai with our simple and user-friendly Gulf Salary Calculator.">
+  <style>
+    body { font-family: Arial, sans-serif; background: #fff; color: #000; margin: 0; padding: 0; text-align: center; }
+    header { padding: 20px; background: #000; color: #fff; font-size: 24px; font-weight: bold; }
+    .container { max-width: 600px; margin: 40px auto; padding: 20px; }
+    h1 { font-size: 28px; margin-bottom: 20px; }
+    label { display: block; margin-top: 15px; font-size: 18px; }
+    select, input { width: 100%; padding: 10px; margin-top: 5px; font-size: 16px; }
+    button { margin-top: 20px; padding: 12px; font-size: 18px; background: #000; color: #fff; border: none; cursor: pointer; border-radius: 5px; }
+    button:hover { background: #333; }
+    .result { margin-top: 30px; font-size: 18px; padding: 20px; background: #f4f4f4; border-radius: 8px; }
+    .ad-banner { margin: 20px 0; padding: 10px; background: #ddd; color: #333; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <header>Gulf Salary Calculator</header>
+  <div class="container">
+    <h1>Calculate Your Salary Now</h1>
+    <label for="profession">Select Your Profession</label>
+    <select id="profession">
+      <option value="labor">Labor</option>
+      <option value="driver">Driver</option>
+      <option value="engineer">Engineer</option>
+      <option value="doctor">Doctor</option>
+      <option value="teacher">Teacher</option>
+      <option value="it">IT Professional</option>
+    </select>
+
+    <label for="salary">Enter Your Monthly Salary (AED)</label>
+    <input type="number" id="salary" placeholder="e.g. 5000" />
+
+    <label for="lifestyle">Select Lifestyle</label>
+    <select id="lifestyle">
+      <option value="basic">Basic (Bed space, limited expenses)</option>
+      <option value="comfortable">Comfortable (Shared flat, moderate expenses)</option>
+      <option value="luxury">Luxury (Private flat, high expenses)</option>
+    </select>
+
+    <button onclick="calculate()">Calculate</button>
+
+    <div class="result" id="result"></div>
+
+    <div class="ad-banner">Ad Banner Space</div>
+  </div>
+
+  <script>
+    function calculate() {
+      const profession = document.getElementById("profession").value;
+      const salary = parseFloat(document.getElementById("salary").value);
+      const lifestyle = document.getElementById("lifestyle").value;
+      if (isNaN(salary) || salary <= 0) {
+        document.getElementById("result").innerHTML = "⚠️ Please enter a valid salary.";
+        return;
+      }
+
+      let avgSalaries = {
+        labor: 1200,
+        driver: 2500,
+        engineer: 8000,
+        doctor: 15000,
+        teacher: 6000,
+        it: 10000
+      };
+
+      let cost = 0;
+      if (lifestyle === "basic") cost = 800;
+      if (lifestyle === "comfortable") cost = 2500;
+      if (lifestyle === "luxury") cost = 8000;
+
+      let savings = salary - cost;
+      let status = savings > 0 ? "You can save approx " + savings + " AED per month." : "You may struggle with this salary and lifestyle.";
+
+      document.getElementById("result").innerHTML = `
+        <h3>Results</h3>
+        <p>👔 Average salary for your profession: <b>${avgSalaries[profession]} AED</b></p>
+        <p>💰 Your entered salary: <b>${salary} AED</b></p>
+        <p>🏠 Estimated living cost (${lifestyle} lifestyle): <b>${cost} AED</b></p>
+        <p>📊 ${status}</p>
+      `;
+    }
+  </script>
+</body>
+</html>
