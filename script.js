@@ -1,35 +1,34 @@
-// Currency conversion rates (1 USD = X currency)
+// Currency conversion rates (1 unit = X currency)
 const RATES = {
-  USD: 1,
-  AED: 3.67,
-  SAR: 3.75,
-  QAR: 3.64,
-  KWD: 0.306,
-  BHD: 0.376,
-  OMR: 0.384
+  AED: 1,
+  SAR: 3.75/3.67,
+  QAR: 3.64/3.67,
+  KWD: 0.306/3.67,
+  BHD: 0.376/3.67,
+  OMR: 0.384/3.67
 };
 
 // Currency symbols in English only
 const SYMBOLS = { 
-  USD: "$", AED: "AED", SAR: "SAR", QAR: "QAR", KWD: "KWD", BHD: "BHD", OMR: "OMR" 
+  AED: "AED", SAR: "SAR", QAR: "QAR", KWD: "KWD", BHD: "BHD", OMR: "OMR" 
 };
 
-// Country cost multipliers vs. USD baseline
+// Country cost multipliers vs. AED baseline
 const COUNTRY_MULTIPLIER = {
-  Dubai: 1.20, // Dubai is slightly more expensive than UAE average
-  UAE: 1.00,
+  Dubai: 1.2, // Dubai is slightly more expensive
+  UAE: 1.0,
   Saudi: 0.85,
   Qatar: 0.95,
   Kuwait: 0.95,
   Oman: 0.75,
-  Bahrain: 0.80
+  Bahrain: 0.8
 };
 
-// Baseline monthly line-items in USD for ONE adult at each living type
+// Baseline monthly line-items in AED for ONE adult at each living type
 const BASELINE_USD = {
-  Basic:    { housing: 400, utilities: 80,  foodPerPerson: 150, transportPerPerson: 60,  miscPerPerson: 50,  schoolingPerChild: 0   },
-  Moderate: { housing: 1000,utilities: 150, foodPerPerson: 300, transportPerPerson: 120, miscPerPerson: 150, schoolingPerChild: 300 },
-  Luxury:   { housing: 2500,utilities: 250, foodPerPerson: 500, transportPerPerson: 300, miscPerPerson: 400, schoolingPerChild: 800 }
+  Basic:    { housing: 1468, utilities: 293, foodPerPerson: 550, transportPerPerson: 220, miscPerPerson: 183, schoolingPerChild: 0 },
+  Moderate: { housing: 3667, utilities: 550, foodPerPerson: 1100, transportPerPerson: 440, miscPerPerson: 550, schoolingPerChild: 1100 },
+  Luxury:   { housing: 9167, utilities: 917, foodPerPerson: 1833, transportPerPerson: 1100, miscPerPerson: 1467, schoolingPerChild: 2933 }
 };
 
 // Helper: format money
@@ -48,25 +47,14 @@ function calculate() {
   const mult = COUNTRY_MULTIPLIER[country] || 1;
   const base = BASELINE_USD[livingType];
 
-  const housingUSD   = base.housing * mult;
-  const utilUSD      = base.utilities * mult * (1 + 0.2 * (familySize - 1));
-  const foodUSD      = base.foodPerPerson * familySize * mult;
-  const transportUSD = base.transportPerPerson * familySize * mult;
-  const miscUSD      = base.miscPerPerson * familySize * mult;
-
-  const children = Math.max(0, familySize - 2);
-  const schoolingUSD = base.schoolingPerChild * children * mult;
-
-  const totalUSD = housingUSD + utilUSD + foodUSD + transportUSD + schoolingUSD + miscUSD;
-
-  const rate = RATES[currency] || 1;
-  const housing   = housingUSD   * rate;
-  const utilities = utilUSD      * rate;
-  const food      = foodUSD      * rate;
-  const transport = transportUSD * rate;
-  const schooling = schoolingUSD * rate;
-  const misc      = miscUSD      * rate;
-  const total     = totalUSD     * rate;
+  const housing   = base.housing * mult * RATES[currency];
+  const utilities = base.utilities * mult * (1 + 0.2*(familySize-1)) * RATES[currency];
+  const food      = base.foodPerPerson * familySize * mult * RATES[currency];
+  const transport = base.transportPerPerson * familySize * mult * RATES[currency];
+  const misc      = base.miscPerPerson * familySize * mult * RATES[currency];
+  const children  = Math.max(0, familySize-2);
+  const schooling = base.schoolingPerChild * children * mult * RATES[currency];
+  const total     = housing + utilities + food + transport + misc + schooling;
 
   const salary = isNaN(salaryInput) ? 0 : salaryInput;
   const leftover = salary - total;
@@ -114,8 +102,7 @@ function calculate() {
   `;
 }
 
-// Hook button
 document.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("calcBtn");
-  if (btn) btn.addEventListener("click", calculate);
+  if(btn) btn.addEventListener("click", calculate);
 });
