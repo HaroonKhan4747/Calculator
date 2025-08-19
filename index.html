@@ -25,21 +25,6 @@
         "@type": "Question",
         "name": "Are these expense results exact?",
         "acceptedAnswer": {"@type":"Answer","text":"They are estimates. Real costs vary by city, area, lifestyle, and family size. Use them as a planning baseline."}
-      },
-      {
-        "@type": "Question",
-        "name": "What is the average monthly cost for a family in Qatar?",
-        "acceptedAnswer": {"@type":"Answer","text":"A family of four in Qatar can expect around QAR 8,000–12,000 per month depending on living type and city."}
-      },
-      {
-        "@type": "Question",
-        "name": "How much is rent in Dubai 2025?",
-        "acceptedAnswer": {"@type":"Answer","text":"Rent varies: shared spaces AED 800–1,500+, studios AED 3,000–5,000+, 1-bedroom apartments AED 6,000–9,000+ depending on the area."}
-      },
-      {
-        "@type": "Question",
-        "name": "How do utilities differ across UAE, Kuwait, and Oman?",
-        "acceptedAnswer": {"@type":"Answer","text":"Utilities cost vary: UAE higher in cities, Oman moderate, Kuwait affordable. Estimate AED 80–250 depending on living type."}
       }
     ]
   }
@@ -49,10 +34,7 @@
   <header class="site-header">
     <div class="brand">GulfExpense</div>
     <div class="logo-ad" title="Ad slot (logo-style)">Ad • 120×60</div>
-
-    <!-- Mobile menu toggle -->
-    <div class="mobile-menu-toggle" id="mobileMenuToggle">&#9776;</div>
-    
+    <button class="hamburger" id="menuToggle">☰</button>
     <nav class="nav" id="navMenu">
       <a href="index.html" class="active">Home</a>
       <a href="about.html">About</a>
@@ -65,6 +47,7 @@
   <div class="ad-slot ad-top" title="Ad slot (responsive banner)">Ad • Responsive Banner</div>
 
   <main class="container">
+    <!-- Calculator Section -->
     <section class="card">
       <h1>Gulf Expense Calculator</h1>
       <p class="muted">Estimate monthly living expenses across Gulf countries with a detailed breakdown.</p>
@@ -125,19 +108,15 @@
       <div class="faq">
         <details>
           <summary>How much do you need to survive in Dubai?</summary>
-          <p>A single person typically needs AED 3,000–5,000 for essentials excluding rent. Rent varies: shared spaces AED 800–1,500+, studios AED 3,000–5,000+, 1-bed AED 6,000–9,000+ depending on area.</p>
+          <p>A single person typically needs AED 3,000–5,000 for essentials excluding rent. Rent varies by area.</p>
         </details>
         <details>
           <summary>Which Gulf country is the cheapest to live in?</summary>
-          <p>Oman and Bahrain tend to be more affordable overall. Saudi can be cheaper outside major hubs. UAE and Qatar are usually the most expensive due to housing.</p>
+          <p>Oman and Bahrain tend to be more affordable. UAE and Qatar are more expensive.</p>
         </details>
         <details>
           <summary>Do the results include schooling?</summary>
-          <p>If you set family size ≥ 3, the estimate adds a schooling component for children (varies by living type). Adjust your inputs to reflect your situation.</p>
-        </details>
-        <details>
-          <summary>Are these numbers accurate?</summary>
-          <p>They are realistic estimates for guidance, not exact quotes. Real costs depend on city, neighborhood, and lifestyle choices.</p>
+          <p>If family size ≥ 3, schooling costs are added for children.</p>
         </details>
       </div>
     </section>
@@ -150,13 +129,5 @@
   </footer>
 
   <script src="script.js"></script>
-  <script>
-    // Mobile menu toggle
-    const menuToggle = document.getElementById('mobileMenuToggle');
-    const navMenu = document.getElementById('navMenu');
-    menuToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('open');
-    });
-  </script>
 </body>
 </html>
