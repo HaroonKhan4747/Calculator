@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gulf Expense Calculator – Dubai, Riyadh, Doha, Kuwait, Manama, Muscat (2025)</title>
+  <meta name="description" content="Calculate monthly living expenses and savings across Gulf countries (UAE, Saudi Arabia, Qatar, Kuwait, Bahrain, Oman). Compare bedspace, studio, and 1‑bed + car lifestyles with realistic 2025 costs.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#000000">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #0a0a0a;
+      --muted: #6b7280;
+      --soft: #f4f4f5;
+      --accent: #111827;
+      --card: #ffffff;
+      --ok: #065f46;
+      --warn: #92400e;
+      --danger: #7f1d1d;
+    }
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif; background: var(--bg); color: var(--fg); margin: 0; }
+    header { padding: 20px; background: #000; color: #fff; }
+    header .title { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    header h1 { font-size: 22px; margin: 0; letter-spacing: .2px; }
+    main { max-width: 1100px; margin: 24px auto; padding: 0 16px 80px; }
+    .bar { display: grid; grid-template-columns: 1fr; gap: 12px; background: var(--soft); padding: 16px; border-radius: 16px; }
+    label { font-size: 14px; color: var(--muted); }
+    input[type="number"], select { width: 100%; padding: 12px; font-size: 16px; border: 1px solid #e5e7eb; border-radius: 10px; background: #fff; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+    button { padding: 12px 14px; border: none; background: var(--accent); color: #fff; border-radius: 10px; cursor: pointer; font-size: 15px; }
+    button.secondary { background: #1f2937; opacity: .9; }
+    button.ghost { background: transparent; color: #111; border: 1px solid #e5e7eb; }
+    .grid { margin-top: 18px; display: grid; grid-template-columns: 1fr; gap: 16px; }
+    .card { background: var(--card); border: 1px solid #e5e7eb; border-radius: 16px; padding: 16px; }
+    .card h3 { margin: 0 0 6px; font-size: 18px; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .pill { display: inline-block; padding: 2px 8px; border-radius: 999px; background: #f3f4f6; color: #111827; font-size: 12px; }
+    .muted { color: var(--muted); }
+    .totals { margin-top: 8px; font-weight: 600; }
+    .status.ok { color: var(--ok); }
+    .status.warn { color: var(--warn); }
+    .status.danger { color: var(--danger); }
+    .ad { background: #efefef; border: 1px dashed #cfcfcf; color: #444; padding: 10px; border-radius: 12px; text-align: center; font-size: 14px; }
+    .faq { margin-top: 36px; }
+    .faq h2 { margin: 20px 0 10px; }
+    details { border: 1px solid #e5e7eb; border-radius: 12px; padding: 12px 14px; background: #fff; margin: 8px 0; }
+    summary { cursor: pointer; font-weight: 600; }
+    .footer { margin-top: 40px; text-align: center; color: var(--muted); font-size: 14px; }
+    .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+    .compare-note { font-size: 13px; color: var(--muted); }
+    @media (min-width: 720px) {
+      .bar { grid-template-columns: repeat(4, 1fr); align-items: end; }
+      .grid { grid-template-columns: repeat(3, 1fr); }
+      .row { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="title">
+      <h1>Gulf Expense Calculator</h1>
+      <span class="pill">2025 realistic presets</span>
+    </div>
+  </header>
+  <main>
+    <section class="bar">
+      <div>
+        <label for="salary">Enter your monthly salary</label>
+        <input id="salary" type="number" min="0" placeholder="e.g., 5000" />
+      </div>
+      <div>
+        <label for="country">Country</label>
+        <select id="country">
+          <option value="UAE">United Arab Emirates (AED)</option>
+          <option value="SA">Saudi Arabia (SAR)</option>
+          <option value="QA">Qatar (QAR)</option>
+          <option value="KW">Kuwait (KWD)</option>
+          <option value="BH">Bahrain (BHD)</option>
+          <option value="OM">Oman (OMR)</option>
+        </select>
+      </div>
+      <div>
+        <label for="lifestyle">Lifestyle preset</label>
+        <select id="lifestyle">
+          <option value="basic">Basic / Bedspace</option>
+          <option value="moderate">Moderate / Studio</option>
+          <option value="luxury">Luxury / 1‑Bed + Car</option>
+        </select>
+      </div>
+      <div class="actions">
+        <button id="calcBtn">Calculate</button>
+        <button class="secondary" id="compareBtn">Compare all GCC</button>
+      </div>
+      <div class="compare-note">Tip: “Compare all GCC” uses the same numeric salary but in each country’s local currency.</div>
+    </section>
+
+    <div class="ad" style="margin: 18px 0;">Ad Placeholder (Top)</div>
+
+    <section id="results" class="grid" aria-live="polite"></section>
+
+    <div class="ad" style="margin: 18px 0;">Ad Placeholder (Mid)</div>
+
+    <section class="faq" id="faq">
+      <h2>Frequently Asked Questions (Gulf, 2025)</h2>
+      
+      <details>
+        <summary>How much salary do you need to survive in Dubai (UAE) in 2025?</summary>
+        <p>For a single person, survival on a tight budget is possible around <b>3,000–4,500 AED</b> if you share a room (bedspace), cook at home, and use the metro. A more comfortable solo lifestyle in a studio typically needs <b>6,000–8,000 AED</b>. If you prefer a 1‑bedroom with a car and frequent dining out, costs can reach <b>12,000–18,000 AED</b> per month. Use the calculator above to plug in your salary and see itemized rent, food, transport, and other expenses.</p>
+      </details>
+
+      <details>
+        <summary>Is 4,000 AED enough to live in Dubai?</summary>
+        <p><b>It’s possible but tight.</b> At around 4,000 AED you’ll likely need a <b>bedspace/shared room</b>, cook most meals at home, and rely on public transport. Expect minimal discretionary spending and little savings. If you can push your income to <b>5,000–6,000 AED</b>, life becomes more manageable. The Basic preset in the calculator reflects a realistic survival budget.</p>
+      </details>
+
+      <details>
+        <summary>What is the average rent for a studio in Dubai?</summary>
+        <p>In 2025, many mid‑range areas list studios around <b>3,000–4,500 AED</b> per month, with location making the biggest difference. Central or waterfront areas cost more; outskirts and older buildings are cheaper. Our Moderate preset uses a realistic mid‑point and includes utilities/Wi‑Fi so you see a complete picture.</p>
+      </details>
+
+      <details>
+        <summary>What is a good salary in Dubai for a single person?</summary>
+        <p>A common target is <b>8,000–12,000 AED</b> for a comfortable single lifestyle (studio, some dining out, normal leisure). Higher earners with a car and city‑center living can easily spend more. “Good” also depends on your saving goals—set the calculator to your salary to see expected monthly surplus.</p>
+      </details>
+
+      <details>
+        <summary>How much does it cost to live in Riyadh (Saudi Arabia) monthly?</summary>
+        <p>Riyadh is generally cheaper than Dubai. A frugal shared setup can be done near <b>1,300–2,000 SAR</b>, a comfortable solo studio around <b>3,000–3,700 SAR</b>, and a 1‑bed with car lifestyle around <b>7,000–9,000 SAR</b> depending on car choice and dining habits. Check the Saudi preset for itemized rent, food, transport, and car costs.</p>
+      </details>
+
+      <details>
+        <summary>How much do you need to live in Doha (Qatar)?</summary>
+        <p>Doha costs are closer to Dubai than Riyadh. A basic shared arrangement can land around <b>1,700–2,000 QAR</b>, a moderate studio lifestyle around <b>4,900–5,900 QAR</b>, and a 1‑bed + car lifestyle often ranges <b>10,000–13,000 QAR+</b>. Use our Qatar presets to estimate your potential savings.</p>
+      </details>
+
+      <details>
+        <summary>Is Kuwait expensive for expats?</summary>
+        <p>Kuwait City has higher rents in KWD terms but remember the currency is strong. A basic shared setup can be around <b>145–170 KWD</b> monthly, a moderate studio lifestyle roughly <b>410–430 KWD</b>, and a 1‑bed + car lifestyle around <b>890–970 KWD</b>. The calculator converts all line items to KWD and totals them for clarity.</p>
+      </details>
+
+      <details>
+        <summary>What’s the monthly cost of living in Bahrain?</summary>
+        <p>Manama offers a range of options. A basic shared setup can be done around <b>155–170 BHD</b>, a moderate studio lifestyle near <b>435–445 BHD</b>, and a 1‑bed + car lifestyle about <b>980–1,010 BHD</b>. Results vary with neighborhood and lifestyle habits—toggle the Bahrain preset to see details.</p>
+      </details>
+
+      <details>
+        <summary>How much do I need to live in Muscat (Oman)?</summary>
+        <p>Muscat can be more affordable in rent but you’ll likely need a car. A tight budget shared setup is around <b>125–130 OMR</b>, a moderate studio lifestyle roughly <b>370–390 OMR</b>, and a 1‑bed + car lifestyle near <b>805–840 OMR</b>. Check the Oman preset to see the car and utilities assumptions.</p>
+      </details>
+
+      <details>
+        <summary>Can I save money on a 6,000 salary in the Gulf?</summary>
+        <p>Yes—especially if you pick a basic or moderate preset and avoid major car costs. Enter <b>6,000</b> in the calculator and compare all GCC countries. You’ll see where your salary stretches the most, based on rent, food, transport, utilities, and a modest “miscellaneous” bucket. That transparency helps you plan moves or negotiate offers.</p>
+      </details>
+
+      <details>
+        <summary>Which Gulf country is cheapest to live in 2025?</summary>
+        <p>“Cheapest” depends on your lifestyle. On a shared/basic setup, <b>Oman, Bahrain, and parts of Saudi Arabia</b> can be very cost‑effective. For solo studio living, <b>Saudi and Oman</b> often come out cheaper than <b>UAE and Qatar</b>. Use “Compare all GCC” to see side‑by‑side costs with the same salary number in each local currency.</p>
+      </details>
+
+      <details>
+        <summary>Does the calculator use real prices?</summary>
+        <p>Yes—presets are grounded in realistic 2025 ranges gathered from common listings and expat experiences. They’re simplified for clarity and will be updated periodically. You can still personalize decisions: pick a cheaper neighborhood, cook more, or skip a car to improve savings.</p>
+      </details>
+
+      <div class="ad" style="margin: 18px 0;">Ad Placeholder (Bottom)</div>
+    </section>
+
+    <div class="footer">
+      <div class="tags">
+        <span class="pill">Dubai expenses 2025</span>
+        <span class="pill">Riyadh cost of living</span>
+        <span class="pill">Qatar rent</span>
+        <span class="pill">Kuwait budget</span>
+        <span class="pill">Bahrain living costs</span>
+        <span class="pill">Oman monthly costs</span>
+      </div>
+      <p style="margin-top:10px;">Made for expats & job seekers across the GCC.</p>
+    </div>
+  </main>
+
+  <script>
+    // Currency symbols and country codes
+    const CURRENCIES = {
+      UAE: { code: "AED", symbol: "AED" },
+      SA:  { code: "SAR", symbol: "SAR" },
+      QA:  { code: "QAR", symbol: "QAR" },
+      KW:  { code: "KWD", symbol: "KWD" },
+      BH:  { code: "BHD", symbol: "BHD" },
+      OM:  { code: "OMR", symbol: "OMR" },
+    };
+
+    // Realistic 2025 hardcoded presets by country & lifestyle
+    // All numbers are monthly, in each country's local currency.
+    const PRESETS = {
+      UAE: {
+        basic:    { label: "Basic / Bedspace", items: { Rent: 1000, Food: 350, Transport: 300, Misc: 250 } },
+        moderate: { label: "Moderate / Studio", items: { Rent: 3800, Food: 1000, Transport: 500, Utilities: 500, Misc: 400 } },
+        luxury:   { label: "Luxury / 1‑Bed + Car", items: { Rent: 7000, Car: 2500, Food: 2500, Utilities: 900, Misc: 2500 } },
+      },
+      SA: {
+        basic:    { label: "Basic / Shared", items: { Rent: 600, Food: 300, Transport: 200, Misc: 200 } },
+        moderate: { label: "Moderate / Studio", items: { Rent: 1800, Food: 800, Transport: 400, Utilities: 300, Misc: 300 } },
+        luxury:   { label: "Luxury / 1‑Bed + Car", items: { Rent: 3500, Car: 1800, Food: 1800, Utilities: 600, Misc: 2000 } },
+      },
+      QA: {
+        basic:    { label: "Basic / Shared", items: { Rent: 900, Food: 400, Transport: 250, Misc: 250 } },
+        moderate: { label: "Moderate / Studio", items: { Rent: 3000, Food: 1000, Transport: 500, Utilities: 400, Misc: 400 } },
+        luxury:   { label: "Luxury / 1‑Bed + Car", items: { Rent: 6000, Car: 2000, Food: 2200, Utilities: 800, Misc: 2200 } },
+      },
+      KW: {
+        basic:    { label: "Basic / Shared", items: { Rent: 70, Food: 35, Transport: 20, Misc: 20 } },
+        moderate: { label: "Moderate / Studio", items: { Rent: 220, Food: 90, Transport: 35, Utilities: 25, Misc: 40 } },
+        luxury:   { label: "Luxury / 1‑Bed + Car", items: { Rent: 450, Car: 120, Food: 180, Utilities: 40, Misc: 180 } },
+      },
+      BH: {
+        basic:    { label: "Basic / Shared", items: { Rent: 80, Food: 35, Transport: 20, Misc: 20 } },
+        moderate: { label: "Moderate / Studio", items: { Rent: 250, Food: 90, Transport: 35, Utilities: 25, Misc: 35 } },
+        luxury:   { label: "Luxury / 1‑Bed + Car", items: { Rent: 500, Car: 120, Food: 170, Utilities: 40, Misc: 150 } },
+      },
+      OM: {
+        basic:    { label: "Basic / Shared", items: { Rent: 60, Food: 30, Transport: 20, Misc: 15 } },
+        moderate: { label: "Moderate / Studio", items: { Rent: 200, Food: 80, Transport: 35, Utilities: 25, Misc: 30 } },
+        luxury:   { label: "Luxury / 1‑Bed + Car", items: { Rent: 400, Car: 100, Food: 150, Utilities: 35, Misc: 120 } },
+      },
+    };
+
+    function fmtCurrency(value, code) {
+      return new Intl.NumberFormat(undefined, { style: "currency", currency: code, currencyDisplay: "narrowSymbol", maximumFractionDigits: 0 }).format(value);
+    }
+
+    function computeTotals(items) {
+      return Object.values(items).reduce((a, b) => a + b, 0);
+    }
+
+    function resultCard({countryKey, lifestyleKey, salary}) {
+      const currency = CURRENCIES[countryKey].code;
+      const preset = PRESETS[countryKey][lifestyleKey];
+      const total = computeTotals(preset.items);
+      const savings = salary - total;
+      const statusClass = savings > 1000 ? "ok" : (savings >= 0 ? "warn" : "danger");
+      const statusText = savings >= 0
+        ? `Estimated savings: <b>${fmtCurrency(savings, currency)}</b>`
+        : `Shortfall: <b>${fmtCurrency(Math.abs(savings), currency)}</b>`;
+
+      // Build items list
+      let lines = "";
+      for (const [k, v] of Object.entries(preset.items)) {
+        lines += `<div class="row"><div>${k}</div><div class="mono" style="text-align:right">${fmtCurrency(v, currency)}</div></div>`;
+      }
+
+      const countryName = {
+        UAE: "United Arab Emirates",
+        SA: "Saudi Arabia",
+        QA: "Qatar",
+        KW: "Kuwait",
+        BH: "Bahrain",
+        OM: "Oman",
+      }[countryKey];
+
+      return `
+        <div class="card">
+          <h3>${countryName} · <span class="muted">${preset.label}</span></h3>
+          <div class="row"><div>Your salary</div><div class="mono" style="text-align:right">${fmtCurrency(salary, currency)}</div></div>
+          <hr style="border:none;border-top:1px solid #eee; margin:8px 0">
+          ${lines}
+          <div class="totals row" style="margin-top:6px;">
+            <div>Total monthly cost</div>
+            <div class="mono" style="text-align:right">${fmtCurrency(total, currency)}</div>
+          </div>
+          <div class="status ${statusClass}" style="margin-top:8px;">${statusText}</div>
+        </div>
+      `;
+    }
+
+    function calculateSingle() {
+      const salaryInput = document.getElementById("salary").value;
+      const country = document.getElementById("country").value;
+      const lifestyle = document.getElementById("lifestyle").value;
+      const results = document.getElementById("results");
+      const salary = Number(salaryInput);
+
+      if (!salary || salary <= 0) {
+        results.innerHTML = '<div class="card"><b>Enter a valid monthly salary</b> to see your detailed costs and savings.</div>';
+        return;
+      }
+      results.innerHTML = [
+        resultCard({ countryKey: country, lifestyleKey: "basic", salary }),
+        resultCard({ countryKey: country, lifestyleKey: "moderate", salary }),
+        resultCard({ countryKey: country, lifestyleKey: "luxury", salary }),
+      ].join("");
+    }
+
+    function compareAll() {
+      const salaryInput = document.getElementById("salary").value;
+      const lifestyle = document.getElementById("lifestyle").value;
+      const results = document.getElementById("results");
+      const salary = Number(salaryInput);
+      if (!salary || salary <= 0) {
+        results.innerHTML = '<div class="card"><b>Enter a valid monthly salary</b> to compare across GCC countries.</div>';
+        return;
+      }
+      const countries = ["UAE","SA","QA","KW","BH","OM"];
+      results.innerHTML = countries.map(c => resultCard({ countryKey: c, lifestyleKey: lifestyle, salary })).join("");
+    }
+
+    document.getElementById("calcBtn").addEventListener("click", calculateSingle);
+    document.getElementById("compareBtn").addEventListener("click", compareAll);
+
+    // Helpful default for first-time visitors
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("salary").value = 5000;
+      calculateSingle();
+    });
+  </script>
+</body>
+</html>
