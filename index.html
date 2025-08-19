@@ -1,132 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gulf Expense Calculator</title>
-  <meta name="description" content="Estimate monthly living expenses across Gulf countries with a detailed breakdown. Supports AED, SAR, QAR, KWD, OMR, BHD, USD.">
-  <link rel="stylesheet" href="style.css" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [{
-      "@type": "Question",
-      "name": "How much do you need to survive in Dubai?",
-      "acceptedAnswer": {"@type":"Answer","text":"A single person typically needs AED 3,000–5,000 for bare essentials excluding rent. Rent ranges widely by area; shared spaces can start around AED 800–1,500, studios AED 3,000–5,000+."}
-    },{
-      "@type": "Question",
-      "name": "Which Gulf country is the cheapest to live in?",
-      "acceptedAnswer": {"@type":"Answer","text":"Oman and Bahrain are generally more affordable than the UAE or Qatar, mostly due to lower rents and moderate day-to-day costs."}
-    },{
-      "@type": "Question",
-      "name": "Are these expense results exact?",
-      "acceptedAnswer": {"@type":"Answer","text":"They are estimates. Real costs vary by city, area, lifestyle, and family size. Use them as a planning baseline."}
-    }]
-  }
-  </script>
+  <meta name="description" content="Estimate living expenses in Gulf countries with our free calculator.">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="brand">GulfExpense</div>
-    <div class="logo-ad" title="Ad slot (logo-style)">Ad • 120×60</div>
-    <nav class="nav">
-      <a href="index.html" class="active">Home</a>
+  <header>
+    <div class="logo">GulfExpense Calculator</div>
+    <nav>
+      <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
-      <a href="privacy.html">Privacy</a>
+      <a href="privacy.html">Privacy Policy</a>
       <a href="terms.html">Terms</a>
     </nav>
   </header>
+  <main>
+    <h1>Gulf Expense Calculator</h1>
+    <p>Estimate monthly living expenses across Gulf countries.</p>
 
-  <div class="ad-slot ad-top" title="Ad slot (responsive banner)">Ad • Responsive Banner</div>
+    <div class="ad-slot top-right">Ad Slot (Logo Ad)</div>
 
-  <main class="container">
-    <section class="card">
-      <h1>Gulf Expense Calculator</h1>
-      <p class="muted">Estimate monthly living expenses across Gulf countries with a detailed breakdown.</p>
+    <div class="calculator">
+      <label for="country">Select Country:</label>
+      <select id="country">
+        <option value="UAE">United Arab Emirates</option>
+        <option value="Saudi">Saudi Arabia</option>
+        <option value="Qatar">Qatar</option>
+        <option value="Oman">Oman</option>
+        <option value="Kuwait">Kuwait</option>
+        <option value="Bahrain">Bahrain</option>
+      </select>
 
-      <div class="grid">
-        <label class="field">
-          <span>Country</span>
-          <select id="country">
-            <option value="UAE">United Arab Emirates</option>
-            <option value="Saudi">Saudi Arabia</option>
-            <option value="Qatar">Qatar</option>
-            <option value="Kuwait">Kuwait</option>
-            <option value="Oman">Oman</option>
-            <option value="Bahrain">Bahrain</option>
-          </select>
-        </label>
+      <label for="currency">Currency:</label>
+      <select id="currency">
+        <option value="USD">$ - US Dollar</option>
+        <option value="AED">د.إ - AED</option>
+        <option value="SAR">﷼ - SAR</option>
+        <option value="QAR">﷼ - QAR</option>
+        <option value="OMR">﷼ - OMR</option>
+        <option value="KWD">د.ك - KWD</option>
+        <option value="BHD">.د.ب - BHD</option>
+      </select>
 
-        <label class="field">
-          <span>Family Size</span>
-          <input id="familySize" type="number" min="1" value="1" />
-        </label>
+      <label for="salary">Your Monthly Salary:</label>
+      <input type="number" id="salary" placeholder="Enter salary">
 
-        <label class="field">
-          <span>Type of Living</span>
-          <select id="livingType">
-            <option value="Basic">Basic (shared, essentials)</option>
-            <option value="Moderate" selected>Moderate (balanced)</option>
-            <option value="Luxury">Luxury (premium)</option>
-          </select>
-        </label>
+      <label for="family-size">Family Size:</label>
+      <input type="number" id="family-size" min="1" value="1">
 
-        <label class="field">
-          <span>Currency</span>
-          <select id="currency">
-            <option value="AED">AED (د.إ)</option>
-            <option value="SAR">SAR (﷼)</option>
-            <option value="QAR">QAR (ر.ق)</option>
-            <option value="KWD">KWD (KD)</option>
-            <option value="BHD">BHD (BD)</option>
-            <option value="OMR">OMR (﷼)</option>
-            <option value="USD" selected>USD ($)</option>
-          </select>
-        </label>
+      <label for="living-type">Type of Living:</label>
+      <select id="living-type">
+        <option value="basic">Basic</option>
+        <option value="moderate">Moderate</option>
+        <option value="luxury">Luxury</option>
+      </select>
 
-        <label class="field span-2">
-          <span>Your Salary (per month)</span>
-          <input id="salary" type="number" min="0" placeholder="Enter your salary in selected currency" />
-        </label>
-      </div>
+      <button onclick="calculate()">Calculate</button>
+      <div id="results"></div>
+    </div>
 
-      <button id="calcBtn" class="btn">Calculate</button>
-    </section>
+    <div class="ad-slot middle-banner">Ad Slot (Banner)</div>
 
-    <section id="results" class="card hidden"></section>
-
-    <section class="card">
+    <section class="faq">
       <h2>FAQs</h2>
-      <div class="faq">
-        <details>
-          <summary>How much do you need to survive in Dubai?</summary>
-          <p>A single person typically needs AED 3,000–5,000 for essentials excluding rent. Rent varies: bed space AED 800–1,500+, studios AED 3,000–5,000+, 1-bed AED 6,000–9,000+ depending on area.</p>
-        </details>
-        <details>
-          <summary>Which Gulf country is the cheapest to live in?</summary>
-          <p>Oman and Bahrain tend to be more affordable overall. Saudi can be cheaper outside major hubs. UAE and Qatar are usually the most expensive due to housing.</p>
-        </details>
-        <details>
-          <summary>Do the results include schooling?</summary>
-          <p>If you set family size ≥ 3, the estimate adds a schooling component for children (varies by living type). Adjust your inputs to reflect your situation.</p>
-        </details>
-        <details>
-          <summary>Are these numbers accurate?</summary>
-          <p>They are realistic estimates for guidance, not exact quotes. Real costs depend on city, neighborhood, and lifestyle choices.</p>
-        </details>
-      </div>
+      <details>
+        <summary>How much do you need to survive in Dubai?</summary>
+        <p>On average, a single person needs around $1,000–$1,500 per month excluding rent.</p>
+      </details>
+      <details>
+        <summary>Which Gulf country is the cheapest to live in?</summary>
+        <p>Oman and Bahrain are generally considered more affordable compared to UAE and Qatar.</p>
+      </details>
+      <details>
+        <summary>Can I use this calculator for all Gulf countries?</summary>
+        <p>Yes, it covers UAE, Saudi Arabia, Qatar, Oman, Kuwait, and Bahrain.</p>
+      </details>
     </section>
+
+    <div class="ad-slot bottom-banner">Ad Slot (Bottom)</div>
+    <script src="script.js"></script>
   </main>
-
-  <div class="ad-slot ad-bottom" title="Ad slot (large footer)">Ad • Large Footer</div>
-
-  <footer class="site-footer">
-    <p>© 2025 GulfExpense. Estimates only; actual costs vary.</p>
+  <footer>
+    <p>© 2025 GulfExpense Calculator. All rights reserved.</p>
   </footer>
-
-  <!-- Keep script at the end for faster loading -->
-  <script src="script.js"></script>
 </body>
 </html>
