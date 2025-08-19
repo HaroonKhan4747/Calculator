@@ -6,25 +6,6 @@
   <title>Gulf Expense Calculator</title>
   <meta name="description" content="Estimate monthly living expenses across Gulf countries with a detailed breakdown. Supports AED, SAR, QAR, KWD, OMR, BHD, USD.">
   <link rel="stylesheet" href="style.css" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [{
-      "@type": "Question",
-      "name": "How much do you need to survive in Dubai?",
-      "acceptedAnswer": {"@type":"Answer","text":"A single person typically needs AED 3,000–5,000 for bare essentials excluding rent. Rent ranges widely by area; shared spaces can start around AED 800–1,500, studios AED 3,000–5,000+."}
-    },{
-      "@type": "Question",
-      "name": "Which Gulf country is the cheapest to live in?",
-      "acceptedAnswer": {"@type":"Answer","text":"Oman and Bahrain are generally more affordable than the UAE or Qatar, mostly due to lower rents and moderate day-to-day costs."}
-    },{
-      "@type": "Question",
-      "name": "Are these expense results exact?",
-      "acceptedAnswer": {"@type":"Answer","text":"They are estimates. Real costs vary by city, area, lifestyle, and family size. Use them as a planning baseline."}
-    }]
-  }
-  </script>
 </head>
 <body>
   <header class="site-header">
@@ -76,13 +57,13 @@
         <label class="field">
           <span>Currency</span>
           <select id="currency">
-            <option value="AED">AED (د.إ)</option>
-            <option value="SAR">SAR (﷼)</option>
-            <option value="QAR">QAR (ر.ق)</option>
-            <option value="KWD">KWD (KD)</option>
-            <option value="BHD">BHD (BD)</option>
-            <option value="OMR">OMR (﷼)</option>
-            <option value="USD" selected>USD ($)</option>
+            <option value="AED">AED</option>
+            <option value="SAR">SAR</option>
+            <option value="QAR">QAR</option>
+            <option value="KWD">KWD</option>
+            <option value="BHD">BHD</option>
+            <option value="OMR">OMR</option>
+            <option value="USD" selected>USD</option>
           </select>
         </label>
 
@@ -102,19 +83,19 @@
       <div class="faq">
         <details>
           <summary>How much do you need to survive in Dubai?</summary>
-          <p>A single person typically needs AED 3,000–5,000 for essentials excluding rent. Rent varies: bed space AED 800–1,500+, studios AED 3,000–5,000+, 1-bed AED 6,000–9,000+ depending on area.</p>
+          <p>A single person typically needs $800–1,500 USD for essentials excluding rent. Rent varies: shared spaces $200–400, studios $800–1,500+, 1-bed $1,500–2,500 depending on area.</p>
         </details>
         <details>
           <summary>Which Gulf country is the cheapest to live in?</summary>
-          <p>Oman and Bahrain tend to be more affordable overall. Saudi can be cheaper outside major hubs. UAE and Qatar are usually the most expensive due to housing.</p>
+          <p>Oman and Bahrain tend to be the most affordable. Saudi can be cheaper outside major hubs. UAE and Qatar are generally the most expensive due to housing costs.</p>
         </details>
         <details>
           <summary>Do the results include schooling?</summary>
-          <p>If you set family size ≥ 3, the estimate adds a schooling component for children (varies by living type). Adjust your inputs to reflect your situation.</p>
+          <p>If family size ≥ 3, the estimate adds schooling for children (varies by living type). Adjust inputs to reflect your situation.</p>
         </details>
         <details>
-          <summary>Are these numbers accurate?</summary>
-          <p>They are realistic estimates for guidance, not exact quotes. Real costs depend on city, neighborhood, and lifestyle choices.</p>
+          <summary>Are these numbers exact?</summary>
+          <p>They are realistic estimates for planning purposes, not exact quotes. Real costs depend on city, neighborhood, and lifestyle choices.</p>
         </details>
       </div>
     </section>
@@ -126,7 +107,6 @@
     <p>© 2025 GulfExpense. Estimates only; actual costs vary.</p>
   </footer>
 
-  <!-- Keep script at the end for faster loading -->
   <script src="script.js"></script>
 </body>
 </html>
