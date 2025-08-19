@@ -1,36 +1,21 @@
-/* existing styles stay same */
+/* Existing CSS kept intact ... */
 
-/* Mobile menu */
-.mobile-menu-toggle {
+.hamburger {
   display: none;
-  font-size: 28px;
+  font-size: 24px;
+  background: none;
+  border: none;
   cursor: pointer;
-  user-select: none;
 }
 
-.nav {
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-}
-
+/* Mobile responsive adjustments */
 @media (max-width: 640px) {
   .grid { grid-template-columns: 1fr; }
   .span-2 { grid-column: span 1; }
 
-  .nav {
-    flex-direction: column;
-    display: none;
-    background: #fff;
-    position: absolute;
-    top: 60px;
-    right: 16px;
-    padding: 12px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    z-index: 1000;
-  }
-  .nav.open { display: flex; }
+  /* Hide menu initially on mobile */
+  .nav { display: none; flex-direction: column; gap: 8px; background: #fff; padding: 10px; border: 1px solid var(--border); border-radius: 8px; position: absolute; top: 60px; right: 16px; width: 180px; z-index: 10; }
+  .nav.show { display: flex; }
 
-  .mobile-menu-toggle { display: block; }
+  .hamburger { display: block; }
 }
