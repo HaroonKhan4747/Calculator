@@ -1,64 +1,56 @@
-function calculateExpenses() {
-    const country = document.getElementById("country").value;
-    const familySize = parseInt(document.getElementById("familySize").value);
-    const livingType = document.getElementById("livingType").value;
-    const salary = parseFloat(document.getElementById("salary").value);
+document.getElementById("calculate").addEventListener("click", () => {
+  const country = document.getElementById("country").value;
+  const familySize = parseInt(document.getElementById("familySize").value) || 1;
+  const livingType = document.getElementById("livingType").value;
+  const salary = parseFloat(document.getElementById("salary").value) || 0;
 
-    // Base expense estimates (per person)
-    const baseCosts = {
-        uae: { rent: 1200, utilities: 250, food: 450, transport: 180, entertainment: 150 },
-        qatar: { rent: 1000, utilities: 220, food: 400, transport: 170, entertainment: 140 },
-        saudi: { rent: 900, utilities: 200, food: 380, transport: 160, entertainment: 130 },
-        oman: { rent: 850, utilities: 180, food: 350, transport: 150, entertainment: 120 },
-        bahrain: { rent: 950, utilities: 210, food: 390, transport: 165, entertainment: 135 },
-        kuwait: { rent: 1100, utilities: 230, food: 420, transport: 175, entertainment: 145 }
-    };
+  // Currency map
+  const currencies = {
+    UAE: "AED",
+    Qatar: "QAR",
+    Saudi: "SAR",
+    Kuwait: "KWD",
+    Bahrain: "BHD",
+    Oman: "OMR"
+  };
 
-    // Currency labels
-    const currencyLabels = {
-        uae: "AED",
-        qatar: "QAR",
-        saudi: "SAR",
-        oman: "OMR",
-        bahrain: "BHD",
-        kuwait: "KWD"
-    };
+  const currency = currencies[country] || "USD";
 
-    const costs = baseCosts[country];
-    let multiplier = 1;
+  // Base expenses per family member (USD for calculation simplicity)
+  const baseExpenses = {
+    basic: { rent: 400, utilities: 100, food: 150, transport: 60, schooling: 0, entertainment: 50 },
+    moderate: { rent: 800, utilities: 200, food: 300, transport: 120, schooling: 100, entertainment: 100 },
+    luxury: { rent: 1500, utilities: 300, food: 500, transport: 200, schooling: 300, entertainment: 300 }
+  };
 
-    if (livingType === "luxury") multiplier = 2;
-    if (livingType === "basic") multiplier = 0.8;
+  const chosen = baseExpenses[livingType];
+  let total = 0;
+  let resultHTML = `
+    <h3>Estimating the best value for you...</h3>
+    <h3>Estimated Monthly Expenses (${currency})</h3>
+    <ul>
+  `;
 
-    const rent = costs.rent * multiplier;
-    const utilities = costs.utilities * multiplier;
-    const food = costs.food * familySize * multiplier;
-    const transport = costs.transport * familySize * multiplier;
-    const entertainment = costs.entertainment * familySize * multiplier;
-    const schooling = familySize > 2 ? 300 * (familySize - 2) : 0;
+  for (const [key, value] of Object.entries(chosen)) {
+    const cost = value * familySize;
+    total += cost;
+    resultHTML += `<li>${capitalize(key)}: ${currency} ${cost.toFixed(2)}</li>`;
+  }
 
-    const total = rent + utilities + food + transport + entertainment + schooling;
-    const balance = salary ? salary - total : null;
+  resultHTML += `</ul><strong>Total: ${currency} ${total.toFixed(2)}</strong>`;
 
-    const currency = currencyLabels[country];
-
-    let resultHTML = `
-        <h3>Estimated Monthly Expenses (${currency})</h3>
-        <ul>
-            <li>Rent: ${currency} ${rent.toFixed(2)}</li>
-            <li>Utilities (power, water, internet): ${currency} ${utilities.toFixed(2)}</li>
-            <li>Food & groceries: ${currency} ${food.toFixed(2)}</li>
-            <li>Transport: ${currency} ${transport.toFixed(2)}</li>
-            <li>Schooling: ${currency} ${schooling.toFixed(2)}</li>
-            <li>Entertainment & Misc: ${currency} ${entertainment.toFixed(2)}</li>
-        </ul>
-        <strong>Total: ${currency} ${total.toFixed(2)}</strong>
-    `;
-
-    if (salary) {
-        resultHTML += `<p><strong>Your Salary:</strong> ${currency} ${salary.toFixed(2)}</p>`;
-        resultHTML += `<p><strong>Remaining Balance:</strong> ${currency} ${balance.toFixed(2)}</p>`;
+  if (salary > 0) {
+    if (salary >= total) {
+      resultHTML += `<p>✅ Your salary of ${salary} USD is enough to cover estimated expenses.</p>`;
+    } else {
+      resultHTML += `<p>⚠️ Your salary of ${salary} USD may not be sufficient for these expenses.</p>`;
     }
+  }
 
-    document.getElementById("results").innerHTML = resultHTML;
+  document.getElementById("results").innerHTML = resultHTML;
+});
+
+// Helper function
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }
