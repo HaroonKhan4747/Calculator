@@ -9,67 +9,69 @@
 <body>
   <header>
     <h1>Gulf Expense Calculator</h1>
-    <p>Estimate monthly living expenses across Gulf countries.</p>
+    <p>Estimate your monthly living expenses across Gulf countries.</p>
   </header>
 
   <main>
-    <!-- Ad Slot -->
-    <div class="ad-slot">Ad Slot (Logo Ad)</div>
-
-    <!-- Calculator Form -->
     <section class="calculator">
       <label for="country">Select Country:</label>
       <select id="country">
         <option value="UAE">United Arab Emirates</option>
-        <option value="Qatar">Qatar</option>
         <option value="Saudi">Saudi Arabia</option>
-        <option value="Kuwait">Kuwait</option>
-        <option value="Bahrain">Bahrain</option>
+        <option value="Qatar">Qatar</option>
         <option value="Oman">Oman</option>
+        <option value="Bahrain">Bahrain</option>
+        <option value="Kuwait">Kuwait</option>
       </select>
 
-      <label for="familySize">Family Size:</label>
-      <input type="number" id="familySize" value="1" min="1">
+      <label for="currency">Select Currency:</label>
+      <select id="currency">
+        <option value="AED">AED (Dirham)</option>
+        <option value="SAR">SAR (Riyal)</option>
+        <option value="QAR">QAR (Riyal)</option>
+        <option value="OMR">OMR (Rial)</option>
+        <option value="BHD">BHD (Dinar)</option>
+        <option value="KWD">KWD (Dinar)</option>
+        <option value="USD">USD ($)</option>
+      </select>
 
-      <label for="livingType">Type of Living:</label>
-      <select id="livingType">
+      <label for="salary">Your Monthly Salary:</label>
+      <input type="number" id="salary" placeholder="Enter your salary">
+
+      <label for="family">Family Size:</label>
+      <input type="number" id="family" min="1" value="1">
+
+      <label for="lifestyle">Type of Living:</label>
+      <select id="lifestyle">
         <option value="basic">Basic</option>
         <option value="moderate">Moderate</option>
         <option value="luxury">Luxury</option>
       </select>
 
-      <label for="salary">Your Monthly Salary (USD):</label>
-      <input type="number" id="salary" placeholder="Enter salary">
-
-      <button id="calculate">Calculate</button>
+      <button onclick="calculateExpenses()">Calculate</button>
     </section>
 
-    <!-- Ad Slot -->
-    <div class="ad-slot">Ad Slot (Banner)</div>
+    <section id="results" class="results"></section>
 
-    <!-- Results -->
-    <section id="results"></section>
-
-    <!-- FAQs -->
     <section class="faqs">
       <h2>FAQs</h2>
-      <p><strong>How much do you need to survive in Dubai?</strong><br>
-        A single person may need around $1,200–$1,800 per month excluding rent, depending on lifestyle.</p>
-      <p><strong>Which Gulf country is the cheapest to live in?</strong><br>
-        Oman and Bahrain generally have lower living costs compared to the UAE or Qatar.</p>
-      <p><strong>Can I use this calculator for all Gulf countries?</strong><br>
-        Yes, it provides estimated monthly expenses for the major Gulf nations.</p>
+      <div class="faq">
+        <p><strong>How much do you need to survive in Dubai?</strong></p>
+        <p>On average, a single person may need around AED 3,000–5,000 monthly depending on lifestyle.</p>
+      </div>
+      <div class="faq">
+        <p><strong>Which Gulf country is the cheapest to live in?</strong></p>
+        <p>Oman and Saudi Arabia generally offer lower living costs compared to UAE or Qatar.</p>
+      </div>
+      <div class="faq">
+        <p><strong>Can I use this calculator for all Gulf countries?</strong></p>
+        <p>Yes, it estimates costs for UAE, Saudi Arabia, Qatar, Oman, Bahrain, and Kuwait.</p>
+      </div>
     </section>
-
-    <!-- Ad Slot -->
-    <div class="ad-slot">Ad Slot (Logo Ad)</div>
   </main>
 
   <footer>
-    <a href="about.html">About</a> |
-    <a href="contact.html">Contact</a> |
-    <a href="privacy.html">Privacy Policy</a> |
-    <a href="terms.html">Terms</a>
+    <p>&copy; 2025 Gulf Expense Calculator</p>
   </footer>
 
   <script src="script.js"></script>
