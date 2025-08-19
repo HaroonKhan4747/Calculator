@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gulf Expense Calculator</title>
+  <meta name="description" content="Estimate living expenses in Gulf countries with our free calculator.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">GulfExpense Calculator</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms</a>
+    </nav>
+  </header>
+  <main>
+    
+<h1>Gulf Expense Calculator</h1>
+<p>Estimate monthly living expenses across Gulf countries.</p>
+<div class="ad-slot top-right">Ad Slot (Logo Ad)</div>
+<div class="calculator">
+  <label for="country">Select Country:</label>
+  <select id="country">
+    <option value="UAE">United Arab Emirates</option>
+    <option value="Saudi">Saudi Arabia</option>
+    <option value="Qatar">Qatar</option>
+    <option value="Oman">Oman</option>
+    <option value="Kuwait">Kuwait</option>
+    <option value="Bahrain">Bahrain</option>
+  </select>
+  <label for="family-size">Family Size:</label>
+  <input type="number" id="family-size" min="1" value="1">
+  <button onclick="calculate()">Calculate</button>
+  <div id="results"></div>
+</div>
+<div class="ad-slot middle-banner">Ad Slot (Banner)</div>
+<section class="faq">
+  <h2>FAQs</h2>
+  <details>
+    <summary>How much do you need to survive in Dubai?</summary>
+    <p>On average, a single person needs around $1,000–$1,500 per month excluding rent.</p>
+  </details>
+  <details>
+    <summary>Which Gulf country is the cheapest to live in?</summary>
+    <p>Oman and Bahrain are generally considered more affordable compared to UAE and Qatar.</p>
+  </details>
+  <details>
+    <summary>Can I use this calculator for all Gulf countries?</summary>
+    <p>Yes, it covers UAE, Saudi Arabia, Qatar, Oman, Kuwait, and Bahrain.</p>
+  </details>
+</section>
+<div class="ad-slot bottom-banner">Ad Slot (Bottom)</div>
+<script src="script.js"></script>
+
+  </main>
+  <footer>
+    <p>© 2025 GulfExpense Calculator. All rights reserved.</p>
+  </footer>
+</body>
+</html>
