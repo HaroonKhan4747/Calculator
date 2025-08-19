@@ -1,56 +1,64 @@
-document.getElementById("calculate").addEventListener("click", () => {
+function calculateExpenses() {
   const country = document.getElementById("country").value;
-  const familySize = parseInt(document.getElementById("familySize").value) || 1;
-  const livingType = document.getElementById("livingType").value;
+  const currency = document.getElementById("currency").value;
   const salary = parseFloat(document.getElementById("salary").value) || 0;
+  const familySize = parseInt(document.getElementById("family").value) || 1;
+  const lifestyle = document.getElementById("lifestyle").value;
 
-  // Currency map
-  const currencies = {
-    UAE: "AED",
-    Qatar: "QAR",
-    Saudi: "SAR",
-    Kuwait: "KWD",
-    Bahrain: "BHD",
-    Oman: "OMR"
-  };
+  let baseCost = 800; // default baseline cost
 
-  const currency = currencies[country] || "USD";
-
-  // Base expenses per family member (USD for calculation simplicity)
-  const baseExpenses = {
-    basic: { rent: 400, utilities: 100, food: 150, transport: 60, schooling: 0, entertainment: 50 },
-    moderate: { rent: 800, utilities: 200, food: 300, transport: 120, schooling: 100, entertainment: 100 },
-    luxury: { rent: 1500, utilities: 300, food: 500, transport: 200, schooling: 300, entertainment: 300 }
-  };
-
-  const chosen = baseExpenses[livingType];
-  let total = 0;
-  let resultHTML = `
-    <h3>Estimating the best value for you...</h3>
-    <h3>Estimated Monthly Expenses (${currency})</h3>
-    <ul>
-  `;
-
-  for (const [key, value] of Object.entries(chosen)) {
-    const cost = value * familySize;
-    total += cost;
-    resultHTML += `<li>${capitalize(key)}: ${currency} ${cost.toFixed(2)}</li>`;
+  switch (country) {
+    case "UAE": baseCost = 1200; break;
+    case "Saudi": baseCost = 900; break;
+    case "Qatar": baseCost = 1100; break;
+    case "Oman": baseCost = 800; break;
+    case "Bahrain": baseCost = 950; break;
+    case "Kuwait": baseCost = 1000; break;
   }
 
-  resultHTML += `</ul><strong>Total: ${currency} ${total.toFixed(2)}</strong>`;
+  // Adjust for family size
+  let total = baseCost * familySize;
 
+  // Adjust for lifestyle
+  if (lifestyle === "moderate") total *= 1.5;
+  if (lifestyle === "luxury") total *= 2.5;
+
+  // Breakdown
+  const breakdown = {
+    Housing: (total * 0.45).toFixed(0),
+    Utilities: (total * 0.10).toFixed(0),
+    Food: (total * 0.20).toFixed(0),
+    Transport: (total * 0.10).toFixed(0),
+    Schooling: (familySize > 1 ? (total * 0.10).toFixed(0) : 0),
+    Entertainment: (total * 0.05).toFixed(0),
+  };
+
+  // Salary comparison
+  let message = "";
   if (salary > 0) {
     if (salary >= total) {
-      resultHTML += `<p>✅ Your salary of ${salary} USD is enough to cover estimated expenses.</p>`;
+      message = `<p style="color:green;">✅ Your salary seems enough to comfortably cover your expenses.</p>`;
     } else {
-      resultHTML += `<p>⚠️ Your salary of ${salary} USD may not be sufficient for these expenses.</p>`;
+      message = `<p style="color:red;">⚠️ Your salary may not be enough to cover these expenses. Consider adjusting lifestyle or location.</p>`;
     }
   }
 
-  document.getElementById("results").innerHTML = resultHTML;
-});
+  // Display results
+  let resultHTML = `
+    <h2>Estimated Monthly Expenses in ${country}</h2>
+    <table>
+      <tr><th>Category</th><th>Cost (${currency})</th></tr>
+      <tr><td>Housing</td><td>${breakdown.Housing}</td></tr>
+      <tr><td>Utilities</td><td>${breakdown.Utilities}</td></tr>
+      <tr><td>Food & Groceries</td><td>${breakdown.Food}</td></tr>
+      <tr><td>Transport</td><td>${breakdown.Transport}</td></tr>
+      <tr><td>Schooling</td><td>${breakdown.Schooling}</td></tr>
+      <tr><td>Entertainment & Misc</td><td>${breakdown.Entertainment}</td></tr>
+      <tr><th>Total</th><th>${total.toFixed(0)}</th></tr>
+    </table>
+    <p><em>Note: These are estimated values and may vary based on lifestyle and city within ${country}.</em></p>
+    ${message}
+  `;
 
-// Helper function
-function capitalize(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
+  document.getElementById("results").innerHTML = resultHTML;
 }
