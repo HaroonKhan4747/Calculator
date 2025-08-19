@@ -4,88 +4,74 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gulf Expense Calculator</title>
-  <meta name="description" content="Estimate living expenses in Gulf countries with our free calculator.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <div class="logo">GulfExpense Calculator</div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="terms.html">Terms</a>
-    </nav>
-  </header>
-  <main>
     <h1>Gulf Expense Calculator</h1>
     <p>Estimate monthly living expenses across Gulf countries.</p>
+  </header>
 
-    <div class="ad-slot top-right">Ad Slot (Logo Ad)</div>
+  <main>
+    <!-- Ad Slot -->
+    <div class="ad-slot">Ad Slot (Logo Ad)</div>
 
-    <div class="calculator">
+    <!-- Calculator Form -->
+    <section class="calculator">
       <label for="country">Select Country:</label>
       <select id="country">
         <option value="UAE">United Arab Emirates</option>
-        <option value="Saudi">Saudi Arabia</option>
         <option value="Qatar">Qatar</option>
-        <option value="Oman">Oman</option>
+        <option value="Saudi">Saudi Arabia</option>
         <option value="Kuwait">Kuwait</option>
         <option value="Bahrain">Bahrain</option>
+        <option value="Oman">Oman</option>
       </select>
 
-      <label for="currency">Currency:</label>
-      <select id="currency">
-        <option value="USD">$ - US Dollar</option>
-        <option value="AED">د.إ - AED</option>
-        <option value="SAR">﷼ - SAR</option>
-        <option value="QAR">﷼ - QAR</option>
-        <option value="OMR">﷼ - OMR</option>
-        <option value="KWD">د.ك - KWD</option>
-        <option value="BHD">.د.ب - BHD</option>
-      </select>
+      <label for="familySize">Family Size:</label>
+      <input type="number" id="familySize" value="1" min="1">
 
-      <label for="salary">Your Monthly Salary:</label>
-      <input type="number" id="salary" placeholder="Enter salary">
-
-      <label for="family-size">Family Size:</label>
-      <input type="number" id="family-size" min="1" value="1">
-
-      <label for="living-type">Type of Living:</label>
-      <select id="living-type">
+      <label for="livingType">Type of Living:</label>
+      <select id="livingType">
         <option value="basic">Basic</option>
         <option value="moderate">Moderate</option>
         <option value="luxury">Luxury</option>
       </select>
 
-      <button onclick="calculate()">Calculate</button>
-      <div id="results"></div>
-    </div>
+      <label for="salary">Your Monthly Salary (USD):</label>
+      <input type="number" id="salary" placeholder="Enter salary">
 
-    <div class="ad-slot middle-banner">Ad Slot (Banner)</div>
-
-    <section class="faq">
-      <h2>FAQs</h2>
-      <details>
-        <summary>How much do you need to survive in Dubai?</summary>
-        <p>On average, a single person needs around $1,000–$1,500 per month excluding rent.</p>
-      </details>
-      <details>
-        <summary>Which Gulf country is the cheapest to live in?</summary>
-        <p>Oman and Bahrain are generally considered more affordable compared to UAE and Qatar.</p>
-      </details>
-      <details>
-        <summary>Can I use this calculator for all Gulf countries?</summary>
-        <p>Yes, it covers UAE, Saudi Arabia, Qatar, Oman, Kuwait, and Bahrain.</p>
-      </details>
+      <button id="calculate">Calculate</button>
     </section>
 
-    <div class="ad-slot bottom-banner">Ad Slot (Bottom)</div>
-    <script src="script.js"></script>
+    <!-- Ad Slot -->
+    <div class="ad-slot">Ad Slot (Banner)</div>
+
+    <!-- Results -->
+    <section id="results"></section>
+
+    <!-- FAQs -->
+    <section class="faqs">
+      <h2>FAQs</h2>
+      <p><strong>How much do you need to survive in Dubai?</strong><br>
+        A single person may need around $1,200–$1,800 per month excluding rent, depending on lifestyle.</p>
+      <p><strong>Which Gulf country is the cheapest to live in?</strong><br>
+        Oman and Bahrain generally have lower living costs compared to the UAE or Qatar.</p>
+      <p><strong>Can I use this calculator for all Gulf countries?</strong><br>
+        Yes, it provides estimated monthly expenses for the major Gulf nations.</p>
+    </section>
+
+    <!-- Ad Slot -->
+    <div class="ad-slot">Ad Slot (Logo Ad)</div>
   </main>
+
   <footer>
-    <p>© 2025 GulfExpense Calculator. All rights reserved.</p>
+    <a href="about.html">About</a> |
+    <a href="contact.html">Contact</a> |
+    <a href="privacy.html">Privacy Policy</a> |
+    <a href="terms.html">Terms</a>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
