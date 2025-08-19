@@ -11,17 +11,12 @@ const RATES = {
 
 // Currency symbols in English only
 const SYMBOLS = { 
-  USD: "$", 
-  AED: "AED", 
-  SAR: "SAR", 
-  QAR: "QAR", 
-  KWD: "KWD", 
-  BHD: "BHD", 
-  OMR: "OMR" 
+  USD: "$", AED: "AED", SAR: "SAR", QAR: "QAR", KWD: "KWD", BHD: "BHD", OMR: "OMR" 
 };
 
 // Country cost multipliers vs. USD baseline
 const COUNTRY_MULTIPLIER = {
+  Dubai: 1.20, // Dubai is slightly more expensive than UAE average
   UAE: 1.00,
   Saudi: 0.85,
   Qatar: 0.95,
@@ -53,20 +48,17 @@ function calculate() {
   const mult = COUNTRY_MULTIPLIER[country] || 1;
   const base = BASELINE_USD[livingType];
 
-  // Per-line in USD before conversion
   const housingUSD   = base.housing * mult;
   const utilUSD      = base.utilities * mult * (1 + 0.2 * (familySize - 1));
   const foodUSD      = base.foodPerPerson * familySize * mult;
   const transportUSD = base.transportPerPerson * familySize * mult;
   const miscUSD      = base.miscPerPerson * familySize * mult;
 
-  // Schooling: if family size >= 3 assume number of children = familySize - 2
   const children = Math.max(0, familySize - 2);
   const schoolingUSD = base.schoolingPerChild * children * mult;
 
   const totalUSD = housingUSD + utilUSD + foodUSD + transportUSD + schoolingUSD + miscUSD;
 
-  // Convert to selected currency
   const rate = RATES[currency] || 1;
   const housing   = housingUSD   * rate;
   const utilities = utilUSD      * rate;
@@ -79,7 +71,6 @@ function calculate() {
   const salary = isNaN(salaryInput) ? 0 : salaryInput;
   const leftover = salary - total;
 
-  // Status text
   const status =
     salary <= 0
       ? `<span class="status bad">Enter your salary to compare.</span>`
@@ -87,7 +78,6 @@ function calculate() {
         ? `<span class="status ok">✅ Salary covers estimated expenses. Leftover: ${fm(leftover, currency)}</span>`
         : `<span class="status bad">⚠️ Salary may be insufficient. Short by ${fm(Math.abs(leftover), currency)}</span>`;
 
-  // Render detailed result
   const results = document.getElementById("results");
   results.classList.remove("hidden");
   results.innerHTML = `
