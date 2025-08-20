@@ -7,29 +7,55 @@
   <meta name="keywords" content="Dubai cost of living, UAE salary calculator, Gulf expenses, Saudi Arabia living costs, Qatar rent, Kuwait food prices, Oman cost of living, Bahrain salary guide" />
   <title>Gulf Expense Calculator</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Structured FAQ Schema for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much do you need to survive in Dubai?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Around AED 6,000–10,000 monthly for a single person depending on lifestyle."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which Gulf country is the cheapest to live in?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oman and Bahrain are usually more affordable compared to Dubai or Qatar."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <!-- Navbar -->
   <header class="navbar">
     <div class="logo">🌍 GulfExpense</div>
     <nav class="nav-links" id="navLinks">
-      <a href="#">Home</a>
-      <a href="#">About</a>
-      <a href="#">Contact</a>
-      <a href="#">Privacy</a>
-      <a href="#">Terms</a>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#terms">Terms</a>
     </nav>
     <div class="hamburger" id="hamburger">☰</div>
   </header>
 
   <!-- Hero -->
-  <section class="hero">
+  <section id="home" class="hero">
     <h1>Gulf Expense Calculator</h1>
     <p>Estimate monthly living expenses across Gulf countries with a detailed breakdown.</p>
   </section>
 
   <!-- Calculator -->
   <section class="calculator">
+    <h2>Calculate Your Monthly Expenses</h2>
     <label for="country">Country</label>
     <select id="country">
       <option value="dubai">Dubai (UAE)</option>
@@ -67,8 +93,44 @@
     <button id="calculate">Calculate</button>
   </section>
 
+  <!-- AdSense Placeholder -->
+  <div class="ad-slot">
+    <!-- Replace this with your AdSense code -->
+    <p>Advertisement</p>
+  </div>
+
   <!-- Results -->
   <section class="results" id="results"></section>
+
+  <!-- AdSense Placeholder -->
+  <div class="ad-slot">
+    <!-- Replace this with your AdSense code -->
+    <p>Advertisement</p>
+  </div>
+
+  <!-- About -->
+  <section id="about" class="info-section">
+    <h2>About</h2>
+    <p>This calculator helps expats and locals estimate monthly living expenses across Gulf countries, with breakdowns of rent, food, transport, and utilities.</p>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="info-section">
+    <h2>Contact</h2>
+    <p>For inquiries or suggestions, email us at: support@gulfexpense.com</p>
+  </section>
+
+  <!-- Privacy -->
+  <section id="privacy" class="info-section">
+    <h2>Privacy Policy</h2>
+    <p>Your data is not stored. All calculations are done in-browser for your privacy.</p>
+  </section>
+
+  <!-- Terms -->
+  <section id="terms" class="info-section">
+    <h2>Terms & Conditions</h2>
+    <p>Estimates are for informational purposes only. Actual living costs vary by city, lifestyle, and market changes.</p>
+  </section>
 
   <!-- FAQs -->
   <section class="faqs">
