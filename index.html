@@ -6,29 +6,17 @@
   <meta name="description" content="Gulf Expense Calculator - Estimate monthly living costs in Dubai (UAE), Saudi Arabia, Qatar, Kuwait, Bahrain, and Oman with detailed breakdowns of rent, food, transport, and more." />
   <meta name="keywords" content="Dubai cost of living, UAE salary calculator, Gulf expenses, Saudi Arabia living costs, Qatar rent, Kuwait food prices, Oman cost of living, Bahrain salary guide" />
   <title>Gulf Expense Calculator</title>
+
+  <!-- Minimal SEO: keep meta tags as you had them -->
   <link rel="stylesheet" href="style.css" />
-  <!-- Structured FAQ Schema for SEO -->
+  <!-- FAQ structured data (keeps your SEO intact) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "How much do you need to survive in Dubai?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Around AED 6,000–10,000 monthly for a single person depending on lifestyle."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Which Gulf country is the cheapest to live in?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Oman and Bahrain are usually more affordable compared to Dubai or Qatar."
-        }
-      }
+      { "@type": "Question", "name": "How much do you need to survive in Dubai?", "acceptedAnswer": { "@type": "Answer", "text": "Around AED 6,000–10,000 monthly for a single person depending on lifestyle." } },
+      { "@type": "Question", "name": "Which Gulf country is the cheapest to live in?", "acceptedAnswer": { "@type": "Answer", "text": "Oman and Bahrain are usually more affordable compared to Dubai or Qatar." } }
     ]
   }
   </script>
@@ -36,115 +24,129 @@
 <body>
   <!-- Navbar -->
   <header class="navbar">
-    <div class="logo">🌍 GulfExpense</div>
-    <nav class="nav-links" id="navLinks">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-      <a href="#privacy">Privacy</a>
-      <a href="#terms">Terms</a>
-    </nav>
-    <div class="hamburger" id="hamburger">☰</div>
+    <div class="container-row">
+      <div class="logo">🌍 GulfExpense</div>
+      <nav class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#terms">Terms</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">☰</button>
+    </div>
   </header>
 
-  <!-- Hero -->
-  <section id="home" class="hero">
-    <h1>Gulf Expense Calculator</h1>
-    <p>Estimate monthly living expenses across Gulf countries with a detailed breakdown.</p>
-  </section>
+  <main class="page">
+    <!-- Hero -->
+    <section id="home" class="hero">
+      <h1>Gulf Expense Calculator</h1>
+      <p>Estimate monthly living expenses across Gulf countries with a transparent breakdown (rent, food, transport, utilities).</p>
+    </section>
 
-  <!-- Calculator -->
-  <section class="calculator">
-    <h2>Calculate Your Monthly Expenses</h2>
-    <label for="country">Country</label>
-    <select id="country">
-      <option value="dubai">Dubai (UAE)</option>
-      <option value="saudi">Saudi Arabia</option>
-      <option value="qatar">Qatar</option>
-      <option value="kuwait">Kuwait</option>
-      <option value="bahrain">Bahrain</option>
-      <option value="oman">Oman</option>
-    </select>
+    <div class="container">
+      <!-- Main column -->
+      <main class="main-col">
+        <!-- Calculator -->
+        <section class="calculator" aria-labelledby="calc-title">
+          <h2 id="calc-title">Calculate Your Monthly Expenses</h2>
 
-    <label for="family">Family Size</label>
-    <input type="number" id="family" min="1" value="1" />
+          <label for="country">Country</label>
+          <select id="country" aria-label="Country">
+            <option value="dubai">Dubai (UAE)</option>
+            <option value="saudi">Saudi Arabia</option>
+            <option value="qatar">Qatar</option>
+            <option value="kuwait">Kuwait</option>
+            <option value="bahrain">Bahrain</option>
+            <option value="oman">Oman</option>
+          </select>
 
-    <label for="lifestyle">Type of Living</label>
-    <select id="lifestyle">
-      <option value="budget">Budget (low cost)</option>
-      <option value="moderate">Moderate (balanced)</option>
-      <option value="luxury">Luxury</option>
-    </select>
+          <label for="family">Family Size</label>
+          <input type="number" id="family" min="1" value="1" />
 
-    <label for="currency">Currency</label>
-    <select id="currency">
-      <option value="AED">AED</option>
-      <option value="SAR">SAR</option>
-      <option value="QAR">QAR</option>
-      <option value="KWD">KWD</option>
-      <option value="BHD">BHD</option>
-      <option value="OMR">OMR</option>
-      <option value="USD">USD</option>
-    </select>
+          <label for="lifestyle">Type of Living</label>
+          <select id="lifestyle">
+            <option value="budget">Budget (low cost)</option>
+            <option value="moderate" selected>Moderate (balanced)</option>
+            <option value="luxury">Luxury</option>
+          </select>
 
-    <label for="salary">Your Salary (per month)</label>
-    <input type="number" id="salary" placeholder="Enter your salary in selected currency" />
+          <label for="currency">Currency (display)</label>
+          <select id="currency">
+            <option value="AED">AED</option>
+            <option value="SAR">SAR</option>
+            <option value="QAR">QAR</option>
+            <option value="KWD">KWD</option>
+            <option value="BHD">BHD</option>
+            <option value="OMR">OMR</option>
+            <option value="USD" selected>USD</option>
+          </select>
 
-    <button id="calculate">Calculate</button>
-  </section>
+          <label for="salary">Your Salary (per month in selected currency)</label>
+          <input type="number" id="salary" placeholder="Enter your salary in selected currency" />
 
-  <!-- AdSense Placeholder -->
-  <div class="ad-slot">
-    <!-- Replace this with your AdSense code -->
-    <p>Advertisement</p>
-  </div>
+          <button id="calculate">Calculate</button>
+        </section>
 
-  <!-- Results -->
-  <section class="results" id="results"></section>
+        <!-- Ad placeholder - lowkey -->
+        <div class="ad-slot small-ad" aria-hidden="true">
+          <p>Advertisement (replace with AdSense code)</p>
+        </div>
 
-  <!-- AdSense Placeholder -->
-  <div class="ad-slot">
-    <!-- Replace this with your AdSense code -->
-    <p>Advertisement</p>
-  </div>
+        <!-- Results -->
+        <section class="results" id="results" aria-live="polite"></section>
 
-  <!-- About -->
-  <section id="about" class="info-section">
-    <h2>About</h2>
-    <p>This calculator helps expats and locals estimate monthly living expenses across Gulf countries, with breakdowns of rent, food, transport, and utilities.</p>
-  </section>
+        <!-- FAQs -->
+        <section class="faqs" id="faqs">
+          <h2>FAQs</h2>
+          <div class="faq"><b>How much do you need to survive in Dubai?</b> Around AED 6,000–10,000 monthly for a single person depending on lifestyle.</div>
+          <div class="faq"><b>Which Gulf country is the cheapest to live in?</b> Oman and Bahrain are usually more affordable compared to Dubai or Qatar.</div>
+          <div class="faq"><b>Do the results include schooling?</b> No, education is separate and varies by school.</div>
+          <div class="faq"><b>What’s the average rent in Dubai?</b> 1-bedroom rents can range widely; we use Numbeo averages to estimate. See sources in the site notes.</div>
+        </section>
 
-  <!-- Contact -->
-  <section id="contact" class="info-section">
-    <h2>Contact</h2>
-    <p>For inquiries or suggestions, email us at: support@gulfexpense.com</p>
-  </section>
+      </main>
 
-  <!-- Privacy -->
-  <section id="privacy" class="info-section">
-    <h2>Privacy Policy</h2>
-    <p>Your data is not stored. All calculations are done in-browser for your privacy.</p>
-  </section>
+      <!-- Sidebar (desktop only) -->
+      <aside class="sidebar" aria-label="Sidebar">
+        <div class="ad-slot">
+          <p>Sidebar Ad (desktop only) — paste AdSense here</p>
+        </div>
 
-  <!-- Terms -->
-  <section id="terms" class="info-section">
-    <h2>Terms & Conditions</h2>
-    <p>Estimates are for informational purposes only. Actual living costs vary by city, lifestyle, and market changes.</p>
-  </section>
+        <section class="info-section compact">
+          <h3>About</h3>
+          <p>This calculator uses public cost-of-living averages (Numbeo & market reports) to produce a transparent estimate. Results are approximate — always confirm locally.</p>
+        </section>
+      </aside>
+    </div>
 
-  <!-- FAQs -->
-  <section class="faqs">
-    <h2>FAQs</h2>
-    <div class="faq"><b>How much do you need to survive in Dubai?</b> Around AED 6,000–10,000 monthly for a single person depending on lifestyle.</div>
-    <div class="faq"><b>Which Gulf country is the cheapest to live in?</b> Oman and Bahrain are usually more affordable compared to Dubai or Qatar.</div>
-    <div class="faq"><b>Do the results include schooling?</b> No, education is separate and varies by school.</div>
-    <div class="faq"><b>What’s the average rent in Dubai?</b> A 1-bedroom can cost AED 3,000–7,000 monthly depending on the area.</div>
-    <div class="faq"><b>How expensive is food in the UAE?</b> On average, groceries for 1 person cost around AED 1,000–1,500 per month.</div>
-    <div class="faq"><b>Is healthcare free in the Gulf?</b> No, private insurance is usually required for expats.</div>
-  </section>
+    <!-- Contact / Policy sections (anchors) -->
+    <section id="about" class="info-section full">
+      <h2>About</h2>
+      <p>This calculator helps expats and locals estimate monthly living expenses across Gulf countries, with transparent breakdowns and conversion to your chosen display currency.</p>
+    </section>
+
+    <section id="contact" class="info-section full">
+      <h2>Contact</h2>
+      <p>For inquiries or suggestions, email: <a href="mailto:stellarbusinessez@gmail.com">stellarbusinessez@gmail.com</a></p>
+    </section>
+
+    <section id="privacy" class="info-section full">
+      <h2>Privacy</h2>
+      <p>Your data is not stored. All calculations run in-browser for privacy.</p>
+    </section>
+
+    <section id="terms" class="info-section full">
+      <h2>Terms &amp; Conditions</h2>
+      <p>Estimates are for informational purposes only. Actual living costs vary by city, lifestyle, and market changes.</p>
+    </section>
+  </main>
 
   <footer>
-    <p>© 2025 GulfExpense. Estimates only; actual costs vary.</p>
+    <div class="footer-inner">
+      <div class="footer-left">© 2025 GulfExpense. Estimates only; actual costs vary.</div>
+      <div class="footer-right small-ad">Advertisement (replace with AdSense)</div>
+    </div>
   </footer>
 
   <script src="script.js"></script>
