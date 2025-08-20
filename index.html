@@ -1,152 +1,133 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Gulf Expense Calculator - Estimate monthly living costs in Dubai (UAE), Saudi Arabia, Qatar, Kuwait, Bahrain, and Oman with detailed breakdowns of rent, food, transport, and more." />
-  <meta name="keywords" content="Dubai cost of living, UAE salary calculator, Gulf expenses, Saudi Arabia living costs, Qatar rent, Kuwait food prices, Oman cost of living, Bahrain salary guide" />
-  <title>Gulf Expense Calculator</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Free Random Password Generator — generate 1,5,10,20 or 50 secure passwords instantly. Choose difficulty, include numbers/symbols, copy or download as .txt." />
+  <meta name="keywords" content="password generator, random password, strong password generator, generate password online, free password maker" />
+  <title>Free Password Generator — Simple & Secure</title>
 
-  <!-- Minimal SEO: keep meta tags as you had them -->
   <link rel="stylesheet" href="style.css" />
-  <!-- FAQ structured data (keeps your SEO intact) -->
+  <!-- FAQ structured data for SEO -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      { "@type": "Question", "name": "How much do you need to survive in Dubai?", "acceptedAnswer": { "@type": "Answer", "text": "Around AED 6,000–10,000 monthly for a single person depending on lifestyle." } },
-      { "@type": "Question", "name": "Which Gulf country is the cheapest to live in?", "acceptedAnswer": { "@type": "Answer", "text": "Oman and Bahrain are usually more affordable compared to Dubai or Qatar." } }
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"How do I generate a secure password?","acceptedAnswer":{"@type":"Answer","text":"Use a long random string with uppercase, lowercase, numbers and symbols. This tool generates secure passwords using the browser's crypto API."}},
+      {"@type":"Question","name":"Can I download generated passwords?","acceptedAnswer":{"@type":"Answer","text":"Yes — you can download passwords as a .txt file or .csv for easy import."}},
+      {"@type":"Question","name":"Do you store my passwords?","acceptedAnswer":{"@type":"Answer","text":"No. All generation and storage is local in your browser. Nothing is sent to a server."}}
     ]
   }
   </script>
 </head>
 <body>
-  <!-- Navbar -->
-  <header class="navbar">
-    <div class="container-row">
-      <div class="logo">🌍 GulfExpense</div>
-      <nav class="nav-links" id="navLinks">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <a href="#privacy">Privacy</a>
-        <a href="#terms">Terms</a>
-      </nav>
-      <button class="hamburger" id="hamburger" aria-label="Toggle menu">☰</button>
-    </div>
+  <header class="nav">
+    <div class="brand">🔒 PassForge</div>
+    <button id="hamburger" class="hamburger" aria-label="Menu">☰</button>
+    <nav id="menu" class="menu">
+      <a href="#generator">Generator</a>
+      <a href="#about">About</a>
+      <a href="#faq">FAQ</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
-  <main class="page">
-    <!-- Hero -->
-    <section id="home" class="hero">
-      <h1>Gulf Expense Calculator</h1>
-      <p>Estimate monthly living expenses across Gulf countries with a transparent breakdown (rent, food, transport, utilities).</p>
+  <main class="wrap">
+    <section id="generator" class="card hero">
+      <h1>Free Password Generator — Simple & Secure</h1>
+      <p class="lead">One-click generation. Choose quantity, difficulty, and whether to include numbers or symbols. Copy or download results instantly.</p>
+
+      <div class="controls">
+        <div class="row wrap-opts">
+          <label class="inline">
+            Quantity
+            <select id="quantity">
+              <option value="1">1</option>
+              <option value="5">5</option>
+              <option value="10" selected>10</option>
+              <option value="20">20</option>
+              <option value="50">50</option>
+            </select>
+          </label>
+
+          <label class="inline">
+            Difficulty
+            <select id="difficulty">
+              <option value="easy">Easy</option>
+              <option value="normal" selected>Normal</option>
+              <option value="strong">Strong</option>
+            </select>
+          </label>
+
+          <label class="inline toggle">
+            <input type="checkbox" id="includeNumbers" checked />
+            <span>Include numbers</span>
+          </label>
+
+          <label class="inline toggle">
+            <input type="checkbox" id="includeSymbols" checked />
+            <span>Include symbols</span>
+          </label>
+        </div>
+
+        <div class="row actions">
+          <button id="generate" class="btn primary large">Generate Passwords</button>
+          <div class="small-actions">
+            <button id="copyAll" class="btn ghost">Copy All</button>
+            <button id="downloadTxt" class="btn ghost">Download .txt</button>
+            <button id="downloadCsv" class="btn ghost">Download .csv</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- AdSense placeholder (replace with AdSense script) -->
+      <div class="ad-slot" aria-hidden="true">Advertisement</div>
+
+      <div id="results" class="results" aria-live="polite">
+        <div class="results-header">
+          <strong id="resultCount">0</strong> passwords
+        </div>
+        <div id="list" class="list"></div>
+      </div>
     </section>
 
-    <div class="container">
-      <!-- Main column -->
-      <main class="main-col">
-        <!-- Calculator -->
-        <section class="calculator" aria-labelledby="calc-title">
-          <h2 id="calc-title">Calculate Your Monthly Expenses</h2>
+    <!-- Sidebar for desktop ads / info -->
+    <aside class="sidebar">
+      <div class="card info">
+        <h3>Why this tool?</h3>
+        <p>Quick, secure passwords generated using the browser's CSPRNG. We don't collect or send your data.</p>
+      </div>
 
-          <label for="country">Country</label>
-          <select id="country" aria-label="Country">
-            <option value="dubai">Dubai (UAE)</option>
-            <option value="saudi">Saudi Arabia</option>
-            <option value="qatar">Qatar</option>
-            <option value="kuwait">Kuwait</option>
-            <option value="bahrain">Bahrain</option>
-            <option value="oman">Oman</option>
-          </select>
+      <div class="ad-slot">Sidebar Ad (desktop) — paste AdSense here</div>
+    </aside>
 
-          <label for="family">Family Size</label>
-          <input type="number" id="family" min="1" value="1" />
-
-          <label for="lifestyle">Type of Living</label>
-          <select id="lifestyle">
-            <option value="budget">Budget (low cost)</option>
-            <option value="moderate" selected>Moderate (balanced)</option>
-            <option value="luxury">Luxury</option>
-          </select>
-
-          <label for="currency">Currency (display)</label>
-          <select id="currency">
-            <option value="AED">AED</option>
-            <option value="SAR">SAR</option>
-            <option value="QAR">QAR</option>
-            <option value="KWD">KWD</option>
-            <option value="BHD">BHD</option>
-            <option value="OMR">OMR</option>
-            <option value="USD" selected>USD</option>
-          </select>
-
-          <label for="salary">Your Salary (per month in selected currency)</label>
-          <input type="number" id="salary" placeholder="Enter your salary in selected currency" />
-
-          <button id="calculate">Calculate</button>
-        </section>
-
-        <!-- Ad placeholder - lowkey -->
-        <div class="ad-slot small-ad" aria-hidden="true">
-          <p>Advertisement (replace with AdSense code)</p>
-        </div>
-
-        <!-- Results -->
-        <section class="results" id="results" aria-live="polite"></section>
-
-        <!-- FAQs -->
-        <section class="faqs" id="faqs">
-          <h2>FAQs</h2>
-          <div class="faq"><b>How much do you need to survive in Dubai?</b> Around AED 6,000–10,000 monthly for a single person depending on lifestyle.</div>
-          <div class="faq"><b>Which Gulf country is the cheapest to live in?</b> Oman and Bahrain are usually more affordable compared to Dubai or Qatar.</div>
-          <div class="faq"><b>Do the results include schooling?</b> No, education is separate and varies by school.</div>
-          <div class="faq"><b>What’s the average rent in Dubai?</b> 1-bedroom rents can range widely; we use Numbeo averages to estimate. See sources in the site notes.</div>
-        </section>
-
-      </main>
-
-      <!-- Sidebar (desktop only) -->
-      <aside class="sidebar" aria-label="Sidebar">
-        <div class="ad-slot">
-          <p>Sidebar Ad (desktop only) — paste AdSense here</p>
-        </div>
-
-        <section class="info-section compact">
-          <h3>About</h3>
-          <p>This calculator uses public cost-of-living averages (Numbeo & market reports) to produce a transparent estimate. Results are approximate — always confirm locally.</p>
-        </section>
-      </aside>
-    </div>
-
-    <!-- Contact / Policy sections (anchors) -->
-    <section id="about" class="info-section full">
+    <!-- Supporting sections (for SEO, linked via hamburger menu) -->
+    <section id="about" class="card full">
       <h2>About</h2>
-      <p>This calculator helps expats and locals estimate monthly living expenses across Gulf countries, with transparent breakdowns and conversion to your chosen display currency.</p>
+      <p>This simple password generator focuses on clarity and speed. It uses the browser's secure random generator and offers batch generation, copy, and download.</p>
     </section>
 
-    <section id="contact" class="info-section full">
-      <h2>Contact</h2>
-      <p>For inquiries or suggestions, email: <a href="mailto:stellarbusinessez@gmail.com">stellarbusinessez@gmail.com</a></p>
+    <section id="faq" class="card full">
+      <h2>FAQ</h2>
+      <div class="faq-item"><b>How does difficulty work?</b><p>Difficulty controls length & randomness: Easy (short), Normal (medium), Strong (long & very random). Toggles for numbers/symbols override included character sets.</p></div>
+      <div class="faq-item"><b>Is it safe?</b><p>Yes — generation happens locally in your browser using cryptographically secure random values.</p></div>
     </section>
 
-    <section id="privacy" class="info-section full">
+    <section id="privacy" class="card full">
       <h2>Privacy</h2>
-      <p>Your data is not stored. All calculations run in-browser for privacy.</p>
+      <p>No server storage. All actions happen in your browser. This site contains AdSense ads — we do not track passwords.</p>
     </section>
 
-    <section id="terms" class="info-section full">
-      <h2>Terms &amp; Conditions</h2>
-      <p>Estimates are for informational purposes only. Actual living costs vary by city, lifestyle, and market changes.</p>
+    <section id="contact" class="card full">
+      <h2>Contact</h2>
+      <p>Reach: <a href="mailto:stellarbusinessez@gmail.com">stellarbusinessez@gmail.com</a></p>
     </section>
   </main>
 
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-left">© 2025 GulfExpense. Estimates only; actual costs vary.</div>
-      <div class="footer-right small-ad">Advertisement (replace with AdSense)</div>
-    </div>
+  <footer class="footer">
+    <div>© 2025 PassForge — Generate secure passwords fast • <a href="#privacy">Privacy</a></div>
   </footer>
 
   <script src="script.js"></script>
