@@ -1,142 +1,222 @@
-/* -------------------------
-  Gulf Expense Calculator
-  - country data calibrated from Numbeo / market reports (Aug 2025)
-  - currency conversion uses recent mid-market rates (Aug 2025)
-  --------------------------*/
+// simple, secure password generator page logic
+(function(){
+  // Elements
+  const quantityEl = document.getElementById('quantity');
+  const difficultyEl = document.getElementById('difficulty');
+  const includeNumbersEl = document.getElementById('includeNumbers');
+  const includeSymbolsEl = document.getElementById('includeSymbols');
+  const generateBtn = document.getElementById('generate');
+  const listEl = document.getElementById('list');
+  const resultCountEl = document.getElementById('resultCount');
+  const copyAllBtn = document.getElementById('copyAll');
+  const downloadTxtBtn = document.getElementById('downloadTxt');
+  const downloadCsvBtn = document.getElementById('downloadCsv');
+  const hamburger = document.getElementById('hamburger');
+  const menu = document.getElementById('menu');
 
-// UI helpers
-document.getElementById("hamburger").addEventListener("click", function () {
-  document.getElementById("navLinks").classList.toggle("show");
-});
-// smooth scroll
-document.querySelectorAll(".nav-links a").forEach(link => {
-  link.addEventListener("click", function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute("href"));
-    if (target) target.scrollIntoView({ behavior: "smooth" });
+  // Toggle mobile menu
+  hamburger?.addEventListener('click', ()=> menu.classList.toggle('open'));
+
+  // Difficulty presets (length range)
+  const difficultyPresets = {
+    easy:  {min:6, max:8, entropyMultiplier:1},
+    normal:{min:10, max:12, entropyMultiplier:1.2},
+    strong:{min:14, max:20, entropyMultiplier:1.5}
+  };
+
+  // character sets
+  const LOWER = 'abcdefghijklmnopqrstuvwxyz';
+  const UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const NUM = '0123456789';
+  const SYMBOLS = '!@#$%^&*()-_=+[]{}|;:,.<>?';
+
+  function secureRandomInt(max){
+    // returns integer 0..max-1 using crypto
+    const array = new Uint32Array(1);
+    window.crypto.getRandomValues(array);
+    return array[0] % max;
+  }
+
+  function pickFrom(str){
+    return str.charAt(secureRandomInt(str.length));
+  }
+
+  function randomLength(min,max){
+    if(min===max) return min;
+    const range = max - min + 1;
+    return min + secureRandomInt(range);
+  }
+
+  function buildCharset(includeNumbers, includeSymbols){
+    let set = LOWER + UPPER;
+    if(includeNumbers) set += NUM;
+    if(includeSymbols) set += SYMBOLS;
+    return set;
+  }
+
+  function generateSingle({difficulty, includeNumbers, includeSymbols}){
+    const preset = difficultyPresets[difficulty] || difficultyPresets.normal;
+    const len = randomLength(preset.min, preset.max);
+    const charset = buildCharset(includeNumbers, includeSymbols);
+
+    // ensure at least one from each selected category is present for quality (if available)
+    let out = [];
+    // required anchors
+    out.push(pickFrom(LOWER));
+    out.push(pickFrom(UPPER));
+    if(includeNumbers) out.push(pickFrom(NUM));
+    if(includeSymbols) out.push(pickFrom(SYMBOLS));
+
+    // fill remaining
+    while(out.join('').length < len){
+      out.push(pickFrom(charset));
+    }
+
+    // shuffle securely (Fisher-Yates using crypto)
+    for(let i = out.length - 1; i > 0; i--){
+      const j = secureRandomInt(i + 1);
+      [out[i], out[j]] = [out[j], out[i]];
+    }
+
+    return out.join('').slice(0, len);
+  }
+
+  function generateBatch(count, options){
+    const results = [];
+    for(let i=0;i<count;i++){
+      results.push(generateSingle(options));
+    }
+    return results;
+  }
+
+  function renderResults(arr){
+    listEl.innerHTML = '';
+    resultCountEl.textContent = arr.length;
+    if(arr.length === 0){
+      listEl.innerHTML = '<div class="muted">No passwords yet. Click Generate.</div>';
+      return;
+    }
+
+    arr.forEach((pw, idx) => {
+      const card = document.createElement('div');
+      card.className = 'pw-card';
+
+      const left = document.createElement('div');
+      left.className = 'pw-left';
+      const txt = document.createElement('div');
+      txt.className = 'pw-text';
+      txt.textContent = pw;
+      left.appendChild(txt);
+
+      const meta = document.createElement('div');
+      meta.className = 'pw-meta';
+      meta.textContent = pw.length + ' chars';
+      left.appendChild(meta);
+
+      const actions = document.createElement('div');
+      actions.className = 'pw-actions';
+
+      const copyBtn = document.createElement('button');
+      copyBtn.className = 'icon-btn copy';
+      copyBtn.title = 'Copy';
+      copyBtn.textContent = 'Copy';
+      copyBtn.addEventListener('click', async ()=>{
+        try {
+          await navigator.clipboard.writeText(pw);
+          copyBtn.textContent = 'Copied';
+          setTimeout(()=> copyBtn.textContent = 'Copy', 900);
+        } catch(e){
+          alert('Copy failed. Please select and copy manually.');
+        }
+      });
+
+      const delBtn = document.createElement('button');
+      delBtn.className = 'icon-btn';
+      delBtn.title = 'Delete';
+      delBtn.textContent = 'Delete';
+      delBtn.addEventListener('click', ()=>{
+        // remove this password from current display array
+        const current = Array.from(listEl.querySelectorAll('.pw-text')).map(n=>n.textContent);
+        const filtered = current.filter(x=> x !== pw || (x===pw && current.indexOf(x) !== current.lastIndexOf(x)));
+        renderResults(filtered);
+      });
+
+      actions.appendChild(copyBtn);
+      actions.appendChild(delBtn);
+
+      card.appendChild(left);
+      card.appendChild(actions);
+      listEl.appendChild(card);
+    });
+  }
+
+  function getCurrentPasswords(){
+    return Array.from(listEl.querySelectorAll('.pw-text')).map(n=>n.textContent);
+  }
+
+  // Generate click
+  generateBtn.addEventListener('click', ()=>{
+    const count = Math.max(1, Math.min(50, parseInt(quantityEl.value) || 1));
+    const difficulty = difficultyEl.value;
+    const includeNumbers = includeNumbersEl.checked;
+    const includeSymbols = includeSymbolsEl.checked;
+
+    const arr = generateBatch(count, {difficulty, includeNumbers, includeSymbols});
+    renderResults(arr);
   });
-});
 
-/* -------------------------
-   Data sources & model:
-   - For each country we store:
-     - currency (local)
-     - nonRentUSD: Numbeo's "single person, excluding rent" (USD)
-     - rentOutsideLocal: Numbeo's 1-bedroom outside-center (in local currency)
-     - localToUSD: how much 1 local unit equals USD (e.g., 1 AED = 0.2723 USD)
-   See site footer / code comments for citations.
-   -------------------------*/
-const countries = {
-  dubai:  { name: 'Dubai (UAE)', currency: 'AED', nonRentUSD: 1156.7, rentOutsideLocal: 5575.42, localToUSD: 0.2723 },  // Numbeo Dubai
-  saudi:  { name: 'Saudi Arabia', currency: 'SAR', nonRentUSD: 815.1,  rentOutsideLocal: 1601.97, localToUSD: 0.2666 },  // Numbeo (country avg)
-  qatar:  { name: 'Qatar',      currency: 'QAR', nonRentUSD: 889.3,  rentOutsideLocal: 3645.59, localToUSD: 0.2746 },  // Numbeo Doha
-  kuwait: { name: 'Kuwait',     currency: 'KWD', nonRentUSD: 831.1,  rentOutsideLocal: 185.86,  localToUSD: 3.2730 },  // Numbeo Kuwait
-  bahrain:{ name: 'Bahrain',    currency: 'BHD', nonRentUSD: 855.1,  rentOutsideLocal: 224.09,  localToUSD: 2.6528 },  // Numbeo Bahrain
-  oman:   { name: 'Oman',       currency: 'OMR', nonRentUSD: 755.3,  rentOutsideLocal: 139.43,  localToUSD: 2.6009 }   // Numbeo Oman
-};
+  // Copy All
+  copyAllBtn.addEventListener('click', async ()=>{
+    const arr = getCurrentPasswords();
+    if(arr.length === 0) { alert('No passwords to copy.'); return; }
+    const text = arr.join('\n');
+    try {
+      await navigator.clipboard.writeText(text);
+      alert('Copied ' + arr.length + ' passwords to clipboard.');
+    } catch(e){
+      alert('Copy failed. Please copy manually.');
+    }
+  });
 
-// Conversion: USD per unit (used to convert USD ↔ display currency)
-const usdPer = {
-  AED: 0.2723,
-  SAR: 0.2666,
-  QAR: 0.2746,
-  KWD: 3.2730,
-  BHD: 2.6528,
-  OMR: 2.6009,
-  USD: 1
-};
+  // Download .txt
+  downloadTxtBtn.addEventListener('click', ()=>{
+    const arr = getCurrentPasswords();
+    if(arr.length === 0){ alert('No passwords to download.'); return; }
+    const blob = new Blob([arr.join('\n')], {type:'text/plain;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'passwords.txt';
+    document.body.appendChild(a);
+    a.click();
+    URL.revokeObjectURL(url);
+    a.remove();
+  });
 
-// lifestyle multipliers (applied to baseline non-rent and rent)
-const lifestyleMultiplier = {
-  budget: 0.65,
-  moderate: 1.0,
-  luxury: 1.8
-};
+  // Download .csv
+  downloadCsvBtn.addEventListener('click', ()=>{
+    const arr = getCurrentPasswords();
+    if(arr.length === 0){ alert('No passwords to download.'); return; }
+    const rows = arr.map(pw => `"${pw}"`).join('\n');
+    const blob = new Blob(['password\n' + rows], {type:'text/csv;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'passwords.csv';
+    document.body.appendChild(a);
+    a.click();
+    URL.revokeObjectURL(url);
+    a.remove();
+  });
 
-// Calculate button
-document.getElementById("calculate").addEventListener("click", function () {
-  const family = Math.max(1, parseInt(document.getElementById("family").value) || 1);
-  const lifestyle = document.getElementById("lifestyle").value;
-  const countryKey = document.getElementById("country").value;
-  const displayCurrency = document.getElementById("currency").value;
-  const salaryInput = parseFloat(document.getElementById("salary").value) || 0;
+  // keyboard shortcut: Cmd/Ctrl+G to generate
+  window.addEventListener('keydown', (e)=> {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'g') {
+      e.preventDefault();
+      generateBtn.click();
+    }
+  });
 
-  const country = countries[countryKey];
-  if (!country) return;
-
-  // Convert Numbeo non-rent (USD) -> local currency
-  const nonRentLocalBase = country.nonRentUSD / country.localToUSD;
-
-  // Apply lifestyle multiplier to non-rent (food/transport/utilities/misc)
-  const nonRentLocalLifestyle = nonRentLocalBase * lifestyleMultiplier[lifestyle];
-
-  // Split non-rent into components for UX (simple percentage split)
-  const foodLocal     = Math.round(nonRentLocalLifestyle * 0.45);
-  const transportLocal= Math.round(nonRentLocalLifestyle * 0.12);
-  const utilitiesLocal= Math.round(nonRentLocalLifestyle * 0.10);
-  const miscLocal     = Math.round(nonRentLocalLifestyle * 0.33);
-
-  // Scale non-rent for family (1st person = full, others add ~60% per person)
-  const nonRentScaledLocal = Math.round((foodLocal + transportLocal + utilitiesLocal + miscLocal) * (1 + (family - 1) * 0.6));
-
-  // Rent handling:
-  // baseline = Numbeo 1-bedroom outside center (local currency)
-  // lifestyle affects rent (budget -> smaller, luxury -> larger)
-  let rentLocal = country.rentOutsideLocal * (lifestyle === 'budget' ? 0.8 : (lifestyle === 'luxury' ? 1.6 : 1.0));
-  // family-based bedroom approximation
-  if (family === 1) rentLocal = Math.round(rentLocal);
-  else if (family <= 3) rentLocal = Math.round(rentLocal * 1.5);
-  else rentLocal = Math.round(rentLocal * 2.2);
-
-  // Total (local currency)
-  const totalLocal = rentLocal + nonRentScaledLocal;
-
-  // Convert to USD
-  const totalUSD = totalLocal * country.localToUSD;
-
-  // Convert USD -> display currency using usdPer mapping
-  const toDisplay = amountUSD => Math.round(amountUSD / usdPer[displayCurrency]);
-
-  // Show component conversions in display currency
-  const rentDisplay = toDisplay(rentLocal * country.localToUSD);
-  const foodDisplay = toDisplay(foodLocal * country.localToUSD * (1 + (family - 1) * 0.6));
-  const transportDisplay = toDisplay(transportLocal * country.localToUSD * (1 + (family - 1) * 0.6));
-  const utilitiesDisplay = toDisplay(utilitiesLocal * country.localToUSD * (1 + (family - 1) * 0.6));
-  const miscDisplay = toDisplay(miscLocal * country.localToUSD * (1 + (family - 1) * 0.6));
-  const totalDisplay = toDisplay(totalUSD);
-
-  // Provide a conservative range +/-10%
-  const lowDisplay = Math.round(totalDisplay * 0.9);
-  const highDisplay = Math.round(totalDisplay * 1.1);
-
-  // Salary comparison (user entered salary is already in display currency)
-  const verdict = salaryInput === 0
-    ? "⚠️ You didn't enter a salary for comparison."
-    : (salaryInput >= highDisplay ? "✅ You can comfortably cover your expenses." : (salaryInput >= totalDisplay ? "⚠️ You can cover typical expenses but little buffer." : "⚠️ Expenses may exceed your salary."));
-
-  // Build results HTML (clear, conservative messaging)
-  const resultsDiv = document.getElementById("results");
-  resultsDiv.style.display = "block";
-  resultsDiv.innerHTML = `
-    <h3>Estimated Monthly Expenses — ${country.name} (${displayCurrency})</h3>
-    <p class="muted">Model: Numbeo-based baseline, adjusted by lifestyle & family size. Values are estimates (range shown).</p>
-
-    <div class="breakdown">
-      <p><strong>Rent:</strong> ${rentDisplay.toLocaleString()} ${displayCurrency}</p>
-      <p><strong>Food (family-scaled):</strong> ${foodDisplay.toLocaleString()} ${displayCurrency}</p>
-      <p><strong>Transport (family-scaled):</strong> ${transportDisplay.toLocaleString()} ${displayCurrency}</p>
-      <p><strong>Utilities (family-scaled):</strong> ${utilitiesDisplay.toLocaleString()} ${displayCurrency}</p>
-      <p><strong>Misc (family-scaled):</strong> ${miscDisplay.toLocaleString()} ${displayCurrency}</p>
-    </div>
-
-    <hr>
-
-    <p><strong>Total (estimate):</strong> ~${totalDisplay.toLocaleString()} ${displayCurrency}</p>
-    <p><strong>Estimated range:</strong> ${lowDisplay.toLocaleString()} — ${highDisplay.toLocaleString()} ${displayCurrency}</p>
-
-    <p><strong>Your Salary:</strong> ${salaryInput ? salaryInput.toLocaleString() + ' ' + displayCurrency : 'Not provided'}</p>
-    <p><strong>Verdict:</strong> ${verdict}</p>
-
-    <p class="fineprint">Notes: Non-rent baseline uses Numbeo "single person excluding rent" and 1-bedroom rent (outside centre). Conversions use recent mid-market exchange references (Aug 2025).</p>
-  `;
-});
+  // initial empty state
+  renderResults([]);
+})();
