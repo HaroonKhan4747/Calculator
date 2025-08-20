@@ -1,21 +1,142 @@
-/* Existing CSS kept intact ... */
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-.hamburger {
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background: #f9f9f9;
+  color: #333;
+  text-align: center;
+}
+
+/* Navbar */
+header {
+  background: #222;
+  padding: 10px 20px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+}
+
+.logo {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.menu-toggle {
   display: none;
-  font-size: 24px;
+  font-size: 1.5rem;
   background: none;
   border: none;
+  color: #fff;
   cursor: pointer;
 }
 
-/* Mobile responsive adjustments */
-@media (max-width: 640px) {
-  .grid { grid-template-columns: 1fr; }
-  .span-2 { grid-column: span 1; }
+/* Calculator */
+main {
+  padding: 20px;
+}
 
-  /* Hide menu initially on mobile */
-  .nav { display: none; flex-direction: column; gap: 8px; background: #fff; padding: 10px; border: 1px solid var(--border); border-radius: 8px; position: absolute; top: 60px; right: 16px; width: 180px; z-index: 10; }
-  .nav.show { display: flex; }
+.calculator {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 400px;
+  margin: 20px auto;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
 
-  .hamburger { display: block; }
+.calculator input, 
+.calculator select, 
+.calculator button {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 1rem;
+}
+
+.calculator button {
+  background: #222;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.calculator button:hover {
+  background: #444;
+}
+
+/* FAQ Section */
+#faq {
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+}
+
+#faq h2 {
+  margin-bottom: 15px;
+}
+
+.faq-item {
+  text-align: left;
+  margin: 10px 0;
+  padding: 10px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Footer */
+footer {
+  background: #222;
+  color: #fff;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+/* Responsive Navbar */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: #333;
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  .nav-links li {
+    margin: 10px 0;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
 }
