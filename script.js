@@ -1,67 +1,58 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // Hamburger menu toggle
-  document.getElementById("hamburger").addEventListener("click", () => {
-    document.getElementById("nav-links").classList.toggle("active");
-  });
+function toggleMenu() {
+  document.querySelector(".nav-links").classList.toggle("show");
+}
 
-  // Calculator with breakdown
-  document.getElementById("calculateBtn").addEventListener("click", () => {
-    const country = document.getElementById("country").value;
-    const familySize = parseInt(document.getElementById("familySize").value);
-    const livingType = document.getElementById("livingType").value;
-    const salary = parseFloat(document.getElementById("salary").value);
-    const currency = document.getElementById("currency").value;
+function calculateExpenses() {
+  const country = document.getElementById("country").value;
+  const family = parseInt(document.getElementById("family").value);
+  const living = document.getElementById("living").value;
+  const currency = document.getElementById("currency").value;
+  const salary = parseFloat(document.getElementById("salary").value);
 
-    if (!salary) {
-      document.getElementById("results").innerHTML =
-        "<p class='error'>⚠️ Please enter your salary.</p>";
-      return;
-    }
+  if (isNaN(family) || isNaN(salary)) {
+    alert("Please enter valid details.");
+    return;
+  }
 
-    // Base costs per person (average per month)
-    const baseCosts = {
-      dubai: { rent: 2000, food: 1000, transport: 600, utilities: 400, school: 800, entertainment: 500 },
-      saudi: { rent: 1800, food: 900, transport: 500, utilities: 350, school: 700, entertainment: 400 },
-      qatar: { rent: 1900, food: 950, transport: 550, utilities: 380, school: 750, entertainment: 450 },
-      oman: { rent: 1500, food: 800, transport: 400, utilities: 300, school: 600, entertainment: 350 },
-      bahrain: { rent: 1600, food: 850, transport: 420, utilities: 320, school: 650, entertainment: 380 },
-      kuwait: { rent: 2000, food: 950, transport: 500, utilities: 370, school: 720, entertainment: 420 }
-    };
+  // Base multipliers
+  let baseCost = 0;
+  switch (country) {
+    case "dubai": baseCost = 4000; break;
+    case "saudi": baseCost = 3000; break;
+    case "qatar": baseCost = 3500; break;
+    case "oman": baseCost = 2500; break;
+    case "kuwait": baseCost = 3700; break;
+    case "bahrain": baseCost = 2800; break;
+  }
 
-    let costs = { ...baseCosts[country] };
+  // Living style adjustment
+  let livingFactor = 1;
+  if (living === "basic") livingFactor = 0.8;
+  if (living === "moderate") livingFactor = 1.2;
+  if (living === "luxury") livingFactor = 2.0;
 
-    // Scale by family size
-    for (let key in costs) {
-      if (key !== "rent") costs[key] *= familySize;
-    }
+  const totalEstimate = Math.round(baseCost * family * livingFactor);
 
-    // Lifestyle adjustments
-    let multiplier = 1;
-    if (livingType === "luxury") multiplier = 1.8;
-    else if (livingType === "moderate") multiplier = 1.2;
+  // Breakdown (approximate percentages)
+  const rent = Math.round(totalEstimate * 0.4);
+  const food = Math.round(totalEstimate * 0.25);
+  const transport = Math.round(totalEstimate * 0.15);
+  const utilities = Math.round(totalEstimate * 0.1);
+  const misc = Math.round(totalEstimate * 0.1);
 
-    for (let key in costs) {
-      costs[key] *= multiplier;
-    }
-
-    const totalExpense = Object.values(costs).reduce((a, b) => a + b, 0);
-    const remaining = salary - totalExpense;
-
-    // Build results with styled cards
-    document.getElementById("results").innerHTML = `
-      <h3>📊 Detailed Monthly Breakdown (${currency})</h3>
-      <div class="results-grid">
-        <div class="result-card">🏠 Rent <span>${costs.rent.toFixed(2)} ${currency}</span></div>
-        <div class="result-card">🍽️ Food <span>${costs.food.toFixed(2)} ${currency}</span></div>
-        <div class="result-card">🚗 Transport <span>${costs.transport.toFixed(2)} ${currency}</span></div>
-        <div class="result-card">💡 Utilities <span>${costs.utilities.toFixed(2)} ${currency}</span></div>
-        <div class="result-card">🎓 Schooling <span>${costs.school.toFixed(2)} ${currency}</span></div>
-        <div class="result-card">🎉 Entertainment <span>${costs.entertainment.toFixed(2)} ${currency}</span></div>
-      </div>
-      <div class="summary">
-        <p><strong>Total Expense:</strong> ${totalExpense.toFixed(2)} ${currency}</p>
-        <p><strong>Remaining:</strong> ${remaining.toFixed(2)} ${currency}</p>
-      </div>
-    `;
-  });
-});
+  // Show results
+  document.getElementById("results").style.display = "block";
+  document.getElementById("results").innerHTML = `
+    <h3>Estimated Monthly Expenses (${currency})</h3>
+    <ul>
+      <li><strong>Rent:</strong> ~${rent} ${currency}</li>
+      <li><strong>Food:</strong> ~${food} ${currency}</li>
+      <li><strong>Transport:</strong> ~${transport} ${currency}</li>
+      <li><strong>Utilities:</strong> ~${utilities} ${currency}</li>
+      <li><strong>Miscellaneous:</strong> ~${misc} ${currency}</li>
+    </ul>
+    <h4><strong>Total Estimate:</strong> ~${totalEstimate} ${currency}</h4>
+    <p>Your entered salary: ${salary} ${currency}</p>
+    <p><em>Note: These are closest estimates. Actual costs may vary depending on lifestyle and city.</em></p>
+  `;
+}
