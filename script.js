@@ -1,36 +1,27 @@
-// Toggle mobile menu
-const menuToggle = document.getElementById("menu-toggle");
-const navLinks = document.getElementById("nav-links");
+function calculate() {
+  const amount = document.getElementById("amount").value;
+  const currency = document.getElementById("currency").value;
+  const resultDiv = document.getElementById("result");
 
-menuToggle.addEventListener("click", () => {
-  navLinks.classList.toggle("active");
-});
-
-// Calculator
-document.getElementById("calculate").addEventListener("click", function () {
-  const amount = parseFloat(document.getElementById("amount").value);
-  const fromCurrency = document.getElementById("fromCurrency").value;
-  const toCurrency = document.getElementById("toCurrency").value;
-  const resultElement = document.getElementById("result");
-
-  if (isNaN(amount)) {
-    resultElement.textContent = "Please enter a valid amount.";
+  if (amount === "" || amount <= 0) {
+    resultDiv.innerHTML = "Please enter a valid amount.";
     return;
   }
 
-  // Example exchange rates (dummy values)
-  const rates = {
-    PKR: 1,
-    INR: 0.3,
-    AED: 0.013,
-    DHS: 0.013 // Dubai Dirham treated same as AED
-  };
-
-  if (!rates[fromCurrency] || !rates[toCurrency]) {
-    resultElement.textContent = "Conversion not supported.";
-    return;
+  let rate = 1;
+  switch (currency) {
+    case "PKR": rate = 1; break;
+    case "AED": rate = 0.013; break;
+    case "INR": rate = 0.3; break;
+    case "GBP": rate = 0.0028; break;
+    case "EUR": rate = 0.0032; break;
   }
 
-  const convertedAmount = (amount / rates[fromCurrency]) * rates[toCurrency];
-  resultElement.textContent = `${amount} ${fromCurrency} = ${convertedAmount.toFixed(2)} ${toCurrency}`;
+  const converted = (amount * rate).toFixed(2);
+  resultDiv.innerHTML = `${amount} ${currency} = ${converted} Base Units`;
+}
+
+// Mobile navbar toggle
+document.querySelector(".hamburger").addEventListener("click", () => {
+  document.querySelector(".nav-links").classList.toggle("active");
 });
