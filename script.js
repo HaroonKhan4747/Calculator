@@ -1,27 +1,37 @@
-function calculate() {
-  const amount = document.getElementById("amount").value;
+// Toggle Mobile Menu
+document.getElementById("menu-toggle").addEventListener("click", () => {
+  document.getElementById("nav-links").classList.toggle("active");
+});
+
+// Calculator Logic
+document.getElementById("expense-form").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const country = document.getElementById("country").value;
+  const family = parseInt(document.getElementById("family").value);
+  const living = document.getElementById("living").value;
   const currency = document.getElementById("currency").value;
-  const resultDiv = document.getElementById("result");
+  const salary = parseFloat(document.getElementById("salary").value);
 
-  if (amount === "" || amount <= 0) {
-    resultDiv.innerHTML = "Please enter a valid amount.";
-    return;
+  let baseCost = 0;
+
+  switch(country) {
+    case "Dubai": baseCost = 4000; break;
+    case "Saudi Arabia": baseCost = 3500; break;
+    case "Qatar": baseCost = 3800; break;
+    case "Oman": baseCost = 3000; break;
+    case "Kuwait": baseCost = 3600; break;
+    case "Bahrain": baseCost = 3400; break;
   }
 
-  let rate = 1;
-  switch (currency) {
-    case "PKR": rate = 1; break;
-    case "AED": rate = 0.013; break;
-    case "INR": rate = 0.3; break;
-    case "GBP": rate = 0.0028; break;
-    case "EUR": rate = 0.0032; break;
-  }
+  if (living === "luxury") baseCost *= 1.8;
+  else if (living === "moderate") baseCost *= 1.2;
 
-  const converted = (amount * rate).toFixed(2);
-  resultDiv.innerHTML = `${amount} ${currency} = ${converted} Base Units`;
-}
+  let totalCost = baseCost * family;
 
-// Mobile navbar toggle
-document.querySelector(".hamburger").addEventListener("click", () => {
-  document.querySelector(".nav-links").classList.toggle("active");
+  const resultDiv = document.getElementById("results");
+  resultDiv.innerHTML = `
+    <p><strong>Estimated Monthly Cost in ${country}:</strong> ${totalCost.toFixed(2)} ${currency}</p>
+    ${salary ? `<p>Your remaining savings: ${(salary - totalCost).toFixed(2)} ${currency}</p>` : ""}
+  `;
 });
