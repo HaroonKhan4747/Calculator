@@ -7,76 +7,83 @@
 
 body {
   font-family: Arial, sans-serif;
-  line-height: 1.6;
-  background: #f9f9f9;
+  background: #f4f4f9;
   color: #333;
-  text-align: center;
+  line-height: 1.6;
+  padding-top: 60px;
 }
 
 /* Navbar */
-header {
-  background: #222;
-  padding: 10px 20px;
-}
-
 .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #0077cc;
+  color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #fff;
+  padding: 15px 20px;
+  z-index: 1000;
 }
 
-.logo {
-  font-size: 1.2rem;
+.navbar .logo {
+  font-size: 20px;
   font-weight: bold;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 15px;
 }
 
-.nav-links li a {
+.nav-links li {
+  margin-left: 20px;
+}
+
+.nav-links a {
+  color: #fff;
   text-decoration: none;
-  color: #fff;
-  font-size: 0.9rem;
+  font-weight: 500;
 }
 
-.menu-toggle {
+.hamburger {
   display: none;
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  color: #fff;
+  font-size: 24px;
   cursor: pointer;
 }
 
-/* Calculator */
-main {
-  padding: 20px;
+/* Calculator Container */
+.container {
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: #222;
 }
 
 .calculator {
   background: #fff;
   padding: 20px;
   border-radius: 10px;
-  max-width: 400px;
-  margin: 20px auto;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-.calculator input, 
-.calculator select, 
+.calculator input,
+.calculator select,
 .calculator button {
   width: 100%;
   padding: 10px;
   margin: 10px 0;
-  font-size: 1rem;
+  font-size: 16px;
 }
 
 .calculator button {
-  background: #222;
+  background: #0077cc;
   color: #fff;
   border: none;
   cursor: pointer;
@@ -84,35 +91,13 @@ main {
 }
 
 .calculator button:hover {
-  background: #444;
+  background: #005fa3;
 }
 
-/* FAQ Section */
-#faq {
-  padding: 20px;
-  max-width: 800px;
-  margin: auto;
-}
-
-#faq h2 {
-  margin-bottom: 15px;
-}
-
-.faq-item {
-  text-align: left;
-  margin: 10px 0;
-  padding: 10px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
-
-/* Footer */
-footer {
-  background: #222;
-  color: #fff;
-  padding: 15px;
-  margin-top: 20px;
+#result {
+  margin-top: 15px;
+  font-weight: bold;
+  color: green;
 }
 
 /* Responsive Navbar */
@@ -120,23 +105,23 @@ footer {
   .nav-links {
     display: none;
     flex-direction: column;
-    background: #333;
+    width: 100%;
+    background: #0077cc;
     position: absolute;
-    top: 50px;
-    right: 20px;
-    padding: 10px;
-    border-radius: 8px;
+    top: 55px;
+    left: 0;
+    text-align: center;
   }
 
   .nav-links li {
-    margin: 10px 0;
-  }
-
-  .menu-toggle {
-    display: block;
+    margin: 15px 0;
   }
 
   .nav-links.active {
     display: flex;
+  }
+
+  .hamburger {
+    display: block;
   }
 }
