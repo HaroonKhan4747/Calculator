@@ -1,101 +1,40 @@
-:root {
-  --bg: #ffffff;
-  --text: #111;
-  --muted: #666;
-  --card: #f7f7f7;
-  --border: #e5e5e5;
-  --brand: #004466;
-  --ok: #0a8f4a;
-  --bad: #b00020;
+/* Results Section */
+#results {
+  margin-top: 20px;
+  padding: 15px;
 }
 
-* { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
-
-/* Header / Nav */
-.site-header {
-  position: sticky; top: 0; z-index: 50;
-  display: grid; grid-template-columns: 1fr auto auto; gap: 12px;
-  align-items: center; padding: 12px 16px;
-  border-bottom: 1px solid var(--border); background: #fff;
-}
-.brand { font-weight: 800; color: var(--brand); font-size: 18px; }
-
-.nav { display: flex; gap: 14px; align-items: center; }
-.nav a { color: var(--text); text-decoration: none; font-weight: 500; }
-.nav a.active { text-decoration: underline; }
-
-.hamburger {
-  display: none;
-  border: 1px solid var(--border);
-  background: #fff; border-radius: 8px; padding: 6px 10px; cursor: pointer;
+.results-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 15px;
 }
 
-/* Container & cards */
-.container { max-width: 900px; margin: 20px auto; padding: 0 16px; }
-.card {
-  background: var(--card); border: 1px solid var(--border);
-  border-radius: 12px; padding: 16px; margin-bottom: 16px;
+.result-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 12px 15px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
 }
 
-h1 { margin: 6px 0 6px; font-size: 26px; }
-h2 { margin: 6px 0 10px; font-size: 20px; }
-.muted { color: var(--muted); font-size: 14px; }
-
-/* Form */
-.grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px;
+.result-card span {
+  font-weight: bold;
+  color: #0077cc;
 }
-.field { display: flex; flex-direction: column; gap: 6px; }
-.field input, .field select {
-  padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; background: #fff;
+
+.summary {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 12px 15px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  font-size: 15px;
 }
-.span-2 { grid-column: span 2; }
 
-.btn {
-  margin-top: 12px; display: inline-block; padding: 10px 14px;
-  border: 0; border-radius: 10px; background: var(--brand); color: #fff; cursor: pointer; font-weight: 700;
-}
-.btn:hover { filter: brightness(0.95); }
-
-/* Results */
-.hidden { display: none; }
-
-.result-head {
-  display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap;
-}
-.result-head .status-ok { color: var(--ok); font-weight: 700; }
-.result-head .status-bad { color: var(--bad); font-weight: 700; }
-
-.table {
-  width: 100%; border-collapse: collapse; margin-top: 10px; background: #fff;
-  border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
-}
-.table th, .table td { padding: 10px; border-bottom: 1px solid var(--border); text-align: left; font-size: 14px; }
-.table tfoot td { font-weight: 800; }
-.table tr:last-child td { border-bottom: none; }
-
-/* FAQs */
-.faq details { margin: 8px 0; background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 10px; }
-.faq summary { cursor: pointer; font-weight: 700; }
-
-/* Ad placeholders */
-.ad-slot {
-  margin: 12px auto; max-width: 980px; padding: 12px;
-  border: 1px dashed var(--border); color: var(--muted);
-  text-align: center; border-radius: 8px; background: #fafafa;
-}
-.ad-top { margin-top: 16px; }
-.ad-bottom { margin-bottom: 24px; }
-
-/* Footer */
-.site-footer { padding: 16px; border-top: 1px solid var(--border); text-align: center; color: var(--muted); }
-
-/* Responsive */
-@media (max-width: 800px) {
-  .grid { grid-template-columns: 1fr; }
-  .span-2 { grid-column: span 1; }
-  .nav { display: none; position: absolute; right: 12px; top: 56px; background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 10px; box-shadow: 0 10px 24px rgba(0,0,0,0.08); }
-  .nav.open { display: flex; flex-direction: column; gap: 10px; }
-  .hamburger { display: inline-block; }
+.error {
+  color: red;
+  font-weight: bold;
 }
