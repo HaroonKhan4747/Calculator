@@ -1,131 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Gulf Expense Calculator – Dubai, UAE, Qatar, Saudi Arabia, Kuwait, Oman, Bahrain Cost of Living</title>
-  <meta name="description" content="Estimate monthly living expenses in Gulf countries with our free calculator. Supports AED, SAR, QAR, KWD, OMR, BHD. Compare your salary vs expenses for Dubai, UAE, Qatar, Saudi Arabia, Kuwait, Oman, and Bahrain.">
-  <link rel="stylesheet" href="style.css" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "How much do you need to survive in Dubai?",
-        "acceptedAnswer": {"@type":"Answer","text":"A single person typically needs AED 3,000–5,000 for bare essentials excluding rent. Rent ranges widely by area; shared spaces can start around AED 800–1,500, studios AED 3,000–5,000+."}
-      },
-      {
-        "@type": "Question",
-        "name": "Which Gulf country is the cheapest to live in?",
-        "acceptedAnswer": {"@type":"Answer","text":"Oman and Bahrain are generally more affordable than the UAE or Qatar, mostly due to lower rents and moderate day-to-day costs."}
-      },
-      {
-        "@type": "Question",
-        "name": "Are these expense results exact?",
-        "acceptedAnswer": {"@type":"Answer","text":"They are estimates. Real costs vary by city, area, lifestyle, and family size. Use them as a planning baseline."}
-      }
-    ]
-  }
-  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Currency Calculator - Simple Online Converter</title>
+  <meta name="description" content="Easily calculate and convert currencies with our free online currency calculator. Fast, accurate, and simple to use.">
+  <meta name="keywords" content="currency calculator, online currency converter, money calculator, PKR to AED, INR to PKR, Dubai currency calculator">
+
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="brand">GulfExpense</div>
-    <div class="logo-ad" title="Ad slot (logo-style)">Ad • 120×60</div>
-    <button class="hamburger" id="menuToggle">☰</button>
-    <nav class="nav" id="navMenu">
-      <a href="index.html" class="active">Home</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-      <a href="privacy.html">Privacy</a>
-      <a href="terms.html">Terms</a>
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">Currency Calculator</div>
+      <button class="menu-toggle" id="menu-toggle">☰</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#privacy">Privacy</a></li>
+        <li><a href="#terms">Terms</a></li>
+      </ul>
     </nav>
   </header>
 
-  <div class="ad-slot ad-top" title="Ad slot (responsive banner)">Ad • Responsive Banner</div>
-
-  <main class="container">
-    <!-- Calculator Section -->
-    <section class="card">
-      <h1>Gulf Expense Calculator</h1>
-      <p class="muted">Estimate monthly living expenses across Gulf countries with a detailed breakdown.</p>
-
-      <div class="grid">
-        <label class="field">
-          <span>Country</span>
-          <select id="country">
-            <option value="Dubai">Dubai</option>
-            <option value="UAE">United Arab Emirates</option>
-            <option value="Saudi">Saudi Arabia</option>
-            <option value="Qatar">Qatar</option>
-            <option value="Kuwait">Kuwait</option>
-            <option value="Oman">Oman</option>
-            <option value="Bahrain">Bahrain</option>
-          </select>
-        </label>
-
-        <label class="field">
-          <span>Family Size</span>
-          <input id="familySize" type="number" min="1" value="1" />
-        </label>
-
-        <label class="field">
-          <span>Type of Living</span>
-          <select id="livingType">
-            <option value="Basic">Basic (shared, essentials)</option>
-            <option value="Moderate" selected>Moderate (balanced)</option>
-            <option value="Luxury">Luxury (premium)</option>
-          </select>
-        </label>
-
-        <label class="field">
-          <span>Currency</span>
-          <select id="currency">
-            <option value="AED" selected>AED</option>
-            <option value="SAR">SAR</option>
-            <option value="QAR">QAR</option>
-            <option value="KWD">KWD</option>
-            <option value="BHD">BHD</option>
-            <option value="OMR">OMR</option>
-          </select>
-        </label>
-
-        <label class="field span-2">
-          <span>Your Salary (per month)</span>
-          <input id="salary" type="number" min="0" placeholder="Enter your salary in selected currency" />
-        </label>
-      </div>
-
-      <button id="calcBtn" class="btn">Calculate</button>
-    </section>
-
-    <section id="results" class="card hidden"></section>
-
-    <section class="card">
-      <h2>FAQs</h2>
-      <div class="faq">
-        <details>
-          <summary>How much do you need to survive in Dubai?</summary>
-          <p>A single person typically needs AED 3,000–5,000 for essentials excluding rent. Rent varies by area.</p>
-        </details>
-        <details>
-          <summary>Which Gulf country is the cheapest to live in?</summary>
-          <p>Oman and Bahrain tend to be more affordable. UAE and Qatar are more expensive.</p>
-        </details>
-        <details>
-          <summary>Do the results include schooling?</summary>
-          <p>If family size ≥ 3, schooling costs are added for children.</p>
-        </details>
-      </div>
-    </section>
+  <!-- Calculator Section -->
+  <main>
+    <h1>Currency Calculator</h1>
+    <div class="calculator">
+      <input type="number" id="amount" placeholder="Enter amount" />
+      <select id="fromCurrency">
+        <option value="PKR">PKR - Pakistani Rupee</option>
+        <option value="INR">INR - Indian Rupee</option>
+        <option value="AED">AED - UAE Dirham</option>
+        <option value="DHS">DHS - Dubai Dirham</option>
+      </select>
+      <select id="toCurrency">
+        <option value="PKR">PKR - Pakistani Rupee</option>
+        <option value="INR">INR - Indian Rupee</option>
+        <option value="AED">AED - UAE Dirham</option>
+        <option value="DHS">DHS - Dubai Dirham</option>
+      </select>
+      <button id="calculate">Calculate</button>
+      <p id="result"></p>
+    </div>
   </main>
 
-  <div class="ad-slot ad-bottom" title="Ad slot (large footer)">Ad • Large Footer</div>
+  <!-- FAQ Section -->
+  <section id="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <h3>What is a currency calculator?</h3>
+      <p>A currency calculator lets you convert one currency into another instantly using exchange rates.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is this calculator free to use?</h3>
+      <p>Yes, it’s completely free and works directly in your browser without signup.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I calculate PKR to AED?</h3>
+      <p>Yes, you can easily convert between Pakistani Rupees (PKR) and UAE Dirhams (AED).</p>
+    </div>
+    <div class="faq-item">
+      <h3>Does it support Dubai currency?</h3>
+      <p>Yes, you can also select Dubai Dirham (DHS) for quick conversions.</p>
+    </div>
+  </section>
 
-  <footer class="site-footer">
-    <p>© 2025 GulfExpense. Estimates only; actual costs vary.</p>
+  <footer>
+    <p>&copy; 2025 Currency Calculator. All Rights Reserved.</p>
   </footer>
 
   <script src="script.js"></script>
