@@ -1,37 +1,56 @@
-// Toggle Mobile Menu
-document.getElementById("menu-toggle").addEventListener("click", () => {
-  document.getElementById("nav-links").classList.toggle("active");
+// Toggle mobile menu
+document.getElementById("menu-toggle").addEventListener("click", function () {
+  document.getElementById("nav-links").classList.toggle("show");
 });
 
-// Calculator Logic
-document.getElementById("expense-form").addEventListener("submit", function(e) {
+// Handle calculation
+document.getElementById("expenseForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
   const country = document.getElementById("country").value;
-  const family = parseInt(document.getElementById("family").value);
-  const living = document.getElementById("living").value;
+  const familySize = parseInt(document.getElementById("familySize").value);
+  const livingType = document.getElementById("livingType").value;
   const currency = document.getElementById("currency").value;
   const salary = parseFloat(document.getElementById("salary").value);
 
   let baseCost = 0;
 
-  switch(country) {
-    case "Dubai": baseCost = 4000; break;
-    case "Saudi Arabia": baseCost = 3500; break;
-    case "Qatar": baseCost = 3800; break;
-    case "Oman": baseCost = 3000; break;
-    case "Kuwait": baseCost = 3600; break;
-    case "Bahrain": baseCost = 3400; break;
+  switch (country) {
+    case "dubai":
+      baseCost = 4000;
+      break;
+    case "saudi":
+      baseCost = 3000;
+      break;
+    case "qatar":
+      baseCost = 3500;
+      break;
+    case "oman":
+      baseCost = 2500;
+      break;
+    case "bahrain":
+      baseCost = 2700;
+      break;
+    case "kuwait":
+      baseCost = 3200;
+      break;
   }
 
-  if (living === "luxury") baseCost *= 1.8;
-  else if (living === "moderate") baseCost *= 1.2;
+  // Adjust for lifestyle
+  if (livingType === "moderate") baseCost *= 1.3;
+  if (livingType === "luxury") baseCost *= 2;
 
-  let totalCost = baseCost * family;
+  // Adjust for family size
+  const totalCost = baseCost * familySize;
 
   const resultDiv = document.getElementById("results");
   resultDiv.innerHTML = `
-    <p><strong>Estimated Monthly Cost in ${country}:</strong> ${totalCost.toFixed(2)} ${currency}</p>
-    ${salary ? `<p>Your remaining savings: ${(salary - totalCost).toFixed(2)} ${currency}</p>` : ""}
+    <h3>Estimated Monthly Expenses</h3>
+    <p><strong>Country:</strong> ${document.querySelector("#country option:checked").text}</p>
+    <p><strong>Family Size:</strong> ${familySize}</p>
+    <p><strong>Lifestyle:</strong> ${livingType}</p>
+    <p><strong>Estimated Cost:</strong> ${totalCost.toLocaleString()} ${currency}</p>
+    <p><strong>Your Salary:</strong> ${salary.toLocaleString()} ${currency}</p>
+    <p><strong>Status:</strong> ${salary >= totalCost ? "✅ Salary is enough" : "⚠️ Salary may not be enough"}</p>
   `;
 });
