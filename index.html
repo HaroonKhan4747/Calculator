@@ -1,76 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Currency Calculator - Simple Online Converter</title>
-  <meta name="description" content="Easily calculate and convert currencies with our free online currency calculator. Fast, accurate, and simple to use.">
-  <meta name="keywords" content="currency calculator, online currency converter, money calculator, PKR to AED, INR to PKR, Dubai currency calculator">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Currency Calculator - PKR, AED, INR, GBP, EUR</title>
+  <meta name="description" content="Free online currency calculator to convert PKR, AED, INR, GBP, and EUR quickly and accurately. Perfect for travelers, businesses, and freelancers.">
 
-  <link rel="stylesheet" href="style.css">
+  <!-- FAQ Schema for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I use this currency calculator?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Enter the amount, select your currency, and click calculate to convert instantly."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this calculator free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, our currency calculator is 100% free to use."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which currencies are supported?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Currently we support PKR (Pakistani Rupee), AED (Dubai Dirham), INR (Indian Rupee), GBP (British Pound), and EUR (Euro)."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Navbar -->
-  <header>
-    <nav class="navbar">
-      <div class="logo">Currency Calculator</div>
-      <button class="menu-toggle" id="menu-toggle">☰</button>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="#privacy">Privacy</a></li>
-        <li><a href="#terms">Terms</a></li>
-      </ul>
-    </nav>
-  </header>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="logo">Currency Calculator</div>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#privacy">Privacy Policy</a></li>
+      <li><a href="#terms">Terms</a></li>
+    </ul>
+    <div class="hamburger">&#9776;</div>
+  </nav>
 
   <!-- Calculator Section -->
-  <main>
+  <div class="container">
     <h1>Currency Calculator</h1>
     <div class="calculator">
       <input type="number" id="amount" placeholder="Enter amount" />
-      <select id="fromCurrency">
+      <select id="currency">
         <option value="PKR">PKR - Pakistani Rupee</option>
+        <option value="AED">AED - Dubai Dirham</option>
         <option value="INR">INR - Indian Rupee</option>
-        <option value="AED">AED - UAE Dirham</option>
-        <option value="DHS">DHS - Dubai Dirham</option>
+        <option value="GBP">GBP - British Pound</option>
+        <option value="EUR">EUR - Euro</option>
       </select>
-      <select id="toCurrency">
-        <option value="PKR">PKR - Pakistani Rupee</option>
-        <option value="INR">INR - Indian Rupee</option>
-        <option value="AED">AED - UAE Dirham</option>
-        <option value="DHS">DHS - Dubai Dirham</option>
-      </select>
-      <button id="calculate">Calculate</button>
-      <p id="result"></p>
+      <button onclick="calculate()">Calculate</button>
+      <div id="result"></div>
     </div>
-  </main>
-
-  <!-- FAQ Section -->
-  <section id="faq">
-    <h2>Frequently Asked Questions</h2>
-    <div class="faq-item">
-      <h3>What is a currency calculator?</h3>
-      <p>A currency calculator lets you convert one currency into another instantly using exchange rates.</p>
-    </div>
-    <div class="faq-item">
-      <h3>Is this calculator free to use?</h3>
-      <p>Yes, it’s completely free and works directly in your browser without signup.</p>
-    </div>
-    <div class="faq-item">
-      <h3>Can I calculate PKR to AED?</h3>
-      <p>Yes, you can easily convert between Pakistani Rupees (PKR) and UAE Dirhams (AED).</p>
-    </div>
-    <div class="faq-item">
-      <h3>Does it support Dubai currency?</h3>
-      <p>Yes, you can also select Dubai Dirham (DHS) for quick conversions.</p>
-    </div>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 Currency Calculator. All Rights Reserved.</p>
-  </footer>
+  </div>
 
   <script src="script.js"></script>
 </body>
