@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gulf Expense Calculator</title>
-  <meta name="description" content="Gulf Expense Calculator - Estimate monthly living costs in Dubai, Saudi Arabia, Qatar, and other Gulf countries.">
-  <meta name="keywords" content="Dubai cost of living, Gulf expenses, salary calculator, Saudi Arabia expenses, Qatar living costs">
+  <meta name="description" content="Estimate your monthly living expenses in Dubai (UAE), Saudi Arabia, Qatar, Oman, Bahrain, and Kuwait with the Gulf Expense Calculator. Plan your salary and lifestyle costs easily.">
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -24,66 +24,56 @@
   </header>
 
   <main>
-    <section class="hero">
-      <h1>Gulf Expense Calculator</h1>
-      <p>Estimate monthly living expenses across Gulf countries with a detailed breakdown.</p>
-    </section>
+    <h1>Gulf Expense Calculator</h1>
+    <p>Estimate monthly living expenses across Gulf countries with a detailed breakdown.</p>
 
-    <section class="calculator">
-      <form id="expense-form">
-        <label for="country">Country</label>
-        <select id="country" required>
-          <option value="Dubai">Dubai</option>
-          <option value="Saudi Arabia">Saudi Arabia</option>
-          <option value="Qatar">Qatar</option>
-          <option value="Oman">Oman</option>
-          <option value="Kuwait">Kuwait</option>
-          <option value="Bahrain">Bahrain</option>
-        </select>
+    <form id="expenseForm">
+      <label for="country">Country</label>
+      <select id="country" required>
+        <option value="dubai">Dubai (UAE)</option>
+        <option value="saudi">Saudi Arabia</option>
+        <option value="qatar">Qatar</option>
+        <option value="oman">Oman</option>
+        <option value="bahrain">Bahrain</option>
+        <option value="kuwait">Kuwait</option>
+      </select>
 
-        <label for="family">Family Size</label>
-        <input type="number" id="family" placeholder="1" required>
+      <label for="familySize">Family Size</label>
+      <input type="number" id="familySize" min="1" value="1" required>
 
-        <label for="living">Type of Living</label>
-        <select id="living">
-          <option value="basic">Basic (low cost)</option>
-          <option value="moderate">Moderate (balanced)</option>
-          <option value="luxury">Luxury (high-end)</option>
-        </select>
+      <label for="livingType">Type of Living</label>
+      <select id="livingType" required>
+        <option value="basic">Basic (low cost)</option>
+        <option value="moderate">Moderate (balanced)</option>
+        <option value="luxury">Luxury</option>
+      </select>
 
-        <label for="currency">Currency</label>
-        <select id="currency">
-          <option value="AED">AED</option>
-          <option value="SAR">SAR</option>
-          <option value="QAR">QAR</option>
-          <option value="OMR">OMR</option>
-          <option value="KWD">KWD</option>
-          <option value="BHD">BHD</option>
-        </select>
+      <label for="currency">Currency</label>
+      <select id="currency" required>
+        <option value="AED">AED</option>
+        <option value="SAR">SAR</option>
+        <option value="QAR">QAR</option>
+        <option value="OMR">OMR</option>
+        <option value="BHD">BHD</option>
+        <option value="KWD">KWD</option>
+      </select>
 
-        <label for="salary">Your Salary (per month)</label>
-        <input type="number" id="salary" placeholder="Enter your salary in selected currency">
+      <label for="salary">Your Salary (per month)</label>
+      <input type="number" id="salary" placeholder="Enter your salary in selected currency" required>
 
-        <button type="submit">Calculate</button>
-      </form>
+      <button type="submit">Calculate</button>
+    </form>
 
-      <div id="results"></div>
-    </section>
+    <section id="results"></section>
 
     <section class="faq">
       <h2>FAQs</h2>
-      <div class="faq-item">
-        <h3>How much do you need to survive in Dubai?</h3>
-        <p>On average, a single person may need around AED 4,000–6,000 monthly, while families may require AED 12,000+ depending on lifestyle.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Which Gulf country is the cheapest to live in?</h3>
-        <p>Generally, Oman is considered more affordable compared to Dubai, Qatar, and Saudi Arabia.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Do the results include schooling?</h3>
-        <p>No, schooling costs vary greatly by institution and are not included in the default calculations.</p>
-      </div>
+      <div class="faq-item"><strong>How much do you need to survive in Dubai (UAE)?</strong><p>On average, a single person spends AED 3,500–6,000 monthly depending on lifestyle.</p></div>
+      <div class="faq-item"><strong>Which Gulf country is the cheapest to live in?</strong><p>Oman and Bahrain generally have lower living costs compared to Dubai and Qatar.</p></div>
+      <div class="faq-item"><strong>Do the results include schooling?</strong><p>Yes, school costs are included in the estimate if you select family size more than 1.</p></div>
+      <div class="faq-item"><strong>Is Dubai more expensive than Saudi Arabia?</strong><p>Yes, Dubai is costlier in rent and lifestyle compared to most Saudi cities.</p></div>
+      <div class="faq-item"><strong>What currency is used in the calculator?</strong><p>You can select AED, SAR, QAR, OMR, BHD, or KWD depending on the country.</p></div>
+      <div class="faq-item"><strong>Can this help me plan relocation?</strong><p>Yes, this tool gives a realistic expense breakdown to compare salaries and lifestyle needs before moving.</p></div>
     </section>
   </main>
 
