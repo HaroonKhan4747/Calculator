@@ -4,7 +4,234 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Age Calculator - MyCalculatorPal</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Import Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto:wght@400;500&display=swap');
+
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+      background: #fff;
+      color: #111;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      background: #000;
+      color: #fff;
+    }
+
+    header .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    header nav {
+      display: flex;
+      gap: 15px;
+    }
+
+    header nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    }
+
+    header nav a:hover {
+      text-decoration: underline;
+      color: #ddd;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #555;
+    }
+
+    /* Calculator Section */
+    .calculator {
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .calculator .card {
+      background: #f8f8f8;
+      border-radius: 8px;
+      padding: 20px;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .calculator .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+
+    .calc-inputs label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+
+    .calc-inputs .input-field {
+      width: 100%;
+      padding: 10px 15px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .calculate-btn {
+      padding: 10px 20px;
+      background-color: #111;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .calculate-btn:hover {
+      background-color: #333;
+    }
+
+    /* Results Box */
+    .calc-results p {
+      margin: 8px 0;
+    }
+
+    /* Ad Banners */
+    .ad-banner {
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .ad-placeholder {
+      background: #f0f0f0;
+      padding: 40px;
+      border: 1px dashed #ccc;
+      font-size: 0.9rem;
+      color: #888;
+    }
+
+    /* Blog */
+    .blog {
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .blog h2 {
+      margin-bottom: 15px;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* FAQs */
+    .faqs {
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faqs h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .faq-item {
+      margin-bottom: 10px;
+    }
+
+    .faq-question {
+      width: 100%;
+      padding: 10px 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      text-align: left;
+      cursor: pointer;
+      background: #f8f8f8;
+      font-weight: 500;
+    }
+
+    .faq-answer {
+      padding: 10px 15px;
+      border-left: 3px solid #111;
+      margin-top: 5px;
+      background: #f9f9f9;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #000;
+      color: #fff;
+      font-size: 0.85rem;
+    }
+
+    footer nav a {
+      color: #fff;
+      margin: 0 5px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    footer nav a:hover {
+      text-decoration: underline;
+      color: #ddd;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header nav {
+        display: none;
+        flex-direction: column;
+        background: #000;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 200px;
+        padding: 10px;
+      }
+
+      header nav.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -29,18 +256,18 @@
   
   <!-- Calculator Section -->
   <section class="calculator">
-    <div class="calc-inputs">
+    <div class="card calc-inputs">
       <label for="dob">Date of Birth:</label>
-      <input type="date" id="dob" max="" />
+      <input type="date" id="dob" class="input-field" max="" />
 
       <label for="endDate">End Date:</label>
-      <input type="date" id="endDate" />
+      <input type="date" id="endDate" class="input-field" />
 
-      <button id="calculateBtn">Calculate Age</button>
+      <button id="calculateBtn" class="calculate-btn">Calculate Age</button>
     </div>
 
     <!-- Results Box (Initially Hidden) -->
-    <div class="calc-results" id="results" style="display:none;">
+    <div class="card calc-results" id="results" style="display:none;">
       <h2>Results</h2>
       <p id="years">Years: </p>
       <p id="months">Months: </p>
@@ -100,7 +327,9 @@
   </footer>
 
   <!-- Placeholder for script -->
-  <script src="script.js"></script>
+  <script>
+    // Script for age calculation will go here
+  </script>
 
 </body>
 </html>
