@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Age Calculator - MyCalculatorPal</title>
   <link rel="stylesheet" href="style.css">
-  <!-- Page-specific style will be added in style.css -->
 </head>
 <body>
 
@@ -22,75 +21,90 @@
     <div class="hamburger" id="hamburger">☰</div>
   </header>
 
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Age Calculator</h1>
+    <p>Calculate your age in years, months, days, and more.</p>
+  </section>
+
+  <!-- AdSense Banner (Top) -->
+  <section class="ad-banner">
+    <div class="ad-placeholder">[Ad Banner Here]</div>
+  </section>
+
   <!-- Calculator Section -->
-  <section class="calculator-container">
-    <h2>Age Calculator</h2>
+  <section class="calculator">
+    <div class="calc-inputs">
+      <label for="dob">Date of Birth:</label>
+      <input type="date" id="dob" max="" />
 
-    <!-- User Input -->
-    <label for="dob">Date of Birth:</label>
-    <input type="date" id="dob">
+      <label for="endDate">End Date:</label>
+      <input type="date" id="endDate" />
 
-    <label for="end-date">End Date (default = today):</label>
-    <input type="date" id="end-date">
-
-    <button id="calculate-btn">Calculate Age</button>
-
-    <!-- AdSense Banner (before results) -->
-    <div class="ad-banner">
-      <div class="ad-placeholder">[Ad Banner Here]</div>
+      <button id="calculateBtn">Calculate Age</button>
     </div>
 
-    <!-- Result Box -->
-    <div class="result-box" id="result">
-      <h3>Results</h3>
-      <p>Years: <span id="years">0</span></p>
-      <p>Months: <span id="months">0</span></p>
-      <p>Weeks: <span id="weeks">0</span></p>
-      <p>Days: <span id="days">0</span></p>
-      <p>Hours: <span id="hours">0</span></p>
-      <p>Minutes: <span id="minutes">0</span></p>
-      <p>Seconds: <span id="seconds">0</span></p>
-
-      <p>Korean Age: <span id="korean-age">0</span>  
-        <span class="note">— Korean age counts your age as 1 at birth and adds a year every New Year. 
-        <button class="link-btn" onclick="location.href='korean-age-calculator.html'">For detailed results try the Korean Age Calculator</button></span>
-      </p>
-
-      <p>Chinese/Lunar Age: <span id="chinese-age">0</span>  
-        <span class="note">— Chinese/Lunar age is based on the lunar calendar and your zodiac sign. 
-        <button class="link-btn" onclick="location.href='lunar-age-calculator.html'">For detailed results try the Chinese/Lunar Age Calculator</button></span>
-      </p>
-
-      <p>Days until next birthday: <span id="days-birthday">0</span></p>
-    </div>
-
-    <!-- AdSense Banner (after results) -->
-    <div class="ad-banner">
-      <div class="ad-placeholder">[Ad Banner Here]</div>
+    <!-- Results Box (Initially Hidden) -->
+    <div class="calc-results" id="results" style="display:none;">
+      <h2>Results</h2>
+      <p id="years">Years: </p>
+      <p id="months">Months: </p>
+      <p id="weeks">Weeks: </p>
+      <p id="days">Days: </p>
+      <p id="hours">Hours: </p>
+      <p id="minutes">Minutes: </p>
+      <p id="seconds">Seconds: </p>
+      <p id="koreanAge">Korean Age: — Korean age counts your age as 1 at birth and adds a year every New Year. </p>
+      <p id="chineseAge">Chinese/Lunar Age: — Chinese/Lunar age is based on the lunar calendar and your zodiac sign.</p>
+      <p id="birthdayCountdown">Days until next birthday: </p>
     </div>
   </section>
 
-  <!-- Blog Section Placeholder -->
-  <section class="blog-section">
+  <!-- AdSense Banner (After Results) -->
+  <section class="ad-banner">
+    <div class="ad-placeholder">[Ad Banner Here]</div>
+  </section>
+
+  <!-- Sample Blog Section -->
+  <section class="blog">
     <h2>Blog</h2>
-    <p><!-- Blog posts will go here --></p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <p>Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+    <p>Sed nisi. Nulla quis sem at nibh elementum imperdiet.</p>
+    <p>Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed.</p>
+    <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>
   </section>
 
-  <!-- FAQ Section Placeholder -->
+  <!-- Quick FAQs -->
   <section class="faqs">
-    <h2>Frequently Asked Questions</h2>
+    <h2>Quick FAQs</h2>
     <div class="faq-list">
-      <!-- 10 collapsible FAQs will go here -->
-      <!-- FAQ structure can be like:
       <div class="faq-item">
-        <h3>Question?</h3>
-        <div class="faq-answer">Answer goes here.</div>
+        <button class="faq-question">What is Korean Age?</button>
+        <div class="faq-answer" style="display:none;">
+          <p>Korean age counts a person as 1 at birth and adds a year every New Year.</p>
+        </div>
       </div>
-      -->
+      <div class="faq-item">
+        <button class="faq-question">What is Chinese/Lunar Age?</button>
+        <div class="faq-answer" style="display:none;">
+          <p>Chinese/Lunar age is based on the lunar calendar and zodiac system.</p>
+        </div>
+      </div>
+      <!-- Space for 10 more FAQs -->
     </div>
   </section>
 
-  <!-- External Script -->
+  <footer>
+    <p>&copy; 2025 MyCalculatorPal. All rights reserved.</p>
+    <nav>
+      <a href="contact.html">Contact</a> |
+      <a href="privacy.html">Privacy Policy</a> |
+      <a href="terms.html">Terms & Conditions</a>
+    </nav>
+  </footer>
+
+  <!-- Placeholder for script -->
   <script src="script.js"></script>
 
 </body>
