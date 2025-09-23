@@ -5,81 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Age Calculator - MyCalculatorPal</title>
   <style>
-    /* Import Google Fonts */
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto:wght@400;500&display=swap');
-
-    /* General Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Roboto', sans-serif;
-    }
-
-    body {
-      background: #fff;
-      color: #111;
-      line-height: 1.6;
-    }
-
-    /* Header */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 20px;
-      background: #000;
-      color: #fff;
-    }
-
-    header .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-
-    header nav {
-      display: flex;
-      gap: 15px;
-    }
-
-    header nav a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 0.95rem;
-      transition: all 0.3s ease;
-    }
-
-    header nav a:hover {
-      text-decoration: underline;
-      color: #ddd;
-    }
-
-    /* Hero Section */
-    .hero {
-      text-align: center;
-      padding: 50px 20px;
-    }
-
-    .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 15px;
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-      color: #555;
-    }
+    /* Extra CSS specific to this calculator (main style in style.css handles general styling) */
 
     /* Calculator Section */
-    .calculator {
-      padding: 40px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-    }
-
     .calculator .card {
       background: #f8f8f8;
       border-radius: 8px;
@@ -88,11 +16,7 @@
       max-width: 500px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       transition: all 0.3s ease;
-    }
-
-    .calculator .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+      margin-bottom: 20px;
     }
 
     .calc-inputs label {
@@ -125,93 +49,19 @@
       background-color: #333;
     }
 
-    /* Results Box */
     .calc-results p {
       margin: 8px 0;
     }
 
-    /* Ad Banners */
-    .ad-banner {
-      text-align: center;
-      padding: 20px 0;
+    /* Hide hamburger in desktop */
+    .hamburger {
+      display: none;
     }
 
-    .ad-placeholder {
-      background: #f0f0f0;
-      padding: 40px;
-      border: 1px dashed #ccc;
-      font-size: 0.9rem;
-      color: #888;
-    }
-
-    /* Blog */
-    .blog {
-      padding: 40px 20px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .blog h2 {
-      margin-bottom: 15px;
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    /* FAQs */
-    .faqs {
-      padding: 40px 20px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .faqs h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .faq-item {
-      margin-bottom: 10px;
-    }
-
-    .faq-question {
-      width: 100%;
-      padding: 10px 15px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      text-align: left;
-      cursor: pointer;
-      background: #f8f8f8;
-      font-weight: 500;
-    }
-
-    .faq-answer {
-      padding: 10px 15px;
-      border-left: 3px solid #111;
-      margin-top: 5px;
-      background: #f9f9f9;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #000;
-      color: #fff;
-      font-size: 0.85rem;
-    }
-
-    footer nav a {
-      color: #fff;
-      margin: 0 5px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    footer nav a:hover {
-      text-decoration: underline;
-      color: #ddd;
-    }
-
-    /* Responsive */
     @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
       header nav {
         display: none;
         flex-direction: column;
@@ -224,10 +74,6 @@
       }
 
       header nav.active {
-        display: flex;
-      }
-
-      .hamburger {
         display: flex;
       }
     }
@@ -326,9 +172,75 @@
     </nav>
   </footer>
 
-  <!-- Placeholder for script -->
+  <!-- Script -->
   <script>
-    // Script for age calculation will go here
+    // Set max date for DOB and default end date
+    const dobInput = document.getElementById('dob');
+    const endDateInput = document.getElementById('endDate');
+    const today = new Date().toISOString().split('T')[0];
+    dobInput.setAttribute('max', today);
+    endDateInput.value = today;
+
+    const calculateBtn = document.getElementById('calculateBtn');
+    const resultsDiv = document.getElementById('results');
+
+    calculateBtn.addEventListener('click', () => {
+      const dob = new Date(dobInput.value);
+      const endDate = new Date(endDateInput.value);
+      if (dob == "Invalid Date" || endDate == "Invalid Date") {
+        alert("Please select valid dates.");
+        return;
+      }
+
+      const diffMs = endDate - dob;
+      const diffDays = Math.floor(diffMs / (1000*60*60*24));
+      const diffYears = endDate.getFullYear() - dob.getFullYear() - ( (endDate.getMonth() < dob.getMonth() || (endDate.getMonth() === dob.getMonth() && endDate.getDate() < dob.getDate())) ? 1 : 0 );
+      const diffMonths = diffYears * 12 + (endDate.getMonth() - dob.getMonth()) + (endDate.getDate() < dob.getDate() ? -1 : 0);
+      const diffWeeks = Math.floor(diffDays / 7);
+      const diffHours = Math.floor(diffMs / (1000*60*60));
+      const diffMinutes = Math.floor(diffMs / (1000*60));
+      const diffSeconds = Math.floor(diffMs / 1000);
+
+      // Korean Age
+      const koreanAge = endDate.getFullYear() - dob.getFullYear() + 1;
+
+      // Chinese/Lunar Age - simplified placeholder
+      const chineseAge = diffYears + 1; 
+
+      // Days until next birthday
+      let nextBirthday = new Date(endDate.getFullYear(), dob.getMonth(), dob.getDate());
+      if (nextBirthday < endDate) nextBirthday.setFullYear(nextBirthday.getFullYear() + 1);
+      const daysUntilBirthday = Math.ceil((nextBirthday - endDate) / (1000*60*60*24));
+
+      // Show results
+      resultsDiv.style.display = 'block';
+      document.getElementById('years').textContent = `Years: ${diffYears}`;
+      document.getElementById('months').textContent = `Months: ${diffMonths}`;
+      document.getElementById('weeks').textContent = `Weeks: ${diffWeeks}`;
+      document.getElementById('days').textContent = `Days: ${diffDays}`;
+      document.getElementById('hours').textContent = `Hours: ${diffHours}`;
+      document.getElementById('minutes').textContent = `Minutes: ${diffMinutes}`;
+      document.getElementById('seconds').textContent = `Seconds: ${diffSeconds}`;
+      document.getElementById('koreanAge').textContent = `Korean Age: ${koreanAge} — Korean age counts your age as 1 at birth and adds a year every New Year.`;
+      document.getElementById('chineseAge').textContent = `Chinese/Lunar Age: ${chineseAge} — Chinese/Lunar age is based on the lunar calendar and your zodiac sign.`;
+      document.getElementById('birthdayCountdown').textContent = `Days until next birthday: ${daysUntilBirthday}`;
+    });
+
+    // FAQ Toggle
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach(q => {
+      q.addEventListener('click', () => {
+        const answer = q.nextElementSibling;
+        answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+      });
+    });
+
+    // Hamburger menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
   </script>
 
 </body>
