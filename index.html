@@ -1,135 +1,79 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Free Random Password Generator — generate 1,5,10,20 or 50 secure passwords instantly. Choose difficulty, include numbers/symbols, copy or download as .txt." />
-  <meta name="keywords" content="password generator, random password, strong password generator, generate password online, free password maker" />
-  <title>Free Password Generator — Simple & Secure</title>
-
-  <link rel="stylesheet" href="style.css" />
-  <!-- FAQ structured data for SEO -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {"@type":"Question","name":"How do I generate a secure password?","acceptedAnswer":{"@type":"Answer","text":"Use a long random string with uppercase, lowercase, numbers and symbols. This tool generates secure passwords using the browser's crypto API."}},
-      {"@type":"Question","name":"Can I download generated passwords?","acceptedAnswer":{"@type":"Answer","text":"Yes — you can download passwords as a .txt file or .csv for easy import."}},
-      {"@type":"Question","name":"Do you store my passwords?","acceptedAnswer":{"@type":"Answer","text":"No. All generation and storage is local in your browser. Nothing is sent to a server."}}
-    ]
-  }
-  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyCalculatorPal - Free Online Calculators</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="nav">
-    <div class="brand">🔒 PassForge</div>
-    <button id="hamburger" class="hamburger" aria-label="Menu">☰</button>
-    <nav id="menu" class="menu">
-      <a href="#generator">Generator</a>
-      <a href="#about">About</a>
-      <a href="#faq">FAQ</a>
-      <a href="#privacy">Privacy</a>
-      <a href="#contact">Contact</a>
+  <!-- Header -->
+  <header>
+    <div class="logo">MyCalculatorPal</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
     </nav>
   </header>
 
-  <main class="wrap">
-    <section id="generator" class="card hero">
-      <h1>Free Password Generator — Simple & Secure</h1>
-      <p class="lead">One-click generation. Choose quantity, difficulty, and whether to include numbers or symbols. Copy or download results instantly.</p>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Welcome to MyCalculatorPal</h1>
+    <p>Your go-to hub for accurate and free online calculators.</p>
+  </section>
 
-      <div class="controls">
-        <div class="row wrap-opts">
-          <label class="inline">
-            Quantity
-            <select id="quantity">
-              <option value="1">1</option>
-              <option value="5">5</option>
-              <option value="10" selected>10</option>
-              <option value="20">20</option>
-              <option value="50">50</option>
-            </select>
-          </label>
+  <!-- AdSense Banner (Top) -->
+  <section class="ad-banner">
+    <!-- Replace with your AdSense code -->
+    <div class="ad-placeholder">[Ad Banner Here]</div>
+  </section>
 
-          <label class="inline">
-            Difficulty
-            <select id="difficulty">
-              <option value="easy">Easy</option>
-              <option value="normal" selected>Normal</option>
-              <option value="strong">Strong</option>
-            </select>
-          </label>
+  <!-- Tools / Calculator Cards -->
+  <section class="tools">
+    <h2>Popular Calculators</h2>
+    <div class="grid">
+      <a href="age-calculator.html" class="card">Age Calculator</a>
+      <a href="infant-age-calculator.html" class="card">Infant Age Calculator</a>
+      <a href="korean-age-calculator.html" class="card">Korean Age Calculator</a>
+      <a href="lunar-age-calculator.html" class="card">Lunar / Chinese Age Calculator</a>
+      <a href="gestational-age-calculator.html" class="card">Gestational Age Calculator</a>
+      <a href="age-difference-calculator.html" class="card">Age Difference Calculator</a>
+      <a href="age-on-planets-calculator.html" class="card">Age on Mars / Other Planets</a>
+    </div>
+  </section>
 
-          <label class="inline toggle">
-            <input type="checkbox" id="includeNumbers" checked />
-            <span>Include numbers</span>
-          </label>
+  <!-- AdSense Banner (Middle) -->
+  <section class="ad-banner">
+    <!-- Replace with your AdSense code -->
+    <div class="ad-placeholder">[Ad Banner Here]</div>
+  </section>
 
-          <label class="inline toggle">
-            <input type="checkbox" id="includeSymbols" checked />
-            <span>Include symbols</span>
-          </label>
-        </div>
-
-        <div class="row actions">
-          <button id="generate" class="btn primary large">Generate Passwords</button>
-          <div class="small-actions">
-            <button id="copyAll" class="btn ghost">Copy All</button>
-            <button id="downloadTxt" class="btn ghost">Download .txt</button>
-            <button id="downloadCsv" class="btn ghost">Download .csv</button>
-          </div>
-        </div>
+  <!-- Quick FAQs -->
+  <section class="faqs">
+    <h2>Quick FAQs</h2>
+    <div class="faq-list">
+      <!-- Leave space for 4–6 FAQs -->
+      <div class="faq-item">
+        <h3>Question 1</h3>
+        <p>Answer goes here...</p>
       </div>
-
-      <!-- AdSense placeholder (replace with AdSense script) -->
-      <div class="ad-slot" aria-hidden="true">Advertisement</div>
-
-      <div id="results" class="results" aria-live="polite">
-        <div class="results-header">
-          <strong id="resultCount">0</strong> passwords
-        </div>
-        <div id="list" class="list"></div>
+      <div class="faq-item">
+        <h3>Question 2</h3>
+        <p>Answer goes here...</p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Sidebar for desktop ads / info -->
-    <aside class="sidebar">
-      <div class="card info">
-        <h3>Why this tool?</h3>
-        <p>Quick, secure passwords generated using the browser's CSPRNG. We don't collect or send your data.</p>
-      </div>
-
-      <div class="ad-slot">Sidebar Ad (desktop) — paste AdSense here</div>
-    </aside>
-
-    <!-- Supporting sections (for SEO, linked via hamburger menu) -->
-    <section id="about" class="card full">
-      <h2>About</h2>
-      <p>This simple password generator focuses on clarity and speed. It uses the browser's secure random generator and offers batch generation, copy, and download.</p>
-    </section>
-
-    <section id="faq" class="card full">
-      <h2>FAQ</h2>
-      <div class="faq-item"><b>How does difficulty work?</b><p>Difficulty controls length & randomness: Easy (short), Normal (medium), Strong (long & very random). Toggles for numbers/symbols override included character sets.</p></div>
-      <div class="faq-item"><b>Is it safe?</b><p>Yes — generation happens locally in your browser using cryptographically secure random values.</p></div>
-    </section>
-
-    <section id="privacy" class="card full">
-      <h2>Privacy</h2>
-      <p>No server storage. All actions happen in your browser. This site contains AdSense ads — we do not track passwords.</p>
-    </section>
-
-    <section id="contact" class="card full">
-      <h2>Contact</h2>
-      <p>Reach: <a href="mailto:stellarbusinessez@gmail.com">stellarbusinessez@gmail.com</a></p>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div>© 2025 PassForge — Generate secure passwords fast • <a href="#privacy">Privacy</a></div>
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 MyCalculatorPal. All rights reserved.</p>
+    <nav>
+      <a href="privacy.html">Privacy Policy</a> |
+      <a href="terms.html">Terms & Conditions</a>
+    </nav>
   </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
