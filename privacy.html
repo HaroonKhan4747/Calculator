@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Header -->
   <header>
     <div class="logo">MyCalculatorPal</div>
     <nav id="nav-menu">
@@ -19,12 +20,34 @@
     <div class="hamburger" id="hamburger">☰</div>
   </header>
 
-  <section class="content">
+  <!-- Privacy Policy Content -->
+  <section class="content" style="padding: 40px 20px; max-width: 900px; margin: auto;">
     <h1>Privacy Policy</h1>
-    <p>At MyCalculatorPal, your privacy is important to us. We do not share personal information collected through our website with third parties. We use cookies only to enhance user experience and improve our services.</p>
-    <p>By using MyCalculatorPal, you consent to our privacy practices described here.</p>
+    <p>At <strong>MyCalculatorPal</strong>, your privacy is important to us. This policy outlines how we collect, use, and protect your personal information.</p>
+
+    <h2>1. Information Collection</h2>
+    <p>We may collect limited personal information such as email addresses when users contact us or subscribe to updates. We do not require users to provide sensitive information to use calculators.</p>
+
+    <h2>2. Use of Information</h2>
+    <p>Information collected is used only to respond to inquiries, improve our services, and maintain communication. We do not sell or share personal data with third parties without consent.</p>
+
+    <h2>3. Cookies & Tracking</h2>
+    <p>We may use cookies or similar tracking technologies to enhance user experience and analyze website traffic. Users can manage cookies through their browser settings.</p>
+
+    <h2>4. Third-Party Services</h2>
+    <p>Our website may include third-party services or ads (e.g., Google AdSense). These third parties have their own privacy policies. We are not responsible for their practices.</p>
+
+    <h2>5. Data Security</h2>
+    <p>We implement reasonable measures to protect personal information, but cannot guarantee absolute security against unauthorized access or breaches.</p>
+
+    <h2>6. Updates to Privacy Policy</h2>
+    <p>We may update this privacy policy at any time. Continued use of our website indicates acceptance of the updated policy.</p>
+
+    <h2>7. Contact Us</h2>
+    <p>If you have questions or concerns regarding privacy, contact us at <a href="mailto:stellarbusinessz@gmail.com">stellarbusinessz@gmail.com</a>.</p>
   </section>
 
+  <!-- Footer -->
   <footer>
     <p>&copy; 2025 MyCalculatorPal. All rights reserved.</p>
     <nav>
@@ -34,11 +57,13 @@
     </nav>
   </footer>
 
+  <!-- Mobile Menu Script -->
   <script>
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
-    hamburger.addEventListener('click', () => { navMenu.classList.toggle('active'); });
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
   </script>
 </body>
 </html>
-
