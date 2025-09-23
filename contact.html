@@ -1,1 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - MyCalculatorPal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">MyCalculatorPal</div>
+    <nav id="nav-menu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+    </nav>
+    <div class="hamburger" id="hamburger">☰</div>
+  </header>
+
+  <!-- Contact Content -->
+  <section class="content" style="padding: 40px 20px; max-width: 900px; margin: auto;">
+    <h1>Contact Us</h1>
+    <p>We’d love to hear from you! If you have questions, suggestions, or feedback about MyCalculatorPal, feel free to reach out using the details below:</p>
+
+    <h2>Email</h2>
+    <p><a href="mailto:stellarbusinessz@gmail.com">stellarbusinessz@gmail.com</a></p>
+
+    <h2>Message Form (Optional)</h2>
+    <p>You can also include a contact form here in the future if needed.</p>
+
+    <h2>Response Time</h2>
+    <p>We aim to respond to all inquiries within 1–2 business days.</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 MyCalculatorPal. All rights reserved.</p>
+    <nav>
+      <a href="contact.html">Contact</a> |
+      <a href="privacy.html">Privacy Policy</a> |
+      <a href="terms.html">Terms & Conditions</a>
+    </nav>
+  </footer>
+
+  <!-- Mobile Menu Script -->
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
 
