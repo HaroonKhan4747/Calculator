@@ -1,112 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Age Calculator - MyCalculatorPal</title>
-<style>
-  body {
-    font-family: 'Roboto', sans-serif;
-    background: #fff;
-    color: #111;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-  }
-
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    background: #000;
-    color: #fff;
-  }
-
-  header .logo { font-size: 1.5rem; font-weight: bold; }
-  header nav a { color: #fff; text-decoration: none; margin-left: 15px; }
-  header nav a:hover { text-decoration: underline; color: #ddd; }
-
-  .container { max-width: 800px; margin: 40px auto; padding: 0 20px; text-align: center; }
-
-  h1 { font-family: 'Montserrat', sans-serif; margin-bottom: 20px; }
-  label { display: block; margin: 10px 0 5px; }
-  input[type="date"] { padding: 8px; width: 200px; font-size: 1rem; }
-  button { margin-top: 15px; padding: 10px 20px; font-size: 1rem; cursor: pointer; background: #000; color: #fff; border: none; border-radius: 5px; transition: 0.3s; }
-  button:hover { background: #333; }
-  .results { margin-top: 30px; text-align: left; }
-  .results p { margin: 5px 0; font-size: 1rem; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Age Calculator - MyCalculatorPal</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Page-specific style will be added in style.css -->
 </head>
 <body>
-<header>
-  <div class="logo">MyCalculatorPal</div>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="contact.html">Contact</a>
-    <a href="privacy.html">Privacy</a>
-    <a href="terms.html">Terms & Conditions</a>
-  </nav>
-</header>
 
-<div class="container">
-  <h1>Age Calculator</h1>
-  <label for="dob">Date of Birth:</label>
-  <input type="date" id="dob">
-  <label for="end-date">End Date (optional):</label>
-  <input type="date" id="end-date">
-  <button id="calculate-btn">Calculate Age</button>
+  <!-- Header -->
+  <header>
+    <div class="logo">MyCalculatorPal</div>
+    <nav id="nav-menu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms & Conditions</a>
+    </nav>
+    <div class="hamburger" id="hamburger">☰</div>
+  </header>
 
-  <div class="results" id="results"></div>
-</div>
+  <!-- Calculator Section -->
+  <section class="calculator-container">
+    <h2>Age Calculator</h2>
 
-<script>
-const dobInput = document.getElementById('dob');
-const endDateInput = document.getElementById('end-date');
-const resultsDiv = document.getElementById('results');
-const calculateBtn = document.getElementById('calculate-btn');
+    <!-- User Input -->
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob">
 
-calculateBtn.addEventListener('click', () => {
-  const dob = new Date(dobInput.value);
-  const endDate = endDateInput.value ? new Date(endDateInput.value) : new Date();
+    <label for="end-date">End Date (default = today):</label>
+    <input type="date" id="end-date">
 
-  if (!dobInput.value) { alert("Please select your date of birth"); return; }
-  if (endDate < dob) { alert("End date cannot be before date of birth"); return; }
+    <button id="calculate-btn">Calculate Age</button>
 
-  let years = endDate.getFullYear() - dob.getFullYear();
-  let months = endDate.getMonth() - dob.getMonth();
-  let days = endDate.getDate() - dob.getDate();
+    <!-- AdSense Banner (before results) -->
+    <div class="ad-banner">
+      <div class="ad-placeholder">[Ad Banner Here]</div>
+    </div>
 
-  if (days < 0) { months -= 1; days += new Date(endDate.getFullYear(), endDate.getMonth(), 0).getDate(); }
-  if (months < 0) { years -= 1; months += 12; }
+    <!-- Result Box -->
+    <div class="result-box" id="result">
+      <h3>Results</h3>
+      <p>Years: <span id="years">0</span></p>
+      <p>Months: <span id="months">0</span></p>
+      <p>Weeks: <span id="weeks">0</span></p>
+      <p>Days: <span id="days">0</span></p>
+      <p>Hours: <span id="hours">0</span></p>
+      <p>Minutes: <span id="minutes">0</span></p>
+      <p>Seconds: <span id="seconds">0</span></p>
 
-  // Weeks, hours, minutes, seconds
-  const totalMs = endDate - dob;
-  const totalSeconds = Math.floor(totalMs / 1000);
-  const totalMinutes = Math.floor(totalSeconds / 60);
-  const totalHours = Math.floor(totalMinutes / 60);
-  const totalDays = Math.floor(totalMs / (1000*60*60*24));
-  const totalWeeks = Math.floor(totalDays / 7);
+      <p>Korean Age: <span id="korean-age">0</span>  
+        <span class="note">— Korean age counts your age as 1 at birth and adds a year every New Year. 
+        <button class="link-btn" onclick="location.href='korean-age-calculator.html'">For detailed results try the Korean Age Calculator</button></span>
+      </p>
 
-  // Korean age
-  const koreanAge = endDate.getFullYear() - dob.getFullYear() + 1;
+      <p>Chinese/Lunar Age: <span id="chinese-age">0</span>  
+        <span class="note">— Chinese/Lunar age is based on the lunar calendar and your zodiac sign. 
+        <button class="link-btn" onclick="location.href='lunar-age-calculator.html'">For detailed results try the Chinese/Lunar Age Calculator</button></span>
+      </p>
 
-  // Chinese/Lunar age (simplified) and hyperlink
-  const chineseAge = endDate.getFullYear() - dob.getFullYear() + 1;
+      <p>Days until next birthday: <span id="days-birthday">0</span></p>
+    </div>
 
-  // Days left until next birthday
-  const nextBirthday = new Date(endDate.getFullYear(), dob.getMonth(), dob.getDate());
-  if (nextBirthday < endDate) nextBirthday.setFullYear(nextBirthday.getFullYear() + 1);
-  const daysUntilBirthday = Math.ceil((nextBirthday - endDate)/(1000*60*60*24));
+    <!-- AdSense Banner (after results) -->
+    <div class="ad-banner">
+      <div class="ad-placeholder">[Ad Banner Here]</div>
+    </div>
+  </section>
 
-  resultsDiv.innerHTML = `
-    <p><strong>Exact Age:</strong> ${years} years, ${months} months, ${days} days</p>
-    <p><strong>Weeks:</strong> ${totalWeeks} | <strong>Hours:</strong> ${totalHours} | <strong>Minutes:</strong> ${totalMinutes} | <strong>Seconds:</strong> ${totalSeconds}</p>
-    <p><strong>Korean Age:</strong> ${koreanAge} (<a href="korean-age-calculator.html">Try Korean cal</a>)</p>
-    <p><strong>Chinese Age:</strong> ${chineseAge} (<a href="lunar-age-calculator.html">Try Chinese cal</a>)</p>
-    <p><strong>Days until next birthday:</strong> ${daysUntilBirthday}</p>
-  `;
-});
-</script>
+  <!-- Blog Section Placeholder -->
+  <section class="blog-section">
+    <h2>Blog</h2>
+    <p><!-- Blog posts will go here --></p>
+  </section>
+
+  <!-- FAQ Section Placeholder -->
+  <section class="faqs">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <!-- 10 collapsible FAQs will go here -->
+      <!-- FAQ structure can be like:
+      <div class="faq-item">
+        <h3>Question?</h3>
+        <div class="faq-answer">Answer goes here.</div>
+      </div>
+      -->
+    </div>
+  </section>
+
+  <!-- External Script -->
+  <script src="script.js"></script>
+
 </body>
 </html>
