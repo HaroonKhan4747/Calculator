@@ -1,1 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - MyCalculatorPal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">MyCalculatorPal</div>
+    <nav id="nav-menu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms & Conditions</a>
+    </nav>
+    <div class="hamburger" id="hamburger">☰</div>
+  </header>
+
+  <section class="content">
+    <h1>About MyCalculatorPal</h1>
+    <p>MyCalculatorPal is your free online hub for accurate and easy-to-use calculators. We provide a variety of tools to help you calculate age, gestational periods, planetary ages, and more. Our goal is to make calculations simple, reliable, and accessible for everyone.</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 MyCalculatorPal. All rights reserved.</p>
+    <nav>
+      <a href="contact.html">Contact</a> |
+      <a href="privacy.html">Privacy Policy</a> |
+      <a href="terms.html">Terms & Conditions</a>
+    </nav>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
 
