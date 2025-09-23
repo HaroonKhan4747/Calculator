@@ -1,89 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Calculator Pal</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyCalculatorPal - Free Online Calculators</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Header / Navbar -->
+  <!-- Header -->
   <header>
-    <nav class="navbar">
-      <div class="logo">MyCalculatorPal</div>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="age-calculator.html">Age Calculator</a></li>
-        <li><a href="bmi-calculator.html">BMI Calculator</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-      <div class="hamburger" id="hamburger">
-        ☰
-      </div>
+    <div class="logo">MyCalculatorPal</div>
+    <nav id="nav-menu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
     </nav>
+    <div class="hamburger" id="hamburger">☰</div>
   </header>
 
   <!-- Hero Section -->
   <section class="hero">
-    <h1>Smart & Simple Online Calculators</h1>
-    <p>Your one-stop hub for quick, reliable, and free online calculators.</p>
+    <h1>Welcome to MyCalculatorPal</h1>
+    <p>Your go-to hub for accurate and free online calculators.</p>
   </section>
 
-  <!-- Ad Banner -->
+  <!-- AdSense Banner (Top) -->
   <section class="ad-banner">
-    <!-- Google AdSense code will go here -->
-    <p>[Ad Banner Placeholder]</p>
+    <!-- Replace with your AdSense code -->
+    <div class="ad-placeholder">[Ad Banner Here]</div>
   </section>
 
-  <!-- Calculator Cards -->
-  <section class="calculator-section">
+  <!-- Tools / Calculator Cards -->
+  <section class="tools">
     <h2>Popular Calculators</h2>
-    <div class="card-container">
+    <div class="grid">
       <div class="card">
-        <h3>Age Calculator</h3>
+        <a href="age-calculator.html">Age Calculator</a>
         <p>Find your exact age in years, months, and days. (Also known as Chronological Age Calculator.)</p>
-        <a href="age-calculator.html">Try Now</a>
       </div>
       <div class="card">
-        <h3>BMI Calculator</h3>
-        <p>Calculate your Body Mass Index to understand your fitness level.</p>
-        <a href="bmi-calculator.html">Try Now</a>
+        <a href="infant-age-calculator.html">Infant Age Calculator</a>
+        <p>Track your baby’s age in months, weeks, days, and more.</p>
       </div>
       <div class="card">
-        <h3>Loan Calculator</h3>
-        <p>Plan your finances better by estimating monthly loan payments.</p>
-        <a href="loan-calculator.html">Try Now</a>
+        <a href="korean-age-calculator.html">Korean Age Calculator</a>
+        <p>Discover your age in the traditional Korean age system.</p>
+      </div>
+      <div class="card">
+        <a href="lunar-age-calculator.html">Lunar / Chinese Age Calculator</a>
+        <p>Calculate your age based on the lunar calendar and zodiac.</p>
+      </div>
+      <div class="card">
+        <a href="gestational-age-calculator.html">Gestational Age Calculator</a>
+        <p>Estimate weeks of pregnancy and due date using LMP or conception date.</p>
+      </div>
+      <div class="card">
+        <a href="age-difference-calculator.html">Age Difference Calculator</a>
+        <p>Find the exact age gap between two people in years, months, and days.</p>
+      </div>
+      <div class="card">
+        <a href="age-on-planets-calculator.html">Age on Mars / Other Planets</a>
+        <p>See how old you’d be on Mars, Jupiter, and other planets.</p>
       </div>
     </div>
+  </section>
+
+  <!-- AdSense Banner (Middle) -->
+  <section class="ad-banner">
+    <!-- Replace with your AdSense code -->
+    <div class="ad-placeholder">[Ad Banner Here]</div>
   </section>
 
   <!-- Quick FAQs -->
   <section class="faqs">
     <h2>Quick FAQs</h2>
-    <div class="faq-item">
-      <h4>How accurate are these calculators?</h4>
-      <p>You can rely on them for general purposes, but for official use consult experts.</p>
+    <div class="faq-list">
+      <!-- Leave space for 4–6 FAQs -->
+      <div class="faq-item">
+        <h3>How accurate are these calculators?</h3>
+        <p>They are accurate for general use. For official or medical purposes, consult professionals.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Do I need to pay?</h3>
+        <p>No, all calculators on MyCalculatorPal are completely free to use.</p>
+      </div>
     </div>
-    <!-- Add more FAQs manually here -->
   </section>
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2025 MyCalculatorPal. All Rights Reserved.</p>
-    <div class="footer-links">
+    <p>&copy; 2025 MyCalculatorPal. All rights reserved.</p>
+    <nav>
       <a href="contact.html">Contact</a> |
-      <a href="privacy-policy.html">Privacy Policy</a> |
+      <a href="privacy.html">Privacy Policy</a> |
       <a href="terms.html">Terms & Conditions</a>
-    </div>
+    </nav>
   </footer>
 
+  <!-- Mobile Menu Script -->
   <script>
-    // Mobile Menu Toggle
     const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('nav-links');
-
+    const navMenu = document.getElementById('nav-menu');
     hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
+      navMenu.classList.toggle('active');
     });
   </script>
 </body>
