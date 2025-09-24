@@ -338,33 +338,35 @@ footer a:hover {
     <p>Calculate your age in years, months, days, and more.</p>
   </section>
   
-  <!-- Calculator Section -->
-  <section class="calculator">
-    <div class="card calc-inputs">
-      <label for="dob">Date of Birth:</label>
-      <input type="date" id="dob" class="input-field" max="" />
+<!-- Calculator Section -->
+<section class="calculator">
 
-      <label for="endDate">End Date:</label>
-      <input type="date" id="endDate" class="input-field" />
+  <!-- Results Box (Initially Hidden) -->
+  <div class="card calc-results" id="results" style="display:none;">
+    <h2>Results</h2>
+    <p id="years">Years: </p>
+    <p id="months">Months: </p>
+    <p id="weeks">Weeks: </p>
+    <p id="days">Days: </p>
+    <p id="hours">Hours: </p>
+    <p id="minutes">Minutes: </p>
+    <p id="seconds">Seconds: </p>
+    <p id="koreanAge">Korean Age: — Korean age counts your age as 1 at birth and adds a year every New Year. </p>
+    <p id="chineseAge">Chinese/Lunar Age: — Chinese/Lunar age is based on the lunar calendar and your zodiac sign.</p>
+    <p id="birthdayCountdown">Days until next birthday: </p>
+  </div>
 
-      <button id="calculateBtn" class="calculate-btn">Calculate Age</button>
-    </div>
+  <!-- Calculator Card -->
+  <div class="card calc-inputs">
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" class="input-field" max="" />
 
-    <!-- Results Box (Initially Hidden) -->
-    <div class="card calc-results" id="results" style="display:none;">
-      <h2>Results</h2>
-      <p id="years">Years: </p>
-      <p id="months">Months: </p>
-      <p id="weeks">Weeks: </p>
-      <p id="days">Days: </p>
-      <p id="hours">Hours: </p>
-      <p id="minutes">Minutes: </p>
-      <p id="seconds">Seconds: </p>
-      <p id="koreanAge">Korean Age: — Korean age counts your age as 1 at birth and adds a year every New Year. </p>
-      <p id="chineseAge">Chinese/Lunar Age: — Chinese/Lunar age is based on the lunar calendar and your zodiac sign.</p>
-      <p id="birthdayCountdown">Days until next birthday: </p>
-    </div>
-  </section>
+    <label for="endDate">End Date:</label>
+    <input type="date" id="endDate" class="input-field" />
+
+    <button id="calculateBtn" class="calculate-btn">Calculate Age</button>
+  </div>
+</section>
 
   <!-- AdSense Banner (After Results) -->
   <section class="ad-banner">
