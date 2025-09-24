@@ -434,19 +434,20 @@ footer a:hover {
     const diffMs = endDate - dob;
     let remainingMs = diffMs;
 
-    // Total calculations
-    const totalDays = Math.floor(remainingMs / (1000*60*60*24));
-    remainingMs -= totalDays * 24*60*60*1000;
+    // ----------------------
+    // Human-readable age
+    // ----------------------
+    const totalDays = Math.floor(remainingMs / (1000 * 60 * 60 * 24));
+    remainingMs -= totalDays * 24 * 60 * 60 * 1000;
 
-    const leftoverHours = Math.floor(remainingMs / (1000*60*60));
-    remainingMs -= leftoverHours * 60*60*1000;
+    const leftoverHours = Math.floor(remainingMs / (1000 * 60 * 60));
+    remainingMs -= leftoverHours * 1000 * 60 * 60;
 
-    const leftoverMinutes = Math.floor(remainingMs / (1000*60));
-    remainingMs -= leftoverMinutes * 60*1000;
+    const leftoverMinutes = Math.floor(remainingMs / (1000 * 60));
+    remainingMs -= leftoverMinutes * 1000 * 60;
 
     const leftoverSeconds = Math.floor(remainingMs / 1000);
 
-    // Years, months, weeks, days
     const totalYears = endDate.getFullYear() - dob.getFullYear() - ((endDate.getMonth() < dob.getMonth() || (endDate.getMonth() === dob.getMonth() && endDate.getDate() < dob.getDate())) ? 1 : 0);
     let leftoverMonths = endDate.getMonth() - dob.getMonth();
     if (leftoverMonths < 0) leftoverMonths += 12;
@@ -459,26 +460,26 @@ footer a:hover {
     const totalWeeks = Math.floor(totalDays / 7);
     const leftoverWeeks = totalWeeks % 4;
 
-    // Korean Age
+    // ----------------------
+    // Korean & Chinese Age
+    // ----------------------
     const koreanAge = endDate.getFullYear() - dob.getFullYear() + 1;
-
-    // Chinese/Lunar Age
     const chineseAge = totalYears + 1;
 
+    // ----------------------
     // Time until next birthday
+    // ----------------------
     let nextBirthday = new Date(endDate.getFullYear(), dob.getMonth(), dob.getDate());
     if (nextBirthday < endDate) nextBirthday.setFullYear(nextBirthday.getFullYear() + 1);
-    const msUntilBirthday = nextBirthday - endDate;
-
-    let remainingMsUntil = msUntilBirthday;
+    let remainingMsUntil = nextBirthday - endDate;
     const totalDaysUntil = Math.floor(remainingMsUntil / (1000*60*60*24));
     remainingMsUntil -= totalDaysUntil * 24*60*60*1000;
 
     const hoursUntil = Math.floor(remainingMsUntil / (1000*60*60));
-    remainingMsUntil -= hoursUntil * 60*60*1000;
+    remainingMsUntil -= hoursUntil * 1000*60*60;
 
     const minutesUntil = Math.floor(remainingMsUntil / (1000*60));
-    remainingMsUntil -= minutesUntil * 60*1000;
+    remainingMsUntil -= minutesUntil * 1000*60;
 
     const secondsUntil = Math.floor(remainingMsUntil / 1000);
 
@@ -486,19 +487,33 @@ footer a:hover {
     const weeksUntil = Math.floor((totalDaysUntil % 30) / 7);
     const daysUntil = (totalDaysUntil % 30) % 7;
 
+    // ----------------------
+    // Total lived time
+    // ----------------------
+    const totalMonths = totalYears * 12 + leftoverMonths;
+    const totalHours = Math.floor(diffMs / (1000*60*60));
+    const totalMinutes = Math.floor(diffMs / (1000*60));
+    const totalSeconds = Math.floor(diffMs / 1000);
+
+    // ----------------------
     // Show results
+    // ----------------------
     resultsDiv.style.display = 'block';
 
-    // Compact main age result
+    // Human-readable age
     document.getElementById('years').textContent =
       `Age: ${totalYears} years, ${leftoverMonths} months, ${leftoverWeeks} weeks, ${leftoverDays} days, ${leftoverHours} hours, ${leftoverMinutes} minutes, ${leftoverSeconds} seconds`;
+
+    // Total lived time
+    document.getElementById('months').textContent =
+      `You have lived: ${totalMonths} months, ${totalWeeks} weeks, ${totalDays} days, ${totalHours} hours, ${totalMinutes} minutes, ${totalSeconds} seconds`;
 
     document.getElementById('koreanAge').textContent =
       `Korean Age: ${koreanAge} — Korean age counts your age as 1 at birth and adds a year every New Year.`;
     document.getElementById('chineseAge').textContent =
       `Chinese/Lunar Age: ${chineseAge} — Chinese/Lunar age is based on the lunar calendar and your zodiac sign.`;
 
-    // Compact birthday countdown (no years)
+    // Birthday countdown
     document.getElementById('birthdayCountdown').textContent =
       `Time until next birthday: ${monthsUntil} months, ${weeksUntil} weeks, ${daysUntil} days, ${hoursUntil} hours, ${minutesUntil} minutes, ${secondsUntil} seconds`;
   });
