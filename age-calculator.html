@@ -450,27 +450,26 @@ footer a:hover {
     let nextBirthday = new Date(endDate.getFullYear(), dob.getMonth(), dob.getDate());
     if (nextBirthday < endDate) nextBirthday.setFullYear(nextBirthday.getFullYear() + 1);
     const msUntilBirthday = nextBirthday - endDate;
-    const daysUntil = Math.floor(msUntilBirthday / (1000*60*60*24));
-    const weeksUntil = Math.floor(daysUntil / 7);
-    const monthsUntil = Math.floor(daysUntil / 30);
-    const hoursUntil = Math.floor(msUntilBirthday / (1000*60*60));
-    const minutesUntil = Math.floor(msUntilBirthday / (1000*60));
-    const secondsUntil = Math.floor(msUntilBirthday / 1000);
+    const totalDaysUntil = Math.floor(msUntilBirthday / (1000*60*60*24));
+    const yearsUntil = Math.floor(totalDaysUntil / 365);
+    const monthsUntil = Math.floor((totalDaysUntil % 365) / 30);
+    const weeksUntil = Math.floor(((totalDaysUntil % 365) % 30) / 7);
+    const daysUntil = ((totalDaysUntil % 365) % 30) % 7;
+    const hoursUntil = Math.floor(msUntilBirthday / (1000*60*60)) % 24;
+    const minutesUntil = Math.floor(msUntilBirthday / (1000*60)) % 60;
+    const secondsUntil = Math.floor(msUntilBirthday / 1000) % 60;
 
     // Show results
     resultsDiv.style.display = 'block';
-    document.getElementById('years').textContent = `Years: ${diffYears}`;
-    document.getElementById('months').textContent = `Months: ${diffMonths}`;
-    document.getElementById('weeks').textContent = `Weeks: ${diffWeeks}`;
-    document.getElementById('days').textContent = `Days: ${diffDays}`;
-    document.getElementById('hours').textContent = `Hours: ${diffHours}`;
-    document.getElementById('minutes').textContent = `Minutes: ${diffMinutes}`;
-    document.getElementById('seconds').textContent = `Seconds: ${diffSeconds}`;
+
+    // ✅ Compact main results in one line
+    document.getElementById('years').textContent = `Age: ${diffYears} years, ${diffMonths} months, ${diffWeeks} weeks, ${diffDays} days, ${diffHours} hours, ${diffMinutes} minutes, ${diffSeconds} seconds`;
+
     document.getElementById('koreanAge').textContent = `Korean Age: ${koreanAge} — Korean age counts your age as 1 at birth and adds a year every New Year.`;
     document.getElementById('chineseAge').textContent = `Chinese/Lunar Age: ${chineseAge} — Chinese/Lunar age is based on the lunar calendar and your zodiac sign.`;
 
-    // ✅ Compact birthday countdown in one line
-    document.getElementById('birthdayCountdown').textContent = `Time until next birthday: ${monthsUntil} months, ${weeksUntil} weeks, ${daysUntil} days, ${hoursUntil} hours, ${minutesUntil} minutes, ${secondsUntil} seconds`;
+    // ✅ Compact birthday countdown in one line with years
+    document.getElementById('birthdayCountdown').textContent = `Time until next birthday: ${yearsUntil} years, ${monthsUntil} months, ${weeksUntil} weeks, ${daysUntil} days, ${hoursUntil} hours, ${minutesUntil} minutes, ${secondsUntil} seconds`;
   });
 
   // FAQ Toggle
