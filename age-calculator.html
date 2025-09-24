@@ -425,7 +425,7 @@ footer a:hover {
 
   calculateBtn.addEventListener('click', () => {
     const dob = new Date(dobInput.value);
-    const now = new Date(); // use current date & time for accurate hours/minutes/seconds
+    const now = new Date(); // current date & time
     if (dob == "Invalid Date") {
       alert("Please select a valid date of birth.");
       return;
@@ -451,14 +451,17 @@ footer a:hover {
     const totalYears = now.getFullYear() - dob.getFullYear() - ((now.getMonth() < dob.getMonth() || (now.getMonth() === dob.getMonth() && now.getDate() < dob.getDate())) ? 1 : 0);
     let leftoverMonths = now.getMonth() - dob.getMonth();
     if (leftoverMonths < 0) leftoverMonths += 12;
+
     let leftoverDays = now.getDate() - dob.getDate();
     if (leftoverDays < 0) {
       const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
       leftoverDays += prevMonth;
       leftoverMonths -= 1;
     }
+
     const totalWeeks = Math.floor(totalDays / 7);
-    const leftoverWeeks = totalWeeks % 4;
+    const leftoverWeeks = Math.floor(leftoverDays / 7);
+    leftoverDays = leftoverDays % 7; // ensures days after weeks never exceed 6
 
     // ----------------------
     // Korean & Chinese Age
@@ -473,7 +476,7 @@ footer a:hover {
     if (nextBirthday < now) nextBirthday.setFullYear(nextBirthday.getFullYear() + 1);
 
     let remainingMsUntil = nextBirthday - now;
-    const totalDaysUntil = Math.floor(remainingMsUntil / (1000*60*60*24));
+    let totalDaysUntil = Math.floor(remainingMsUntil / (1000*60*60*24));
     remainingMsUntil -= totalDaysUntil * 24*60*60*1000;
 
     const hoursUntil = Math.floor(remainingMsUntil / (1000*60*60));
@@ -486,7 +489,7 @@ footer a:hover {
 
     const monthsUntil = Math.floor(totalDaysUntil / 30);
     const weeksUntil = Math.floor((totalDaysUntil % 30) / 7);
-    const daysUntil = (totalDaysUntil % 30) % 7;
+    const daysUntil = (totalDaysUntil % 30) % 7; // ensures leftover days after weeks <= 6
 
     // ----------------------
     // Total lived time
