@@ -432,8 +432,21 @@ footer a:hover {
     }
 
     const diffMs = endDate - dob;
+    let remainingMs = diffMs;
 
-    // Main age calculation
+    // Total calculations
+    const totalDays = Math.floor(remainingMs / (1000*60*60*24));
+    remainingMs -= totalDays * 24*60*60*1000;
+
+    const leftoverHours = Math.floor(remainingMs / (1000*60*60));
+    remainingMs -= leftoverHours * 60*60*1000;
+
+    const leftoverMinutes = Math.floor(remainingMs / (1000*60));
+    remainingMs -= leftoverMinutes * 60*1000;
+
+    const leftoverSeconds = Math.floor(remainingMs / 1000);
+
+    // Years, months, weeks, days
     const totalYears = endDate.getFullYear() - dob.getFullYear() - ((endDate.getMonth() < dob.getMonth() || (endDate.getMonth() === dob.getMonth() && endDate.getDate() < dob.getDate())) ? 1 : 0);
     let leftoverMonths = endDate.getMonth() - dob.getMonth();
     if (leftoverMonths < 0) leftoverMonths += 12;
@@ -443,12 +456,8 @@ footer a:hover {
       leftoverDays += prevMonth;
       leftoverMonths -= 1;
     }
-    const totalWeeks = Math.floor((diffMs / (1000*60*60*24)) / 7);
+    const totalWeeks = Math.floor(totalDays / 7);
     const leftoverWeeks = totalWeeks % 4;
-    const totalDays = Math.floor(diffMs / (1000*60*60*24));
-    const leftoverHours = Math.floor(diffMs / (1000*60*60)) % 24;
-    const leftoverMinutes = Math.floor(diffMs / (1000*60)) % 60;
-    const leftoverSeconds = Math.floor(diffMs / 1000) % 60;
 
     // Korean Age
     const koreanAge = endDate.getFullYear() - dob.getFullYear() + 1;
@@ -460,16 +469,22 @@ footer a:hover {
     let nextBirthday = new Date(endDate.getFullYear(), dob.getMonth(), dob.getDate());
     if (nextBirthday < endDate) nextBirthday.setFullYear(nextBirthday.getFullYear() + 1);
     const msUntilBirthday = nextBirthday - endDate;
-    let totalDaysUntil = Math.floor(msUntilBirthday / (1000*60*60*24));
-    const yearsUntil = Math.floor(totalDaysUntil / 365);
-    totalDaysUntil %= 365;
+
+    let remainingMsUntil = msUntilBirthday;
+    const totalDaysUntil = Math.floor(remainingMsUntil / (1000*60*60*24));
+    remainingMsUntil -= totalDaysUntil * 24*60*60*1000;
+
+    const hoursUntil = Math.floor(remainingMsUntil / (1000*60*60));
+    remainingMsUntil -= hoursUntil * 60*60*1000;
+
+    const minutesUntil = Math.floor(remainingMsUntil / (1000*60));
+    remainingMsUntil -= minutesUntil * 60*1000;
+
+    const secondsUntil = Math.floor(remainingMsUntil / 1000);
+
     const monthsUntil = Math.floor(totalDaysUntil / 30);
-    const daysLeftAfterMonths = totalDaysUntil % 30;
-    const weeksUntil = Math.floor(daysLeftAfterMonths / 7);
-    const daysUntil = daysLeftAfterMonths % 7;
-    const hoursUntil = Math.floor(msUntilBirthday / (1000*60*60)) % 24;
-    const minutesUntil = Math.floor(msUntilBirthday / (1000*60)) % 60;
-    const secondsUntil = Math.floor(msUntilBirthday / 1000) % 60;
+    const weeksUntil = Math.floor((totalDaysUntil % 30) / 7);
+    const daysUntil = (totalDaysUntil % 30) % 7;
 
     // Show results
     resultsDiv.style.display = 'block';
@@ -483,9 +498,9 @@ footer a:hover {
     document.getElementById('chineseAge').textContent =
       `Chinese/Lunar Age: ${chineseAge} — Chinese/Lunar age is based on the lunar calendar and your zodiac sign.`;
 
-    // Compact birthday countdown with years
+    // Compact birthday countdown (no years)
     document.getElementById('birthdayCountdown').textContent =
-      `Time until next birthday: ${yearsUntil} years, ${monthsUntil} months, ${weeksUntil} weeks, ${daysUntil} days, ${hoursUntil} hours, ${minutesUntil} minutes, ${secondsUntil} seconds`;
+      `Time until next birthday: ${monthsUntil} months, ${weeksUntil} weeks, ${daysUntil} days, ${hoursUntil} hours, ${minutesUntil} minutes, ${secondsUntil} seconds`;
   });
 
   // FAQ Toggle
