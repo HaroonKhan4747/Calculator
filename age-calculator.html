@@ -433,15 +433,19 @@ footer a:hover {
 
     const diffMs = endDate - dob;
 
-    // Total calculations
-    const totalDays = Math.floor(diffMs / (1000*60*60*24));
-    const totalWeeks = Math.floor(totalDays / 7);
-    const totalMonths = (endDate.getFullYear() - dob.getFullYear()) * 12 + (endDate.getMonth() - dob.getMonth());
+    // Main age calculation
     const totalYears = endDate.getFullYear() - dob.getFullYear() - ((endDate.getMonth() < dob.getMonth() || (endDate.getMonth() === dob.getMonth() && endDate.getDate() < dob.getDate())) ? 1 : 0);
-    
-    const leftoverMonths = totalMonths % 12;
+    let leftoverMonths = endDate.getMonth() - dob.getMonth();
+    if (leftoverMonths < 0) leftoverMonths += 12;
+    let leftoverDays = endDate.getDate() - dob.getDate();
+    if (leftoverDays < 0) {
+      const prevMonth = new Date(endDate.getFullYear(), endDate.getMonth(), 0).getDate();
+      leftoverDays += prevMonth;
+      leftoverMonths -= 1;
+    }
+    const totalWeeks = Math.floor((diffMs / (1000*60*60*24)) / 7);
     const leftoverWeeks = totalWeeks % 4;
-    const leftoverDays = totalDays % 7;
+    const totalDays = Math.floor(diffMs / (1000*60*60*24));
     const leftoverHours = Math.floor(diffMs / (1000*60*60)) % 24;
     const leftoverMinutes = Math.floor(diffMs / (1000*60)) % 60;
     const leftoverSeconds = Math.floor(diffMs / 1000) % 60;
@@ -456,11 +460,13 @@ footer a:hover {
     let nextBirthday = new Date(endDate.getFullYear(), dob.getMonth(), dob.getDate());
     if (nextBirthday < endDate) nextBirthday.setFullYear(nextBirthday.getFullYear() + 1);
     const msUntilBirthday = nextBirthday - endDate;
-    const totalDaysUntil = Math.floor(msUntilBirthday / (1000*60*60*24));
+    let totalDaysUntil = Math.floor(msUntilBirthday / (1000*60*60*24));
     const yearsUntil = Math.floor(totalDaysUntil / 365);
-    const monthsUntil = Math.floor((totalDaysUntil % 365) / 30);
-    const weeksUntil = Math.floor(((totalDaysUntil % 365) % 30) / 7);
-    const daysUntil = ((totalDaysUntil % 365) % 30) % 7;
+    totalDaysUntil %= 365;
+    const monthsUntil = Math.floor(totalDaysUntil / 30);
+    const daysLeftAfterMonths = totalDaysUntil % 30;
+    const weeksUntil = Math.floor(daysLeftAfterMonths / 7);
+    const daysUntil = daysLeftAfterMonths % 7;
     const hoursUntil = Math.floor(msUntilBirthday / (1000*60*60)) % 24;
     const minutesUntil = Math.floor(msUntilBirthday / (1000*60)) % 60;
     const secondsUntil = Math.floor(msUntilBirthday / 1000) % 60;
@@ -468,14 +474,18 @@ footer a:hover {
     // Show results
     resultsDiv.style.display = 'block';
 
-    // ✅ Compact main age result
-    document.getElementById('years').textContent = `Age: ${totalYears} years, ${leftoverMonths} months, ${leftoverWeeks} weeks, ${leftoverDays} days, ${leftoverHours} hours, ${leftoverMinutes} minutes, ${leftoverSeconds} seconds`;
+    // Compact main age result
+    document.getElementById('years').textContent =
+      `Age: ${totalYears} years, ${leftoverMonths} months, ${leftoverWeeks} weeks, ${leftoverDays} days, ${leftoverHours} hours, ${leftoverMinutes} minutes, ${leftoverSeconds} seconds`;
 
-    document.getElementById('koreanAge').textContent = `Korean Age: ${koreanAge} — Korean age counts your age as 1 at birth and adds a year every New Year.`;
-    document.getElementById('chineseAge').textContent = `Chinese/Lunar Age: ${chineseAge} — Chinese/Lunar age is based on the lunar calendar and your zodiac sign.`;
+    document.getElementById('koreanAge').textContent =
+      `Korean Age: ${koreanAge} — Korean age counts your age as 1 at birth and adds a year every New Year.`;
+    document.getElementById('chineseAge').textContent =
+      `Chinese/Lunar Age: ${chineseAge} — Chinese/Lunar age is based on the lunar calendar and your zodiac sign.`;
 
-    // ✅ Compact birthday countdown with years
-    document.getElementById('birthdayCountdown').textContent = `Time until next birthday: ${yearsUntil} years, ${monthsUntil} months, ${weeksUntil} weeks, ${daysUntil} days, ${hoursUntil} hours, ${minutesUntil} minutes, ${secondsUntil} seconds`;
+    // Compact birthday countdown with years
+    document.getElementById('birthdayCountdown').textContent =
+      `Time until next birthday: ${yearsUntil} years, ${monthsUntil} months, ${weeksUntil} weeks, ${daysUntil} days, ${hoursUntil} hours, ${minutesUntil} minutes, ${secondsUntil} seconds`;
   });
 
   // FAQ Toggle
