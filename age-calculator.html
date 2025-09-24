@@ -294,7 +294,9 @@ footer a:hover {
   .ad-placeholder {
     margin-left: auto;
     margin-right: auto;
-    text-align: center; /* centers text inside */
+    text-align: center; /* centers inner text */
+    max-width: 90%;     /* prevents full stretch on mobile */
+    display: block;     /* makes sure they respect margin auto */
   }
 }
 
