@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Age Calculator - MyCalculatorPal</title>
-  <style>
+<style>
 /* Extra CSS specific to this calculator (main style in style.css handles general styling) */
 
 /* General Reset and Fonts */
@@ -16,6 +16,46 @@ body {
   color: #111;
   line-height: 1.6;
   text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+/* Layout Wrapper for Ads + Content */
+.page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  gap: 20px;
+}
+
+/* Ad Banners on Sides */
+.ad-side {
+  flex: 0 0 160px;
+  display: flex;
+  justify-content: center;
+}
+
+.ad-side .ad-placeholder {
+  width: 160px;
+  height: 600px;
+  background: #f0f0f0;
+  border: 1px dashed #ccc;
+  color: #888;
+  font-size: 0.9rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  max-width: 900px;
 }
 
 /* Header */
@@ -26,6 +66,7 @@ header {
   padding: 20px;
   background: #111;
   color: #fff;
+  border-radius: 12px;
 }
 
 header .logo {
@@ -118,11 +159,13 @@ header nav a:hover {
   padding: 25px;
   width: 100%;
   max-width: 500px;
+  min-width: 300px; /* Prevent shrinking */
   box-shadow: 0 6px 20px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
   gap: 12px;
   margin: 25px auto;
+  text-align: left;
 }
 
 .calc-results h2 {
@@ -130,6 +173,7 @@ header nav a:hover {
   font-size: 1.9rem;
   margin-bottom: 20px;
   color: #222;
+  text-align: center;
 }
 
 .calc-results p {
@@ -153,22 +197,6 @@ header nav a:hover {
   font-weight: 400;
   color: #555;
   margin-left: 10px;
-}
-
-/* Ad Banners */
-.ad-banner {
-  text-align: center;
-  padding: 25px 0;
-}
-
-.ad-placeholder {
-  display: inline-block;
-  background: #f0f0f0;
-  padding: 40px;
-  border: 1px dashed #ccc;
-  font-size: 0.9rem;
-  color: #888;
-  border-radius: 12px;
 }
 
 /* Blog Section */
@@ -246,11 +274,24 @@ footer {
   background: #111;
   color: #fff;
   font-size: 0.9rem;
+  border-radius: 12px;
 }
 
 /* Hide hamburger in desktop */
 .hamburger {
   display: none;
+}
+
+/* Responsive Fixes */
+@media (max-width: 1024px) {
+  .ad-side {
+    display: none; /* Hide side ads on smaller screens */
+  }
+  .page-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -275,8 +316,7 @@ footer {
   .calculator .card,
   .calc-results,
   .blog,
-  .faqs,
-  .ad-placeholder {
+  .faqs {
     margin-left: 10px;
     margin-right: 10px;
   }
