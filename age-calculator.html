@@ -85,13 +85,16 @@ header nav a:hover {
   font-weight: 600;
 }
 
-.calc-inputs .input-field {
+.calc-inputs .input-field,
+.calculator input[type="date"] {  /* ✅ includes text & date inputs */
   width: 100%;
+  max-width: 100%;
   padding: 12px 15px;
   margin-bottom: 15px;
   border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 1rem;
+  box-sizing: border-box; /* keeps inputs inside card */
 }
 
 .calculate-btn {
