@@ -294,9 +294,23 @@ footer a:hover {
   .ad-placeholder {
     margin-left: auto;
     margin-right: auto;
-    text-align: center; /* centers inner text */
-    max-width: 90%;     /* prevents full stretch on mobile */
-    display: block;     /* makes sure they respect margin auto */
+    text-align: center;   /* centers inner text */
+    max-width: 100%;      /* never exceed screen width */
+    width: 90%;           /* shrink a little for spacing */
+    display: block;       /* allow auto margins to work */
+    box-sizing: border-box; /* include padding in width */
+  }
+
+  img, iframe {
+    max-width: 100%; /* images or embeds won't overflow */
+    height: auto;    /* keep proportions */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  body {
+    overflow-x: hidden; /* prevent sideways scrolling */
   }
 }
 
