@@ -25,11 +25,12 @@ header {
   color: #fff;
 }
 
-header .logo {
+header .logo a {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #fff; /* reverted to normal */
-  text-decoration: none; /* no underline */
+  color: #fff;           /* Normal white text */
+  text-decoration: none; /* No underline */
+  cursor: pointer;
 }
 
 header nav {
