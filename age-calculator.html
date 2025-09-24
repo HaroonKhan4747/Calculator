@@ -7,6 +7,65 @@
   <style>
 /* Extra CSS specific to this calculator (main style in style.css handles general styling) */
 
+/* General Reset and Fonts */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background: #fff;
+  color: #111;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: #111;
+  color: #fff;
+}
+
+header .logo {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+
+header nav {
+  display: flex;
+  gap: 15px;
+}
+
+header nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+header nav a:hover {
+  text-decoration: underline;
+  color: #ddd;
+}
+
+/* Hero Section */
+.hero {
+  padding: 50px 20px;
+}
+
+.hero h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #555;
+}
+
 /* Calculator Section */
 .calculator .card {
   background: #f8f8f8;
@@ -16,7 +75,8 @@
   max-width: 500px;
   box-shadow: 0 6px 15px rgba(0,0,0,0.1);
   transition: all 0.3s ease;
-  margin-bottom: 25px;
+  margin: 25px auto;
+  text-align: left;
 }
 
 .calc-inputs label {
@@ -61,26 +121,54 @@
   box-shadow: 0 6px 20px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
+  margin: 25px auto;
 }
 
 .calc-results h2 {
   font-family: 'Montserrat', sans-serif;
   font-size: 1.9rem;
   margin-bottom: 20px;
-  text-align: center;
   color: #222;
 }
 
 .calc-results p {
   font-family: 'Roboto', sans-serif;
   font-size: 1rem;
-  padding: 10px 12px;
+  padding: 10px 15px;
   background: #f7f7f7;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.05);
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.calc-results p span.value {
+  font-weight: 700;
+  color: #111;
+}
+
+.calc-results p span.desc {
+  font-weight: 400;
+  color: #555;
+  margin-left: 10px;
+}
+
+/* Ad Banners */
+.ad-banner {
+  text-align: center;
+  padding: 25px 0;
+}
+
+.ad-placeholder {
+  display: inline-block;
+  background: #f0f0f0;
+  padding: 40px;
+  border: 1px dashed #ccc;
+  font-size: 0.9rem;
+  color: #888;
+  border-radius: 12px;
 }
 
 /* Blog Section */
@@ -91,6 +179,7 @@
   background: #f8f8f8;
   border-radius: 12px;
   box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  text-align: left;
 }
 
 .blog h2 {
@@ -150,6 +239,15 @@
   display: none; /* Collapsible logic via JS */
 }
 
+/* Footer */
+footer {
+  text-align: center;
+  padding: 25px 20px;
+  background: #111;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
 /* Hide hamburger in desktop */
 .hamburger {
   display: none;
@@ -172,6 +270,15 @@
 
   header nav.active {
     display: flex;
+  }
+
+  .calculator .card,
+  .calc-results,
+  .blog,
+  .faqs,
+  .ad-placeholder {
+    margin-left: 10px;
+    margin-right: 10px;
   }
 }
 </style>
