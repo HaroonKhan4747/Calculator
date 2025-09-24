@@ -353,7 +353,7 @@ footer a:hover {
     <p id="seconds">Seconds: </p>
     <p id="koreanAge">Korean Age: — Korean age counts your age as 1 at birth and adds a year every New Year. </p>
     <p id="chineseAge">Chinese/Lunar Age: — Chinese/Lunar age is based on the lunar calendar and your zodiac sign.</p>
-    <p id="birthdayCountdown">Time until next birthday: </p>
+    <p id="birthdayCountdown">Days until next birthday: </p>
   </div>
 
   <!-- Calculator Card -->
@@ -463,34 +463,8 @@ footer a:hover {
       document.getElementById('seconds').textContent = `Seconds: ${diffSeconds}`;
       document.getElementById('koreanAge').textContent = `Korean Age: ${koreanAge} — Korean age counts your age as 1 at birth and adds a year every New Year.`;
       document.getElementById('chineseAge').textContent = `Chinese/Lunar Age: ${chineseAge} — Chinese/Lunar age is based on the lunar calendar and your zodiac sign.`;
-      // Calculate time until next birthday in detail
-let now = new Date();
-let nextBirthday = new Date(now.getFullYear(), dob.getMonth(), dob.getDate());
-
-// if birthday already passed this year, move to next year
-if (nextBirthday < now) {
-  nextBirthday.setFullYear(nextBirthday.getFullYear() + 1);
-}
-
-let diffMs = nextBirthday - now;
-
-let diffSeconds = Math.floor(diffMs / 1000);
-let diffMinutes = Math.floor(diffSeconds / 60);
-let diffHours   = Math.floor(diffMinutes / 60);
-let diffDays    = Math.floor(diffHours / 24);
-let diffWeeks   = Math.floor(diffDays / 7);
-let diffMonths  = Math.floor(diffDays / 30.44); // average month length
-
-document.getElementById("birthdayCountdown").innerHTML = `
-  <strong>Time until next birthday:</strong><br>
-  ${diffMonths} months<br>
-  ${diffWeeks} weeks<br>
-  ${diffDays} days<br>
-  ${diffHours} hours<br>
-  ${diffMinutes} minutes<br>
-  ${diffSeconds} seconds
-`;
- });
+      document.getElementById('birthdayCountdown').textContent = `Days until next birthday: ${daysUntilBirthday}`;
+    });
 
     // FAQ Toggle
     const faqQuestions = document.querySelectorAll('.faq-question');
