@@ -1,3 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Age Calculator - MyCalculatorPal</title>
+<style>
+/* Extra CSS specific to this calculator (main style in style.css handles general styling) */
+
+/* General Reset and Fonts */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background: #fff;
+  color: #111;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: #000;
+  color: #fff;
+  position: relative;
+  z-index: 1001; /* keeps header above side ads */
+}
+
+header .logo a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+header nav {
+  display: flex;
+  gap: 15px;
+}
+
+header nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+header nav a:hover {
+  text-decoration: underline;
+  color: #ddd;
+}
+
+/* Hero Section */
+.hero {
+  padding: 50px 20px;
+}
+
+.hero h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+/* Calculator Section */
+.calculator .card {
+  background: #f8f8f8;
+  border-radius: 12px;
+  padding: 25px 20px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  margin: 25px auto;
+  text-align: left;
+}
+
+.calc-inputs label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.calc-inputs .input-field,
+.calculator input[type="date"] {
+  width: 100%;
+  max-width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.calculate-btn {
+  width: 100%;
+  padding: 12px 20px;
+  background-color: #111;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.calculate-btn:hover {
+  background-color: #333;
+}
+
+/* Results Box */
+.calc-results {
+  background: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 25px auto;
+}
+
+.calc-results h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.9rem;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.calc-results p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  padding: 10px 15px;
+  background: #f7f7f7;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Ad Banners (inline, in-page) */
+.ad-banner {
+  text-align: center;
+  padding: 25px 0;
+}
+
+.ad-placeholder {
+  display: inline-block;
+  background: #f0f0f0;
+  padding: 40px;
+  border: 1px dashed #ccc;
+  font-size: 0.9rem;
+  color: #888;
+  border-radius: 12px;
+}
+
+/* ✅ Side Ads (fixed on desktop) */
+.side-ad {
+  position: fixed;
+  top: 80px; /* below header */
+  width: auto; /* let AdSense control width */
+  max-width: 160px; /* standard skyscraper */
+  min-height: 600px; /* standard height */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 1000;
+}
+
+.side-ad.left-ad {
+  left: 0;
+}
+
+.side-ad.right-ad {
+  right: 0;
+}
+
+/* Blog Section */
+.blog {
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: 30px auto;
+  background: #f8f8f8;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  text-align: left;
+}
+
+.blog h2 {
+  margin-bottom: 15px;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+}
+
+.blog p {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+/* FAQs Section */
+.faqs {
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: 30px auto;
+  background: #f8f8f8;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.faqs h2 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.faq-item {
+  margin-bottom: 15px;
+}
+
+.faq-question {
+  width: 100%;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 8px;
+  background: #fff;
+  text-align: left;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+.faq-question:hover {
+  background: #f0f0f0;
+}
+
+.faq-answer {
+  padding: 12px 15px;
+  margin-top: 5px;
+  background: #f7f7f7;
+  border-left: 3px solid #111;
+  border-radius: 8px;
+  display: none;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #000;
+  color: #fff;
+  font-size: 0.85rem;
+  position: relative;
+  z-index: 1001; /* keep above ads */
+}
+
+footer nav a {
+  color: #fff;
+  margin: 0 5px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+footer nav a:hover {
+  text-decoration: underline;
+  color: #ddd;
+}
+
+/* Hide hamburger in desktop */
+.hamburger {
+  display: none;
+}
+
+/* Mobile View */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  header nav {
+    display: none;
+    flex-direction: column;
+    background: #000;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    padding: 10px;
+    text-align: center;
+  }
+
+  header nav.active {
+    display: flex;
+  }
+
+  .calculator .card,
+  .calc-results,
+  .blog,
+  .faqs,
+  .ad-placeholder {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    max-width: 100%;
+    width: 90%;
+    display: block;
+    box-sizing: border-box;
+  }
+
+  img, iframe {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  /* ✅ Hide side ads on mobile */
+  .side-ad {
+    display: none !important;
+  }
+}
+
+/* 🚫 TEMPORARY — Hide ALL ads until AdSense is approved */
+.ad-banner,
+.side-ad {
+  display: none !important;
+}
+/* ✅ Delete the block above when AdSense is ready */
+</style>
+  
 <!-- Header -->
 <header>
   <div class="logo"><a href="index.html">MyCalculatorPal</a></div>
