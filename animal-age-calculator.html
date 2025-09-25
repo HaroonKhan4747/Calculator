@@ -1,0 +1,107 @@
+<!-- Header -->
+<header>
+  <div class="logo"><a href="index.html">MyCalculatorPal</a></div>
+  <nav id="nav-menu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="hamburger" id="hamburger">☰</div>
+</header>
+
+<!-- Side Ads -->
+<div class="side-ad left-ad">
+  <div class="ad-placeholder">[Left Ad]</div>
+</div>
+<div class="side-ad right-ad">
+  <div class="ad-placeholder">[Right Ad]</div>
+</div>
+
+<!-- Wrap main content -->
+<div class="page-content">
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Animal Age Calculator</h1>
+    <p>Convert your pet’s age into human years and compare it with your own age.</p>
+  </section>
+
+  <!-- Calculator Section -->
+  <section class="calculator">
+
+    <!-- Results Box (Initially Hidden) -->
+    <div class="card calc-results" id="results" style="display:none;">
+      <h2>Results</h2>
+      <p id="animalAge">Animal’s Age in Human Years: </p>
+      <p id="comparison">Comparison: </p>
+      <p id="lived">Equivalent Time Lived: </p>
+    </div>
+
+    <!-- Calculator Card -->
+    <div class="card calc-inputs">
+      <label for="animal">Select Animal:</label>
+      <select id="animal" class="input-field">
+        <option value="dog">Dog</option>
+        <option value="cat">Cat</option>
+        <option value="rabbit">Rabbit</option>
+        <option value="horse">Horse</option>
+        <option value="snake">Snake</option>
+        <option value="parrot">Parrot</option>
+      </select>
+
+      <label for="petAge">Your Pet’s Age (years):</label>
+      <input type="number" id="petAge" class="input-field" min="0" />
+
+      <label for="userAge">Your Age (years):</label>
+      <input type="number" id="userAge" class="input-field" min="0" />
+
+      <button id="calculateBtn" class="calculate-btn">Calculate</button>
+    </div>
+  </section>
+
+  <!-- AdSense Banner (After Results) -->
+  <section class="ad-banner">
+    <div class="ad-placeholder">[Ad Banner Here]</div>
+  </section>
+
+  <!-- Sample Blog Section -->
+  <section class="blog">
+    <h2>Blog</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <p>Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+    <p>Sed nisi. Nulla quis sem at nibh elementum imperdiet.</p>
+    <p>Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed.</p>
+    <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>
+  </section>
+
+  <!-- Quick FAQs -->
+  <section class="faqs">
+    <h2>Quick FAQs</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question">How is animal age calculated?</button>
+        <div class="faq-answer" style="display:none;">
+          <p>Animal ages are converted into equivalent human years using average lifespan multipliers.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Why compare with my age?</button>
+        <div class="faq-answer" style="display:none;">
+          <p>This helps you understand whether your pet is older, younger, or about the same age as you in “human years.”</p>
+        </div>
+      </div>
+      <!-- Space for 10 more FAQs -->
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 MyCalculatorPal. All rights reserved.</p>
+    <nav>
+      <a href="contact.html">Contact</a> |
+      <a href="privacy.html">Privacy Policy</a> |
+      <a href="terms.html">Terms & Conditions</a>
+    </nav>
+  </footer>
+
+</div> <!-- end page-content -->
