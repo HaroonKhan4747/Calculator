@@ -19,6 +19,7 @@ body {
   max-width: 1200px; /* max width of content */
   margin: 0 auto;
   position: relative;
+  padding: 0 140px; /* leaves space for side ads */
 }
 
 /* Header */
@@ -29,8 +30,12 @@ header {
   padding: 15px 20px;
   background: #000;
   color: #fff;
-  width: 100%; /* full width */
+  width: 100vw; /* full viewport width */
   box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1001;
 }
 
 header .logo a {
@@ -61,7 +66,7 @@ header nav a:hover {
 /* Hero Section */
 .hero {
   text-align: center;
-  padding: 50px 20px;
+  padding: 100px 20px 50px 20px; /* top padding accounts for fixed header */
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -80,7 +85,8 @@ header nav a:hover {
 /* Ad Banners */
 .ad-banner {
   text-align: center;
-  padding: 20px 0;
+  padding: 0;
+  margin: 0;
 }
 
 .ad-placeholder {
@@ -89,14 +95,16 @@ header nav a:hover {
   border: 1px dashed #ccc;
   font-size: 0.9rem;
   color: #888;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Side Ads (desktop only) */
 .side-ad {
   position: fixed;
-  top: 80px; /* below header */
-  width: 120px; /* adjust width */
-  height: calc(100% - 80px); /* full height minus header */
+  top: 60px; /* below header */
+  width: 120px;
+  height: calc(100vh - 60px); /* full viewport height minus header */
   background: #f0f0f0;
   border: 1px dashed #ccc;
   display: flex;
@@ -204,8 +212,10 @@ footer {
   background: #000;
   color: #fff;
   font-size: 0.85rem;
-  width: 100%; /* full width */
+  width: 100vw;
   box-sizing: border-box;
+  position: relative;
+  z-index: 1001;
 }
 
 footer nav a {
@@ -264,5 +274,6 @@ footer nav a:hover {
 
   .page-container {
     flex-direction: column;
+    padding: 0 10px; /* remove side padding on mobile */
   }
 }
