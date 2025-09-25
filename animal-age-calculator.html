@@ -105,3 +105,78 @@
   </footer>
 
 </div> <!-- end page-content -->
+
+<script>
+  const calculateBtn = document.getElementById('calculateBtn');
+  const resultsDiv = document.getElementById('results');
+  const spinner = document.getElementById('spinner');
+
+  // Animal multipliers (basic average scale)
+  const multipliers = {
+    dog: 7,
+    cat: 6,
+    rabbit: 9,
+    horse: 3,
+    snake: 4,
+    parrot: 5
+  };
+
+  calculateBtn.addEventListener('click', () => {
+    const animal = document.getElementById('animal').value;
+    const animalAge = parseInt(document.getElementById('animalAge').value);
+    const userAge = parseInt(document.getElementById('userAge').value);
+
+    if (!animal || isNaN(animalAge) || animalAge <= 0) {
+      alert("Please select an animal and enter a valid age.");
+      return;
+    }
+
+    // Show spinner
+    spinner.style.display = 'block';
+    resultsDiv.style.display = 'none';
+
+    setTimeout(() => {
+      // Convert animal age
+      const humanEquivalent = animalAge * multipliers[animal];
+
+      // Show results
+      spinner.style.display = 'none';
+      resultsDiv.style.display = 'block';
+
+      document.getElementById('convertedAge').textContent =
+        `Your ${animal} is approximately ${humanEquivalent} human years old.`;
+
+      // Comparison if user age is provided
+      if (!isNaN(userAge) && userAge > 0) {
+        if (humanEquivalent > userAge) {
+          document.getElementById('comparison').textContent =
+            `Your ${animal} is ${humanEquivalent - userAge} years older than you.`;
+        } else if (humanEquivalent < userAge) {
+          document.getElementById('comparison').textContent =
+            `Your ${animal} is ${userAge - humanEquivalent} years younger than you.`;
+        } else {
+          document.getElementById('comparison').textContent =
+            `You and your ${animal} are the same age in human years!`;
+        }
+      } else {
+        document.getElementById('comparison').textContent = "";
+      }
+    }, 1500); // 1.5 sec delay for realism
+  });
+
+  // FAQ toggle
+  const faqQuestions = document.querySelectorAll('.faq-question');
+  faqQuestions.forEach(q => {
+    q.addEventListener('click', () => {
+      const answer = q.nextElementSibling;
+      answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+    });
+  });
+
+  // Hamburger toggle
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('nav-menu');
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+  });
+</script>
