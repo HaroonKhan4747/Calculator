@@ -23,15 +23,17 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  background: #111;
+  padding: 15px 20px;
+  background: #000;
   color: #fff;
 }
 
-header .logo {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: 1.8rem;
+header .logo a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;           /* Normal white text */
+  text-decoration: none; /* No underline */
+  cursor: pointer;
 }
 
 header nav {
@@ -41,8 +43,9 @@ header nav {
 
 header nav a {
   color: #fff;
-  text-decoration: none;
-  font-weight: 500;
+  text-decoration: none; /* Remove default underline */
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
 }
 
 header nav a:hover {
@@ -245,23 +248,22 @@ header nav a:hover {
 /* Footer */
 footer {
   text-align: center;
-  padding: 25px 20px;
-  background: #111;
+  padding: 20px;
+  background: #000;
   color: #fff;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
-footer a {
+footer nav a {
   color: #fff;
+  margin: 0 5px;
   text-decoration: none;
-  margin: 0 10px;
-  font-weight: 500;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
-footer a:hover {
-  color: #ddd;
+footer nav a:hover {
   text-decoration: underline;
+  color: #ddd;
 }
 
 /* Hide hamburger in desktop */
