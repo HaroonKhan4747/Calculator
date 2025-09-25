@@ -479,10 +479,11 @@ footer nav a:hover {
 
   calculateBtn.addEventListener('click', () => {
     const animal = document.getElementById('animal').value;
-    const animalAge = parseInt(document.getElementById('animalAge').value);
+    const animalAge = parseInt(document.getElementById('petAge').value);
     const userAge = parseInt(document.getElementById('userAge').value);
 
-    if (!animal || isNaN(animalAge) || animalAge <= 0) {
+    // ✅ Validate that an animal is selected and age is valid
+    if (!multipliers[animal] || isNaN(animalAge) || animalAge <= 0) {
       alert("Please select an animal and enter a valid age.");
       return;
     }
@@ -499,7 +500,7 @@ footer nav a:hover {
       spinner.style.display = 'none';
       resultsDiv.style.display = 'block';
 
-      document.getElementById('convertedAge').textContent =
+      document.getElementById('animalAge').textContent =
         `Your ${animal} is approximately ${humanEquivalent} human years old.`;
 
       // Comparison if user age is provided
