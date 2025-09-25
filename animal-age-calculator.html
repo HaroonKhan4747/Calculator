@@ -462,7 +462,7 @@ footer nav a:hover {
 <script>
   const calculateBtn = document.getElementById('calculateBtn');
   const resultsDiv = document.getElementById('results');
-  const spinner = document.getElementById('spinner');
+  const spinner = document.getElementById('spinner'); // optional, can remove if you don't have a spinner
 
   // Animal multipliers (basic average scale)
   const multipliers = {
@@ -488,18 +488,19 @@ footer nav a:hover {
       return;
     }
 
-    // Show spinner
-    spinner.style.display = 'block';
+    // Show spinner if exists
+    if (spinner) spinner.style.display = 'block';
     resultsDiv.style.display = 'none';
 
     setTimeout(() => {
       // Convert animal age
       const humanEquivalent = animalAge * multipliers[animal];
 
-      // Show results
-      spinner.style.display = 'none';
+      // Hide spinner and show results
+      if (spinner) spinner.style.display = 'none';
       resultsDiv.style.display = 'block';
 
+      // Show converted age
       document.getElementById('animalAge').textContent =
         `Your ${animal} is approximately ${humanEquivalent} human years old.`;
 
@@ -518,6 +519,14 @@ footer nav a:hover {
       } else {
         document.getElementById('comparison').textContent = "";
       }
+
+      // Optional: Equivalent time lived (months/weeks/days)
+      const totalMonths = humanEquivalent * 12;
+      const totalWeeks = humanEquivalent * 52;
+      const totalDays = humanEquivalent * 365;
+      document.getElementById('lived').textContent =
+        `Equivalent time lived: ${totalMonths} months, ${totalWeeks} weeks, ${totalDays} days.`;
+
     }, 1500); // 1.5 sec delay for realism
   });
 
