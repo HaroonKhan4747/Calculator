@@ -499,91 +499,104 @@ footer nav a:hover {
 </style>
 
 <script>
-  const calculateBtn = document.getElementById('calculateBtn');
-  const resultsDiv = document.getElementById('results');
-  const spinner = document.getElementById('spinner'); // optional, can remove if you don't have a spinner
+const calculateBtn = document.getElementById('calculateBtn');
+const resultsDiv = document.getElementById('results');
+const spinner = document.getElementById('spinner'); // optional
 
-  // Animal multipliers (basic average scale)
-  const multipliers = {
-    dog: 7,
-    cat: 6,
-    rabbit: 9,
-    horse: 3,
-    snake: 4,
-    parrot: 5,
-    hamster: 25, // small animals age faster
-    fish: 5,     // varies by species, avg scale
-    birds: 4     // excluding parrots
-  };
+// Realistic animal age calculation functions
+const animalAgeFunctions = {
+  dog: (age) => {
+    if (age <= 0) return 0;
+    if (age === 1) return 15;
+    if (age === 2) return 24;
+    return 24 + (age - 2) * 5; // Each year after 2 adds ~5 human years
+  },
+  cat: (age) => {
+    if (age <= 0) return 0;
+    if (age === 1) return 15;
+    if (age === 2) return 24;
+    return 24 + (age - 2) * 4; // Each year after 2 adds ~4 human years
+  },
+  rabbit: (age) => age * 8, // rough approximation
+  horse: (age) => age * 3,
+  snake: (age) => age * 4,
+  parrot: (age) => age * 5,
+  hamster: (age) => age * 25,
+  fish: (age) => age * 5,
+  birds: (age) => {
+    if (age <= 0) return 0;
+    if (age === 1) return 10;
+    return 10 + (age - 1) * 4;
+  }
+};
 
-  calculateBtn.addEventListener('click', () => {
-    const animal = document.getElementById('animal').value;
-    const animalAge = parseInt(document.getElementById('petAge').value);
-    const userAge = parseInt(document.getElementById('userAge').value);
+calculateBtn.addEventListener('click', () => {
+  const animalSelect = document.getElementById('animal');
+  const animal = animalSelect.value;
+  const animalAge = parseFloat(document.getElementById('petAge').value);
+  const userAge = parseFloat(document.getElementById('userAge').value);
 
-    // ✅ Validate that an animal is selected and age is valid
-    if (!multipliers[animal] || isNaN(animalAge) || animalAge <= 0) {
-      alert("Please select an animal and enter a valid age.");
-      return;
+  if (!animal || isNaN(animalAge) || animalAge <= 0) {
+    alert("Please select an animal and enter a valid age.");
+    return;
+  }
+
+  if (spinner) spinner.style.display = 'block';
+  resultsDiv.style.display = 'none';
+
+  setTimeout(() => {
+    const humanEquivalent = animalAgeFunctions[animal](animalAge);
+
+    if (spinner) spinner.style.display = 'none';
+    resultsDiv.style.display = 'block';
+
+    // Convert dropdown value to proper name for display
+    let animalDisplay = animalSelect.options[animalSelect.selectedIndex].text;
+
+    document.getElementById('animalAge').textContent =
+      `Your ${animalDisplay} is approximately ${humanEquivalent} human years old.`;
+
+    // Comparison if user age is provided
+    if (!isNaN(userAge) && userAge > 0) {
+      if (humanEquivalent > userAge) {
+        document.getElementById('comparison').textContent =
+          `Your ${animalDisplay} is ${humanEquivalent - userAge} years older than you.`;
+      } else if (humanEquivalent < userAge) {
+        document.getElementById('comparison').textContent =
+          `Your ${animalDisplay} is ${userAge - humanEquivalent} years younger than you.`;
+      } else {
+        document.getElementById('comparison').textContent =
+          `You and your ${animalDisplay} are the same age in human years!`;
+      }
+    } else {
+      document.getElementById('comparison').textContent = "";
     }
 
-    // Show spinner if exists
-    if (spinner) spinner.style.display = 'block';
-    resultsDiv.style.display = 'none';
+    // Equivalent time lived
+    const totalMonths = Math.round(humanEquivalent * 12);
+    const totalWeeks = Math.round(humanEquivalent * 52);
+    const totalDays = Math.round(humanEquivalent * 365);
+    document.getElementById('lived').textContent =
+      `Equivalent time lived: ${totalMonths} months, ${totalWeeks} weeks, ${totalDays} days.`;
 
-    setTimeout(() => {
-      // Convert animal age
-      const humanEquivalent = animalAge * multipliers[animal];
+  }, 1500);
+});
 
-      // Hide spinner and show results
-      if (spinner) spinner.style.display = 'none';
-      resultsDiv.style.display = 'block';
-
-      // Show converted age
-      document.getElementById('animalAge').textContent =
-        `Your ${animal} is approximately ${humanEquivalent} human years old.`;
-
-      // Comparison if user age is provided
-      if (!isNaN(userAge) && userAge > 0) {
-        if (humanEquivalent > userAge) {
-          document.getElementById('comparison').textContent =
-            `Your ${animal} is ${humanEquivalent - userAge} years older than you.`;
-        } else if (humanEquivalent < userAge) {
-          document.getElementById('comparison').textContent =
-            `Your ${animal} is ${userAge - humanEquivalent} years younger than you.`;
-        } else {
-          document.getElementById('comparison').textContent =
-            `You and your ${animal} are the same age in human years!`;
-        }
-      } else {
-        document.getElementById('comparison').textContent = "";
-      }
-
-      // Optional: Equivalent time lived (months/weeks/days)
-      const totalMonths = humanEquivalent * 12;
-      const totalWeeks = humanEquivalent * 52;
-      const totalDays = humanEquivalent * 365;
-      document.getElementById('lived').textContent =
-        `Equivalent time lived: ${totalMonths} months, ${totalWeeks} weeks, ${totalDays} days.`;
-
-    }, 1500); // 1.5 sec delay for realism
+// FAQ toggle
+const faqQuestions = document.querySelectorAll('.faq-question');
+faqQuestions.forEach(q => {
+  q.addEventListener('click', () => {
+    const answer = q.nextElementSibling;
+    answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
   });
+});
 
-  // FAQ toggle
-  const faqQuestions = document.querySelectorAll('.faq-question');
-  faqQuestions.forEach(q => {
-    q.addEventListener('click', () => {
-      const answer = q.nextElementSibling;
-      answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
-    });
-  });
-
-  // Hamburger toggle
-  const hamburger = document.getElementById('hamburger');
-  const navMenu = document.getElementById('nav-menu');
-  hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-  });
+// Hamburger toggle
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+hamburger.addEventListener('click', () => {
+  navMenu.classList.toggle('active');
+});
 </script>
   
 </body>
