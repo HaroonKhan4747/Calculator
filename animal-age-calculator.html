@@ -390,12 +390,16 @@ footer nav a:hover {
     <div class="card calc-inputs">
       <label for="animal">Select Animal:</label>
       <select id="animal" class="input-field">
+        <option value="" disabled selected>-- Select an Animal --</option>
         <option value="dog">Dog</option>
         <option value="cat">Cat</option>
         <option value="rabbit">Rabbit</option>
         <option value="horse">Horse</option>
         <option value="snake">Snake</option>
         <option value="parrot">Parrot</option>
+        <option value="bird">Bird (non-parrot)</option>
+        <option value="hamster">Hamster</option>
+        <option value="fish">Fish</option>
       </select>
 
       <label for="petAge">Your Pet’s Age (years):</label>
@@ -404,7 +408,7 @@ footer nav a:hover {
       <label for="userAge">Your Age (years):</label>
       <input type="number" id="userAge" class="input-field" min="0" />
 
-      <button id="calculateBtn" class="calculate-btn">Calculate</button>
+      <button id="calculateBtn" class="calculate-btn" type="button">Calculate</button>
     </div>
   </section>
 
