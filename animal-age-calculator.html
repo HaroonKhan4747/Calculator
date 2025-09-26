@@ -574,6 +574,22 @@ footer nav a:hover {
  <!-- Quick FAQs -->
 <section class="faqs">
   <h2>Quick FAQs</h2>
+  <style>
+    .faqs a {
+      color: #333; /* darker text */
+      font-weight: bold;
+      text-decoration: underline;
+    }
+    .faqs a:hover {
+      color: #ff6600; /* orange hover */
+    }
+    /* Highlight effect when jumping */
+    .highlighted {
+      background-color: #fff3cd; /* soft yellow */
+      transition: background-color 1.5s ease;
+    }
+  </style>
+
   <div class="faq-list">
 
     <div class="faq-item">
@@ -586,7 +602,7 @@ footer nav a:hover {
     <div class="faq-item">
       <button class="faq-question">Which toys are best for cats?</button>
       <div class="faq-answer" style="display:none;">
-        <p>We’ve listed the <a href="#best-cat-toys">best cat toys</a> to keep your feline active, entertained, and healthy.</p>
+        <p>We’ve listed the <a href="#best-toys">best cat toys</a> to keep your feline active, entertained, and healthy.</p>
       </div>
     </div>
 
@@ -600,35 +616,35 @@ footer nav a:hover {
     <div class="faq-item">
       <button class="faq-question">How can I calculate my dog’s age in human years?</button>
       <div class="faq-answer" style="display:none;">
-        <p>Use our <a href="#dog-age-calculator">Dog Age Calculator</a> to instantly convert your dog’s years into human years.</p>
+        <p>See our <a href="#dog-age-human">dog age in human years guide</a> to instantly convert your dog’s years into human years.</p>
       </div>
     </div>
 
     <div class="faq-item">
       <button class="faq-question">What is the best food for senior cats?</button>
       <div class="faq-answer" style="display:none;">
-        <p>See our recommendations for <a href="#best-senior-cat-food">best food for senior cats</a> to keep your older cats healthy and energetic.</p>
+        <p>See our recommendations for <a href="#best-cat-food-sensitive-stomach">best food for senior cats</a> to keep your older cats healthy and energetic.</p>
       </div>
     </div>
 
     <div class="faq-item">
       <button class="faq-question">Are there toys suitable for small dogs?</button>
       <div class="faq-answer" style="display:none;">
-        <p>We cover the <a href="#best-small-dog-toys">best toys for small dogs</a> that are safe, durable, and fun.</p>
+        <p>We cover the <a href="#best-chew-toys">best toys for small dogs</a> that are safe, durable, and fun.</p>
       </div>
     </div>
 
     <div class="faq-item">
       <button class="faq-question">What should I feed my hamster for a balanced diet?</button>
       <div class="faq-answer" style="display:none;">
-        <p>Our article on <a href="#best-hamster-food">best hamster food</a> lists safe pellets, seeds, and snacks to ensure a balanced diet.</p>
+        <p>Our article on <a href="#best-foods">best hamster food</a> lists safe pellets, seeds, and snacks to ensure a balanced diet.</p>
       </div>
     </div>
 
     <div class="faq-item">
       <button class="faq-question">How do I choose the right pet accessories?</button>
       <div class="faq-answer" style="display:none;">
-        <p>We’ve compiled a list of <a href="#best-pet-accessories">essential pet accessories</a> for dogs, cats, and hamsters.</p>
+        <p>We’ve compiled a list of <a href="#best-toys">essential pet toys & accessories</a> for dogs, cats, and small pets.</p>
       </div>
     </div>
 
@@ -647,6 +663,113 @@ footer nav a:hover {
     </div>
 
   </div>
+</section>
+
+<!-- Smooth Scroll + Highlight Script -->
+<script>
+  document.querySelectorAll('.faqs a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href').substring(1);
+      const target = document.getElementById(targetId);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        target.classList.add('highlighted');
+        setTimeout(() => target.classList.remove('highlighted'), 1500);
+      }
+    });
+  });
+</script>
+
+<!-- FAQ Schema for Google Rich Results -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the best dog food for sensitive stomachs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Check our guide on best dog food for sensitive stomachs with top vet-approved options."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which toys are best for cats?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We list the best cat toys to keep your cat active, entertained, and healthy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the safest hamster cage setup?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "See our guide on best hamster cages highlighting safe and easy-to-clean cages."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can I calculate my dog’s age in human years?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "See our dog age in human years guide to instantly convert dog years into human years."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the best food for senior cats?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "See our recommendations for the best senior cat food to keep older cats healthy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are there toys suitable for small dogs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Check our guide on best toys for small dogs that are safe, durable, and fun."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should I feed my hamster for a balanced diet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Read our article on best hamster food listing safe pellets, seeds, and snacks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I choose the right pet accessories?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "See our list of essential pet toys & accessories for dogs, cats, and small pets."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which treats are healthiest for dogs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Check our best dog treats guide for tasty yet healthy snacks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the most popular cat accessories?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Explore our list of most popular cat accessories loved by cat owners."
+      }
+    }
+  ]
+}
+</script>
   </section>
 
   <!-- Footer -->
