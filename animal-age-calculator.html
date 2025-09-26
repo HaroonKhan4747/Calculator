@@ -437,8 +437,23 @@ footer nav a:hover {
     <div class="ad-placeholder">[Ad Banner Here]</div>
   </section>
 
-  <!-- Sample Blog Section -->
- <section class="blog">
+ <!-- Sample Blog Section -->
+<section class="blog">
+  <style>
+    .blog a {
+      color: #333; /* darker text */
+      font-weight: bold;
+      text-decoration: underline;
+    }
+    .blog a:hover {
+      color: #ff6600; /* orange hover */
+    }
+    .highlighted {
+      background-color: #fff3cd; /* soft yellow highlight */
+      transition: background-color 1.5s ease;
+    }
+  </style>
+
   <h2 id="blog-title">Discover How Old Your Dog, Cat, or Pet Really Is – And How to Keep Them Happy and Healthy</h2>
 
   <p>Have you ever wondered how old your dog, cat, or other pets are in human years? Or maybe you're struggling to find the <a href="#best-dog-food-sensitive-stomach">best dog food for sensitive stomachs</a>, <a href="#best-cat-food-sensitive-stomach">best cat food for sensitive stomachs</a>, or <a href="#best-hamster-cages">safe hamster cages</a>? Understanding your pet’s age and needs is the first step to keeping them healthy, happy, and full of life.</p>
@@ -570,6 +585,22 @@ footer nav a:hover {
   <p>Whether it’s a playful puppy, a mischievous kitten, a hamster, or a senior parrot, knowing your pet’s age and needs helps you provide a longer, healthier, and more fulfilling life. Combine this knowledge with the right toys, food, and accessories, and your pets will thrive for years to come!</p>
   <div>[Space for Mixed Pet Products – Amazon Affiliate: Recommended Pet Essentials]</div>
 </section>
+
+<!-- Smooth Scroll + Highlight Script -->
+<script>
+  document.querySelectorAll('.blog a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href').substring(1);
+      const target = document.getElementById(targetId);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        target.classList.add('highlighted');
+        setTimeout(() => target.classList.remove('highlighted'), 1500);
+      }
+    });
+  });
+</script>
 
  <!-- Quick FAQs -->
 <section class="faqs">
