@@ -12,12 +12,6 @@ body {
   text-align: center;
 }
 
-body {
-  background: #fff;
-  color: #111;
-  line-height: 1.6;
-}
-
 /* Header */
 header {
   display: flex;
@@ -36,6 +30,7 @@ header .logo a {
   color: #fff;
   text-decoration: none;
   cursor: pointer;
+  font-family: 'Montserrat', sans-serif; /* ensure logo font matches age calculator pages */
 }
 
 header nav {
@@ -103,14 +98,13 @@ header nav a:hover {
   gap: 20px;
 }
 
-/* Make entire card clickable */
 .card {
   display: block;
   padding: 25px 20px;
   background: #f8f8f8;
   border-radius: 12px;
   color: #111;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.08); /* stronger shadow */
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
   transition: all 0.3s ease;
   text-align: left;
   cursor: pointer;
@@ -118,16 +112,15 @@ header nav a:hover {
 }
 
 .card:hover {
-  background: #e2e2e2; /* slightly darker hover */
+  background: #e2e2e2;
   transform: translateY(-5px);
 }
 
-/* Card Headings & Paragraphs */
 .card h3 {
   font-family: 'Montserrat', sans-serif;
-  font-weight: 700; /* bold heading */
+  font-weight: 700;
   font-size: 1.25rem;
-  margin-bottom: 15px; /* spacing between heading and description */
+  margin-bottom: 15px;
   color: #111;
 }
 
@@ -139,7 +132,6 @@ header nav a:hover {
   margin-top: 0;
 }
 
-/* Wrap card in <a> for full click */
 .card a {
   display: block;
   color: inherit;
@@ -227,13 +219,12 @@ footer nav a:hover {
     display: flex;
   }
 }
-  /* ... all your existing CSS ... */
 
-  /* 🚫 Temporary: Hide all ad banners/placeholders until AdSense is live */
-  .ad-banner,
-  .ad-left,
-  .ad-right,
-  .adsbygoogle,
-  .ad-placeholder {
-    display: none !important;
-  }
+/* 🚫 Temporary: Hide all ad banners/placeholders until AdSense is live */
+.ad-banner,
+.ad-left,
+.ad-right,
+.adsbygoogle,
+.ad-placeholder {
+  display: none !important;
+}
