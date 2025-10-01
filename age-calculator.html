@@ -4,23 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Age Calculator - MyCalculatorPal</title>
+<style>
 /* Extra CSS specific to this calculator (main style in style.css handles general styling) */
 
 /* General Reset and Fonts */
-html, body {
-  height: 100%;
+body {
   margin: 0;
   padding: 0;
-}
-
-body {
   font-family: 'Roboto', sans-serif;
   background: #fff;
   color: #111;
   line-height: 1.6;
   text-align: center;
-  display: flex;
-  flex-direction: column;
 }
 
 /* Header */
@@ -41,7 +36,6 @@ header .logo a {
   color: #fff;
   text-decoration: none;
   cursor: pointer;
-  font-family: 'Montserrat', sans-serif; /* updated to match age calculator pages */
 }
 
 header nav {
@@ -157,8 +151,8 @@ header nav a:hover {
   justify-content: space-between;
   align-items: center;
 }
-
-/* Spinner Loader */
+  
+  /* Spinner Loader */
 #spinner {
   display: none;
   margin: 20px auto;
@@ -191,13 +185,13 @@ header nav a:hover {
   border-radius: 12px;
 }
 
-/* Side Ads (fixed on desktop) */
+/* ✅ Side Ads (fixed on desktop) */
 .side-ad {
   position: fixed;
-  top: 80px; 
-  width: auto; 
-  max-width: 160px; 
-  min-height: 600px;
+  top: 80px; /* below header */
+  width: auto; /* let AdSense control width */
+  max-width: 160px; /* standard skyscraper */
+  min-height: 600px; /* standard height */
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -280,14 +274,15 @@ header nav a:hover {
   display: none;
 }
 
-/* Footer (Sticky) */
+/* Footer */
 footer {
   text-align: center;
   padding: 20px;
   background: #000;
   color: #fff;
   font-size: 0.85rem;
-  margin-top: auto; /* sticks footer to bottom */
+  position: relative;
+  z-index: 1001; /* keep above ads */
 }
 
 footer nav a {
@@ -302,7 +297,7 @@ footer nav a:hover {
   color: #ddd;
 }
 
-/* Hamburger */
+/* Hide hamburger in desktop */
 .hamburger {
   display: none;
 }
@@ -355,17 +350,19 @@ footer nav a:hover {
     overflow-x: hidden;
   }
 
-  /* Hide side ads on mobile */
+  /* ✅ Hide side ads on mobile */
   .side-ad {
     display: none !important;
   }
 }
 
-/* TEMP: Hide all ads until AdSense is ready */
+/* 🚫 TEMPORARY — Hide ALL ads until AdSense is approved */
 .ad-banner,
 .side-ad {
   display: none !important;
 }
+/* ✅ Delete the block above when AdSense is ready */
+</style>
 
 <!-- Header -->
 <header>
