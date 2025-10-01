@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://mycalculatorpal.com/sitemap.xml
