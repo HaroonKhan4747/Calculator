@@ -5,43 +5,86 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About - MyCalculatorPal</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Footer Sticky */
+    body, html {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    .wrapper {
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .content {
+      flex: 1;
+      padding: 20px;
+    }
+    footer {
+      background: #000;
+      color: #fff;
+      padding: 15px 20px;
+      font-size: 0.9rem;
+    }
+    footer nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+    footer nav a:hover {
+      text-decoration: underline;
+    }
+    /* Header Logo Style */
+    header .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #fff;
+      cursor: pointer;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <div class="logo">MyCalculatorPal</div>
-    <nav id="nav-menu">
-      <a href="index.html">Home</a>
-      <a href="about.html" class="active">About</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-    <div class="hamburger" id="hamburger">☰</div>
-  </header>
+  <div class="wrapper">
+    <header>
+      <div class="logo">MyCalculatorPal</div>
+      <nav id="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="about.html" class="active">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="hamburger" id="hamburger">☰</div>
+    </header>
 
-  <section class="content">
-    <h1>About MyCalculatorPal</h1>
-    <p>Welcome to <strong>MyCalculatorPal</strong>, your go-to online platform for fast, accurate, and easy-to-use calculators. We aim to simplify everyday calculations, helping users save time and get precise results effortlessly.</p>
+    <section class="content">
+      <h1>About MyCalculatorPal</h1>
+      <p>Welcome to <strong>MyCalculatorPal</strong>, your go-to online platform for fast, accurate, and easy-to-use calculators. We aim to simplify everyday calculations, helping users save time and get precise results effortlessly.</p>
 
-    <p>Our website features a variety of tools, including:</p>
-    <ul>
-      <li><strong>Age Calculator:</strong> Determine your exact age in years, months, weeks, days, hours, and minutes.</li>
-      <li><strong>Animal Age Calculator:</strong> Compare your pet’s age to human years for dogs, cats, hamsters, and more.</li>
-      <li><strong>Gestational Age Calculator:</strong> Track pregnancy milestones accurately.</li>
-      <li><strong>Planetary Age Calculator:</strong> Discover your age on Mars, Jupiter, Venus, and other planets.</li>
-    </ul>
+      <p>Our website features a variety of tools, including:</p>
+      <ul>
+        <li><strong>Age Calculator:</strong> Determine your exact age in years, months, weeks, days, hours, and minutes.</li>
+        <li><strong>Animal Age Calculator:</strong> Compare your pet’s age to human years for dogs, cats, hamsters, and more.</li>
+        <li><strong>Gestational Age Calculator:</strong> Track pregnancy milestones accurately.</li>
+        <li><strong>Planetary Age Calculator:</strong> Discover your age on Mars, Jupiter, Venus, and other planets.</li>
+      </ul>
 
-    <p>At MyCalculatorPal, we focus on creating tools that are <strong>accurate</strong>, <strong>educational</strong>, and <strong>fun</strong>. Whether you’re a student working on a project, a parent tracking your child’s growth, or just curious about your age across different systems, our calculators meet your needs.</p>
+      <p>At MyCalculatorPal, we focus on creating tools that are <strong>accurate</strong>, <strong>educational</strong>, and <strong>fun</strong>. Whether you’re a student working on a project, a parent tracking your child’s growth, or just curious about your age across different systems, our calculators meet your needs.</p>
 
-    <p>All calculators are online and ready to use—no downloads required. Our responsive design ensures easy access from any device, anytime.</p>
+      <p>All calculators are online and ready to use—no downloads required. Our responsive design ensures easy access from any device, anytime.</p>
 
-    <p>Our mission is to provide reliable, practical, and user-friendly online tools that simplify calculations while maintaining accuracy and accessibility.</p>
-  </section>
+      <p>Our mission is to provide reliable, practical, and user-friendly online tools that simplify calculations while maintaining accuracy and accessibility.</p>
+    </section>
 
-  <footer>
-    <p>&copy; 2025 MyCalculatorPal. All rights reserved.</p>
-    <nav>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </footer>
+    <footer>
+      <p>© 2025 MyCalculatorPal. All rights reserved.</p>
+      <nav>
+        <a href="contact.html">Contact</a> |
+        <a href="privacy.html">Privacy Policy</a> |
+        <a href="terms.html">Terms & Conditions</a>
+      </nav>
+    </footer>
+  </div>
 
   <script>
     const hamburger = document.getElementById('hamburger');
