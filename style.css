@@ -2,14 +2,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto:wght@400;500&display=swap');
 
 /* General Reset and Fonts */
-body {
+html, body {
+  height: 100%;
   margin: 0;
   padding: 0;
+}
+
+body {
   font-family: 'Roboto', sans-serif;
   background: #fff;
   color: #111;
   line-height: 1.6;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Header */
@@ -30,7 +36,7 @@ header .logo a {
   color: #fff;
   text-decoration: none;
   cursor: pointer;
-  font-family: 'Montserrat', sans-serif; /* ensure logo font matches age calculator pages */
+  font-family: 'Montserrat', sans-serif; /* updated to match age calculator pages */
 }
 
 header nav {
@@ -59,7 +65,7 @@ header nav a:hover {
 .hero h1 {
   font-size: 2.5rem;
   margin-bottom: 15px;
-  font-family: 'Montserrat', sans-serif; /* Hero heading font */
+  font-family: 'Montserrat', sans-serif;
 }
 
 .hero p {
@@ -163,13 +169,14 @@ header nav a:hover {
   color: #555;
 }
 
-/* Footer */
+/* Footer (Sticky at bottom) */
 footer {
   text-align: center;
   padding: 20px;
   background: #000;
   color: #fff;
   font-size: 0.85rem;
+  margin-top: auto; /* pushes footer to bottom */
 }
 
 footer nav a {
