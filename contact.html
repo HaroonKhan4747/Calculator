@@ -42,7 +42,7 @@
       background: #000;
       color: #fff;
       position: relative;
-      z-index: 1001;
+      z-index: 1001; /* keeps header above side ads */
     }
 
     header .logo a {
@@ -51,7 +51,6 @@
       color: #fff;
       text-decoration: none;
       cursor: pointer;
-      font-family: 'Montserrat', sans-serif;
     }
 
     header nav {
@@ -70,56 +69,6 @@
       text-decoration: underline;
       color: #ddd;
     }
-
-    /* Footer */
-    footer {
-      background: #000;
-      color: #fff;
-      padding: 20px;
-      font-size: 0.85rem;
-      margin-top: auto;
-      text-align: center;
-    }
-
-    footer nav a {
-      color: #fff;
-      margin: 0 5px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    footer nav a:hover {
-      text-decoration: underline;
-      color: #ddd;
-    }
-
-    /* Hamburger */
-    .hamburger {
-      display: none;
-      cursor: pointer;
-    }
-
-    @media (max-width: 768px) {
-      .hamburger {
-        display: flex;
-      }
-
-      header nav {
-        display: none;
-        flex-direction: column;
-        background: #000;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        width: 200px;
-        padding: 10px;
-        text-align: center;
-      }
-
-      header nav.active {
-        display: flex;
-      }
-    }
   </style>
 </head>
 <body>
@@ -128,10 +77,8 @@
       <div class="logo"><a href="index.html">MyCalculatorPal</a></div>
       <nav id="nav-menu">
         <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="contact.html" class="active">Contact</a>
-        <a href="privacy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
+        <a href="about.html" class="active">About</a>
+        <a href="contact.html">Contact</a>
       </nav>
       <div class="hamburger" id="hamburger">☰</div>
     </header>
