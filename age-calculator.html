@@ -151,6 +151,23 @@ header nav a:hover {
   justify-content: space-between;
   align-items: center;
 }
+  
+  /* Spinner Loader */
+#spinner {
+  display: none;
+  margin: 20px auto;
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #111;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 
 /* Ad Banners (inline, in-page) */
 .ad-banner {
@@ -527,6 +544,25 @@ footer nav a:hover {
   </footer>
 
 </div> <!-- end page-content -->
+ 
+  <!-- Spinner Style -->
+<style>
+  #spinner {
+    display: none;
+    margin: 25px auto;
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #111;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
   
 <script>
   // Set max date for DOB and default end date
@@ -538,6 +574,7 @@ footer nav a:hover {
 
   const calculateBtn = document.getElementById('calculateBtn');
   const resultsDiv = document.getElementById('results');
+  const spinner = document.getElementById('spinner'); // spinner added
 
   calculateBtn.addEventListener('click', () => {
     const dob = new Date(dobInput.value);
@@ -547,95 +584,102 @@ footer nav a:hover {
       return;
     }
 
-    // ----------------------
-    // Human-readable age
-    // ----------------------
-    const diffMs = now - dob;
-    let remainingMs = diffMs;
+    // Show spinner, hide results
+    if (spinner) spinner.style.display = 'block';
+    resultsDiv.style.display = 'none';
 
-    const totalDays = Math.floor(remainingMs / (1000 * 60 * 60 * 24));
-    remainingMs -= totalDays * 24 * 60 * 60 * 1000;
+    setTimeout(() => {
+      // ----------------------
+      // Human-readable age
+      // ----------------------
+      const diffMs = now - dob;
+      let remainingMs = diffMs;
 
-    const leftoverHours = Math.floor(remainingMs / (1000 * 60 * 60));
-    remainingMs -= leftoverHours * 1000 * 60 * 60;
+      const totalDays = Math.floor(remainingMs / (1000 * 60 * 60 * 24));
+      remainingMs -= totalDays * 24 * 60 * 60 * 1000;
 
-    const leftoverMinutes = Math.floor(remainingMs / (1000 * 60));
-    remainingMs -= leftoverMinutes * 1000 * 60;
+      const leftoverHours = Math.floor(remainingMs / (1000 * 60 * 60));
+      remainingMs -= leftoverHours * 1000 * 60 * 60;
 
-    const leftoverSeconds = Math.floor(remainingMs / 1000);
+      const leftoverMinutes = Math.floor(remainingMs / (1000 * 60));
+      remainingMs -= leftoverMinutes * 1000 * 60;
 
-    const totalYears = now.getFullYear() - dob.getFullYear() - ((now.getMonth() < dob.getMonth() || (now.getMonth() === dob.getMonth() && now.getDate() < dob.getDate())) ? 1 : 0);
-    let leftoverMonths = now.getMonth() - dob.getMonth();
-    if (leftoverMonths < 0) leftoverMonths += 12;
+      const leftoverSeconds = Math.floor(remainingMs / 1000);
 
-    let leftoverDays = now.getDate() - dob.getDate();
-    if (leftoverDays < 0) {
-      const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
-      leftoverDays += prevMonth;
-      leftoverMonths -= 1;
-    }
+      const totalYears = now.getFullYear() - dob.getFullYear() - ((now.getMonth() < dob.getMonth() || (now.getMonth() === dob.getMonth() && now.getDate() < dob.getDate())) ? 1 : 0);
+      let leftoverMonths = now.getMonth() - dob.getMonth();
+      if (leftoverMonths < 0) leftoverMonths += 12;
 
-    const totalWeeks = Math.floor(totalDays / 7);
-    const leftoverWeeks = Math.floor(leftoverDays / 7);
-    leftoverDays = leftoverDays % 7; // ensures days after weeks never exceed 6
+      let leftoverDays = now.getDate() - dob.getDate();
+      if (leftoverDays < 0) {
+        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+        leftoverDays += prevMonth;
+        leftoverMonths -= 1;
+      }
 
-    // ----------------------
-    // Korean & Chinese Age
-    // ----------------------
-    const koreanAge = now.getFullYear() - dob.getFullYear() + 1;
-    const chineseAge = totalYears + 1;
+      const totalWeeks = Math.floor(totalDays / 7);
+      const leftoverWeeks = Math.floor(leftoverDays / 7);
+      leftoverDays = leftoverDays % 7;
 
-    // ----------------------
-    // Time until next birthday
-    // ----------------------
-    let nextBirthday = new Date(now.getFullYear(), dob.getMonth(), dob.getDate(), now.getHours(), now.getMinutes(), now.getSeconds());
-    if (nextBirthday < now) nextBirthday.setFullYear(nextBirthday.getFullYear() + 1);
+      // ----------------------
+      // Korean & Chinese Age
+      // ----------------------
+      const koreanAge = now.getFullYear() - dob.getFullYear() + 1;
+      const chineseAge = totalYears + 1;
 
-    let remainingMsUntil = nextBirthday - now;
-    let totalDaysUntil = Math.floor(remainingMsUntil / (1000*60*60*24));
-    remainingMsUntil -= totalDaysUntil * 24*60*60*1000;
+      // ----------------------
+      // Time until next birthday
+      // ----------------------
+      let nextBirthday = new Date(now.getFullYear(), dob.getMonth(), dob.getDate(), now.getHours(), now.getMinutes(), now.getSeconds());
+      if (nextBirthday < now) nextBirthday.setFullYear(nextBirthday.getFullYear() + 1);
 
-    const hoursUntil = Math.floor(remainingMsUntil / (1000*60*60));
-    remainingMsUntil -= hoursUntil * 1000*60*60;
+      let remainingMsUntil = nextBirthday - now;
+      let totalDaysUntil = Math.floor(remainingMsUntil / (1000*60*60*24));
+      remainingMsUntil -= totalDaysUntil * 24*60*60*1000;
 
-    const minutesUntil = Math.floor(remainingMsUntil / (1000*60));
-    remainingMsUntil -= minutesUntil * 1000*60;
+      const hoursUntil = Math.floor(remainingMsUntil / (1000*60*60));
+      remainingMsUntil -= hoursUntil * 1000*60*60;
 
-    const secondsUntil = Math.floor(remainingMsUntil / 1000);
+      const minutesUntil = Math.floor(remainingMsUntil / (1000*60));
+      remainingMsUntil -= minutesUntil * 1000*60;
 
-    const monthsUntil = Math.floor(totalDaysUntil / 30);
-    const weeksUntil = Math.floor((totalDaysUntil % 30) / 7);
-    const daysUntil = (totalDaysUntil % 30) % 7; // ensures leftover days after weeks <= 6
+      const secondsUntil = Math.floor(remainingMsUntil / 1000);
 
-    // ----------------------
-    // Total lived time
-    // ----------------------
-    const totalMonths = totalYears * 12 + leftoverMonths;
-    const totalHours = Math.floor(diffMs / (1000*60*60));
-    const totalMinutes = Math.floor(diffMs / (1000*60));
-    const totalSeconds = Math.floor(diffMs / 1000);
+      const monthsUntil = Math.floor(totalDaysUntil / 30);
+      const weeksUntil = Math.floor((totalDaysUntil % 30) / 7);
+      const daysUntil = (totalDaysUntil % 30) % 7;
 
-    // ----------------------
-    // Show results
-    // ----------------------
-    resultsDiv.style.display = 'block';
+      // ----------------------
+      // Total lived time
+      // ----------------------
+      const totalMonths = totalYears * 12 + leftoverMonths;
+      const totalHours = Math.floor(diffMs / (1000*60*60));
+      const totalMinutes = Math.floor(diffMs / (1000*60));
+      const totalSeconds = Math.floor(diffMs / 1000);
 
-    // Human-readable age
-    document.getElementById('years').textContent =
-      `Age: ${totalYears} years, ${leftoverMonths} months, ${leftoverWeeks} weeks, ${leftoverDays} days, ${leftoverHours} hours, ${leftoverMinutes} minutes, ${leftoverSeconds} seconds`;
+      // ----------------------
+      // Show results
+      // ----------------------
+      if (spinner) spinner.style.display = 'none';
+      resultsDiv.style.display = 'block';
 
-    // Total lived time
-    document.getElementById('months').textContent =
-      `You have lived: ${totalMonths} months, ${totalWeeks} weeks, ${totalDays} days, ${totalHours} hours, ${totalMinutes} minutes, ${totalSeconds} seconds`;
+      // Human-readable age
+      document.getElementById('years').textContent =
+        `Age: ${totalYears} years, ${leftoverMonths} months, ${leftoverWeeks} weeks, ${leftoverDays} days, ${leftoverHours} hours, ${leftoverMinutes} minutes, ${leftoverSeconds} seconds`;
 
-    document.getElementById('koreanAge').textContent =
-      `Korean Age: ${koreanAge} — Korean age counts your age as 1 at birth and adds a year every New Year.`;
-    document.getElementById('chineseAge').textContent =
-      `Chinese/Lunar Age: ${chineseAge} — Chinese/Lunar age is based on the lunar calendar and your zodiac sign.`;
+      // Total lived time
+      document.getElementById('months').textContent =
+        `You have lived: ${totalMonths} months, ${totalWeeks} weeks, ${totalDays} days, ${totalHours} hours, ${totalMinutes} minutes, ${totalSeconds} seconds`;
 
-    // Birthday countdown
-    document.getElementById('birthdayCountdown').textContent =
-      `Time until next birthday: ${monthsUntil} months, ${weeksUntil} weeks, ${daysUntil} days, ${hoursUntil} hours, ${minutesUntil} minutes, ${secondsUntil} seconds`;
+      document.getElementById('koreanAge').textContent =
+        `Korean Age: ${koreanAge} — Korean age counts your age as 1 at birth and adds a year every New Year.`;
+      document.getElementById('chineseAge').textContent =
+        `Chinese/Lunar Age: ${chineseAge} — Chinese/Lunar age is based on the lunar calendar and your zodiac sign.`;
+
+      // Birthday countdown
+      document.getElementById('birthdayCountdown').textContent =
+        `Time until next birthday: ${monthsUntil} months, ${weeksUntil} weeks, ${daysUntil} days, ${hoursUntil} hours, ${minutesUntil} minutes, ${secondsUntil} seconds`;
+    }, 1500); // spinner delay
   });
 
   // FAQ Toggle
