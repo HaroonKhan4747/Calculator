@@ -444,14 +444,18 @@ footer nav a:hover {
   <!-- Height -->
   <label for="heightInput">Height:</label>
   <div class="height-input" style="display: flex; align-items: center; gap: 10px; width: 100%;">
-    <!-- cm input -->
+
+    <!-- cm input (default visible) -->
     <input type="number" id="heightCm" class="input-field" min="0" placeholder="Enter height in cm" style="flex:1;" />
-    <!-- ft/in inputs -->
-    <div id="heightFtIn" style="display:none; flex:1; gap:10px; justify-content: space-between;">
+
+    <!-- ft/in inputs (hidden by default) -->
+    <div id="heightFtIn" style="display:none; flex:1; gap:5px; justify-content: space-between;">
       <input type="number" id="heightFt" class="input-field" min="0" placeholder="Feet" style="flex:1;" />
       <input type="number" id="heightIn" class="input-field" min="0" max="11" placeholder="Inches" style="flex:1;" />
     </div>
-    <select id="heightUnit" class="input-field" style="flex:1;">
+
+    <!-- Unit selector -->
+    <select id="heightUnit" class="input-field" style="flex:0.7;">
       <option value="cm">cm</option>
       <option value="ft">ft/in</option>
     </select>
@@ -469,7 +473,23 @@ footer nav a:hover {
 
   <button id="calculateBtn" class="calculate-btn" type="button">Calculate</button>
 </div>
-</section>
+
+<!-- Script to toggle height input -->
+<script>
+  const heightUnit = document.getElementById('heightUnit');
+  const heightCm = document.getElementById('heightCm');
+  const heightFtIn = document.getElementById('heightFtIn');
+
+  heightUnit.addEventListener('change', () => {
+    if(heightUnit.value === 'ft') {
+      heightCm.style.display = 'none';
+      heightFtIn.style.display = 'flex';
+    } else {
+      heightCm.style.display = 'block';
+      heightFtIn.style.display = 'none';
+    }
+  });
+</script>
 
   <!-- Spinner Style -->
 <style>
