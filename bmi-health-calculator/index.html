@@ -1,1 +1,108 @@
+<!-- Header -->
+<header>
+  <div class="logo"><a href="index.html">MyCalculatorPal</a></div>
+  <nav id="nav-menu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="hamburger" id="hamburger">☰</div>
+</header>
+
+<!-- Side Ads -->
+<div class="side-ad left-ad">
+  <div class="ad-placeholder">[Left Ad]</div>
+</div>
+<div class="side-ad right-ad">
+  <div class="ad-placeholder">[Right Ad]</div>
+</div>
+
+<!-- Wrap main content -->
+<div class="page-content">
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>BMI & Health Calculator</h1>
+    <p>Check your Body Mass Index (BMI) and get a health assessment based on your age and weight.</p>
+  </section>
+
+  <!-- Calculator Section -->
+  <section class="calculator">
+
+    <!-- Spinner (Initially Hidden) -->
+    <div id="spinner"></div>
+
+    <!-- Results Box (Initially Hidden) -->
+    <div class="card calc-results" id="results" style="display:none;">
+      <h2>Results</h2>
+      <p id="bmiResult">Your BMI: </p>
+      <p id="category">Health Category: </p>
+      <p id="advice">Health Advice: </p>
+    </div>
+
+    <!-- Calculator Card -->
+    <div class="card calc-inputs">
+      <label for="age">Your Age (years):</label>
+      <input type="number" id="age" class="input-field" min="0" />
+
+      <label for="weight">Weight (kg):</label>
+      <input type="number" id="weight" class="input-field" min="0" step="0.1"/>
+
+      <label for="height">Height (cm):</label>
+      <input type="number" id="height" class="input-field" min="0" step="0.1"/>
+
+      <button id="calculateBtn" class="calculate-btn" type="button">Calculate</button>
+    </div>
+  </section>
+
+  <!-- AdSense Banner (After Results) -->
+  <section class="ad-banner">
+    <div class="ad-placeholder">[Ad Banner Here]</div>
+  </section>
+
+<!-- Example Blog Section -->
+<section class="blog">
+  <h2>Understanding BMI and Your Health</h2>
+  <p>BMI (Body Mass Index) is a simple calculation using your height and weight. It helps assess whether you're underweight, normal, overweight, or obese. Knowing your BMI can guide your nutrition, exercise, and lifestyle choices.</p>
+</section>
+
+</div>
+
+<!-- BMI Calculator Script -->
+<script>
+  document.getElementById('calculateBtn').addEventListener('click', function() {
+    const age = parseFloat(document.getElementById('age').value);
+    const weight = parseFloat(document.getElementById('weight').value);
+    const heightCm = parseFloat(document.getElementById('height').value);
+
+    if (!age || !weight || !heightCm) {
+      alert("Please fill in all fields correctly.");
+      return;
+    }
+
+    const heightM = heightCm / 100;
+    const bmi = weight / (heightM * heightM);
+    let category = '';
+    let advice = '';
+
+    if (bmi < 18.5) {
+      category = 'Underweight';
+      advice = 'Consider a balanced diet with higher calorie intake and strength training.';
+    } else if (bmi >= 18.5 && bmi < 24.9) {
+      category = 'Normal weight';
+      advice = 'Maintain your healthy lifestyle with balanced diet and regular exercise.';
+    } else if (bmi >= 25 && bmi < 29.9) {
+      category = 'Overweight';
+      advice = 'Incorporate regular exercise and monitor your calorie intake.';
+    } else {
+      category = 'Obese';
+      advice = 'Consult with a healthcare professional and follow a structured weight management plan.';
+    }
+
+    document.getElementById('bmiResult').textContent = "Your BMI: " + bmi.toFixed(1);
+    document.getElementById('category').textContent = "Health Category: " + category;
+    document.getElementById('advice').textContent = "Health Advice: " + advice;
+    document.getElementById('results').style.display = 'block';
+  });
+</script>
 
