@@ -398,75 +398,77 @@ footer nav a:hover {
   <!-- Spinner (Initially Hidden) -->
   <div id="spinner"></div>
 
-  <!-- Results Box (Initially Hidden) -->
-  <div class="card calc-results" id="results" style="display:none;">
-    <h2>Results</h2>
+<!-- Results Box (Initially Hidden) -->
+<div class="card calc-results" id="results" style="display:none;">
+  <h2>Results</h2>
 
-    <!-- BMI Display -->
-    <p id="bmiResult">Your BMI: </p>
-    <p id="category">Health Category: </p>
+  <!-- BMI Display -->
+  <p id="bmiResult">Your BMI: </p>
+  <p id="category">Health Category: </p>
 
-    <!-- Horizontal BMI Chart -->
-    <div id="bmiChartContainer" style="position: relative; height: 40px; margin: 20px 0; background: #e0e0e0; border-radius: 20px; overflow: hidden;">
-      <div style="position: absolute; left: 0; top: 0; height: 100%; width: 18.5%; background-color: #4da6ff;" title="Underweight"></div>
-      <div style="position: absolute; left: 18.5%; top: 0; height: 100%; width: 6.5%; background-color: #33cc33;" title="Normal"></div>
-      <div style="position: absolute; left: 25%; top: 0; height: 100%; width: 5.1%; background-color: #ffcc00;" title="Overweight"></div>
-      <div style="position: absolute; left: 30.1%; top: 0; height: 100%; width: 10%; background-color: #ff6666;" title="Obese"></div>
-      <!-- User BMI Marker -->
-      <div id="bmiMarker" style="position: absolute; top: -5px; width: 2px; height: 50px; background: black;"></div>
-    </div>
-
-    <!-- Detailed Info -->
-    <p id="healthyRange">Healthy BMI range: </p>
-    <p id="healthyWeight">Healthy weight for the height: </p>
-    <p id="weightToLose">Weight adjustment to reach BMI 25: </p>
-    <p id="bmiPrime">BMI Prime: </p>
-    <p id="ponderalIndex">Ponderal Index: </p>
-
-    <p id="advice">Health Advice: </p>
+  <!-- Horizontal BMI Chart -->
+  <div id="bmiChartContainer" style="position: relative; height: 40px; margin: 20px 0; background: #e0e0e0; border-radius: 20px; overflow: hidden;">
+    <div style="position: absolute; left: 0; top: 0; height: 100%; width: 18.5%; background-color: #4da6ff;" title="Underweight"></div>
+    <div style="position: absolute; left: 18.5%; top: 0; height: 100%; width: 6.5%; background-color: #33cc33;" title="Normal"></div>
+    <div style="position: absolute; left: 25%; top: 0; height: 100%; width: 5.1%; background-color: #ffcc00;" title="Overweight"></div>
+    <div style="position: absolute; left: 30.1%; top: 0; height: 100%; width: 10%; background-color: #ff6666;" title="Obese"></div>
+    <!-- User BMI Marker -->
+    <div id="bmiMarker" style="position: absolute; top: -5px; width: 2px; height: 50px; background: black;"></div>
   </div>
 
-  <!-- Calculator Card -->
-  <div class="card calc-inputs">
+  <!-- Detailed Info -->
+  <p id="healthyRange">Healthy BMI range: </p>
+  <p id="healthyWeight">Healthy weight for the height: </p>
+  <p id="weightToLose">Weight adjustment to reach BMI 25: </p>
+  <p id="bmiPrime">BMI Prime: </p>
+  <p id="ponderalIndex">Ponderal Index: </p>
 
-    <!-- Age -->
-    <label for="age">Your Age (years):</label>
-    <input type="number" id="age" class="input-field" min="0" placeholder="Enter your age" />
+  <p id="advice">Health Advice: </p>
+</div>
 
-    <!-- Gender -->
-    <label for="gender">Gender:</label>
-    <select id="gender" class="input-field">
-      <option value="" disabled selected>-- Select Gender --</option>
-      <option value="male">Male</option>
-      <option value="female">Female</option>
+<!-- Calculator Card -->
+<div class="card calc-inputs">
+
+  <!-- Age -->
+  <label for="age">Your Age (years):</label>
+  <input type="number" id="age" class="input-field" min="0" placeholder="Enter your age" />
+
+  <!-- Gender -->
+  <label for="gender">Gender:</label>
+  <select id="gender" class="input-field">
+    <option value="" disabled selected>-- Select Gender --</option>
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+  </select>
+
+  <!-- Height -->
+  <label for="heightInput">Height:</label>
+  <div class="height-input" style="display: flex; align-items: center; gap: 10px; width: 100%;">
+    <!-- cm input -->
+    <input type="number" id="heightCm" class="input-field" min="0" placeholder="Enter height in cm" style="flex:1;" />
+    <!-- ft/in inputs -->
+    <div id="heightFtIn" style="display:none; flex:1; gap:10px; justify-content: space-between;">
+      <input type="number" id="heightFt" class="input-field" min="0" placeholder="Feet" style="flex:1;" />
+      <input type="number" id="heightIn" class="input-field" min="0" max="11" placeholder="Inches" style="flex:1;" />
+    </div>
+    <select id="heightUnit" class="input-field" style="flex:1;">
+      <option value="cm">cm</option>
+      <option value="ft">ft/in</option>
     </select>
-
-    <!-- Height -->
-    <label for="heightInput">Height:</label>
-    <div class="height-input" style="display: flex; align-items: center; gap: 10px;">
-      <input type="number" id="heightCm" class="input-field" min="0" placeholder="Enter height in cm" />
-      <div id="heightFtIn" style="display:none; gap:10px;">
-        <input type="number" id="heightFt" class="input-field" min="0" placeholder="Feet" />
-        <input type="number" id="heightIn" class="input-field" min="0" max="11" placeholder="Inches" />
-      </div>
-      <select id="heightUnit" class="input-field">
-        <option value="cm">cm</option>
-        <option value="ft">ft/in</option>
-      </select>
-    </div>
-
-    <!-- Weight -->
-    <label for="weightInput">Weight:</label>
-    <div class="weight-input" style="display:flex; align-items:center; gap:10px;">
-      <input type="number" id="weightInput" class="input-field" min="0" placeholder="Enter weight" />
-      <select id="weightUnit" class="input-field">
-        <option value="kg">kg</option>
-        <option value="lbs">lbs</option>
-      </select>
-    </div>
-
-    <button id="calculateBtn" class="calculate-btn" type="button">Calculate</button>
   </div>
+
+  <!-- Weight -->
+  <label for="weightInput">Weight:</label>
+  <div class="weight-input" style="display:flex; align-items:center; gap:10px;">
+    <input type="number" id="weightInput" class="input-field" min="0" placeholder="Enter weight" />
+    <select id="weightUnit" class="input-field">
+      <option value="kg">kg</option>
+      <option value="lbs">lbs</option>
+    </select>
+  </div>
+
+  <button id="calculateBtn" class="calculate-btn" type="button">Calculate</button>
+</div>
 </section>
 
   <!-- Spinner Style -->
@@ -492,13 +494,14 @@ footer nav a:hover {
 const calculateBtn = document.getElementById('calculateBtn');
 const resultsDiv = document.getElementById('results');
 const spinner = document.getElementById('spinner');
+const bmiMarker = document.getElementById('bmiMarker');
 
 calculateBtn.addEventListener('click', () => {
   const heightUnit = document.getElementById('heightUnit').value;
   const heightCmInput = parseFloat(document.getElementById('heightCm').value);
   const heightFt = parseInt(document.getElementById('heightFt').value);
   const heightIn = parseInt(document.getElementById('heightIn').value);
-  const weightInput = parseFloat(document.getElementById('weightInput').value);
+  const weightInputVal = parseFloat(document.getElementById('weightInput').value);
   const weightUnit = document.getElementById('weightUnit').value;
 
   const age = parseInt(document.getElementById('age').value);
@@ -506,7 +509,7 @@ calculateBtn.addEventListener('click', () => {
 
   if (isNaN(age) || age <= 0) { alert("Please enter a valid age."); return; }
   if (!gender) { alert("Please select your gender."); return; }
-  if (isNaN(weightInput) || weightInput <= 0) { alert("Please enter a valid weight."); return; }
+  if (isNaN(weightInputVal) || weightInputVal <= 0) { alert("Please enter a valid weight."); return; }
 
   let heightInCm;
   if (heightUnit === 'cm') {
@@ -519,7 +522,7 @@ calculateBtn.addEventListener('click', () => {
     heightInCm = (heightFt * 30.48) + (heightIn * 2.54);
   }
 
-  let weightInKg = weightInput;
+  let weightInKg = weightInputVal;
   if (weightUnit === 'lbs') weightInKg *= 0.453592;
 
   if (spinner) spinner.style.display = 'block';
@@ -546,7 +549,7 @@ calculateBtn.addEventListener('click', () => {
       adviceText = "Consult a healthcare provider for advice.";
     }
 
-    // Calculate healthy weight range
+    // Healthy weight range
     const minHealthyWeight = 18.5 * (heightM * heightM);
     const maxHealthyWeight = 24.9 * (heightM * heightM);
     const weightToLose = weightInKg - maxHealthyWeight > 0 ? (weightInKg - maxHealthyWeight).toFixed(1) : 0;
@@ -555,6 +558,7 @@ calculateBtn.addEventListener('click', () => {
     const bmiPrime = (bmi / 25).toFixed(2);
     const ponderalIndex = (weightInKg / Math.pow(heightM, 3)).toFixed(1);
 
+    // Display results
     if (spinner) spinner.style.display = 'none';
     resultsDiv.style.display = 'block';
 
@@ -569,8 +573,19 @@ calculateBtn.addEventListener('click', () => {
     document.getElementById('category').textContent = `Health Category: ${categoryText}`;
     document.getElementById('advice').textContent = `Health Advice: ${adviceText}`;
 
+    // Move BMI marker on chart
+    const chartWidth = document.getElementById('bmiChartContainer').offsetWidth;
+    let bmiPercent = 0;
+    if (bmi < 18.5) bmiPercent = (bmi / 18.5) * 18.5;
+    else if (bmi < 24.9) bmiPercent = 18.5 + ((bmi - 18.5) / (24.9 - 18.5)) * 6.5;
+    else if (bmi < 29.9) bmiPercent = 25 + ((bmi - 25) / (29.9 - 25)) * 5.1;
+    else bmiPercent = 30.1 + ((bmi - 30) / (40 - 30)) * 10; // extend for higher BMI
+
+    const markerPos = (bmiPercent / 100) * chartWidth;
+    bmiMarker.style.left = `${markerPos}px`;
+
   }, 1000);
 });
 </script>
-
+  
 </body>
