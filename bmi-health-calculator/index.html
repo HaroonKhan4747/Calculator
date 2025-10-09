@@ -468,3 +468,109 @@ footer nav a:hover {
     <button id="calculateBtn" class="calculate-btn" type="button">Calculate</button>
   </div>
 </section>
+
+  <!-- Spinner Style -->
+<style>
+  #spinner {
+    display: none;
+    margin: 25px auto;
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #111;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
+
+<script>
+const calculateBtn = document.getElementById('calculateBtn');
+const resultsDiv = document.getElementById('results');
+const spinner = document.getElementById('spinner');
+
+calculateBtn.addEventListener('click', () => {
+  const heightUnit = document.getElementById('heightUnit').value;
+  const heightCmInput = parseFloat(document.getElementById('heightCm').value);
+  const heightFt = parseInt(document.getElementById('heightFt').value);
+  const heightIn = parseInt(document.getElementById('heightIn').value);
+  const weightInput = parseFloat(document.getElementById('weightInput').value);
+  const weightUnit = document.getElementById('weightUnit').value;
+
+  const age = parseInt(document.getElementById('age').value);
+  const gender = document.getElementById('gender').value;
+
+  if (isNaN(age) || age <= 0) { alert("Please enter a valid age."); return; }
+  if (!gender) { alert("Please select your gender."); return; }
+  if (isNaN(weightInput) || weightInput <= 0) { alert("Please enter a valid weight."); return; }
+
+  let heightInCm;
+  if (heightUnit === 'cm') {
+    if (isNaN(heightCmInput) || heightCmInput <= 0) { alert("Please enter a valid height in cm."); return; }
+    heightInCm = heightCmInput;
+  } else {
+    if (isNaN(heightFt) || heightFt < 0 || isNaN(heightIn) || heightIn < 0 || heightIn > 11) {
+      alert("Please enter valid feet and inches."); return;
+    }
+    heightInCm = (heightFt * 30.48) + (heightIn * 2.54);
+  }
+
+  let weightInKg = weightInput;
+  if (weightUnit === 'lbs') weightInKg *= 0.453592;
+
+  if (spinner) spinner.style.display = 'block';
+  resultsDiv.style.display = 'none';
+
+  setTimeout(() => {
+    const heightM = heightInCm / 100;
+    const bmi = weightInKg / (heightM * heightM);
+    
+    let categoryText = "";
+    let adviceText = "";
+
+    if (bmi < 18.5) {
+      categoryText = "Underweight";
+      adviceText = "Consider gaining weight through a balanced diet.";
+    } else if (bmi < 24.9) {
+      categoryText = "Normal weight";
+      adviceText = "Keep up your healthy lifestyle!";
+    } else if (bmi < 29.9) {
+      categoryText = "Overweight";
+      adviceText = "Consider regular exercise and a balanced diet.";
+    } else {
+      categoryText = "Obese";
+      adviceText = "Consult a healthcare provider for advice.";
+    }
+
+    // Calculate healthy weight range
+    const minHealthyWeight = 18.5 * (heightM * heightM);
+    const maxHealthyWeight = 24.9 * (heightM * heightM);
+    const weightToLose = weightInKg - maxHealthyWeight > 0 ? (weightInKg - maxHealthyWeight).toFixed(1) : 0;
+    
+    // Additional indices
+    const bmiPrime = (bmi / 25).toFixed(2);
+    const ponderalIndex = (weightInKg / Math.pow(heightM, 3)).toFixed(1);
+
+    if (spinner) spinner.style.display = 'none';
+    resultsDiv.style.display = 'block';
+
+    document.getElementById('bmiResult').innerHTML =
+      `BMI = ${bmi.toFixed(1)} kg/m² (${categoryText})<br>
+      Healthy BMI range: 18.5 - 24.9 kg/m²<br>
+      Healthy weight for your height: ${minHealthyWeight.toFixed(1)} kg - ${maxHealthyWeight.toFixed(1)} kg<br>
+      ${weightToLose > 0 ? `Lose ${weightToLose} kg to reach a BMI of 24.9.` : ''}<br>
+      BMI Prime: ${bmiPrime}<br>
+      Ponderal Index: ${ponderalIndex}`;
+    
+    document.getElementById('category').textContent = `Health Category: ${categoryText}`;
+    document.getElementById('advice').textContent = `Health Advice: ${adviceText}`;
+
+  }, 1000);
+});
+</script>
+
+</body>
