@@ -1,77 +1,135 @@
-<!-- Calculator Section -->
-<section class="calculator">
+<!-- Header -->
+<header>
+  <div class="logo"><a href="index.html">MyCalculatorPal</a></div>
+  <nav id="nav-menu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="hamburger" id="hamburger">☰</div>
+</header>
 
-  <!-- Spinner (Initially Hidden) -->
-  <div id="spinner"></div>
+<!-- Side Ads -->
+<div class="side-ad left-ad">
+  <div class="ad-placeholder">[Left Ad]</div>
+</div>
+<div class="side-ad right-ad">
+  <div class="ad-placeholder">[Right Ad]</div>
+</div>
 
-  <!-- Results Box (Initially Hidden) -->
-  <div class="card calc-results" id="results" style="display:none;">
-    <h2>Results</h2>
-    <p id="bmiResult">Your BMI: </p>
-    <p id="category">Health Category: </p>
-    <p id="advice">Health Advice: </p>
-  </div>
+<!-- Wrap main content -->
+<div class="page-content">
 
-  <!-- Calculator Card -->
-  <div class="card calc-inputs">
-    
-    <!-- Age -->
-    <label for="age">Your Age (years):</label>
-    <input type="number" id="age" class="input-field" min="0" placeholder="Enter your age" />
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Animal Age Calculator</h1>
+    <p>Convert your pet’s age into human years and compare it with your own age.</p>
+  </section>
 
-    <!-- Gender -->
-    <label for="gender">Gender:</label>
-    <select id="gender" class="input-field">
-      <option value="" disabled selected>-- Select Gender --</option>
-      <option value="male">Male</option>
-      <option value="female">Female</option>
-    </select>
+  <!-- Calculator Section -->
+  <section class="calculator">
 
-    <!-- Height -->
-    <label for="heightInput">Height:</label>
-    <div class="height-input">
-      <!-- Single cm input (shown by default) -->
-      <input type="number" id="heightCm" class="input-field" min="0" placeholder="Enter height in cm" />
+    <!-- Spinner (Initially Hidden) -->
+    <div id="spinner"></div>
 
-      <!-- Ft/In inputs (hidden by default) -->
-      <div id="heightFtIn" style="display:none; display:flex; gap:10px;">
-        <input type="number" id="heightFt" class="input-field" min="0" placeholder="Feet" />
-        <input type="number" id="heightIn" class="input-field" min="0" max="11" placeholder="Inches" />
+    <!-- Results Box (Initially Hidden) -->
+    <div class="card calc-results" id="results" style="display:none;">
+      <h2>Results</h2>
+      <p id="animalAge">Animal’s Age in Human Years: </p>
+      <p id="comparison">Comparison: </p>
+      <p id="lived">Equivalent Time Lived: </p>
+    </div>
+
+    <!-- Calculator Card -->
+    <div class="card calc-inputs">
+      <label for="animal">Select Animal:</label>
+      <select id="animal" class="input-field">
+        <option value="" disabled selected>-- Select an Animal --</option>
+        <option value="dog">Dog</option>
+        <option value="cat">Cat</option>
+        <option value="rabbit">Rabbit</option>
+        <option value="horse">Horse</option>
+        <option value="snake">Snake</option>
+        <option value="parrot">Parrot</option>
+        <option value="birds">Bird (non-parrot)</option>
+        <option value="hamster">Hamster</option>
+        <option value="fish">Fish</option>
+      </select>
+
+      <label for="petAge">Your Pet’s Age (years):</label>
+      <input type="number" id="petAge" class="input-field" min="0" />
+
+      <label for="userAge">Your Age (years):</label>
+      <input type="number" id="userAge" class="input-field" min="0" />
+
+      <!-- Height -->
+      <label for="heightInput">Height:</label>
+      <div class="height-input">
+        <!-- cm input -->
+        <input type="number" id="heightCm" class="input-field" min="0" placeholder="Enter height in cm" />
+        <!-- ft/in inputs (hidden by default) -->
+        <div id="heightFtIn" style="display:none; gap:10px;">
+          <input type="number" id="heightFt" class="input-field" min="0" placeholder="Feet" />
+          <input type="number" id="heightIn" class="input-field" min="0" max="11" placeholder="Inches" />
+        </div>
+        <select id="heightUnit" class="input-field">
+          <option value="cm">cm</option>
+          <option value="ft">ft/in</option>
+        </select>
       </div>
 
-      <select id="heightUnit" class="input-field">
-        <option value="cm">cm</option>
-        <option value="ft">ft/in</option>
-      </select>
+      <!-- Weight -->
+      <label for="weightInput">Weight:</label>
+      <div class="weight-input">
+        <input type="number" id="weightInput" class="input-field" min="0" placeholder="Enter weight" />
+        <select id="weightUnit" class="input-field">
+          <option value="kg">kg</option>
+          <option value="lbs">lbs</option>
+        </select>
+      </div>
+
+      <button id="calculateBtn" class="calculate-btn" type="button">Calculate</button>
     </div>
+  </section>
 
-    <!-- Weight -->
-    <label for="weightInput">Weight:</label>
-    <div class="weight-input">
-      <input type="number" id="weightInput" class="input-field" min="0" placeholder="Enter weight" />
-      <select id="weightUnit" class="input-field">
-        <option value="kg">kg</option>
-        <option value="lbs">lbs</option>
-      </select>
-    </div>
+  <!-- AdSense Banner (After Results) -->
+  <section class="ad-banner">
+    <div class="ad-placeholder">[Ad Banner Here]</div>
+  </section>
 
-    <button id="calculateBtn" class="calculate-btn" type="button">Calculate</button>
-  </div>
-</section>
+  <!-- Blog & FAQ content remains unchanged -->
 
-<!-- Optional Script to toggle ft/in inputs -->
+</div>
+
+<!-- Script to toggle cm vs ft/in -->
 <script>
   const heightUnit = document.getElementById('heightUnit');
   const heightCm = document.getElementById('heightCm');
   const heightFtIn = document.getElementById('heightFtIn');
 
   heightUnit.addEventListener('change', () => {
-    if(heightUnit.value === 'ft') {
+    if (heightUnit.value === 'ft') {
       heightCm.style.display = 'none';
       heightFtIn.style.display = 'flex';
     } else {
       heightCm.style.display = 'block';
       heightFtIn.style.display = 'none';
     }
+  });
+</script>
+
+<!-- Smooth Scroll + Highlight Script -->
+<script>
+  document.querySelectorAll('.blog a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href').substring(1);
+      const target = document.getElementById(targetId);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        target.classList.add('highlighted');
+        setTimeout(() => target.classList.remove('highlighted'), 1500);
+      }
+    });
   });
 </script>
