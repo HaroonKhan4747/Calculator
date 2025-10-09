@@ -7,14 +7,34 @@
   <!-- Results Box (Initially Hidden) -->
   <div class="card calc-results" id="results" style="display:none;">
     <h2>Results</h2>
+
+    <!-- BMI Display -->
     <p id="bmiResult">Your BMI: </p>
     <p id="category">Health Category: </p>
+
+    <!-- Horizontal BMI Chart -->
+    <div id="bmiChartContainer" style="position: relative; height: 40px; margin: 20px 0; background: #e0e0e0; border-radius: 20px; overflow: hidden;">
+      <div style="position: absolute; left: 0; top: 0; height: 100%; width: 18.5%; background-color: #4da6ff;" title="Underweight"></div>
+      <div style="position: absolute; left: 18.5%; top: 0; height: 100%; width: 6.5%; background-color: #33cc33;" title="Normal"></div>
+      <div style="position: absolute; left: 25%; top: 0; height: 100%; width: 5.1%; background-color: #ffcc00;" title="Overweight"></div>
+      <div style="position: absolute; left: 30.1%; top: 0; height: 100%; width: 10%; background-color: #ff6666;" title="Obese"></div>
+      <!-- User BMI Marker -->
+      <div id="bmiMarker" style="position: absolute; top: -5px; width: 2px; height: 50px; background: black;"></div>
+    </div>
+
+    <!-- Detailed Info -->
+    <p id="healthyRange">Healthy BMI range: </p>
+    <p id="healthyWeight">Healthy weight for the height: </p>
+    <p id="weightToLose">Weight adjustment to reach BMI 25: </p>
+    <p id="bmiPrime">BMI Prime: </p>
+    <p id="ponderalIndex">Ponderal Index: </p>
+
     <p id="advice">Health Advice: </p>
   </div>
 
   <!-- Calculator Card -->
   <div class="card calc-inputs">
-    
+
     <!-- Age -->
     <label for="age">Your Age (years):</label>
     <input type="number" id="age" class="input-field" min="0" placeholder="Enter your age" />
@@ -30,15 +50,11 @@
     <!-- Height -->
     <label for="heightInput">Height:</label>
     <div class="height-input" style="display: flex; align-items: center; gap: 10px;">
-      <!-- Single cm input (shown by default) -->
       <input type="number" id="heightCm" class="input-field" min="0" placeholder="Enter height in cm" />
-
-      <!-- Ft/In inputs (hidden by default) -->
       <div id="heightFtIn" style="display:none; gap:10px;">
         <input type="number" id="heightFt" class="input-field" min="0" placeholder="Feet" />
         <input type="number" id="heightIn" class="input-field" min="0" max="11" placeholder="Inches" />
       </div>
-
       <select id="heightUnit" class="input-field">
         <option value="cm">cm</option>
         <option value="ft">ft/in</option>
@@ -58,85 +74,3 @@
     <button id="calculateBtn" class="calculate-btn" type="button">Calculate</button>
   </div>
 </section>
-
-<!-- Script to toggle ft/in inputs and calculate BMI -->
-<script>
-  const heightUnit = document.getElementById('heightUnit');
-  const heightCm = document.getElementById('heightCm');
-  const heightFtIn = document.getElementById('heightFtIn');
-  const heightFt = document.getElementById('heightFt');
-  const heightIn = document.getElementById('heightIn');
-  const weightInput = document.getElementById('weightInput');
-  const weightUnit = document.getElementById('weightUnit');
-  const ageInput = document.getElementById('age');
-  const genderInput = document.getElementById('gender');
-
-  const bmiResult = document.getElementById('bmiResult');
-  const category = document.getElementById('category');
-  const advice = document.getElementById('advice');
-  const resultsBox = document.getElementById('results');
-
-  // Toggle height inputs
-  heightUnit.addEventListener('change', () => {
-    if(heightUnit.value === 'ft') {
-      heightCm.style.display = 'none';
-      heightFtIn.style.display = 'flex';
-    } else {
-      heightCm.style.display = 'block';
-      heightFtIn.style.display = 'none';
-    }
-  });
-
-  // BMI Calculation
-  document.getElementById('calculateBtn').addEventListener('click', () => {
-    let heightInCm;
-    let weightInKg = parseFloat(weightInput.value);
-    let age = parseInt(ageInput.value);
-
-    // Validation
-    if (isNaN(age) || age <= 0) { alert("Please enter a valid age."); return; }
-    if (isNaN(weightInKg) || weightInKg <= 0) { alert("Please enter a valid weight."); return; }
-
-    // Height conversion
-    if (heightUnit.value === 'cm') {
-      heightInCm = parseFloat(heightCm.value);
-      if (isNaN(heightInCm) || heightInCm <= 0) { alert("Please enter a valid height in cm."); return; }
-    } else {
-      let ft = parseInt(heightFt.value);
-      let inch = parseInt(heightIn.value);
-      if (isNaN(ft) || ft < 0) { alert("Please enter valid feet."); return; }
-      if (isNaN(inch) || inch < 0 || inch > 11) { alert("Please enter valid inches (0-11)."); return; }
-      heightInCm = (ft * 30.48) + (inch * 2.54); // Convert to cm
-    }
-
-    // Weight conversion if in lbs
-    if(weightUnit.value === 'lbs') {
-      weightInKg = weightInKg * 0.453592;
-    }
-
-    // BMI calculation
-    const heightInM = heightInCm / 100;
-    const bmi = weightInKg / (heightInM * heightInM);
-    let categoryText = "";
-    let adviceText = "";
-
-    if(bmi < 18.5){
-      categoryText = "Underweight";
-      adviceText = "Consider gaining weight through a balanced diet.";
-    } else if(bmi < 24.9){
-      categoryText = "Normal weight";
-      adviceText = "Keep up your healthy lifestyle!";
-    } else if(bmi < 29.9){
-      categoryText = "Overweight";
-      adviceText = "Consider regular exercise and a balanced diet.";
-    } else {
-      categoryText = "Obese";
-      adviceText = "Consult a healthcare provider for advice.";
-    }
-
-    bmiResult.textContent = `Your BMI: ${bmi.toFixed(2)}`;
-    category.textContent = `Health Category: ${categoryText}`;
-    advice.textContent = `Health Advice: ${adviceText}`;
-    resultsBox.style.display = 'block';
-  });
-</script>
