@@ -648,6 +648,94 @@ footer nav a:hover {
   }
 </style>
 
+  <!-- Quick FAQs -->
+<section class="faqs">
+  <h2>Quick FAQs About BMI Calculator</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-question">What is BMI and why is it important?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>BMI, or Body Mass Index, is a simple calculation that shows whether your weight is healthy for your height. It helps identify if you are underweight, normal, overweight, or obese — making it a quick indicator of your overall health status.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">How can I calculate my BMI?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>You can calculate BMI using this formula: <strong>BMI = weight (kg) ÷ height² (m²)</strong>. Or simply use our free online BMI calculator in kg and cm to get instant results.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Is BMI different for men and women?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>Yes, body composition varies between men and women. While the BMI formula is the same, women generally have a higher fat percentage than men at the same BMI. Our BMI calculator for women and men provides accurate, gender-specific guidance.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">How can I calculate BMI for children?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>Children’s BMI is calculated using the same formula as adults, but the result is interpreted by age and gender percentiles. Try our BMI calculator in kg and cm for children to track healthy growth patterns.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">What is BMI Prime?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>BMI Prime is your BMI divided by 25, the upper limit of the normal range. It shows how close or far your BMI is from a healthy weight. A BMI Prime below 1.0 indicates underweight, while above 1.0 suggests overweight.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">What is the Ponderal Index?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>The Ponderal Index uses your height cubed instead of squared, giving more accurate results for very tall or short people. It’s a great supplement to BMI for fine-tuning your health analysis.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">What is a healthy BMI range?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>A healthy BMI for adults is between <strong>18.5 and 24.9 kg/m²</strong>. Below 18.5 is underweight, 25-29.9 is overweight, and 30 or above is considered obese.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Does BMI accurately measure body fat?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>Not entirely. BMI doesn’t distinguish between fat and muscle. Athletes with more muscle may have a high BMI but low body fat. Tools like body composition scales or the Ponderal Index can give a clearer picture.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">How can I maintain a healthy BMI?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>Maintain a balanced diet, stay physically active, get enough sleep, and track your BMI regularly. For personalized advice, consult a nutritionist or healthcare provider.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Can supplements help with weight loss?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>Supplements can support your diet and exercise routine, but they aren’t magic solutions. Look for evidence-based options like protein powder, green tea extract, or CLA — and always consult a doctor before starting any supplement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Simple toggle script for FAQs
+  document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', () => {
+      const answer = button.nextElementSibling;
+      const isOpen = answer.style.display === 'block';
+      document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
+      answer.style.display = isOpen ? 'none' : 'block';
+    });
+  });
+</script>
+
 <script>
 const calculateBtn = document.getElementById('calculateBtn');
 const resultsDiv = document.getElementById('results');
