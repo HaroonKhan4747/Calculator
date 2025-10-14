@@ -326,20 +326,6 @@ footer nav a {
 footer nav a:hover {
   color: #00bcd4;
   text-shadow: 0 0 6px #00bcd4;
-
-  /* Glow effect for cards */
-.blog, .calculator .card, .calc-results, .faqs {
-  position: relative;
-}
-
-.blog::before, .calculator .card::before, .calc-results::before, .faqs::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 14px;
-  background: radial-gradient(circle at top left, rgba(0,188,212,0.15), transparent 60%);
-  z-index: -1;
-  filter: blur(20px);
 }
 
 /* Hide hamburger in desktop */
