@@ -57,6 +57,21 @@ header nav a:hover {
   text-shadow: 0 0 8px #00bcd4;
 }
 
+/* Hamburger Menu (Hidden on Desktop) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 4px;
+}
+
+.hamburger span {
+  background: #fff;
+  height: 3px;
+  width: 25px;
+  border-radius: 2px;
+}
+
 /* Hero Section */
 .hero {
   padding: 60px 20px;
@@ -78,13 +93,14 @@ header nav a:hover {
 .calculator .card {
   background: rgba(255, 255, 255, 0.95);
   border-radius: 14px;
-  padding: 25px 25px;
+  padding: 25px;
   width: 100%;
   max-width: 520px;
   margin: 35px auto;
   text-align: left;
   box-shadow: 0 0 20px rgba(0, 188, 212, 0.2);
   transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 
 .calculator .card:hover {
@@ -110,6 +126,7 @@ header nav a:hover {
   font-size: 1rem;
   background: #fafafa;
   transition: border 0.3s;
+  box-sizing: border-box;
 }
 
 .calc-inputs .input-field:focus {
@@ -150,6 +167,7 @@ header nav a:hover {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  box-sizing: border-box;
 }
 
 .calc-results h2 {
@@ -287,11 +305,16 @@ footer nav a:hover {
     position: absolute;
     top: 60px;
     right: 0;
-    width: 200px;
-    padding: 10px;
+    width: 220px;
+    padding: 15px;
+    border-radius: 8px 0 0 8px;
   }
 
   header nav.active {
+    display: flex;
+  }
+
+  .hamburger {
     display: flex;
   }
 
@@ -299,8 +322,9 @@ footer nav a:hover {
   .calc-results,
   .blog,
   .faqs {
-    width: 90%;
+    width: 92%;
     margin: 25px auto;
+    padding: 20px;
   }
 }
 
