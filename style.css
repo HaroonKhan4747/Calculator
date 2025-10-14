@@ -2,20 +2,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Poppins:wght@400;500;600&family=Roboto:wght@400;500&display=swap');
 
 /* General Reset and Fonts */
-html, body {
-  height: 100%;
+body {
   margin: 0;
   padding: 0;
-}
-
-body {
   font-family: 'Poppins', 'Roboto', sans-serif;
   background: #f4f6f9;
   color: #222;
   line-height: 1.7;
   text-align: center;
-  display: flex;
-  flex-direction: column;
 }
 
 /* Header */
@@ -37,8 +31,6 @@ header .logo a {
   color: #fff;
   text-decoration: none;
   letter-spacing: 0.5px;
-  cursor: pointer;
-  font-family: 'Montserrat', sans-serif; /* updated to match age calculator pages */
 }
 
 header nav {
@@ -47,9 +39,9 @@ header nav {
 }
 
 header nav a {
-  color: #fff;
+  color: #eee;
   text-decoration: none;
-  font-size: 0.95rem;
+  font-size: 1rem;
   transition: all 0.3s ease;
 }
 
