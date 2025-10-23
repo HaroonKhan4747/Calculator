@@ -155,6 +155,9 @@ header nav a:hover {
   flex-direction: column;
   gap: 12px;
   margin: 35px auto;
+  box-sizing: border-box; /* ensures padding doesn't cause overflow */
+  word-wrap: break-word;  /* breaks long text */
+  overflow-x: hidden;     /* prevent horizontal scroll */
 }
 
 .calc-results h2 {
@@ -173,6 +176,12 @@ header nav a:hover {
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  flex-wrap: wrap;        /* allow wrapping for long numbers/text */
+}
+
+.calc-results p strong {
+  display: inline-block;
+  min-width: 120px;       /* ensures labels don't shrink too much */
 }
 
 /* Spinner Loader */
