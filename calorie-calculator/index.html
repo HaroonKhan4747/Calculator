@@ -569,7 +569,7 @@ footer nav a:hover {
   });
 </script>
 
-  <script>
+<script>
 const calculateBtn = document.getElementById('calculateBtn');
 const resultsDiv = document.getElementById('results');
 const spinner = document.getElementById('spinner');
@@ -621,27 +621,39 @@ calculateBtn.addEventListener('click', () => {
       bmr = 10 * weightInKg + 6.25 * heightInCm - 5 * age - 161;
     }
 
-    // TDEE
-    const maintenanceCalories = bmr * activity;
-    const loseCalories = maintenanceCalories - 500; // simple deficit
-    const gainCalories = maintenanceCalories + 500; // simple surplus
+    // Maintenance Calories
+    const maintenance = bmr * activity;
 
-    // Display results
+    // Define multipliers for weight loss/gain tiers
+    const tiers = [
+      { label: "Maintain weight", changeKg: 0, percent: 100 },
+      { label: "Mild weight loss", changeKg: 0.25, percent: 89 },
+      { label: "Weight loss", changeKg: 0.5, percent: 78 },
+      { label: "Extreme weight loss", changeKg: 1, percent: 57 },
+      { label: "Mild weight gain", changeKg: 0.25, percent: 111 },
+      { label: "Weight gain", changeKg: 0.5, percent: 121 },
+      { label: "Extreme weight gain", changeKg: 1, percent: 143 }
+    ];
+
+    // Build results HTML
+    let resultsHTML = '';
+    tiers.forEach(tier => {
+      const cals = Math.round(maintenance * (tier.percent / 100));
+      const weeklyText = tier.changeKg === 0 ? '' : `${tier.changeKg} kg/week`;
+      resultsHTML += `
+        <p><strong>${tier.label}</strong> ${weeklyText}<br>
+        ${cals.toLocaleString()} kcal/day (${tier.percent}%)</p>
+      `;
+    });
+
     if (spinner) spinner.style.display = 'none';
     resultsDiv.style.display = 'block';
 
-    document.getElementById('calorieResult').textContent =
-      `Maintenance Calories: ${Math.round(maintenanceCalories)} kcal/day`;
-    document.getElementById('lossCalories').textContent =
-      `To Lose Weight: ${Math.round(loseCalories)} kcal/day`;
-    document.getElementById('gainCalories').textContent =
-      `To Gain Weight: ${Math.round(gainCalories)} kcal/day`;
-    
-    document.getElementById('advice').textContent =
-      `Tip: Adjust your intake based on your goal and monitor your progress regularly.`;
+    document.getElementById('calorieResult').innerHTML = resultsHTML;
+    document.getElementById('lossCalories').textContent = '';
+    document.getElementById('gainCalories').textContent = '';
+    document.getElementById('advice').textContent = 'Tip: Adjust your intake based on your goal and monitor your progress regularly.';
 
   }, 1000);
 });
 </script>
-
-
