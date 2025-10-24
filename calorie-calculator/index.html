@@ -504,8 +504,18 @@ footer nav a:hover {
 
   <!-- Detailed Info -->
  <p id="advice">Calorie Advice: </p>
+ <!-- Macros Section -->
+<div id="macro-results" style="display:none; margin-top:15px;">
+  <h3>Your Daily Macros</h3>
+  <table>
+    <tr><td>Protein:</td><td id="protein"></td></tr>
+    <tr><td>Carbs:</td><td id="carbs"></td></tr>
+    <tr><td>Fats:</td><td id="fats"></td></tr>
+  </table>
 </div>
 
+</div> <!-- This closes the results card -
+  
 <!-- Calculator Card -->
 <div class="card calc-inputs">
 
@@ -606,6 +616,10 @@ footer nav a:hover {
 const calculateBtn = document.getElementById('calculateBtn');
 const resultsDiv = document.getElementById('results');
 const spinner = document.getElementById('spinner');
+const macroResults = document.getElementById('macro-results');
+const proteinEl = document.getElementById('protein');
+const carbsEl = document.getElementById('carbs');
+const fatsEl = document.getElementById('fats');
 
 calculateBtn.addEventListener('click', () => {
   // Inputs
@@ -644,6 +658,7 @@ calculateBtn.addEventListener('click', () => {
   // Show spinner
   if (spinner) spinner.style.display = 'block';
   resultsDiv.style.display = 'none';
+  macroResults.style.display = 'none';
 
   setTimeout(() => {
     // BMR Calculation (Mifflin-St Jeor)
@@ -657,11 +672,11 @@ calculateBtn.addEventListener('click', () => {
     // Maintenance Calories
     const maintenance = bmr * activity;
 
-    // Reordered tiers: weight gain above, maintain in middle, weight loss below
+    // Tiers
     const tiers = [
       { label: "Extreme weight gain", changeKg: 1, percent: 143 },
       { label: "Weight gain", changeKg: 0.5, percent: 121 },
-      { label: "Mild weight gain", changeKg: 0.25, percent: 111 },                                                            
+      { label: "Mild weight gain", changeKg: 0.25, percent: 111 },
       { label: "Maintain weight", changeKg: 0, percent: 100 },
       { label: "Mild weight loss", changeKg: 0.25, percent: 89 },
       { label: "Weight loss", changeKg: 0.5, percent: 78 },
@@ -679,15 +694,27 @@ calculateBtn.addEventListener('click', () => {
       `;
     });
 
+    // Hide spinner, show results
     if (spinner) spinner.style.display = 'none';
     resultsDiv.style.display = 'block';
 
+    // Display calorie tiers
     document.getElementById('calorieResult').innerHTML = resultsHTML;
     document.getElementById('lossCalories').textContent = '';
     document.getElementById('gainCalories').textContent = '';
     document.getElementById('advice').textContent = 'Tip: Adjust your intake based on your goal and monitor your progress regularly.';
 
+    // 🔹 Macro Calculation (based on maintenance)
+    const protein = Math.round(weightInKg * 2.0); // 2g per kg
+    const fat = Math.round((maintenance * 0.25) / 9); // 25% of calories from fat
+    const carbs = Math.round((maintenance - (protein * 4 + fat * 9)) / 4); // remaining calories
+
+    // Display macros
+    proteinEl.textContent = `${protein} g`;
+    carbsEl.textContent = `${carbs} g`;
+    fatsEl.textContent = `${fat} g`;
+    macroResults.style.display = 'block';
+
   }, 1000);
 });
 </script>
-
