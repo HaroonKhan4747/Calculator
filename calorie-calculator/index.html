@@ -147,45 +147,57 @@ header nav a:hover {
 .calc-results {
   background: rgba(255,255,255,0.97);
   border-radius: 14px;
-  padding: 30px 25px;
+  padding: 35px 30px;
   width: 100%;
   max-width: 520px;
-  box-shadow: 0 0 20px rgba(0, 188, 212, 0.2);
+  box-shadow: 0 0 25px rgba(0, 188, 212, 0.25);
   display: flex;
   flex-direction: column;
-  gap: 20px;                /* increased gap for more spacing */
-  margin: 35px auto;
-  box-sizing: border-box;    
-  word-wrap: break-word;     
-  overflow-x: hidden;       
+  gap: 25px;                 /* space between result items */
+  margin: 40px auto;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  overflow-x: hidden;
 }
 
+/* Title */
 .calc-results h2 {
   font-family: 'Montserrat', sans-serif;
   font-size: 1.8rem;
-  margin-bottom: 25px;      /* slightly more space under header */
+  margin-bottom: 10px;
   color: #111;
+  text-align: center;
 }
 
-/* Each tier box */
+/* Individual Result Boxes */
 .calc-results p {
   background: #f7f9fb;
-  border-radius: 10px;
-  padding: 15px 20px;       /* more padding for breathing room */
+  border-radius: 12px;
+  padding: 22px 25px;
   font-size: 1rem;
   display: flex;
-  flex-direction: column;    /* stack multi-line content vertically */
+  flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-start;   
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  line-height: 1.5;          /* more line spacing */
-  gap: 5px;                  /* space between lines inside each <p> */
+  align-items: flex-start;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+  line-height: 1.6;
+  gap: 6px;
+  border: 1px solid rgba(0, 188, 212, 0.1); /* subtle border for definition */
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
+/* Hover effect for a subtle interactive feel */
+.calc-results p:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 188, 212, 0.15);
+}
+
+/* Label styling */
 .calc-results p strong {
-  display: block;            /* stack label on top of values */
+  display: block;
   font-weight: 600;
-  margin-bottom: 5px;        /* space between label and numbers */
+  margin-bottom: 6px;
+  color: #007c91;  /* same color tone as before, but helps labels stand out */
 }
     
 /* Spinner Loader */
