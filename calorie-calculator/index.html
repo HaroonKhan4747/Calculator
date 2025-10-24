@@ -669,8 +669,16 @@ const proteinEl = document.getElementById('protein');
 const carbsEl = document.getElementById('carbs');
 const fatsEl = document.getElementById('fats');
 
+// calorie goal elements
+const extremeGainEl = document.getElementById('extremeGain');
+const gainEl = document.getElementById('gain');
+const mildGainEl = document.getElementById('mildGain');
+const maintainEl = document.getElementById('maintain');
+const mildLossEl = document.getElementById('mildLoss');
+const lossEl = document.getElementById('loss');
+const extremeLossEl = document.getElementById('extremeLoss');
+
 calculateBtn.addEventListener('click', () => {
-  // Inputs
   const heightUnit = document.getElementById('heightUnit').value;
   const heightCmInput = parseFloat(document.getElementById('heightCm').value);
   const heightFt = parseInt(document.getElementById('heightFt').value);
@@ -681,13 +689,12 @@ calculateBtn.addEventListener('click', () => {
   const gender = document.getElementById('gender').value;
   const activity = parseFloat(document.getElementById('activity').value);
 
-  // Validation
+  // validation
   if (isNaN(age) || age <= 0) { alert("Please enter a valid age."); return; }
   if (!gender) { alert("Please select your gender."); return; }
   if (isNaN(weightInputVal) || weightInputVal <= 0) { alert("Please enter a valid weight."); return; }
   if (isNaN(activity) || activity <= 0) { alert("Please select your activity level."); return; }
 
-  // Height conversion
   let heightInCm;
   if (heightUnit === 'cm') {
     if (isNaN(heightCmInput) || heightCmInput <= 0) { alert("Please enter a valid height in cm."); return; }
@@ -699,17 +706,14 @@ calculateBtn.addEventListener('click', () => {
     heightInCm = (heightFt * 30.48) + (heightIn * 2.54);
   }
 
-  // Weight conversion
   let weightInKg = weightInputVal;
   if (weightUnit === 'lbs') weightInKg *= 0.453592;
 
-  // Show spinner
-  if (spinner) spinner.style.display = 'block';
+  spinner.style.display = 'block';
   resultsDiv.style.display = 'none';
   macroResults.style.display = 'none';
 
   setTimeout(() => {
-    // BMR Calculation (Mifflin-St Jeor)
     let bmr;
     if (gender === 'male') {
       bmr = 10 * weightInKg + 6.25 * heightInCm - 5 * age + 5;
@@ -717,64 +721,34 @@ calculateBtn.addEventListener('click', () => {
       bmr = 10 * weightInKg + 6.25 * heightInCm - 5 * age - 161;
     }
 
-    // Maintenance Calories
     const maintenance = bmr * activity;
 
-    // Tiers
-    const tiers = [
-      { label: "Extreme Weight Gain (1 kg/week)", percent: 143 },
-      { label: "Weight Gain (0.5 kg/week)", percent: 121 },
-      { label: "Mild Weight Gain (0.25 kg/week)", percent: 111 },
-      { label: "Maintain Weight", percent: 100 },
-      { label: "Mild Weight Loss (0.25 kg/week)", percent: 89 },
-      { label: "Weight Loss (0.5 kg/week)", percent: 78 },
-      { label: "Extreme Weight Loss (1 kg/week)", percent: 57 }
-    ];
+    // calculate calories
+    extremeGainEl.textContent = Math.round(maintenance * 1.43).toLocaleString();
+    gainEl.textContent = Math.round(maintenance * 1.21).toLocaleString();
+    mildGainEl.textContent = Math.round(maintenance * 1.11).toLocaleString();
+    maintainEl.textContent = Math.round(maintenance * 1.00).toLocaleString();
+    mildLossEl.textContent = Math.round(maintenance * 0.89).toLocaleString();
+    lossEl.textContent = Math.round(maintenance * 0.78).toLocaleString();
+    extremeLossEl.textContent = Math.round(maintenance * 0.57).toLocaleString();
 
-    // Build results HTML in a table
-    let resultsHTML = `
-      <h3>Calorie Goals</h3>
-      <table style="width:100%; border-collapse:separate; border-spacing:0 10px;">
-        <tr style="background:#f3f3f3;">
-          <th style="padding:10px; text-align:left;">Goal</th>
-          <th style="padding:10px; text-align:center;">Calories/Day</th>
-          <th style="padding:10px; text-align:center;">Percentage</th>
-        </tr>
-    `;
-
-    tiers.forEach(tier => {
-      const cals = Math.round(maintenance * (tier.percent / 100));
-      resultsHTML += `
-        <tr style="background:#fff; box-shadow:0 1px 3px rgba(0,0,0,0.1); border-radius:6px;">
-          <td style="padding:10px;">${tier.label}</td>
-          <td style="padding:10px; text-align:center;">${cals.toLocaleString()}</td>
-          <td style="padding:10px; text-align:center;">${tier.percent}%</td>
-        </tr>
-      `;
-    });
-
-    resultsHTML += `</table>`;
-
-    // Hide spinner, show results
-    if (spinner) spinner.style.display = 'none';
+    spinner.style.display = 'none';
     resultsDiv.style.display = 'block';
 
-    // Display calorie tiers
-    document.getElementById('calorieResult').innerHTML = resultsHTML;
-    document.getElementById('advice').textContent = 'Tip: Adjust your intake based on your goal and monitor your progress regularly.';
+    // macros
+    const protein = Math.round(weightInKg * 2.0);
+    const fat = Math.round((maintenance * 0.25) / 9);
+    const carbs = Math.round((maintenance - (protein * 4 + fat * 9)) / 4);
 
-    // 🔹 Macro Calculation
-    const protein = Math.round(weightInKg * 2.0); // 2g per kg
-    const fat = Math.round((maintenance * 0.25) / 9); // 25% of calories from fat
-    const carbs = Math.round((maintenance - (protein * 4 + fat * 9)) / 4); // remaining calories
-
-    // Display macros
     proteinEl.textContent = `${protein} g`;
     carbsEl.textContent = `${carbs} g`;
     fatsEl.textContent = `${fat} g`;
     macroResults.style.display = 'block';
 
+    document.getElementById('advice').textContent = 'Tip: Adjust your intake based on your goal and track weekly progress.';
+
   }, 1000);
 });
 </script>
+
 
