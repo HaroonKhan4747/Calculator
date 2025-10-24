@@ -722,25 +722,38 @@ calculateBtn.addEventListener('click', () => {
 
     // Tiers
     const tiers = [
-      { label: "Extreme weight gain", changeKg: 1, percent: 143 },
-      { label: "Weight gain", changeKg: 0.5, percent: 121 },
-      { label: "Mild weight gain", changeKg: 0.25, percent: 111 },
-      { label: "Maintain weight", changeKg: 0, percent: 100 },
-      { label: "Mild weight loss", changeKg: 0.25, percent: 89 },
-      { label: "Weight loss", changeKg: 0.5, percent: 78 },
-      { label: "Extreme weight loss", changeKg: 1, percent: 57 }
+      { label: "Extreme Weight Gain (1 kg/week)", percent: 143 },
+      { label: "Weight Gain (0.5 kg/week)", percent: 121 },
+      { label: "Mild Weight Gain (0.25 kg/week)", percent: 111 },
+      { label: "Maintain Weight", percent: 100 },
+      { label: "Mild Weight Loss (0.25 kg/week)", percent: 89 },
+      { label: "Weight Loss (0.5 kg/week)", percent: 78 },
+      { label: "Extreme Weight Loss (1 kg/week)", percent: 57 }
     ];
 
-    // Build results HTML
-    let resultsHTML = '';
+    // Build results HTML in a table
+    let resultsHTML = `
+      <h3>Calorie Goals</h3>
+      <table style="width:100%; border-collapse:separate; border-spacing:0 10px;">
+        <tr style="background:#f3f3f3;">
+          <th style="padding:10px; text-align:left;">Goal</th>
+          <th style="padding:10px; text-align:center;">Calories/Day</th>
+          <th style="padding:10px; text-align:center;">Percentage</th>
+        </tr>
+    `;
+
     tiers.forEach(tier => {
       const cals = Math.round(maintenance * (tier.percent / 100));
-      const weeklyText = tier.changeKg === 0 ? '' : `${tier.changeKg} kg/week`;
       resultsHTML += `
-        <p><strong>${tier.label}</strong>${weeklyText ? `<br>${weeklyText}` : ''}
-        <br>${cals.toLocaleString()} kcal/day (${tier.percent}%)</p>
+        <tr style="background:#fff; box-shadow:0 1px 3px rgba(0,0,0,0.1); border-radius:6px;">
+          <td style="padding:10px;">${tier.label}</td>
+          <td style="padding:10px; text-align:center;">${cals.toLocaleString()}</td>
+          <td style="padding:10px; text-align:center;">${tier.percent}%</td>
+        </tr>
       `;
     });
+
+    resultsHTML += `</table>`;
 
     // Hide spinner, show results
     if (spinner) spinner.style.display = 'none';
@@ -748,11 +761,9 @@ calculateBtn.addEventListener('click', () => {
 
     // Display calorie tiers
     document.getElementById('calorieResult').innerHTML = resultsHTML;
-    document.getElementById('lossCalories').textContent = '';
-    document.getElementById('gainCalories').textContent = '';
     document.getElementById('advice').textContent = 'Tip: Adjust your intake based on your goal and monitor your progress regularly.';
 
-    // 🔹 Macro Calculation (based on maintenance)
+    // 🔹 Macro Calculation
     const protein = Math.round(weightInKg * 2.0); // 2g per kg
     const fat = Math.round((maintenance * 0.25) / 9); // 25% of calories from fat
     const carbs = Math.round((maintenance - (protein * 4 + fat * 9)) / 4); // remaining calories
@@ -766,3 +777,4 @@ calculateBtn.addEventListener('click', () => {
   }, 1000);
 });
 </script>
+
