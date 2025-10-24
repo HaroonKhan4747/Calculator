@@ -497,24 +497,72 @@ footer nav a:hover {
 <div class="card calc-results" id="results" style="display:none;">
   <h2>Results</h2>
 
-  <!-- Calorie Display -->
-  <p id="calorieResult">Maintenance Calories: </p>
-  <p id="lossCalories">To Lose Weight: </p>
-  <p id="gainCalories">To Gain Weight: </p>
+  <!-- Macros Table (First thing) -->
+  <div id="macro-results" style="display:none; margin-top:15px;">
+    <h3>Your Daily Macros</h3>
+    <table class="macro-table" style="width:100%; border-collapse:collapse; text-align:center;">
+      <tr>
+        <th>Protein</th>
+        <th>Carbs</th>
+        <th>Fats</th>
+      </tr>
+      <tr>
+        <td id="protein"></td>
+        <td id="carbs"></td>
+        <td id="fats"></td>
+      </tr>
+    </table>
+  </div>
 
-  <!-- Detailed Info -->
- <p id="advice">Calorie Advice: </p>
- <!-- Macros Section -->
-<div id="macro-results" style="display:none; margin-top:15px;">
-  <h3>Your Daily Macros</h3>
-  <table>
-    <tr><td>Protein:</td><td id="protein"></td></tr>
-    <tr><td>Carbs:</td><td id="carbs"></td></tr>
-    <tr><td>Fats:</td><td id="fats"></td></tr>
+  <!-- Calorie Goals Table -->
+  <h3 style="margin-top:20px;">Calorie Goals</h3>
+  <table class="calorie-table" style="width:100%; border-collapse:collapse; text-align:center;">
+    <tr>
+      <th>Goal</th>
+      <th>Calories/Day</th>
+      <th>Percentage</th>
+    </tr>
+    <tr>
+      <td>Extreme Weight Gain (1 kg/week)</td>
+      <td id="extremeGain"></td>
+      <td>143%</td>
+    </tr>
+    <tr>
+      <td>Weight Gain (0.5 kg/week)</td>
+      <td id="gain"></td>
+      <td>121%</td>
+    </tr>
+    <tr>
+      <td>Mild Weight Gain (0.25 kg/week)</td>
+      <td id="mildGain"></td>
+      <td>111%</td>
+    </tr>
+    <tr>
+      <td>Maintain Weight</td>
+      <td id="maintain"></td>
+      <td>100%</td>
+    </tr>
+    <tr>
+      <td>Mild Weight Loss (0.25 kg/week)</td>
+      <td id="mildLoss"></td>
+      <td>89%</td>
+    </tr>
+    <tr>
+      <td>Weight Loss (0.5 kg/week)</td>
+      <td id="loss"></td>
+      <td>78%</td>
+    </tr>
+    <tr>
+      <td>Extreme Weight Loss (1 kg/week)</td>
+      <td id="extremeLoss"></td>
+      <td>57%</td>
+    </tr>
   </table>
-</div>
 
-</div> <!-- This closes the results card -
+  <!-- Advice -->
+  <p id="advice" style="margin-top:20px;">Calorie Advice:</p>
+</div>
+<!-- End of Results Card -->
   
 <!-- Calculator Card -->
 <div class="card calc-inputs">
