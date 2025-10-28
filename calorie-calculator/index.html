@@ -979,117 +979,140 @@ footer nav a:hover {
       background-color: #fff3cd;
       transition: background-color 1.5s ease;
     }
+    .faq-list { margin-top: 15px; }
+    .faq-item { margin-bottom: 12px; }
+    .faq-question {
+      background: transparent;
+      border: 0;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 8px 0;
+      text-align: left;
+      width: 100%;
+    }
+    .faq-answer { padding-left: 8px; }
   </style>
 
   <div class="faq-list">
 
     <div class="faq-item">
-      <button class="faq-question">How do I use the calorie calculator?</button>
+      <button type="button" class="faq-question" aria-expanded="false">How do I use the calorie calculator?</button>
       <div class="faq-answer" style="display:none;">
         <p>Scroll up to the <a href="#how-to-use">How to Use the Calculator</a> section to enter your age, gender, height, weight, and activity level to get accurate results.</p>
       </div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-question">What do my calorie results mean?</button>
+      <button type="button" class="faq-question" aria-expanded="false">What do my calorie results mean?</button>
       <div class="faq-answer" style="display:none;">
-        <p>Check the <a href="#what-your-results-mean">What Your Results Mean</a> section for a breakdown of maintenance, bulking, and cutting calories.</p>
+        <p>Check the <a href="#results-meaning">What Your Results Mean</a> section for a breakdown of maintenance, bulking, and cutting calories.</p>
       </div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-question">How accurate is the Mifflin–St Jeor formula?</button>
+      <button type="button" class="faq-question" aria-expanded="false">How accurate is the Mifflin–St Jeor formula?</button>
       <div class="faq-answer" style="display:none;">
-        <p>Visit the <a href="#how-the-calculator-works">How the Calculator Works</a> section to learn how the Mifflin–St Jeor equation calculates your Basal Metabolic Rate (BMR).</p>
+        <p>Visit the <a href="#mifflin-formula">How the Calculator Works (Mifflin–St Jeor Formula)</a> section to learn how the equation calculates your Basal Metabolic Rate (BMR).</p>
       </div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-question">Can I estimate calories without a calculator?</button>
+      <button type="button" class="faq-question" aria-expanded="false">Can I estimate calories without a calculator?</button>
       <div class="faq-answer" style="display:none;">
-        <p>Yes, see <a href="#estimate-without-a-calculator">Estimating Calories Without a Calculator</a> to learn simple methods using body weight multipliers.</p>
+        <p>Yes — see <a href="#estimate-without">Estimating Calories Without a Calculator</a> to learn simple methods using body-weight multipliers.</p>
       </div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-question">How much protein, carbs, and fats do I need?</button>
+      <button type="button" class="faq-question" aria-expanded="false">How much protein, carbs, and fats do I need?</button>
       <div class="faq-answer" style="display:none;">
-        <p>Check the <a href="#macros-breakdown">Macros Breakdown</a> section for a detailed explanation of optimal macro ratios for your goals.</p>
+        <p>Check the macro guidance inside the <a href="#results-meaning">What Your Results Mean</a> section (look for "Macros Breakdown") for recommended protein (1.6–2.2g/kg), fats (20–30% calories), and carbs (remaining calories).</p>
       </div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-question">How many calories should I eat to bulk as a skinny guy?</button>
+      <button type="button" class="faq-question" aria-expanded="false">How many calories should I eat to bulk as a skinny guy?</button>
       <div class="faq-answer" style="display:none;">
-        <p>See our guide in the <a href="#what-your-results-mean">What Your Results Mean</a> section for bulking advice and surplus examples.</p>
+        <p>See the bulking advice under <a href="#results-meaning">What Your Results Mean</a>. A good starting surplus is ~300–500 kcal/day along with strength training.</p>
       </div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-question">Can I lose fat and gain muscle at the same time?</button>
+      <button type="button" class="faq-question" aria-expanded="false">Can I lose fat and gain muscle at the same time?</button>
       <div class="faq-answer" style="display:none;">
-        <p>Check the <a href="#what-your-results-mean">What Your Results Mean</a> section to understand body recomposition and balanced calorie intake.</p>
+        <p>Yes — read the explanation in <a href="#common-questions">Common Questions About Calories</a> (body recomposition section) for practical tips on doing this safely.</p>
       </div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-question">What’s the difference between maintenance and cutting calories?</button>
+      <button type="button" class="faq-question" aria-expanded="false">What’s the difference between maintenance and cutting calories?</button>
       <div class="faq-answer" style="display:none;">
-        <p>Learn the difference in the <a href="#what-your-results-mean">Maintenance vs. Cutting</a> explanation under results interpretation.</p>
+        <p>See the examples in <a href="#sample-calories">Sample Calorie Goals by Weight</a> and the interpretation in <a href="#results-meaning">What Your Results Mean</a> to compare maintenance vs. cutting targets.</p>
       </div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-question">What’s the best way to track my calorie intake?</button>
+      <button type="button" class="faq-question" aria-expanded="false">What’s the best way to track my calorie intake?</button>
       <div class="faq-answer" style="display:none;">
-        <p>Scroll to <a href="#best-tools-for-tracking-your-calories">Best Tools for Tracking Your Calories</a> for food scales, apps, and helpful tools.</p>
+        <p>Scroll to <a href="#healthy-tools">Best Tools for Tracking Your Calories</a> for recommended food scales, apps, meal-prep tools and trackers that simplify logging.</p>
       </div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-question">How often should I recalculate my calorie needs?</button>
+      <button type="button" class="faq-question" aria-expanded="false">How often should I recalculate my calorie needs?</button>
       <div class="faq-answer" style="display:none;">
-        <p>It’s recommended to update your stats in the <a href="#calorie-calculator">Calorie Calculator</a> every 4–6 weeks or after noticeable weight changes.</p>
+        <p>Update your stats and recalculate in the <a href="#how-to-use">How to Use the Calculator</a> section every 4–6 weeks or after meaningful weight changes.</p>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- Smooth Scroll + Highlight Script -->
+<!-- Smooth Scroll + Highlight + FAQ Toggle Script -->
 <script>
 document.addEventListener("DOMContentLoaded", function() {
 
-  // Smooth Scroll + Highlight
-  document.querySelectorAll('.faqs a').forEach(link => {
+  // Smooth scroll for FAQ internal links (works with blog anchors)
+  document.querySelectorAll('.faqs a[href^="#"]').forEach(link => {
     link.addEventListener('click', function(e) {
-      const targetId = this.getAttribute('href').substring(1);
+      const hash = this.getAttribute('href');
+      const targetId = hash.substring(1);
       const target = document.getElementById(targetId);
       if (target) {
         e.preventDefault();
+
+        // Update URL hash without jumping instantly (so browser bar changes)
+        if (history.pushState) {
+          history.pushState(null, null, hash);
+        } else {
+          location.hash = hash;
+        }
+
         target.scrollIntoView({ behavior: 'smooth', block: 'center' });
         target.classList.add('highlighted');
-        setTimeout(() => target.classList.remove('highlighted'), 1500);
+        setTimeout(() => target.classList.remove('highlighted'), 1600);
       }
     });
   });
 
-  // FAQ Toggle Logic
+  // FAQ toggle logic (with aria-expanded)
   document.querySelectorAll('.faq-question').forEach(button => {
     button.addEventListener('click', () => {
       const answer = button.nextElementSibling;
 
       // Close others
       document.querySelectorAll('.faq-answer').forEach(el => {
-        if (el !== answer) el.style.display = 'none';
+        if (el !== answer) {
+          el.style.display = 'none';
+          const btn = el.previousElementSibling;
+          if (btn && btn.classList.contains('faq-question')) btn.setAttribute('aria-expanded', 'false');
+        }
       });
 
-      // Toggle the clicked one
-      if (answer.style.display === 'block') {
-        answer.style.display = 'none';
-      } else {
-        answer.style.display = 'block';
-      }
+      // Toggle clicked one
+      const isOpen = answer.style.display === 'block';
+      answer.style.display = isOpen ? 'none' : 'block';
+      button.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
     });
   });
 
