@@ -986,70 +986,70 @@ footer nav a:hover {
     <div class="faq-item">
       <button class="faq-question">How many calories should I eat to bulk as a skinny guy?</button>
       <div class="faq-answer" style="display:none;">
-        <p>If you’re a beginner or naturally lean, start with a <strong>300–500 calorie surplus</strong>. Focus on protein-rich foods and track your weight weekly. You can also use our <a href="#calorie-calculator">Calorie Calculator</a> to get a personalized target.</p>
+        <p>If you’re a beginner or naturally lean, start with a <strong>300–500 calorie surplus</strong>. Focus on protein-rich foods and track your weight weekly. You can also use our <a href="#results-meaning">Calorie Results</a> section to get bulking guidance.</p>
       </div>
     </div>
 
     <div class="faq-item">
       <button class="faq-question">How can I estimate my calories without a calculator?</button>
       <div class="faq-answer" style="display:none;">
-        <p>You can estimate calories manually by using quick multipliers based on body weight. Read our detailed guide on <a href="/how-to-estimate-calories-without-a-calculator">how to estimate calories without a calculator</a> to learn the step-by-step method.</p>
+        <p>You can estimate calories manually by using quick multipliers based on body weight. Read the quick method in <a href="#estimate-without">Estimating Calories Without a Calculator</a>.</p>
       </div>
     </div>
 
     <div class="faq-item">
       <button class="faq-question">What is a lean bulk and how do I do it right?</button>
       <div class="faq-answer" style="display:none;">
-        <p>A lean bulk means eating in a small surplus (around 250–300 calories) to gain muscle without gaining excess fat. See our full article on <a href="/how-to-lean-bulk">how to lean bulk</a> for meal tips and training strategy.</p>
+        <p>A lean bulk means eating in a small surplus (around 250–300 calories) to gain muscle with minimal fat. See tips in the <a href="#example-meal-plans">Example Meal Plans</a> and the <a href="#results-meaning">Results</a> section.</p>
       </div>
     </div>
 
     <div class="faq-item">
       <button class="faq-question">Can I lose fat and gain muscle at the same time?</button>
       <div class="faq-answer" style="display:none;">
-        <p>Yes, it’s possible through <strong>body recomposition</strong> — eating around maintenance, keeping protein high, and training with progressive overload. Learn more under the <a href="#what-your-results-mean">What Your Results Mean</a> section above.</p>
+        <p>Yes — read about body recomposition in the <a href="#common-questions">Common Questions</a> section for practical advice on doing this safely.</p>
       </div>
     </div>
 
     <div class="faq-item">
       <button class="faq-question">How accurate is the Mifflin–St Jeor formula?</button>
       <div class="faq-answer" style="display:none;">
-        <p>It’s one of the most reliable BMR formulas, used by fitness professionals worldwide. For best results, pair it with tracking tools listed in our <a href="#best-tools-for-tracking-your-calories">Best Tools for Tracking Calories</a> section.</p>
+        <p>It’s one of the most reliable BMR formulas. See details and the formula in <a href="#mifflin-formula">How the Calculator Works (Mifflin–St Jeor Formula)</a>.</p>
       </div>
     </div>
 
     <div class="faq-item">
       <button class="faq-question">How much protein should I eat when bulking or cutting?</button>
       <div class="faq-answer" style="display:none;">
-        <p>Aim for <strong>1.6–2.2 grams of protein per kilogram of body weight</strong>. You can track intake with a <a href="#protein-shaker-bottle">protein shaker</a> or app. More details are in the <a href="#macros-breakdown">Macros Breakdown</a> section.</p>
+        <p>Aim for <strong>1.6–2.2 grams of protein per kilogram of body weight</strong>. See the <a href="#results-meaning">Macros Breakdown</a> under Results for full guidance.</p>
       </div>
     </div>
 
     <div class="faq-item">
       <button class="faq-question">How can I track my calorie intake easily?</button>
       <div class="faq-answer" style="display:none;">
-        <p>Use smart food scales and fitness apps to track your calories accurately. See our section on <a href="#best-tools-for-tracking-your-calories">Best Tools for Tracking Calories</a> for recommendations.</p>
+        <p>Use smart food scales, apps and meal prep tools. See our recommendations in <a href="#healthy-tools">Best Tools for Tracking Your Calories</a>.</p>
       </div>
     </div>
 
     <div class="faq-item">
       <button class="faq-question">What’s the difference between cutting and maintenance calories?</button>
       <div class="faq-answer" style="display:none;">
-        <p>Cutting calories create a deficit to lose fat, while maintenance calories keep your weight stable. Compare both in our <a href="#sample-calorie-goals-by-weight">Sample Calorie Goals</a> chart.</p>
+        <p>Compare the numbers and examples in <a href="#sample-calories">Sample Calorie Goals by Weight</a> and the explanation in <a href="#results-meaning">What Your Results Mean</a>.</p>
       </div>
     </div>
 
     <div class="faq-item">
       <button class="faq-question">How long does it take to see muscle gain results?</button>
       <div class="faq-answer" style="display:none;">
-        <p>Typically, you’ll see visible progress within <strong>4–6 weeks</strong> if you eat in a surplus and train consistently. Track your changes using a <a href="#fitness-journal">fitness journal</a>.</p>
+        <p>Most people see visible progress within 4–6 weeks with consistent eating and training. See related guidance in <a href="#common-questions">Common Questions About Calories</a>.</p>
       </div>
     </div>
 
     <div class="faq-item">
       <button class="faq-question">Is calorie tracking necessary for everyone?</button>
       <div class="faq-answer" style="display:none;">
-        <p>Not always — but tracking helps you understand portion sizes and stay consistent. For beginners, it’s one of the fastest ways to build awareness around eating habits.</p>
+        <p>Not always — but tracking helps build awareness and consistency. For quick tips see <a href="#how-to-use">How to Use the Calculator</a> and <a href="#healthy-tools">Best Tools for Tracking Your Calories</a>.</p>
       </div>
     </div>
 
@@ -1064,6 +1064,12 @@ footer nav a:hover {
       const target = document.getElementById(targetId);
       if (target) {
         e.preventDefault();
+        // update URL hash politely
+        if (history.pushState) {
+          history.pushState(null, null, '#' + targetId);
+        } else {
+          location.hash = targetId;
+        }
         target.scrollIntoView({ behavior: 'smooth', block: 'center' });
         target.classList.add('highlighted');
         setTimeout(() => target.classList.remove('highlighted'), 1500);
@@ -1091,7 +1097,7 @@ footer nav a:hover {
       "name": "How can I estimate my calories without a calculator?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Estimate using body-weight multipliers or learn more in our guide on how to estimate calories without a calculator."
+        "text": "Estimate using body-weight multipliers or read the guide linked in the article for step-by-step examples."
       }
     },
     {
@@ -1099,7 +1105,7 @@ footer nav a:hover {
       "name": "What is a lean bulk and how do I do it right?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A lean bulk means eating in a small calorie surplus (around 250–300) to gain muscle with minimal fat. Learn more in our article on how to lean bulk."
+        "text": "Lean bulking uses a small calorie surplus (around 250–300 calories) plus strength training to maximize muscle gain while minimizing fat."
       }
     },
     {
@@ -1107,7 +1113,7 @@ footer nav a:hover {
       "name": "Can I lose fat and gain muscle at the same time?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, through body recomposition — eating around maintenance and strength training consistently."
+        "text": "Yes — through body recomposition: eat around maintenance, keep protein high, and train with progressive overload."
       }
     },
     {
@@ -1115,7 +1121,7 @@ footer nav a:hover {
       "name": "How accurate is the Mifflin–St Jeor formula?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The Mifflin–St Jeor formula is highly accurate for estimating daily calorie needs when combined with consistent tracking."
+        "text": "Mifflin–St Jeor is a well-established formula for estimating BMR and works well when combined with consistent tracking."
       }
     },
     {
@@ -1123,7 +1129,7 @@ footer nav a:hover {
       "name": "How much protein should I eat when bulking or cutting?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Consume 1.6–2.2 grams of protein per kilogram of body weight to support muscle repair and growth."
+        "text": "Aim for 1.6–2.2 grams of protein per kilogram of body weight to support muscle repair and growth."
       }
     },
     {
@@ -1131,7 +1137,7 @@ footer nav a:hover {
       "name": "How can I track my calorie intake easily?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Use smart food scales, apps, and meal prep tools to monitor your calories and stay consistent."
+        "text": "Use smart food scales, meal-prep containers, and tracking apps. The article recommends tools to simplify tracking."
       }
     },
     {
@@ -1139,7 +1145,7 @@ footer nav a:hover {
       "name": "What’s the difference between cutting and maintenance calories?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Cutting involves eating below your maintenance calories to lose fat, while maintenance keeps your weight stable."
+        "text": "Cutting uses a calorie deficit to lose fat while maintenance keeps your weight steady. See the sample charts for starting points."
       }
     },
     {
@@ -1147,7 +1153,7 @@ footer nav a:hover {
       "name": "How long does it take to see muscle gain results?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Most people start noticing changes in 4–6 weeks with consistent training and eating in a surplus."
+        "text": "Visible changes usually appear within 4–6 weeks if you follow a consistent calorie surplus and training plan."
       }
     },
     {
@@ -1155,7 +1161,7 @@ footer nav a:hover {
       "name": "Is calorie tracking necessary for everyone?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Calorie tracking helps beginners understand portion control and stay consistent, but experienced lifters may estimate intuitively."
+        "text": "Tracking helps most beginners understand portion sizes and stay consistent, though experienced lifters may estimate intuitively."
       }
     }
   ]
