@@ -1058,6 +1058,9 @@ footer nav a:hover {
 
 <!-- Smooth Scroll + Highlight Script -->
 <script>
+document.addEventListener("DOMContentLoaded", function() {
+
+  // Smooth Scroll + Highlight
   document.querySelectorAll('.faqs a').forEach(link => {
     link.addEventListener('click', function(e) {
       const targetId = this.getAttribute('href').substring(1);
@@ -1071,16 +1074,26 @@ footer nav a:hover {
     });
   });
 
-  // FAQ toggle
+  // FAQ Toggle Logic
   document.querySelectorAll('.faq-question').forEach(button => {
     button.addEventListener('click', () => {
       const answer = button.nextElementSibling;
+
+      // Close others
       document.querySelectorAll('.faq-answer').forEach(el => {
         if (el !== answer) el.style.display = 'none';
       });
-      answer.style.display = (answer.style.display === 'block') ? 'none' : 'block';
+
+      // Toggle the clicked one
+      if (answer.style.display === 'block') {
+        answer.style.display = 'none';
+      } else {
+        answer.style.display = 'block';
+      }
     });
   });
+
+});
 </script>
   
 <!-- FAQ Schema for Google Rich Results -->
