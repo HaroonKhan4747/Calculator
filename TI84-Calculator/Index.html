@@ -1,3 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online TI-84 Graphing Calculator – Free TI-84 Emulator | MyCalculatorPal</title>
+  <meta name="description" content="Use our free online TI-84 Plus graphing calculator to solve equations, plot graphs, and perform advanced math functions directly in your browser. No downloads or sign-up required.">
+
+   <!-- ✅ Paste your Google AdSense verification meta tag here -->
+  <meta name="google-adsense-account" content="ca-pub-8850694506252841">
+  
+   <!-- ✅ Add this line below -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* Universal & Reset */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', 'Roboto', sans-serif;
+  background: #f4f6f9;
+  color: #222;
+  line-height: 1.7;
+  text-align: center;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  background: linear-gradient(90deg, #0a0a0a, #1b1b1b);
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  position: relative;
+  z-index: 1001;
+}
+
+header .logo a {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+
+header nav {
+  display: flex;
+  gap: 18px;
+}
+
+header nav a {
+  color: #eee;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+header nav a:hover {
+  text-decoration: underline;
+  color: #00bcd4;
+  text-shadow: 0 0 8px #00bcd4;
+}
+
+/* Hero Section */
+.hero {
+  padding: 60px 20px;
+}
+
+.hero h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.6rem;
+  margin-bottom: 10px;
+  color: #111;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* Calculator Section */
+.calculator .card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 14px;
+  padding: 25px;
+  width: 100%;
+  max-width: 520px;
+  margin: 35px auto;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0, 188, 212, 0.2);
+}
+
+.calculator iframe {
+  width: 100%;
+  height: 720px; /* Adjust height for TI-84 */
+  border: none;
+  border-radius: 12px;
+}
+
+/* Spinner Loader */
+#spinner {
+  display: none;
+  margin: 20px auto;
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #111;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Ad Banner Placeholder */
+.ad-banner {
+  text-align: center;
+  padding: 25px 0;
+}
+
+.ad-placeholder {
+  display: inline-block;
+  background: #f0f0f0;
+  padding: 40px;
+  border: 1px dashed #ccc;
+  font-size: 0.9rem;
+  color: #888;
+  border-radius: 12px;
+}
+
+/* Side Ads */
+.side-ad {
+  position: fixed;
+  top: 80px;
+  width: auto;
+  max-width: 160px;
+  min-height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 1000;
+}
+
+.side-ad.left-ad {
+  left: 0;
+}
+
+.side-ad.right-ad {
+  right: 0;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 25px;
+  background: #0a0a0a;
+  color: #fff;
+  font-size: 0.9rem;
+  letter-spacing: 0.3px;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+}
+
+footer nav a {
+  color: #ddd;
+  margin: 0 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+footer nav a:hover {
+  color: #00bcd4;
+  text-shadow: 0 0 6px #00bcd4;
+}
+
+/* Responsive Mobile */
+@media (max-width: 768px) {
+  header nav {
+    display: none;
+    flex-direction: column;
+    background: #000;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    padding: 10px;
+    text-align: center;
+  }
+
+  header nav.active {
+    display: flex;
+  }
+
+  .calculator .card,
+  .ad-placeholder {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    max-width: 100%;
+    width: 90%;
+    display: block;
+    box-sizing: border-box;
+  }
+
+  iframe {
+    max-width: 100%;
+    height: 600px;
+  }
+
+  .side-ad {
+    display: none !important;
+  }
+}
+
+/* TEMP: Hide ads until ready */
+.ad-banner,
+.side-ad {
+  display: none !important;
+}
+</style>
+
 <!-- Header -->
 <header>
   <div class="logo"><a href="https://mycalculatorpal.com/">MyCalculatorPal</a></div>
