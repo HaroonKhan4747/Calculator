@@ -86,7 +86,7 @@ header nav a:hover {
 .calculator .card {
   background: rgba(255, 255, 255, 0.95);
   border-radius: 14px;
-  padding: 25px 25px; /* same padding as other calculators */
+  padding: 15px 15px;
   width: 100%;
   max-width: 500px; /* slightly smaller for iframe */
   margin: 35px auto;
@@ -103,24 +103,10 @@ header nav a:hover {
 /* TI-84 iframe styling */
 .calculator .card iframe {
   width: 100%;
-  height: 720px;
+  height: 720px; /* match TI-84 emulator height */
   border: 0;
   border-radius: 12px;
   box-shadow: 0 0 15px rgba(0,0,0,0.1);
-  overflow: hidden;
-}
-
-/* Hide unwanted footer/disclaimer inside iframe (TestNav message) */
-iframe {
-  display: block;
-}
-
-/* If iframe loads extra footer text (like “Open in separate window”), hide it */
-iframe::-webkit-scrollbar {
-  display: none;
-}
-iframe {
-  scrollbar-width: none;
 }
 
 /* Results Box */
