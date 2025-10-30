@@ -12,7 +12,7 @@
    <!-- ✅ Add this line below -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
- <style>
+<style>
 /* Extra CSS specific to this calculator (main style in style.css handles general styling) */
 
 /* General Reset and Fonts */
@@ -36,7 +36,7 @@ header {
   color: #fff;
   box-shadow: 0 2px 10px rgba(0,0,0,0.3);
   position: relative;
-  z-index: 1001; /* keeps header above side ads */
+  z-index: 1001;
 }
 
 header .logo a {
@@ -81,16 +81,16 @@ header nav a:hover {
   font-size: 1.1rem;
   color: #555;
 }
-  
-/* Calculator Section – TI-84 Specific Adjustments */
+
+/* Calculator Section – TI-84 */
 .calculator .card {
   background: rgba(255, 255, 255, 0.95);
   border-radius: 14px;
-  padding: 15px 15px;
+  padding: 15px;
   width: 100%;
-  max-width: 500px; /* slightly smaller for iframe */
+  max-width: 500px;
   margin: 35px auto;
-  text-align: center; /* center iframe */
+  text-align: center;
   box-shadow: 0 0 20px rgba(0, 188, 212, 0.2);
   transition: all 0.3s ease;
 }
@@ -103,60 +103,10 @@ header nav a:hover {
 /* TI-84 iframe styling */
 .calculator .card iframe {
   width: 100%;
-  height: 720px; /* match TI-84 emulator height */
+  height: 720px;
   border: 0;
   border-radius: 12px;
   box-shadow: 0 0 15px rgba(0,0,0,0.1);
-}
-
-/* Results Box */
-.calc-results {
-  background: rgba(255,255,255,0.97);
-  border-radius: 14px;
-  padding: 25px;
-  width: 100%;
-  max-width: 500px;
-  box-shadow: 0 0 20px rgba(0, 188, 212, 0.2);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin: 35px auto;
-  text-align: left;
-}
-
-.calc-results h2 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.8rem;
-  margin-bottom: 20px;
-  color: #111;
-}
-
-.calc-results p {
-  background: #f7f9fb;
-  border-radius: 10px;
-  padding: 12px 15px;
-  font-size: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
-
-/* Spinner Loader */
-#spinner {
-  display: none;
-  margin: 20px auto;
-  border: 6px solid #f3f3f3;
-  border-top: 6px solid #111;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
 }
 
 /* TI-84 Action Buttons */
@@ -187,7 +137,7 @@ header nav a:hover {
   transform: translateY(-2px);
 }
 
-/* Ad Banners (inline, in-page) */
+/* Ad Banners */
 .ad-banner {
   text-align: center;
   padding: 25px 0;
@@ -203,108 +153,21 @@ header nav a:hover {
   border-radius: 12px;
 }
 
-/* ✅ Side Ads (fixed on desktop) */
+/* Side Ads */
 .side-ad {
   position: fixed;
-  top: 80px; /* below header */
-  width: auto; /* let AdSense control width */
-  max-width: 160px; /* standard skyscraper */
-  min-height: 600px; /* standard height */
+  top: 80px;
+  width: auto;
+  max-width: 160px;
+  min-height: 600px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   z-index: 1000;
 }
 
-.side-ad.left-ad {
-  left: 0;
-}
-
-.side-ad.right-ad {
-  right: 0;
-}
-
-/* Blog Section */
-.blog {
-  padding: 45px 25px;
-  max-width: 820px;
-  margin: 40px auto;
-  background: rgba(255,255,255,0.95);
-  border-radius: 14px;
-  box-shadow: 0 0 20px rgba(0, 188, 212, 0.2);
-  text-align: left;
-}
-
-.blog h2 {
-  margin-bottom: 20px;
-  font-family: 'Montserrat', sans-serif;
-  text-align: center;
-}
-
-.blog p {
-  line-height: 1.6;
-  color: #333;
-  margin-bottom: 12px;
-}
-
-/* FAQs Section */
-.faqs {
-  padding: 45px 25px;
-  max-width: 820px;
-  margin: 40px auto;
-  background: rgba(255,255,255,0.95);
-  border-radius: 14px;
-  box-shadow: 0 0 20px rgba(0, 188, 212, 0.2);
-}
-
-.faqs h2 {
-  text-align: center;
-  margin-bottom: 25px;
-  color: #111;
-}
-
-.faq-item {
-  margin-bottom: 18px;
-}
-
-.faq-question {
-  width: 100%;
-  padding: 14px 16px;
-  border: none;
-  border-radius: 8px;
-  background: #fff;
-  text-align: left;
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  transition: all 0.3s ease;
-}
-
-.faq-question:hover {
-  background: #e0f7fa;
-  box-shadow: 0 0 10px rgba(0, 188, 212, 0.3);
-}
-
-.faq-answer {
-  padding: 12px 16px;
-  margin-top: 5px;
-  background: #f7f9fb;
-  border-left: 3px solid #00bcd4;
-  border-radius: 8px;
-  display: none;
-}
-
-/* Footer */
-footer {
-  text-align: center;
-  padding: 20px;
-  background: #000;
-  color: #fff;
-  font-size: 0.85rem;
-  position: relative;
-  z-index: 1001; /* keep above ads */
-}
+.side-ad.left-ad { left: 0; }
+.side-ad.right-ad { right: 0; }
 
 /* Footer */
 footer {
@@ -328,117 +191,24 @@ footer nav a:hover {
   color: #00bcd4;
   text-shadow: 0 0 6px #00bcd4;
 }
-  
-/* Hide hamburger in desktop */
-.hamburger {
-  display: none;
-}
 
 /* Mobile View */
 @media (max-width: 768px) {
-  .hamburger {
-    display: flex;
-  }
+  .hamburger { display: flex; }
 
-  header nav {
-    display: none;
-    flex-direction: column;
-    background: #000;
-    position: absolute;
-    top: 60px;
-    right: 0;
-    width: 200px;
-    padding: 10px;
-    text-align: center;
-  }
+  header nav { display: none; flex-direction: column; position: absolute; top: 60px; right: 0; width: 200px; background: #000; padding: 10px; text-align: center; }
+  header nav.active { display: flex; }
 
-  header nav.active {
-    display: flex;
-  }
-
-  .calculator .card,
-  .calc-results,
-  .blog,
-  .faqs,
-  .ad-placeholder {
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    max-width: 100%;
+  .calculator .card, .calc-results, .blog, .faqs, .ad-placeholder {
+    margin: auto;
+    max-width: 95%;
     width: 90%;
-    display: block;
-    box-sizing: border-box;
   }
 
-  img, iframe {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
+  iframe { width: 100%; height: auto; display: block; margin: auto; }
 
-  body {
-    overflow-x: hidden;
-  }
-
-  /* ✅ Hide side ads on mobile */
-  .side-ad {
-    display: none !important;
-  }
+  .side-ad { display: none !important; }
 }
-
-/* Related Calculators Section */
-.related-calculators {
-  padding: 45px 25px;
-  max-width: 820px;
-  margin: 40px auto;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 14px;
-  box-shadow: 0 0 20px rgba(0, 188, 212, 0.2);
-  text-align: center;
-}
-
-.related-calculators h2 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.7rem;
-  margin-bottom: 25px;
-  color: #111;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-}
-
-.related-links {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.related-links a {
-  background: linear-gradient(90deg, #00bcd4, #0097a7);
-  color: #fff;
-  text-decoration: none;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  padding: 12px 25px;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  box-shadow: 0 3px 10px rgba(0, 188, 212, 0.3);
-}
-
-.related-links a:hover {
-  background: linear-gradient(90deg, #0097a7, #007c91);
-  transform: translateY(-2px);
-  box-shadow: 0 0 15px rgba(0, 188, 212, 0.6);
-}
-
-/* 🚫 TEMPORARY — Hide ALL ads until AdSense is approved */
-.ad-banner,
-.side-ad {
-  display: none !important;
-}
-/* ✅ Delete the block above when AdSense is ready */
 </style>
 
 <!-- Header -->
@@ -473,23 +243,24 @@ footer nav a:hover {
   <section class="calculator">
 
     <!-- Calculator Embed -->
-<iframe
-    src="/TI84-Calculator/ti84/index.html"
-    width="480"
-    height="720"
-    frameborder="0"
-    allowfullscreen
-    title="TI-84 Online Calculator">
-</iframe>
+    <div class="card">
+      <iframe
+        src="ti84/index.html"
+        width="480"
+        height="720"
+        frameborder="0"
+        allowfullscreen
+        title="TI-84 Online Calculator">
+      </iframe>
+    </div>
 
     <!-- Buttons -->
-   <div class="ti84-buttons">
-  <button id="copyFullSession">Copy Full Session</button>
-  <button id="copyResult">Copy Result</button>
-  <button id="shareSession">Share Session</button>
-  <button id="shareResult">Share Result</button>
-</div>
-
+    <div class="ti84-buttons">
+      <button id="copyFullSession">Copy Full Session</button>
+      <button id="copyResult">Copy Result</button>
+      <button id="shareSession">Share Session</button>
+      <button id="shareResult">Share Result</button>
+    </div>
 
   </section>
 
@@ -498,15 +269,15 @@ footer nav a:hover {
     <div class="ad-placeholder">[Ad Banner Here]</div>
   </section>
 </div>
-
+  
 <!-- Scripts for buttons -->
 <script>
-  const copySessionBtn = document.getElementById('copySession');
+  const copyFullSessionBtn = document.getElementById('copyFullSession');
   const copyResultBtn = document.getElementById('copyResult');
   const shareSessionBtn = document.getElementById('shareSession');
   const shareResultBtn = document.getElementById('shareResult');
 
-  copySessionBtn.addEventListener('click', () => {
+  copyFullSessionBtn.addEventListener('click', () => {
     // Grab full session from emulator (requires iframe communication)
     navigator.clipboard.writeText('Full session text goes here');
     alert('Full session copied!');
@@ -519,12 +290,13 @@ footer nav a:hover {
   });
 
   shareSessionBtn.addEventListener('click', () => {
-    // Example: generate URL with session (placeholder)
+    // Placeholder example: generate URL with session
     alert('Session share link generated!');
   });
 
   shareResultBtn.addEventListener('click', () => {
-    // Example: generate URL with result (placeholder)
+    // Placeholder example: generate URL with result
     alert('Result share link generated!');
   });
 </script>
+
