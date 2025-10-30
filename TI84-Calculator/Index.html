@@ -29,15 +29,11 @@
   <!-- Calculator Section -->
   <section class="calculator">
 
-    <!-- Spinner (Initially Hidden) -->
-    <div id="spinner"></div>
-
-    <!-- Calculator Display -->
+    <!-- Calculator Embed -->
     <div class="card calc-inputs">
       <h2>TI-84 Graphing Calculator</h2>
-      <!-- Embed your TI-84 emulator here -->
       <iframe
-        src="https://example.com/ti84-embed"
+        src="ti84/index.html"
         width="480"
         height="720"
         frameborder="0"
@@ -46,10 +42,12 @@
       </iframe>
     </div>
 
-    <!-- Results or Info Box (Optional) -->
-    <div class="card calc-results" id="results" style="display:none;">
-      <h2>Calculation Results</h2>
-      <p id="calcOutput">Your result will appear here.</p>
+    <!-- Buttons -->
+    <div class="calc-actions">
+      <button id="copySession">Copy Full Session</button>
+      <button id="copyResult">Copy Result</button>
+      <button id="shareSession">Share Session</button>
+      <button id="shareResult">Share Result</button>
     </div>
 
   </section>
@@ -60,3 +58,32 @@
   </section>
 </div>
 
+<!-- Scripts for buttons -->
+<script>
+  const copySessionBtn = document.getElementById('copySession');
+  const copyResultBtn = document.getElementById('copyResult');
+  const shareSessionBtn = document.getElementById('shareSession');
+  const shareResultBtn = document.getElementById('shareResult');
+
+  copySessionBtn.addEventListener('click', () => {
+    // Grab full session from emulator (requires iframe communication)
+    navigator.clipboard.writeText('Full session text goes here');
+    alert('Full session copied!');
+  });
+
+  copyResultBtn.addEventListener('click', () => {
+    const resultText = document.getElementById('calcOutput')?.innerText || 'No result yet';
+    navigator.clipboard.writeText(resultText);
+    alert('Result copied!');
+  });
+
+  shareSessionBtn.addEventListener('click', () => {
+    // Example: generate URL with session (placeholder)
+    alert('Session share link generated!');
+  });
+
+  shareResultBtn.addEventListener('click', () => {
+    // Example: generate URL with result (placeholder)
+    alert('Result share link generated!');
+  });
+</script>
