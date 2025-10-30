@@ -493,14 +493,11 @@ footer nav a:hover {
     style="background-color: transparent; border: none;">
 </iframe>
 
-    <!-- Buttons -->
-   <div class="ti84-buttons">
-  <button id="copyFullSession">Copy Full Session</button>
+  <!-- Calculator Action Buttons -->
+<div class="ti84-buttons">
   <button id="copyResult">Copy Result</button>
-  <button id="shareSession">Share Session</button>
-  <button id="shareResult">Share Result</button>
+  <button id="downloadSession">Download Full Session</button>
 </div>
-
 
   </section>
 
@@ -538,4 +535,15 @@ footer nav a:hover {
     // Example: generate URL with result (placeholder)
     alert('Result share link generated!');
   });
+
+  document.getElementById("copyResult").addEventListener("click", () => {
+  // TODO: Copy calculator display text
+  alert("Result copied to clipboard!");
+});
+
+document.getElementById("downloadSession").addEventListener("click", () => {
+  // TODO: Download session log as .txt
+  alert("Full session downloaded!");
+});
+
 </script>
