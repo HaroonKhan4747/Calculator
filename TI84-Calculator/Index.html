@@ -509,41 +509,31 @@ footer nav a:hover {
 
 <!-- Scripts for buttons -->
 <script>
-  const copySessionBtn = document.getElementById('copySession');
-  const copyResultBtn = document.getElementById('copyResult');
-  const shareSessionBtn = document.getElementById('shareSession');
-  const shareResultBtn = document.getElementById('shareResult');
-
-  copySessionBtn.addEventListener('click', () => {
-    // Grab full session from emulator (requires iframe communication)
-    navigator.clipboard.writeText('Full session text goes here');
-    alert('Full session copied!');
-  });
-
-  copyResultBtn.addEventListener('click', () => {
-    const resultText = document.getElementById('calcOutput')?.innerText || 'No result yet';
-    navigator.clipboard.writeText(resultText);
-    alert('Result copied!');
-  });
-
-  shareSessionBtn.addEventListener('click', () => {
-    // Example: generate URL with session (placeholder)
-    alert('Session share link generated!');
-  });
-
-  shareResultBtn.addEventListener('click', () => {
-    // Example: generate URL with result (placeholder)
-    alert('Result share link generated!');
-  });
-
+  // --- COPY RESULT BUTTON ---
   document.getElementById("copyResult").addEventListener("click", () => {
-  // TODO: Copy calculator display text
-  alert("Result copied to clipboard!");
-});
+    // Try to get the calculator's display text (adjust selector if needed)
+    const calcOutput = document.querySelector("#calcOutput")?.innerText 
+      || document.querySelector("#calculatorDiv")?.innerText 
+      || "No result yet";
 
-document.getElementById("downloadSession").addEventListener("click", () => {
-  // TODO: Download session log as .txt
-  alert("Full session downloaded!");
-});
+    navigator.clipboard.writeText(calcOutput)
+      .then(() => alert("✅ Result copied to clipboard!"))
+      .catch(() => alert("⚠️ Failed to copy result."));
+  });
 
+  // --- DOWNLOAD FULL SESSION BUTTON ---
+  document.getElementById("downloadSession").addEventListener("click", () => {
+    // If you log calculator actions later, replace this with your session log
+    const sessionText = document.querySelector("#calculatorDiv")?.innerText || "No session data found.";
+    
+    const blob = new Blob([sessionText], { type: "text/plain" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "TI84_Session.txt";
+    link.click();
+    URL.revokeObjectURL(link.href);
+
+    alert("✅ Full session downloaded as 'TI84_Session.txt'!");
+  });
 </script>
+
