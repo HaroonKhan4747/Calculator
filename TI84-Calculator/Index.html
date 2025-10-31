@@ -26,6 +26,36 @@ body {
   text-align: center;
 }
 
+/* Show desktop toggle only on screens wider than 680px */
+.desktop-toggle {
+  display: inline-block;
+  margin-right: 12px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+}
+
+/* Hide mobile toggle on desktop */
+.mobile-toggle {
+  display: none;
+}
+
+/* Mobile styles */
+@media (max-width: 680px) {
+  .desktop-toggle {
+    display: none;
+  }
+  .mobile-toggle {
+    display: inline-block;
+    margin-left: 10px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+  }
+}
+
 /* Header */
 header {
   display: flex;
@@ -454,12 +484,20 @@ footer nav a:hover {
 <!-- Header -->
 <header>
   <div class="logo"><a href="https://mycalculatorpal.com/">MyCalculatorPal</a></div>
+
   <nav id="nav-menu">
+    <!-- Desktop Dark Mode Toggle (before Home) -->
+    <button id="darkModeToggle" class="desktop-toggle">🌙</button>
+
     <a href="https://mycalculatorpal.com/">Home</a>
     <a href="https://mycalculatorpal.com/about.html">About</a>
     <a href="https://mycalculatorpal.com/contact.html">Contact</a>
   </nav>
+
   <div class="hamburger" id="hamburger">☰</div>
+  
+  <!-- Mobile Dark Mode Toggle (after hamburger) -->
+  <button id="darkModeToggleMobile" class="mobile-toggle">🌙</button>
 </header>
 
 <!-- Side Ads -->
@@ -501,36 +539,15 @@ footer nav a:hover {
   </section>
 </div>
 
-<!-- Dark Mode Toggle Button -->
-<button id="darkModeToggle" class="dark-toggle">🌙</button>
-
-<style>
-  /* Toggle Button Style */
-  .dark-toggle {
-    position: fixed;
-    top: 15px;
-    right: 15px;
-    background: linear-gradient(135deg, #9b5de5, #7a3dc0);
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    width: 45px;
-    height: 45px;
-    font-size: 1.3rem;
-    cursor: pointer;
-    box-shadow: 0 0 20px rgba(155, 93, 229, 0.4);
-    transition: all 0.3s ease;
-    z-index: 999;
+  <style>
+  /* Smooth transition for all elements */
+  body, body * {
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
-  .dark-toggle:hover {
-    box-shadow: 0 0 30px rgba(155, 93, 229, 0.6);
-    transform: scale(1.05);
-  }
-
-  /* === DARK MODE STYLES === */
+  /* Dark Mode Styles */
   body.dark-mode {
-    background: #0A0A0A;
+    background-color: #0A0A0A;
     color: #ffffff;
   }
 
@@ -557,36 +574,61 @@ footer nav a:hover {
     color: #b57fff;
   }
 
-  body.dark-mode button,
-  body.dark-mode .calculate-btn {
+  body.dark-mode button {
     background: linear-gradient(135deg, #9b5de5, #7a3dc0);
     color: white;
     box-shadow: 0 0 25px rgba(155, 93, 229, 0.25);
     border: none;
   }
 
-  body.dark-mode button:hover,
-  body.dark-mode .calculate-btn:hover {
+  body.dark-mode button:hover {
     box-shadow: 0 0 35px rgba(155, 93, 229, 0.4);
   }
+
+  /* Toggle Button Styles */
+  .dark-toggle {
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    background: linear-gradient(135deg, #9b5de5, #7a3dc0);
+    color: #fff;
+    box-shadow: 0 0 20px rgba(155, 93, 229, 0.4);
+    transition: all 0.3s ease;
+  }
+
+  .dark-toggle:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(155, 93, 229, 0.6);
+  }
+
+  /* Desktop vs Mobile */
+  @media (min-width: 680px) { #darkModeToggle { margin-right: 12px; } }
+  @media (max-width: 679px) { #darkModeToggleMobile { margin-left: 12px; } }
 </style>
 
 <script>
-  const toggleBtn = document.getElementById('darkModeToggle');
   const body = document.body;
+  const toggleDesktop = document.getElementById('darkModeToggle');
+  const toggleMobile = document.getElementById('darkModeToggleMobile');
 
   // Load saved mode
-  if (localStorage.getItem('dark-mode') === 'true') {
+  if(localStorage.getItem('dark-mode') === 'true') {
     body.classList.add('dark-mode');
-    toggleBtn.textContent = '☀️';
+    if(toggleDesktop) toggleDesktop.textContent = '☀️';
+    if(toggleMobile) toggleMobile.textContent = '☀️';
   }
 
-  toggleBtn.addEventListener('click', () => {
+  function toggleDarkMode() {
     body.classList.toggle('dark-mode');
     const isDark = body.classList.contains('dark-mode');
-    toggleBtn.textContent = isDark ? '☀️' : '🌙';
+    if(toggleDesktop) toggleDesktop.textContent = isDark ? '☀️' : '🌙';
+    if(toggleMobile) toggleMobile.textContent = isDark ? '☀️' : '🌙';
     localStorage.setItem('dark-mode', isDark);
-  });
-</script>
+  }
 
-</body>
+  if(toggleDesktop) toggleDesktop.addEventListener('click', toggleDarkMode);
+  if(toggleMobile) toggleMobile.addEventListener('click', toggleDarkMode);
+</script>
