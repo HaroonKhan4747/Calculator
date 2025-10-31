@@ -493,12 +493,6 @@ footer nav a:hover {
     style="background-color: transparent; border: none;">
 </iframe>
 
-  <!-- Calculator Action Buttons -->
-<div class="ti84-buttons">
-  <button id="copyResult">Copy Result</button>
-  <button id="downloadSession">Download Full Session</button>
-</div>
-
   </section>
 
   <!-- AdSense Banner (After Calculator) -->
@@ -506,34 +500,3 @@ footer nav a:hover {
     <div class="ad-placeholder">[Ad Banner Here]</div>
   </section>
 </div>
-
-<!-- Scripts for buttons -->
-<script>
-  // --- COPY RESULT BUTTON ---
-  document.getElementById("copyResult").addEventListener("click", () => {
-    // Try to get the calculator's display text (adjust selector if needed)
-    const calcOutput = document.querySelector("#calcOutput")?.innerText 
-      || document.querySelector("#calculatorDiv")?.innerText 
-      || "No result yet";
-
-    navigator.clipboard.writeText(calcOutput)
-      .then(() => alert("✅ Result copied to clipboard!"))
-      .catch(() => alert("⚠️ Failed to copy result."));
-  });
-
-  // --- DOWNLOAD FULL SESSION BUTTON ---
-  document.getElementById("downloadSession").addEventListener("click", () => {
-    // If you log calculator actions later, replace this with your session log
-    const sessionText = document.querySelector("#calculatorDiv")?.innerText || "No session data found.";
-    
-    const blob = new Blob([sessionText], { type: "text/plain" });
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = "TI84_Session.txt";
-    link.click();
-    URL.revokeObjectURL(link.href);
-
-    alert("✅ Full session downloaded as 'TI84_Session.txt'!");
-  });
-</script>
-
