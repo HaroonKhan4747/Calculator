@@ -500,3 +500,93 @@ footer nav a:hover {
     <div class="ad-placeholder">[Ad Banner Here]</div>
   </section>
 </div>
+
+<!-- Dark Mode Toggle Button -->
+<button id="darkModeToggle" class="dark-toggle">🌙</button>
+
+<style>
+  /* Toggle Button Style */
+  .dark-toggle {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(135deg, #9b5de5, #7a3dc0);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 1.3rem;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(155, 93, 229, 0.4);
+    transition: all 0.3s ease;
+    z-index: 999;
+  }
+
+  .dark-toggle:hover {
+    box-shadow: 0 0 30px rgba(155, 93, 229, 0.6);
+    transform: scale(1.05);
+  }
+
+  /* === DARK MODE STYLES === */
+  body.dark-mode {
+    background: #0A0A0A;
+    color: #ffffff;
+  }
+
+  body.dark-mode .card,
+  body.dark-mode .container,
+  body.dark-mode .calculator,
+  body.dark-mode section {
+    background: rgba(10, 10, 10, 0.9);
+    border-radius: 18px;
+    box-shadow: 0 0 36px rgba(155, 93, 229, 0.14);
+    border: 1px solid rgba(155, 93, 229, 0.12);
+    color: #ffffff;
+  }
+
+  body.dark-mode h1,
+  body.dark-mode h2,
+  body.dark-mode h3,
+  body.dark-mode p,
+  body.dark-mode a {
+    color: #ffffff;
+  }
+
+  body.dark-mode a:hover {
+    color: #b57fff;
+  }
+
+  body.dark-mode button,
+  body.dark-mode .calculate-btn {
+    background: linear-gradient(135deg, #9b5de5, #7a3dc0);
+    color: white;
+    box-shadow: 0 0 25px rgba(155, 93, 229, 0.25);
+    border: none;
+  }
+
+  body.dark-mode button:hover,
+  body.dark-mode .calculate-btn:hover {
+    box-shadow: 0 0 35px rgba(155, 93, 229, 0.4);
+  }
+</style>
+
+<script>
+  const toggleBtn = document.getElementById('darkModeToggle');
+  const body = document.body;
+
+  // Load saved mode
+  if (localStorage.getItem('dark-mode') === 'true') {
+    body.classList.add('dark-mode');
+    toggleBtn.textContent = '☀️';
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    const isDark = body.classList.contains('dark-mode');
+    toggleBtn.textContent = isDark ? '☀️' : '🌙';
+    localStorage.setItem('dark-mode', isDark);
+  });
+</script>
+
+</body>
