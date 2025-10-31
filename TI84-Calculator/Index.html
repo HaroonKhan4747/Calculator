@@ -494,9 +494,12 @@ footer nav a:hover {
     <a href="https://mycalculatorpal.com/contact.html">Contact</a>
   </nav>
   
-  <!-- Mobile Dark Mode Toggle first -->
-  <button id="darkModeToggleMobile" class="mobile-toggle">🌙</button>
-
+ <!-- Dark Mode Toggle (both desktop and mobile use same element now) -->
+<div class="dark-toggle" id="darkToggle">
+  <span class="icon-moon">🌙</span>
+  <span class="icon-sun">☀️</span>
+</div>
+  
   <div class="hamburger" id="hamburger">☰</div>
 </header>
 
@@ -630,24 +633,33 @@ body.dark-mode .related-calculators, {
 
 <script>
   const body = document.body;
-  const toggleDesktop = document.getElementById('darkModeToggle');
-  const toggleMobile = document.getElementById('darkModeToggleMobile');
+  const darkToggle = document.getElementById('darkToggle');
 
   // Load saved mode
-  if(localStorage.getItem('dark-mode') === 'true') {
+  if (localStorage.getItem('dark-mode') === 'true') {
     body.classList.add('dark-mode');
-    if(toggleDesktop) toggleDesktop.textContent = '☀️';
-    if(toggleMobile) toggleMobile.textContent = '☀️';
   }
 
-  function toggleDarkMode() {
+  // Update toggle icons based on current mode
+  function updateToggleIcon() {
+    const iconMoon = darkToggle.querySelector('.icon-moon');
+    const iconSun = darkToggle.querySelector('.icon-sun');
+    if (body.classList.contains('dark-mode')) {
+      iconMoon.style.display = 'none';
+      iconSun.style.display = 'inline';
+    } else {
+      iconMoon.style.display = 'inline';
+      iconSun.style.display = 'none';
+    }
+  }
+
+  // Initialize icons
+  updateToggleIcon();
+
+  // Toggle dark mode on click
+  darkToggle.addEventListener('click', () => {
     body.classList.toggle('dark-mode');
-    const isDark = body.classList.contains('dark-mode');
-    if(toggleDesktop) toggleDesktop.textContent = isDark ? '☀️' : '🌙';
-    if(toggleMobile) toggleMobile.textContent = isDark ? '☀️' : '🌙';
-    localStorage.setItem('dark-mode', isDark);
-  }
-
-  if(toggleDesktop) toggleDesktop.addEventListener('click', toggleDarkMode);
-  if(toggleMobile) toggleMobile.addEventListener('click', toggleDarkMode);
+    localStorage.setItem('dark-mode', body.classList.contains('dark-mode'));
+    updateToggleIcon();
+  });
 </script>
