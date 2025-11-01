@@ -688,33 +688,41 @@ body.dark-mode .dark-toggle#darkModeToggleMobile {
     if (toggleMobile) toggleMobile.textContent = '☀️';
   }
 
-  // Main dark mode toggle
   function toggleDarkMode() {
     body.classList.toggle('dark-mode');
     const isDark = body.classList.contains('dark-mode');
     if (toggleDesktop) toggleDesktop.textContent = isDark ? '☀️' : '🌙';
     if (toggleMobile) toggleMobile.textContent = isDark ? '☀️' : '🌙';
     localStorage.setItem('dark-mode', isDark);
-    syncToggleColors(); // update toggle color immediately
+    syncToggleColors();
   }
 
-  // Sync toggle button colors with mode
   function syncToggleColors() {
+    // Header gradient stays same in both modes
     const headerGrad = 'linear-gradient(90deg, #0a0a0a, #1b1b1b)';
-    const purpleGrad = 'linear-gradient(135deg, #9b5de5, #7a3dc0)';
+
     const tD = document.getElementById('darkModeToggle');
     const tM = document.getElementById('darkModeToggleMobile');
-    const isDark = document.body.classList.contains('dark-mode');
 
-    if (tD) tD.style.background = isDark ? headerGrad : purpleGrad;
-    if (tM) tM.style.background = isDark ? headerGrad : purpleGrad;
+    if (tD) {
+      tD.style.background = headerGrad;
+      tD.style.border = 'none';
+      tD.style.boxShadow = 'none';
+    }
+
+    if (tM) {
+      tM.style.background = headerGrad;
+      tM.style.border = 'none';
+      tM.style.boxShadow = 'none';
+    }
   }
 
-  // Run on load
+  // Initial sync
   syncToggleColors();
 
-  // Attach listeners
+  // Listeners
   if (toggleDesktop) toggleDesktop.addEventListener('click', toggleDarkMode);
   if (toggleMobile) toggleMobile.addEventListener('click', toggleDarkMode);
 </script>
+
 
