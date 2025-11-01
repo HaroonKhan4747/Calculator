@@ -633,6 +633,24 @@ body.dark-mode .dark-toggle {
   box-shadow: 0 0 25px rgba(155, 93, 229, 0.25) !important;
 }
 
+  /* ----------------------------
+  Make "Related Calculators" buttons purple in dark mode
+   — paste this inside your dark-mode CSS area
+----------------------------- */
+body.dark-mode .related-links a {
+  background: linear-gradient(135deg, #9b5de5, #7a3dc0) !important;
+  color: #fff !important;
+  box-shadow: 0 6px 18px rgba(155, 93, 229, 0.18) !important;
+  border: none !important;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+body.dark-mode .related-links a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 36px rgba(155, 93, 229, 0.28) !important;
+  background: linear-gradient(135deg, #b57fff, #8a4de6) !important;
+}
+
   /* Desktop vs Mobile */
   @media (min-width: 680px) { #darkModeToggle { margin-right: 12px; } }
   @media (max-width: 679px) { #darkModeToggleMobile { margin-left: 12px; } }
