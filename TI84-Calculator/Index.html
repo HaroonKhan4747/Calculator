@@ -682,26 +682,26 @@ body.dark-mode .dark-toggle#darkModeToggleMobile {
   const toggleMobile = document.getElementById('darkModeToggleMobile');
 
   // Load saved mode
-  if(localStorage.getItem('dark-mode') === 'true') {
+  if (localStorage.getItem('dark-mode') === 'true') {
     body.classList.add('dark-mode');
-    if(toggleDesktop) toggleDesktop.textContent = '☀️';
-    if(toggleMobile) toggleMobile.textContent = '☀️';
+    if (toggleDesktop) toggleDesktop.textContent = '☀️';
+    if (toggleMobile) toggleMobile.textContent = '☀️';
   }
 
+  // Main dark mode toggle
   function toggleDarkMode() {
     body.classList.toggle('dark-mode');
     const isDark = body.classList.contains('dark-mode');
-    if(toggleDesktop) toggleDesktop.textContent = isDark ? '☀️' : '🌙';
-    if(toggleMobile) toggleMobile.textContent = isDark ? '☀️' : '🌙';
+    if (toggleDesktop) toggleDesktop.textContent = isDark ? '☀️' : '🌙';
+    if (toggleMobile) toggleMobile.textContent = isDark ? '☀️' : '🌙';
     localStorage.setItem('dark-mode', isDark);
+    syncToggleColors(); // update toggle color immediately
   }
 
-  <script>
-  // call this once to sync on page load
+  // Sync toggle button colors with mode
   function syncToggleColors() {
     const headerGrad = 'linear-gradient(90deg, #0a0a0a, #1b1b1b)';
     const purpleGrad = 'linear-gradient(135deg, #9b5de5, #7a3dc0)';
-
     const tD = document.getElementById('darkModeToggle');
     const tM = document.getElementById('darkModeToggleMobile');
     const isDark = document.body.classList.contains('dark-mode');
@@ -710,35 +710,11 @@ body.dark-mode .dark-toggle#darkModeToggleMobile {
     if (tM) tM.style.background = isDark ? headerGrad : purpleGrad;
   }
 
-  // run on load
+  // Run on load
   syncToggleColors();
 
-  // also call when toggling dark mode
-  const _origToggle = toggleDarkMode;
-  // if toggleDarkMode exists, wrap it to also sync colors
-  if (typeof toggleDarkMode === 'function') {
-    window.toggleDarkMode = function() {
-      _origToggle();
-      // tiny delay to let class toggle happen
-      setTimeout(syncToggleColors, 20);
-    };
-    // replace listeners if needed (safe to reattach)
-    const tD = document.getElementById('darkModeToggle');
-    const tM = document.getElementById('darkModeToggleMobile');
-    if (tD) {
-      tD.removeEventListener('click', toggleDarkMode);
-      tD.addEventListener('click', window.toggleDarkMode);
-    }
-    if (tM) {
-      tM.removeEventListener('click', toggleDarkMode);
-      tM.addEventListener('click', window.toggleDarkMode);
-    }
-  } else {
-    // fallback: observe class changes on body and sync
-    const ob = new MutationObserver(syncToggleColors);
-    ob.observe(document.body, { attributes: true, attributeFilter: ['class'] });
-  }
-
-  if(toggleDesktop) toggleDesktop.addEventListener('click', toggleDarkMode);
-  if(toggleMobile) toggleMobile.addEventListener('click', toggleDarkMode);
+  // Attach listeners
+  if (toggleDesktop) toggleDesktop.addEventListener('click', toggleDarkMode);
+  if (toggleMobile) toggleMobile.addEventListener('click', toggleDarkMode);
 </script>
+
