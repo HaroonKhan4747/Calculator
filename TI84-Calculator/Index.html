@@ -608,29 +608,35 @@ body.dark-mode input[type="submit"] {
     box-shadow: 0 0 35px rgba(155, 93, 229, 0.4);
   }
 
-  /* Toggle Button Styles */
-  .dark-toggle {
-    cursor: pointer;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 1.2rem;
-    background: linear-gradient(135deg, #9b5de5, #7a3dc0);
-    color: #fff;
-    box-shadow: 0 0 20px rgba(155, 93, 229, 0.4);
-    transition: all 0.3s ease;
-  }
+ /* Toggle Button Styles */
+.dark-toggle {
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+  background: linear-gradient(135deg, #9b5de5, #7a3dc0);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(155, 93, 229, 0.4);
+  transition: all 0.3s ease;
+}
 
-  .dark-toggle:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 30px rgba(155, 93, 229, 0.6);
-  }
+.dark-toggle:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(155, 93, 229, 0.6);
+}
 
-  body.dark-mode .dark-toggle {
+/* Change toggle to match header in dark mode */
+body.dark-mode .dark-toggle {
   background: linear-gradient(90deg, #0a0a0a, #1b1b1b) !important;
-  color: #fff !important;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  color: #ffffff !important;
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.12) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .dark-toggle:hover {
+  box-shadow: 0 0 28px rgba(255, 255, 255, 0.18) !important;
 }
 
   /* ----------------------------
