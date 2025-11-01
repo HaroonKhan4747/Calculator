@@ -409,6 +409,25 @@ footer nav a:hover {
   box-shadow: 0 0 15px rgba(0, 188, 212, 0.6);
 }
 
+/* Desktop toggle visible, mobile hidden */
+.desktop-toggle {
+  display: inline-block;
+}
+
+.mobile-toggle {
+  display: none;
+}
+
+/* When screen width is 768px or less (mobile) */
+@media (max-width: 768px) {
+  .desktop-toggle {
+    display: none;
+  }
+
+  .mobile-toggle {
+    display: inline-block;
+  }
+
 /* Temporary — Hide ALL ads until AdSense is approved */
 .ad-banner, .side-ad { display: none !important; }
 /* Delete the block above when AdSense is ready */
@@ -427,6 +446,9 @@ footer nav a:hover {
     <a href="https://mycalculatorpal.com/contact.html">Contact</a>
   </nav>
 
+    <!-- Mobile Dark Mode Toggle first -->
+  <button id="darkModeToggleMobile" class="mobile-toggle">🌙</button>
+  
   <div class="hamburger" id="hamburger">☰</div>
 </header>
 
