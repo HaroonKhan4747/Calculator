@@ -593,7 +593,11 @@ body.dark-mode .related-calculators {
     color: #b57fff;
   }
 
-  body.dark-mode button {
+ body.dark-mode button,
+body.dark-mode .btn,
+body.dark-mode a.button,
+body.dark-mode input[type="button"],
+body.dark-mode input[type="submit"] {
     background: linear-gradient(135deg, #9b5de5, #7a3dc0);
     color: white;
     box-shadow: 0 0 25px rgba(155, 93, 229, 0.25);
@@ -624,9 +628,9 @@ body.dark-mode .related-calculators {
   }
 
 body.dark-mode .dark-toggle {
-  background: linear-gradient(135deg, #9b5de5, #7a3dc0); /* same as header */
+  background: linear-gradient(135deg, #9b5de5, #7a3dc0) !important;
   color: #fff;
-  box-shadow: 0 0 25px rgba(155, 93, 229, 0.25);
+  box-shadow: 0 0 25px rgba(155, 93, 229, 0.25) !important;
 }
 
   /* Desktop vs Mobile */
