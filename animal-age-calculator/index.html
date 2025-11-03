@@ -1380,27 +1380,52 @@ hamburger.addEventListener('click', () => {
 </script>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
   const body = document.body;
-  const toggles = document.querySelectorAll('#darkModeToggle, #darkModeToggleMobile');
+  const toggleDesktop = document.getElementById('darkModeToggle');
+  const toggleMobile = document.getElementById('darkModeToggleMobile');
 
   // Load saved mode
   if (localStorage.getItem('dark-mode') === 'true') {
     body.classList.add('dark-mode');
-    toggles.forEach(btn => btn.textContent = '☀️');
+    if (toggleDesktop) toggleDesktop.textContent = '☀️';
+    if (toggleMobile) toggleMobile.textContent = '☀️';
   }
 
-  // Toggle function
   function toggleDarkMode() {
     body.classList.toggle('dark-mode');
     const isDark = body.classList.contains('dark-mode');
+    if (toggleDesktop) toggleDesktop.textContent = isDark ? '☀️' : '🌙';
+    if (toggleMobile) toggleMobile.textContent = isDark ? '☀️' : '🌙';
     localStorage.setItem('dark-mode', isDark);
-    toggles.forEach(btn => btn.textContent = isDark ? '☀️' : '🌙');
+    syncToggleColors();
   }
 
-  // Add click listeners
-  toggles.forEach(btn => btn.addEventListener('click', toggleDarkMode));
-});
+  function syncToggleColors() {
+    // Header gradient stays same in both modes
+    const headerGrad = 'transparent';
+
+    const tD = document.getElementById('darkModeToggle');
+    const tM = document.getElementById('darkModeToggleMobile');
+
+    if (tD) {
+      tD.style.background = headerGrad;
+      tD.style.border = 'none';
+      tD.style.boxShadow = 'none';
+    }
+
+    if (tM) {
+      tM.style.background = headerGrad;
+      tM.style.border = 'none';
+      tM.style.boxShadow = 'none';
+    }
+  }
+
+  // Initial sync
+  syncToggleColors();
+
+  // Listeners
+  if (toggleDesktop) toggleDesktop.addEventListener('click', toggleDarkMode);
+  if (toggleMobile) toggleMobile.addEventListener('click', toggleDarkMode);
 </script>
   
 </body>
