@@ -1380,30 +1380,52 @@ hamburger.addEventListener('click', () => {
 </script>
 
 <script>
-  // Simple working dark mode for both buttons
   const body = document.body;
-  const desktopBtn = document.getElementById('darkModeToggle');
-  const mobileBtn = document.getElementById('darkModeToggleMobile');
+  const toggleDesktop = document.getElementById('darkModeToggle');
+  const toggleMobile = document.getElementById('darkModeToggleMobile');
 
-  // Load saved mode on page load
+  // Load saved mode
   if (localStorage.getItem('dark-mode') === 'true') {
     body.classList.add('dark-mode');
-    if (desktopBtn) desktopBtn.textContent = '☀️';
-    if (mobileBtn) mobileBtn.textContent = '☀️';
+    if (toggleDesktop) toggleDesktop.textContent = '☀️';
+    if (toggleMobile) toggleMobile.textContent = '☀️';
   }
 
-  // Toggle function
   function toggleDarkMode() {
     body.classList.toggle('dark-mode');
     const isDark = body.classList.contains('dark-mode');
-    if (desktopBtn) desktopBtn.textContent = isDark ? '☀️' : '🌙';
-    if (mobileBtn) mobileBtn.textContent = isDark ? '☀️' : '🌙';
+    if (toggleDesktop) toggleDesktop.textContent = isDark ? '☀️' : '🌙';
+    if (toggleMobile) toggleMobile.textContent = isDark ? '☀️' : '🌙';
     localStorage.setItem('dark-mode', isDark);
+    syncToggleColors();
   }
 
-  // Add click listeners
-  if (desktopBtn) desktopBtn.onclick = toggleDarkMode;
-  if (mobileBtn) mobileBtn.onclick = toggleDarkMode;
+  function syncToggleColors() {
+    // Header gradient stays same in both modes
+    const headerGrad = 'transparent';
+
+    const tD = document.getElementById('darkModeToggle');
+    const tM = document.getElementById('darkModeToggleMobile');
+
+    if (tD) {
+      tD.style.background = headerGrad;
+      tD.style.border = 'none';
+      tD.style.boxShadow = 'none';
+    }
+
+    if (tM) {
+      tM.style.background = headerGrad;
+      tM.style.border = 'none';
+      tM.style.boxShadow = 'none';
+    }
+  }
+
+  // Initial sync
+  syncToggleColors();
+
+  // Listeners
+  if (toggleDesktop) toggleDesktop.addEventListener('click', toggleDarkMode);
+  if (toggleMobile) toggleMobile.addEventListener('click', toggleDarkMode);
 </script>
   
 </body>
