@@ -1065,6 +1065,21 @@ body.dark-mode .faq-answer {
   color: #e0e0e0;
   border-left: 3px solid rgba(155, 93, 229, 0.6); /* purple accent for consistency */
 }
+
+/* Hide mobile toggle on desktop (width ≥ 680px) */
+@media (min-width: 680px) {
+  #darkModeToggleMobile {
+    display: none !important;
+  }
+}
+
+/* Hide desktop toggle on mobile (width < 680px) */
+@media (max-width: 679px) {
+  #darkModeToggle {
+    display: none !important;
+  }
+}
+
 </style>
 
 <script>
