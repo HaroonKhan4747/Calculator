@@ -1427,6 +1427,12 @@ hamburger.addEventListener('click', () => {
   if (toggleDesktop) toggleDesktop.addEventListener('click', toggleDarkMode);
   if (toggleMobile) toggleMobile.addEventListener('click', toggleDarkMode);
 </script>
+
+<script>
+  // Remove duplicate dark mode toggles if any
+  const toggles = document.querySelectorAll('.dark-mode-toggle');
+  if (toggles.length > 1) toggles[1].remove();
+</script>
   
 </body>
 </html>
