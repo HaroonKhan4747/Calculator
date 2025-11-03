@@ -467,7 +467,7 @@ footer nav a:hover {
   <nav id="nav-menu">
 
     <!-- Desktop Dark Mode Toggle (before Home) -->
-    <button id="darkModeToggle" class="desktop-toggle">🌙</button>
+    <button id="darkModeToggle" class="desktop-toggle" data-dark-toggle>🌙</button>
     
     <a href="https://mycalculatorpal.com/">Home</a>
     <a href="https://mycalculatorpal.com/about.html">About</a>
@@ -475,7 +475,7 @@ footer nav a:hover {
   </nav>
 
    <!-- Mobile Dark Mode Toggle first -->
-  <button id="darkModeToggleMobile" class="mobile-toggle">🌙</button>
+  <<button id="darkModeToggleMobile" class="mobile-toggle" data-dark-toggle>🌙</button>
   
   <div class="hamburger" id="hamburger">☰</div>
 </header>
@@ -1381,51 +1381,30 @@ hamburger.addEventListener('click', () => {
 
 <script>
   const body = document.body;
-  const toggleDesktop = document.getElementById('darkModeToggle');
-  const toggleMobile = document.getElementById('darkModeToggleMobile');
+  const darkButtons = document.querySelectorAll('[data-dark-toggle]');
 
   // Load saved mode
-  if (localStorage.getItem('dark-mode') === 'true') {
-    body.classList.add('dark-mode');
-    if (toggleDesktop) toggleDesktop.textContent = '☀️';
-    if (toggleMobile) toggleMobile.textContent = '☀️';
+  const savedDark = localStorage.getItem('dark-mode') === 'true';
+  if (savedDark) body.classList.add('dark-mode');
+
+  function updateButtonIcons(isDark) {
+    darkButtons.forEach(btn => btn.textContent = isDark ? '☀️' : '🌙');
   }
 
   function toggleDarkMode() {
     body.classList.toggle('dark-mode');
     const isDark = body.classList.contains('dark-mode');
-    if (toggleDesktop) toggleDesktop.textContent = isDark ? '☀️' : '🌙';
-    if (toggleMobile) toggleMobile.textContent = isDark ? '☀️' : '🌙';
+    updateButtonIcons(isDark);
     localStorage.setItem('dark-mode', isDark);
-    syncToggleColors();
   }
 
-  function syncToggleColors() {
-    // Header gradient stays same in both modes
-    const headerGrad = 'transparent';
+  // Initialize buttons
+  darkButtons.forEach(btn => {
+    btn.addEventListener('click', toggleDarkMode);
+  });
 
-    const tD = document.getElementById('darkModeToggle');
-    const tM = document.getElementById('darkModeToggleMobile');
-
-    if (tD) {
-      tD.style.background = headerGrad;
-      tD.style.border = 'none';
-      tD.style.boxShadow = 'none';
-    }
-
-    if (tM) {
-      tM.style.background = headerGrad;
-      tM.style.border = 'none';
-      tM.style.boxShadow = 'none';
-    }
-  }
-
-  // Initial sync
-  syncToggleColors();
-
-  // Listeners
-  if (toggleDesktop) toggleDesktop.addEventListener('click', toggleDarkMode);
-  if (toggleMobile) toggleMobile.addEventListener('click', toggleDarkMode);
+  // Sync icons on load
+  updateButtonIcons(savedDark);
 </script>
   
 </body>
