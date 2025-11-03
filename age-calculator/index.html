@@ -770,6 +770,61 @@ body.dark-mode .dark-toggle#darkModeToggleMobile {
   /* Desktop vs Mobile */
   @media (min-width: 680px) { #darkModeToggle { margin-right: 12px; } }
   @media (max-width: 679px) { #darkModeToggleMobile { margin-left: 12px; } }
+
+/* === DARK MODE FIXES FOR CALCULATORS === */
+
+/* Make results box and input box backgrounds match page tone (not bright card) */
+body.dark-mode .calculator,
+body.dark-mode .calc-inputs,
+body.dark-mode .calc-results,
+body.dark-mode .calculator .card {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  color: #eee !important;
+}
+
+/* Style the small result <p> lines */
+body.dark-mode .calc-results p {
+  background: rgba(255, 255, 255, 0.03); /* subtle box behind text */
+  color: #e6e6e6;
+  border-left: 3px solid rgba(155, 93, 229, 0.6);
+  border-radius: 8px;
+  padding: 10px 14px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.45);
+  margin: 8px 0;
+}
+
+/* Make input fields darker */
+body.dark-mode .calc-inputs .input-field,
+body.dark-mode input[type="date"],
+body.dark-mode input[type="number"],
+body.dark-mode select {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Make "Calculate" button behave like related-links hover */
+body.dark-mode .calculate-btn {
+  background: linear-gradient(135deg, #9b5de5, #7a3dc0);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(155,93,229,0.18);
+  border: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+body.dark-mode .calculate-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 36px rgba(155,93,229,0.28);
+  background: linear-gradient(135deg, #b57fff, #8a4de6);
+}
+
+/* Remove any weird top padding/margin appearing after header */
+body.dark-mode .calculator {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
 </style>
   
 <script>
