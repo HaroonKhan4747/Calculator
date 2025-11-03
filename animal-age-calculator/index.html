@@ -1429,9 +1429,25 @@ hamburger.addEventListener('click', () => {
 </script>
 
 <script>
-  // Remove duplicate dark mode toggles if any
-  const toggles = document.querySelectorAll('.dark-mode-toggle');
-  if (toggles.length > 1) toggles[1].remove();
+document.addEventListener('DOMContentLoaded', () => {
+  // collect all candidate toggle elements (IDs and the desktop/mobile classes)
+  const candidates = Array.from(document.querySelectorAll(
+    '#darkModeToggle, #darkModeToggleMobile, .desktop-toggle, .mobile-toggle'
+  ));
+
+  // filter only <button> elements (safety) and remove duplicates, keep the first
+  const buttons = candidates.filter(el => el && el.tagName === 'BUTTON');
+
+  if (buttons.length > 1) {
+    // keep the first one, remove the rest
+    buttons.slice(1).forEach(b => b.remove());
+    console.info('Removed duplicate dark-mode toggle(s).');
+  }
+
+  // If you want, ensure the remaining button has the shared class used by CSS (.dark-toggle)
+  const keeper = buttons[0] || document.querySelector('#darkModeToggle, #darkModeToggleMobile, .desktop-toggle, .mobile-toggle');
+  if (keeper) keeper.classList.add('dark-toggle');
+});
 </script>
   
 </body>
