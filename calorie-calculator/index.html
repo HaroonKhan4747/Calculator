@@ -1503,24 +1503,68 @@ body.dark-mode a.shop-btn:hover {
   transform: translateY(-2px);
 }
 
-/* --- Dark mode toggle: properly enlarged and aligned without crowding menu --- */
+/* --- Toggle: safe 1.45x visual scale override (paste at end of stylesheet) --- */
 #darkModeToggle,
 #darkModeToggleMobile {
-  width: 38px !important;
-  height: 38px !important;
-  display: flex !important;
+  /* Make the button box big enough so scaling doesn't overlap menu items */
+  width: 58px !important;    /* ~40px * 1.45 */
+  height: 58px !important;
+  min-width: 58px !important;
+  min-height: 58px !important;
+
+  /* Keep element inside flex layout and centered */
+  display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  border-radius: 10px !important;
-  background: rgba(255, 255, 255, 0.05);
+
+  /* Remove extra internal padding that could change layout */
   padding: 0 !important;
-  margin-left: 12px !important; /* adds breathing space from menu items */
-  transform: none !important; /* no scaling to avoid layout shift */
+  line-height: 1 !important;
+
+  /* Rounded, neutral background so icon pop is consistent */
+  border-radius: 10px !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+
+  /* Give breathing room so it doesn't push/crowd nav links */
+  margin-left: 12px !important;
+  margin-right: 0 !important;
+
+  /* Prevent previous transforms from interfering */
+  transform: none !important;
 }
 
-#darkModeToggle svg,
-#darkModeToggleMobile svg {
-  transform: scale(1.45); /* enlarges the icon itself */
+/* Scale the icon/text inside the button without visually overflowing */
+#darkModeToggle > * ,
+#darkModeToggleMobile > * {
+  display: inline-block;
+  transform-origin: center center;
+  /* If inner element is an emoji/text (no span), this still targets it.
+     Font-size method is more robust for emoji/text scaling: */
+  font-size: 1.45em !important;
+  line-height: 1 !important;
+  vertical-align: middle !important;
+}
+
+/* Fallback: if you use plain text inside the button (emoji) without a child element,
+   scale the button's font-size directly */
+#darkModeToggle,
+#darkModeToggleMobile {
+  font-size: 1.45em !important;
+}
+
+/* Keep header items vertically aligned in case of changes */
+header {
+  align-items: center; /* ensures vertical centering of menu + toggle */
+}
+
+/* Keep mobile/desktop hide rules (re-apply if needed) */
+@media (min-width: 680px) {
+  #darkModeToggleMobile { display: none !important; }
+}
+@media (max-width: 679px) {
+  #darkModeToggle { display: none !important; }
 }
 </style>
 
