@@ -1344,7 +1344,7 @@ document.querySelectorAll('.faq-question').forEach(button => {
     background: linear-gradient(90deg, #0a0a0a, #1b1b1b) !important;
     color: #ffffff !important;
     box-shadow: 0 0 18px rgba(255, 255, 255, 0.12) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 50px solid rgba(255, 255, 255, 0.1);
   }
 
   body.dark-mode .dark-toggle:hover {
@@ -1501,64 +1501,6 @@ body.dark-mode a.shop-btn {
 body.dark-mode a.shop-btn:hover {
   box-shadow: 0 0 35px rgba(155, 93, 229, 0.4);
   transform: translateY(-2px);
-}
-
-/* --- Toggle: balanced 1.3x visual scale + vertical alignment fix --- */
-#darkModeToggle,
-#darkModeToggleMobile {
-  /* Slightly smaller overall size */
-  width: 52px !important;     /* was 58px */
-  height: 52px !important;
-  min-width: 52px !important;
-  min-height: 52px !important;
-
-  /* Keep inside flex layout centered */
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  padding: 0 !important;
-  line-height: 1 !important;
-
-  border-radius: 10px !important;
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-
-  margin-left: 12px !important;
-  margin-right: 0 !important;
-
-  transform: none !important;
-}
-
-/* Scale the inner icon/text */
-#darkModeToggle > *,
-#darkModeToggleMobile > * {
-  display: inline-block;
-  transform-origin: center center;
-  font-size: 1.3em !important; /* smaller scale (was 1.45em) */
-  line-height: 1 !important;
-  vertical-align: middle !important;
-}
-
-/* For emoji/text fallback */
-#darkModeToggle,
-#darkModeToggleMobile {
-  font-size: 1.3em !important;
-}
-
-/* Adjust header alignment slightly lower for menu items */
-header {
-  align-items: flex-end !important; /* lowers nav items slightly */
-  padding-top: 12px !important;     /* fine-tune overall header vertical balance */
-}
-
-/* Mobile/desktop visibility */
-@media (min-width: 680px) {
-  #darkModeToggleMobile { display: none !important; }
-}
-@media (max-width: 679px) {
-  #darkModeToggle { display: none !important; }
 }
 
 <script>
