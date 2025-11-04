@@ -1503,12 +1503,19 @@ body.dark-mode a.shop-btn:hover {
   transform: translateY(-2px);
 }
 
-/* --- Dark mode toggle enlarge override --- */
+/* --- Dark mode toggle enlarge + perfect vertical alignment for header --- */
 #darkModeToggle,
 #darkModeToggleMobile {
-  transform: scale(1.5) translateY(1px) !important;
+  transform: scale(1.45);
+  transform-origin: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 6px 10px !important;
   border-radius: 8px !important;
+  margin: 0 !important;
+  position: relative;
+  top: 1px; /* Adjust between 0–2px if still off visually */
 }
 </style>
 
