@@ -227,3 +227,165 @@ footer nav a:hover {
 .ad-placeholder {
   display: none !important;
 }
+
+/* Smooth transition for all elements */
+body, body * {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark Mode Base */
+body.dark-mode {
+  background-color: #0A0A0A;
+  color: #ffffff;
+}
+
+/* Hero Section */
+body.dark-mode .hero {
+  background: rgba(10, 10, 10, 0.95);
+  color: #ffffff;
+  text-align: center;
+  padding: 60px 20px;
+  border-radius: 16px;
+  box-shadow: 0 0 36px rgba(155, 93, 229, 0.14);
+}
+
+/* Tools / Calculator Cards */
+body.dark-mode .tools .card {
+  background: rgba(10, 10, 10, 0.9);
+  color: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 0 36px rgba(155, 93, 229, 0.14);
+  border: 1px solid rgba(155, 93, 229, 0.12);
+  padding: 20px;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+body.dark-mode .tools .card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 50px rgba(155, 93, 229, 0.25);
+}
+
+/* Links & hover */
+body.dark-mode a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+body.dark-mode a:hover {
+  color: #b57fff;
+}
+
+/* Ad Banners */
+body.dark-mode .ad-banner {
+  background: rgba(10, 10, 10, 0.85);
+  color: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 0 24px rgba(155, 93, 229, 0.12);
+}
+
+/* FAQ Section */
+body.dark-mode .faqs {
+  background: rgba(10, 10, 10, 0.9);
+  box-shadow: 0 0 36px rgba(155, 93, 229, 0.14);
+  border: 1px solid rgba(155, 93, 229, 0.12);
+  border-radius: 16px;
+  padding: 20px;
+}
+
+body.dark-mode .faq-list .faq-item h3 {
+  color: #ffffff;
+}
+
+body.dark-mode .faq-list .faq-item p {
+  color: #e0e0e0;
+}
+
+/* Footer */
+body.dark-mode footer {
+  background: rgba(10, 10, 10, 0.95);
+  color: #ffffff;
+  text-align: center;
+  padding: 20px;
+  box-shadow: 0 0 18px rgba(155, 93, 229, 0.12);
+  border-top: 1px solid rgba(155, 93, 229, 0.12);
+}
+
+body.dark-mode footer a {
+  color: #ffffff;
+}
+
+body.dark-mode footer a:hover {
+  color: #b57fff;
+}
+
+/* Buttons */
+body.dark-mode button,
+body.dark-mode .btn,
+body.dark-mode a.button,
+body.dark-mode input[type="button"],
+body.dark-mode input[type="submit"] {
+  background: linear-gradient(135deg, #9b5de5, #7a3dc0);
+  color: white;
+  box-shadow: 0 0 25px rgba(155, 93, 229, 0.25);
+  border: none;
+}
+
+body.dark-mode button:hover,
+body.dark-mode a.button:hover {
+  box-shadow: 0 0 35px rgba(155, 93, 229, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Input Fields & Dropdowns */
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 6px 10px;
+}
+
+/* Placeholder text */
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder,
+body.dark-mode select option:first-child {
+  color: #ffffff;
+  opacity: 1;
+}
+
+/* Shop buttons (if any) */
+body.dark-mode a.shop-btn {
+  background: linear-gradient(135deg, #9b5de5, #7a3dc0);
+  color: #000000;
+  border-radius: 8px;
+  padding: 10px 18px;
+  display: inline-block;
+  text-decoration: none;
+  box-shadow: 0 0 25px rgba(155, 93, 229, 0.25);
+  transition: all 0.3s ease;
+}
+
+body.dark-mode a.shop-btn:hover {
+  box-shadow: 0 0 35px rgba(155, 93, 229, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Mobile Menu */
+body.dark-mode .hamburger {
+  color: #ffffff;
+}
+
+/* Header Links */
+body.dark-mode #nav-menu a {
+  color: #ffffff;
+}
+
+body.dark-mode #nav-menu a:hover {
+  color: #b57fff;
+}
+
