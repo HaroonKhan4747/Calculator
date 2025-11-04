@@ -1205,6 +1205,28 @@ body.dark-mode .calc-inputs input::placeholder {
 </script>
 
 <script>
+  // Toggle FAQ answers
+  document.querySelectorAll(".faq-question").forEach(button => {
+    button.addEventListener("click", () => {
+      const faqItem = button.parentElement;
+      const answer = faqItem.querySelector(".faq-answer");
+
+      // Close other open FAQs
+      document.querySelectorAll(".faq-answer").forEach(a => {
+        if (a !== answer) a.style.display = "none";
+      });
+
+      // Toggle current answer
+      if (answer.style.display === "block") {
+        answer.style.display = "none";
+      } else {
+        answer.style.display = "block";
+      }
+    });
+  });
+</script>
+
+<script>
   const hamburger = document.getElementById('hamburger');
   const navMenu = document.getElementById('nav-menu');
 
