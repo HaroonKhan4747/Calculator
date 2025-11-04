@@ -874,6 +874,22 @@ body.dark-mode .faq-answer {
   color: #e0e0e0;
   border-left: 3px solid rgba(155, 93, 229, 0.6); /* purple accent for consistency */
 }
+
+/* Make calculator labels white in dark mode */
+body.dark-mode .calc-inputs label {
+  color: #ffffff !important;
+}
+
+/* Make select placeholder text white */
+body.dark-mode .calc-inputs select option:first-child {
+  color: #ffffff !important;
+}
+
+/* Make input placeholders white */
+body.dark-mode .calc-inputs input::placeholder {
+  color: #ffffff !important;
+  opacity: 1; /* ensures full brightness */
+}
 </style>
   
 <script>
