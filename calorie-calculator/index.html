@@ -1503,19 +1503,24 @@ body.dark-mode a.shop-btn:hover {
   transform: translateY(-2px);
 }
 
-/* --- Dark mode toggle enlarge + perfect vertical alignment for header --- */
+/* --- Dark mode toggle: properly enlarged and aligned without crowding menu --- */
 #darkModeToggle,
 #darkModeToggleMobile {
-  transform: scale(1.45);
-  transform-origin: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6px 10px !important;
-  border-radius: 8px !important;
-  margin: 0 !important;
-  position: relative;
-  top: 2px; /* Adjust between 0–2px if still off visually */
+  width: 38px !important;
+  height: 38px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 10px !important;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0 !important;
+  margin-left: 12px !important; /* adds breathing space from menu items */
+  transform: none !important; /* no scaling to avoid layout shift */
+}
+
+#darkModeToggle svg,
+#darkModeToggleMobile svg {
+  transform: scale(1.45); /* enlarges the icon itself */
 }
 </style>
 
