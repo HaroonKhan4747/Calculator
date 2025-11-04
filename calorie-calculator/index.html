@@ -1486,6 +1486,24 @@ body.dark-mode .calc-inputs input::placeholder {
   color: #ffffff !important;
   opacity: 1; /* ensures full brightness */
 }
+
+/* Dark mode for shop buttons */
+body.dark-mode a.shop-btn {
+  background: linear-gradient(135deg, #9b5de5, #7a3dc0); /* purple gradient */
+  color: #000000; /* black text */
+  box-shadow: 0 0 25px rgba(155, 93, 229, 0.25);
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  display: inline-block;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+body.dark-mode a.shop-btn:hover {
+  box-shadow: 0 0 35px rgba(155, 93, 229, 0.4);
+  transform: translateY(-2px);
+}
 </style>
 
 <script>
