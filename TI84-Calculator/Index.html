@@ -928,28 +928,53 @@ footer nav a:hover {
   </nav>
 </footer>
 
-  <style>
+ <style>
   /* Smooth transition for all elements */
   body, body * {
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 
-/* Dark Mode Styles */
-body.dark-mode {
-  background-color: #0A0A0A;
-  color: #ffffff;
-}
+  /* Dark Mode Base */
+  body.dark-mode {
+    background-color: #0A0A0A;
+    color: #ffffff;
+  }
 
-body.dark-mode .blog,
-body.dark-mode .faqs,
-body.dark-mode .related-calculators {
-  background: rgba(10, 10, 10, 0.9);
-  border-radius: 18px;
-  box-shadow: 0 0 36px rgba(155, 93, 229, 0.14);
-  border: 1px solid rgba(155, 93, 229, 0.12);
-  color: #ffffff;
-}
+  /* Glowing Cards */
+  body.dark-mode .blog,
+  body.dark-mode .faqs,
+  body.dark-mode .related-calculators,
+  body.dark-mode .card.calc-results,
+  body.dark-mode .card.calc-inputs,
+  body.dark-mode .input-field {
+    background: rgba(10, 10, 10, 0.9);
+    border-radius: 18px;
+    box-shadow: 0 0 36px rgba(155, 93, 229, 0.14);
+    border: 1px solid rgba(155, 93, 229, 0.12);
+    color: #ffffff;
+  }
 
+  /* Keep calculator inner cards glowing */
+  body.dark-mode .calc-inputs,
+  body.dark-mode .calc-results {
+    background: rgba(10, 10, 10, 0.9) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 0 36px rgba(155, 93, 229, 0.14) !important;
+    border: 1px solid rgba(155, 93, 229, 0.12) !important;
+    color: #ffffff !important;
+    padding: 24px !important;
+  }
+
+  /* Remove outer full-width card effect */
+  body.dark-mode .calculator {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+
+  /* Texts */
   body.dark-mode h1,
   body.dark-mode h2,
   body.dark-mode h3,
@@ -962,11 +987,12 @@ body.dark-mode .related-calculators {
     color: #b57fff;
   }
 
- body.dark-mode button,
-body.dark-mode .btn,
-body.dark-mode a.button,
-body.dark-mode input[type="button"],
-body.dark-mode input[type="submit"] {
+  /* Buttons */
+  body.dark-mode button,
+  body.dark-mode .btn,
+  body.dark-mode a.button,
+  body.dark-mode input[type="button"],
+  body.dark-mode input[type="submit"] {
     background: linear-gradient(135deg, #9b5de5, #7a3dc0);
     color: white;
     box-shadow: 0 0 25px rgba(155, 93, 229, 0.25);
@@ -977,72 +1003,156 @@ body.dark-mode input[type="submit"] {
     box-shadow: 0 0 35px rgba(155, 93, 229, 0.4);
   }
 
- /* Toggle Button Styles */
-.dark-toggle {
-  cursor: pointer;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 1.2rem;
-  background: linear-gradient(135deg, #9b5de5, #7a3dc0);
-  color: #fff;
-  box-shadow: 0 0 20px rgba(155, 93, 229, 0.4);
-  transition: all 0.3s ease;
-}
+  /* Toggle Button */
+  .dark-toggle {
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    background: linear-gradient(135deg, #9b5de5, #7a3dc0);
+    color: #fff;
+    box-shadow: 0 0 20px rgba(155, 93, 229, 0.4);
+    transition: all 0.3s ease;
+  }
 
-.dark-toggle:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 30px rgba(155, 93, 229, 0.6);
-}
+  .dark-toggle:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(155, 93, 229, 0.6);
+  }
 
-/* Change toggle to match header in dark mode */
-body.dark-mode .dark-toggle {
-  background: linear-gradient(90deg, #0a0a0a, #1b1b1b) !important;
-  color: #ffffff !important;
-  box-shadow: 0 0 18px rgba(255, 255, 255, 0.12) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
+  /* Match header gradient */
+  body.dark-mode .dark-toggle {
+    background: linear-gradient(90deg, #0a0a0a, #1b1b1b) !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 18px rgba(255, 255, 255, 0.12) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
 
-body.dark-mode .dark-toggle:hover {
-  box-shadow: 0 0 28px rgba(255, 255, 255, 0.18) !important;
-}
+  body.dark-mode .dark-toggle:hover {
+    box-shadow: 0 0 28px rgba(255, 255, 255, 0.18) !important;
+  }
 
-  /* ----------------------------
-  Make "Related Calculators" buttons purple in dark mode
-   — paste this inside your dark-mode CSS area
------------------------------ */
-body.dark-mode .related-links a {
-  background: linear-gradient(135deg, #9b5de5, #7a3dc0) !important;
-  color: #fff !important;
-  box-shadow: 0 6px 18px rgba(155, 93, 229, 0.18) !important;
-  border: none !important;
-  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-}
+  /* Related Calculators Buttons */
+  body.dark-mode .related-links a {
+    background: linear-gradient(135deg, #9b5de5, #7a3dc0) !important;
+    color: #fff !important;
+    box-shadow: 0 6px 18px rgba(155, 93, 229, 0.18) !important;
+    border: none !important;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  }
 
-body.dark-mode .related-links a:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 36px rgba(155, 93, 229, 0.28) !important;
-  background: linear-gradient(135deg, #b57fff, #8a4de6) !important;
-}
+  body.dark-mode .related-links a:hover {
+    box-shadow: 0 0 35px rgba(155, 93, 229, 0.4);
+    transform: translateY(-2px);
+  }
 
-/* STRONG OVERRIDE for the toggle background to match header gradient */
-#darkModeToggle.dark-toggle,
-#darkModeToggleMobile.dark-toggle,
-body.dark-mode #darkModeToggle.dark-toggle,
-body.dark-mode #darkModeToggleMobile.dark-toggle,
-body.dark-mode .dark-toggle#darkModeToggle,
-body.dark-mode .dark-toggle#darkModeToggleMobile {
-  /* header gradient you gave: */
-  background: linear-gradient(90deg, #0a0a0a, #1b1b1b) !important;
-  color: #ffffff !important;
-  box-shadow: 0 0 14px rgba(0,0,0,0.45) !important;
-  border: 50px solid rgba(255,255,255,0.04) !important;
-}
-    
-  /* Desktop vs Mobile */
+  /* Toggle Strong Override */
+  #darkModeToggle.dark-toggle,
+  #darkModeToggleMobile.dark-toggle,
+  body.dark-mode #darkModeToggle.dark-toggle,
+  body.dark-mode #darkModeToggleMobile.dark-toggle,
+  body.dark-mode .dark-toggle#darkModeToggle,
+  body.dark-mode .dark-toggle#darkModeToggleMobile {
+    background: linear-gradient(90deg, #0a0a0a, #1b1b1b) !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 14px rgba(0,0,0,0.45) !important;
+    border: 50px solid rgba(255,255,255,0.04) !important;
+  }
+
+  /* FAQ Fix: make open sections dark */
+  body.dark-mode details,
+  body.dark-mode details[open] {
+    background: rgba(10, 10, 10, 0.95) !important;
+    color: #fff !important;
+    border-radius: 12px;
+    box-shadow: 0 0 24px rgba(155, 93, 229, 0.1);
+    border: 1px solid rgba(155, 93, 229, 0.15);
+    padding: 12px 16px;
+  }
+
+  body.dark-mode summary:hover {
+    color: #b57fff !important;
+  }
+
+  /* Calculate button consistent with related links */
+  body.dark-mode .calculate-btn {
+    background: linear-gradient(135deg, #9b5de5, #7a3dc0);
+    color: #fff;
+    box-shadow: 0 6px 18px rgba(155,93,229,0.18);
+    border: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  body.dark-mode .calculate-btn:hover {
+    box-shadow: 0 0 35px rgba(155, 93, 229, 0.4);
+    transform: translateY(-2px);
+ }
+
+  /* Input Fields */
+  body.dark-mode .calc-inputs .input-field,
+  body.dark-mode input[type="date"],
+  body.dark-mode input[type="number"],
+  body.dark-mode select {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  /* Result Paragraph Styling */
+  body.dark-mode .calc-results p {
+    background: rgba(255, 255, 255, 0.03);
+    color: #e6e6e6;
+    border-left: 3px solid rgba(155, 93, 229, 0.6);
+    border-radius: 8px;
+    padding: 10px 14px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.45);
+    margin: 8px 0;
+  }
+
+  /* Responsive toggle spacing */
   @media (min-width: 680px) { #darkModeToggle { margin-right: 12px; } }
   @media (max-width: 679px) { #darkModeToggleMobile { margin-left: 12px; } }
+
+ /* 🌙 Dark Mode Styles for FAQs */
+body.dark-mode .faqs {
+  background: rgba(10, 10, 10, 0.9);
+  box-shadow: 0 0 36px rgba(155, 93, 229, 0.14); /* purple glow to match calculator */
+  border: 1px solid rgba(155, 93, 229, 0.12);
+}
+
+body.dark-mode .faq-question {
+  background: rgba(10, 10, 10, 0.75);
+  color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+}
+
+body.dark-mode .faq-question:hover {
+  background: rgba(155, 93, 229, 0.08);
+}
+
+body.dark-mode .faq-answer {
+  background: rgba(10, 10, 10, 0.85);
+  color: #e0e0e0;
+  border-left: 3px solid rgba(155, 93, 229, 0.6); /* purple accent for consistency */
+}
+
+/* Make calculator labels white in dark mode */
+body.dark-mode .calc-inputs label {
+  color: #ffffff !important;
+}
+
+/* Make select placeholder text white */
+body.dark-mode .calc-inputs select option:first-child {
+  color: #ffffff !important;
+}
+
+/* Make input placeholders white */
+body.dark-mode .calc-inputs input::placeholder {
+  color: #ffffff !important;
+  opacity: 1; /* ensures full brightness */
+}
 </style>
 
 <script>
