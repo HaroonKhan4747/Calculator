@@ -1306,6 +1306,22 @@ body.dark-mode .calc-inputs input::placeholder {
   color: #ffffff !important;
   opacity: 1; /* ensures full brightness */
 }
+
+/* Dark mode for animal select dropdown */
+body.dark-mode .calc-inputs select {
+  background-color: rgba(10, 10, 10, 0.95); /* dark background */
+  color: #ffffff; /* white text */
+  border: 1px solid rgba(155, 93, 229, 0.4); /* subtle border */
+  border-radius: 8px;
+  padding: 6px 10px;
+  box-shadow: 0 0 12px rgba(155, 93, 229, 0.1);
+}
+
+/* Optional: dark mode for options when dropdown is open (some browsers) */
+body.dark-mode .calc-inputs select option {
+  background-color: #0a0a0a;
+  color: #ffffff;
+}
 </style>
   
 <script>
