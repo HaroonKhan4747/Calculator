@@ -541,14 +541,9 @@ footer nav a:hover {
     .blog p { line-height: 1.6; color: inherit; }
     .blog h2 { margin-top: 20px; color: inherit; }
     .blog h3 { margin-top: 14px; color: inherit; }
-    .blog .step-card {
-      border: 1px solid #ff6600;
-      border-radius: 10px;
-      padding: 14px;
-      margin: 12px 0;
-      background-color: #fff8f0;
-    }
-    .blog .step-card h3 { margin: 0 0 8px 0; color: #ff6600; }
+    .blog .steps-container { display: flex; flex-wrap: wrap; gap: 12px; margin: 12px 0; }
+    .blog .step-card { flex: 1 1 30%; border: 1px solid #ff6600; border-radius: 10px; padding: 14px; background-color: #fff8f0; min-width: 200px; }
+    .blog .step-card h3 { margin: 0 0 8px 0; color: #ff6600; font-size: 1rem; }
     .blog table { width: 100%; border-collapse: collapse; margin: 12px 0; }
     .blog table th, .blog table td { border: 1px solid rgba(0,0,0,0.08); padding: 10px; text-align: left; }
     body.dark-mode .blog a { color: #e6e6ff; }
@@ -557,8 +552,9 @@ footer nav a:hover {
   </style>
 
   <h1>📝 How to Make a Table on TI-84 Plus (Super Simple Guide)</h1>
-  <p>The Table feature on the TI-84 Plus is one of the fastest ways to see how a function behaves. Whether you’re graphing, checking homework, or just exploring math, a table shows instant x–y values for any equation you enter.</p>
-  <p>This guide walks you step by step in a clean, human-friendly format that anyone can follow—even beginners.</p>
+  <p>The Table feature on the TI-84 Plus is one of the fastest ways to see how a function behaves. Whether you’re graphing, checking homework, exploring math, or analyzing patterns, the table shows instant x–y values for any equation you enter. It’s especially helpful for algebra, statistics, regression analysis, and exam preparation.</p>
+
+  <p>In this guide, we’ll break everything down step by step. By the end, you’ll be able to use the table like a pro and get insights from any function in seconds, even if you’re a beginner.</p>
 
   <!-- Table of Contents -->
   <nav class="toc" aria-label="Article table of contents">
@@ -574,82 +570,90 @@ footer nav a:hover {
     </ul>
   </nav>
 
-  <!-- Step 1 -->
-  <div class="step-card" id="step1">
-    <h3>Step 1: Enter Your Function in the Y= Menu</h3>
-    <p>Before you can see a table, you need to enter a function:</p>
-    <ul>
-      <li>Press <strong>Y=</strong></li>
-      <li>Move to <strong>Y1</strong></li>
-      <li>Type your function (example: <code>x^2 + 3x</code>)</li>
-      <li>Press <strong>ENTER</strong></li>
-      <li>You can enter multiple functions in <strong>Y2, Y3</strong>, etc. The table will display all of them automatically.</li>
-    </ul>
+  <!-- Steps Side by Side -->
+  <div class="steps-container">
+
+    <!-- Step 1 -->
+    <div class="step-card" id="step1">
+      <h3>Step 1: Enter Your Function in Y= Menu</h3>
+      <p>Press <strong>Y=</strong>, select <strong>Y1</strong>, type your function (e.g., <code>x^2 + 3x</code>), and press <strong>ENTER</strong>. You can enter multiple functions in <strong>Y2, Y3</strong>, etc., all of which will appear in the table.</p>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step-card" id="step2">
+      <h3>Step 2: Open the Table</h3>
+      <p>Press <strong>2ND</strong> + <strong>GRAPH</strong> to open the <strong>TABLE</strong>. The x-values appear on the left, y-values on the right. This instant display helps visualize function behavior quickly.</p>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="step-card" id="step3">
+      <h3>Step 3: Adjust Table Settings</h3>
+      <p>Press <strong>2ND</strong> + <strong>WINDOW</strong> (TBLSET). Set <strong>TblStart</strong> for where the table begins and <strong>ΔTbl</strong> for step size (1 for standard, 0.1 for fine, 5 for large jumps). Press <strong>TABLE</strong> again to see changes.</p>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="step-card" id="step4">
+      <h3>Step 4: AUTO vs ASK Mode</h3>
+      <p>In TBLSET, choose <strong>AUTO</strong> (x-values filled automatically) or <strong>ASK</strong> (enter specific x-values manually). Use ASK for points like x = 2.5, AUTO for general function exploration.</p>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="step-card" id="step5">
+      <h3>Step 5: Edit or Clear a Function</h3>
+      <p>Go to <strong>Y=</strong>, press <strong>CLEAR</strong> on old function, type a new one, and return to <strong>TABLE</strong>. Easy for switching problems or exploring multiple equations.</p>
+    </div>
+
+    <!-- Step 6 -->
+    <div class="step-card" id="step6">
+      <h3>Step 6: What You Can Do With the Table</h3>
+      <p>Use the table to:</p>
+      <ul>
+        <li>✔ Find roots (y-values near 0)</li>
+        <li>✔ Check homework answers quickly</li>
+        <li>✔ Compare multiple functions side by side (Y1 vs Y2)</li>
+        <li>✔ Explore patterns in algebra, sequences, statistics, regression, and graphs</li>
+      </ul>
+    </div>
+
+    <!-- Step 7 -->
+    <div class="step-card" id="step7">
+      <h3>Step 7: Practice Using Our Online TI-84</h3>
+      <p>Follow these steps on our free online TI-84 Plus emulator — no physical calculator needed. Replicate every menu and button.</p>
+      <p>👉 <a href="https://mycalculatorpal.com/ti84-calculator" target="_blank">Try the TI-84 Online Now</a></p>
+    </div>
   </div>
 
-  <!-- Step 2 -->
-  <div class="step-card" id="step2">
-    <h3>Step 2: Open the Table</h3>
-    <p>To see your function values:</p>
-    <ul>
-      <li>Press <strong>2ND</strong></li>
-      <li>Press <strong>GRAPH</strong> (this opens <strong>TABLE</strong>)</li>
-      <li>You’ll see x-values on the left and the corresponding y-values on the right.</li>
-    </ul>
-  </div>
+  <!-- Additional Detailed Content -->
+  <h2>🔹 Understanding Table Behavior</h2>
+  <p>When you enter a function, the TI-84 Table lets you instantly see how y-values respond to x-values. This is critical for understanding:</p>
+  <ul>
+    <li>Linear, quadratic, cubic, and trigonometric functions</li>
+    <li>Patterns in sequences and series</li>
+    <li>Statistical computations like mean, median, and linear regression (LSRL)</li>
+    <li>Exam preparation with immediate result validation</li>
+  </ul>
 
-  <!-- Step 3 -->
-  <div class="step-card" id="step3">
-    <h3>Step 3: Adjust the Table Settings (TblStart & ΔTbl)</h3>
-    <p>Control how your table behaves:</p>
-    <ul>
-      <li>Press <strong>2ND</strong> then <strong>WINDOW</strong> (opens <strong>TBLSET</strong>)</li>
-      <li><strong>TblStart</strong>: set where the table begins (0, -10, etc.)</li>
-      <li><strong>ΔTbl</strong>: step size for x-values (1 = standard, 0.1 = fine, 5 = large)</li>
-      <li>After adjusting, press <strong>TABLE</strong> again to see updated values.</li>
-    </ul>
-  </div>
+  <p>Using the table, you can also experiment with coefficients and constants to see real-time changes in outputs. This hands-on approach helps strengthen intuition for algebra and calculus concepts.</p>
 
-  <!-- Step 4 -->
-  <div class="step-card" id="step4">
-    <h3>Step 4: AUTO vs ASK Mode</h3>
-    <p>Decide how x-values are entered:</p>
-    <ul>
-      <li><strong>AUTO:</strong> Calculator fills x-values automatically (ideal for most students)</li>
-      <li><strong>ASK:</strong> You type x-values manually. Great for specific points like x = 2.5</li>
-      <li>To use ASK mode: switch Indpnt → ASK, press TABLE, type x-value, press ENTER</li>
-    </ul>
-  </div>
+  <h2>🔹 Tips to Maximize Your Table Use</h2>
+  <ul>
+    <li>Always check your <strong>ΔTbl</strong> to avoid skipping important values.</li>
+    <li>For exams, use <strong>ASK mode</strong> to focus only on required x-values.</li>
+    <li>Label functions clearly in Y= menu if comparing multiple equations.</li>
+    <li>Use our online TI-84 Plus emulator for practice before physical exam settings.</li>
+    <li>Explore negative x-values and decimals to catch all relevant outputs.</li>
+  </ul>
 
-  <!-- Step 5 -->
-  <div class="step-card" id="step5">
-    <h3>Step 5: Editing or Clearing a Function</h3>
-    <ul>
-      <li>Press <strong>Y=</strong></li>
-      <li>Press <strong>CLEAR</strong> on the old function</li>
-      <li>Type your new equation</li>
-      <li>Return to <strong>TABLE</strong> to see the updated table</li>
-    </ul>
-  </div>
+  <h2>🔹 Common Student Mistakes</h2>
+  <ul>
+    <li>Forgetting to adjust TblStart when expecting negative x-values.</li>
+    <li>Confusing AUTO vs ASK mode — leads to unexpected results.</li>
+    <li>Not clearing previous functions, causing cluttered tables.</li>
+    <li>Overlooking step size (ΔTbl), which can skip critical points for analysis.</li>
+  </ul>
 
-  <!-- Step 6 -->
-  <div class="step-card" id="step6">
-    <h3>Step 6: What You Can Do With the TI-84 Table</h3>
-    <ul>
-      <li>✔ Find roots of functions (look for y-values near 0)</li>
-      <li>✔ Check homework answers quickly</li>
-      <li>✔ Compare multiple functions side by side (Y1 vs Y2)</li>
-      <li>✔ Explore patterns in algebra, sequences, and graphs</li>
-    </ul>
-    <p>The table is simple but powerful — use it to understand any function better.</p>
-  </div>
-
-  <!-- Step 7 -->
-  <div class="step-card" id="step7">
-    <h3>Step 7: Practice Using Our TI-84 Online Calculator</h3>
-    <p>Follow every step above using our free online version — no physical calculator needed:</p>
-    <p>👉 <a href="https://mycalculatorpal.com/ti84-calculator" target="_blank">Try the TI-84 Online Now</a></p>
-  </div>
+  <h2>🔹 Why TI-84 Table Is Essential for Learning</h2>
+  <p>Whether solving equations, graphing functions, or preparing for exams, the table feature accelerates understanding. Students can quickly test hypotheses, verify homework, and analyze trends without manual calculation. Using our online TI-84, anyone can gain the same experience without owning the calculator physically.</p>
 
   <!-- Smooth Scroll + Highlight Script -->
   <script>
@@ -669,3 +673,4 @@ footer nav a:hover {
     });
   </script>
 </section>
+
