@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>TI-84 Calculator Online – Free Graphing & Emulator Tool | MyCalculatorPal</title>
+ <meta name="description" content="Try our free TI-84 Calculator Online for graphing, equations, and stats. Works like the TI-84 Plus CE—no download or sign-up needed.">
+
+   <!-- ✅ Paste your Google AdSense verification meta tag here -->
+  <meta name="google-adsense-account" content="ca-pub-8850694506252841">
+
+   <!-- Favicon for modern browsers -->
+<link rel="icon" type="image/png" href="/favicon.png">
+
+<!-- Favicon for older browsers / fallback -->
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <!-- Canonical URL -->
+  <link rel="canonical" href="https://mycalculatorpal.com/ti84-calculator/Index.html" />
+
+    <!-- Robots Meta Tag -->
+  <meta name="robots" content="index, follow" />
+
+  <!-- Optional SEO Enhancements -->
+  <meta name="author" content="MyCalculatorPal">
+  <meta name="keywords" content="TI-84 calculator online, TI 84 Plus graphing calculator, TI-84 Plus CE emulator, free TI-84 calculator, online graphing calculator, TI 83 84 Plus calculator, TI-84 calculator for students, Texas Instruments TI 84 online, TI-84 Plus CE graphing tool, TI-84 emulator online">
+  
+   <!-- ✅ Add this line below -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+ <style>
+/* Extra CSS specific to this calculator (main style in style.css handles general styling) */
+
+/* General Reset and Fonts */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', 'Roboto', sans-serif;
+  background: #f4f6f9;
+  color: #222;
+  line-height: 1.7;
+  text-align: center;
+}
+
+/* Show desktop toggle only on screens wider than 680px */
+.desktop-toggle {
+  display: inline-block;
+  margin-right: 12px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+}
+
+/* Hide mobile toggle on desktop */
+.mobile-toggle {
+  display: none;
+}
+
+/* Mobile styles */
+@media (max-width: 680px) {
+  .desktop-toggle {
+    display: none;
+  }
+  .mobile-toggle {
+    display: inline-block;
+    margin-left: 10px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+  }
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  background: linear-gradient(90deg, #0a0a0a, #1b1b1b);
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  position: relative;
+  z-index: 1001; /* keeps header above side ads */
+}
+
+header .logo a {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+
+header nav {
+  display: flex;
+  gap: 18px;
+}
+
+header nav a {
+  color: #eee;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+header nav a:hover {
+  text-decoration: underline;
+  color: #00bcd4;
+  text-shadow: 0 0 8px #00bcd4;
+}
+
+/* Hero Section */
+.hero {
+  padding: 60px 20px;
+}
+
+.hero h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.6rem;
+  margin-bottom: 10px;
+  color: #111;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  color: #555;
+}
+  
+/* Calculator Section – TI-84 Specific Adjustments */
+.calculator .card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 14px;
+  padding: 15px 15px;
+  width: 100%;
+  max-width: 500px; /* slightly smaller for iframe */
+  margin: 35px auto;
+  text-align: center; /* center iframe */
+  box-shadow: 0 0 20px rgba(0, 188, 212, 0.2);
+  transition: all 0.3s ease;
+}
+
+.calculator .card:hover {
+  box-shadow: 0 0 25px rgba(0, 188, 212, 0.35);
+  transform: translateY(-3px);
+}
+
+/* TI-84 iframe styling */
+.calculator .card iframe {
+  width: 100%;
+  height: 720px; /* match TI-84 emulator height */
+  border: 0;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+/* Results Box */
+.calc-results {
+  background: rgba(255,255,255,0.97);
+  border-radius: 14px;
+  padding: 25px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 0 20px rgba(0, 188, 212, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 35px auto;
+  text-align: left;
+}
+
+.calc-results h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #111;
+}
+
+.calc-results p {
+  background: #f7f9fb;
+  border-radius: 10px;
+  padding: 12px 15px;
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Spinner Loader */
+#spinner {
+  display: none;
+  margin: 20px auto;
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #111;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* TI-84 Action Buttons */
+.ti84-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.ti84-buttons button {
+  padding: 12px 25px;
+  background: linear-gradient(90deg, #00bcd4, #0097a7);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+  transition: all 0.3s ease;
+}
+
+.ti84-buttons button:hover {
+  background: linear-gradient(90deg, #0097a7, #007c91);
+  box-shadow: 0 0 20px rgba(0, 188, 212, 0.6);
+  transform: translateY(-2px);
+}
+
+/* Ad Banners (inline, in-page) */
+.ad-banner {
+  text-align: center;
+  padding: 25px 0;
+}
+
+.ad-placeholder {
+  display: inline-block;
+  background: #f0f0f0;
+  padding: 40px;
+  border: 1px dashed #ccc;
+  font-size: 0.9rem;
+  color: #888;
+  border-radius: 12px;
+}
+
+/* ✅ Side Ads (fixed on desktop) */
+.side-ad {
+  position: fixed;
+  top: 80px; /* below header */
+  width: auto; /* let AdSense control width */
+  max-width: 160px; /* standard skyscraper */
+  min-height: 600px; /* standard height */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 1000;
+}
+
+.side-ad.left-ad {
+  left: 0;
+}
+
+.side-ad.right-ad {
+  right: 0;
+}
+
+/* Blog Section */
+.blog {
+  padding: 45px 25px;
+  max-width: 820px;
+  margin: 40px auto;
+  background: rgba(255,255,255,0.95);
+  border-radius: 14px;
+  box-shadow: 0 0 20px rgba(0, 188, 212, 0.2);
+  text-align: left;
+}
+
+.blog h2 {
+  margin-bottom: 20px;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+}
+
+.blog p {
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+/* FAQs Section */
+.faqs {
+  padding: 45px 25px;
+  max-width: 820px;
+  margin: 40px auto;
+  background: rgba(255,255,255,0.95);
+  border-radius: 14px;
+  box-shadow: 0 0 20px rgba(0, 188, 212, 0.2);
+}
+
+.faqs h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #111;
+}
+
+.faq-item {
+  margin-bottom: 18px;
+}
+
+.faq-question {
+  width: 100%;
+  padding: 14px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #fff;
+  text-align: left;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+.faq-question:hover {
+  background: #e0f7fa;
+  box-shadow: 0 0 10px rgba(0, 188, 212, 0.3);
+}
+
+.faq-answer {
+  padding: 12px 16px;
+  margin-top: 5px;
+  background: #f7f9fb;
+  border-left: 3px solid #00bcd4;
+  border-radius: 8px;
+  display: none;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #000;
+  color: #fff;
+  font-size: 0.85rem;
+  position: relative;
+  z-index: 1001; /* keep above ads */
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 25px;
+  background: #0a0a0a;
+  color: #fff;
+  font-size: 0.9rem;
+  letter-spacing: 0.3px;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+}
+
+footer nav a {
+  color: #ddd;
+  margin: 0 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+footer nav a:hover {
+  color: #00bcd4;
+  text-shadow: 0 0 6px #00bcd4;
+}
+  
+/* Hide hamburger in desktop */
+.hamburger {
+  display: none;
+}
+
+/* Mobile View */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  header nav {
+    display: none;
+    flex-direction: column;
+    background: #000;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    padding: 10px;
+    text-align: center;
+  }
+
+  header nav.active {
+    display: flex;
+  }
+
+  .calculator .card,
+  .calc-results,
+  .blog,
+  .faqs,
+  .ad-placeholder {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    max-width: 100%;
+    width: 90%;
+    display: block;
+    box-sizing: border-box;
+  }
+
+  img, iframe {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  /* ✅ Hide side ads on mobile */
+  .side-ad {
+    display: none !important;
+  }
+}
+
+/* Hide the unwanted footer/disclaimer under the TI-84 iframe */
+.calculator iframe {
+  display: block;
+  width: 100%;
+  height: 705px; /* slightly less than full height to crop bottom text */
+  border: none;
+  overflow: hidden;
+  clip-path: inset(0 0 30px 0); /* hides bottom 30px (adjust if needed) */
+}
+
+/* Related Calculators Section */
+.related-calculators {
+  padding: 45px 25px;
+  max-width: 820px;
+  margin: 40px auto;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 14px;
+  box-shadow: 0 0 20px rgba(0, 188, 212, 0.2);
+  text-align: center;
+}
+
+.related-calculators h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.7rem;
+  margin-bottom: 25px;
+  color: #111;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.related-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.related-links a {
+  background: linear-gradient(90deg, #00bcd4, #0097a7);
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  padding: 12px 25px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(0, 188, 212, 0.3);
+}
+
+.related-links a:hover {
+  background: linear-gradient(90deg, #0097a7, #007c91);
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(0, 188, 212, 0.6);
+}
+
+/* 🚫 TEMPORARY — Hide ALL ads until AdSense is approved */
+.ad-banner,
+.side-ad {
+  display: none !important;
+}
+/* ✅ Delete the block above when AdSense is ready */
+</style>
+
+<!-- Header -->
+<body>
+<header>
+  <div class="logo"><a href="https://mycalculatorpal.com/">MyCalculatorPal</a></div>
+
+  <nav id="nav-menu">
+    <!-- Desktop Dark Mode Toggle (before Home) -->
+    <button id="darkModeToggle" class="desktop-toggle">🌙</button>
+
+    <a href="https://mycalculatorpal.com/">Home</a>
+    <a href="https://mycalculatorpal.com/about.html">About</a>
+    <a href="https://mycalculatorpal.com/contact.html">Contact</a>
+  </nav>
+  
+  <!-- Mobile Dark Mode Toggle first -->
+  <button id="darkModeToggleMobile" class="mobile-toggle">🌙</button>
+
+  <div class="hamburger" id="hamburger">☰</div>
+</header>
+
+<!-- Side Ads -->
+<div class="side-ad left-ad">
+  <div class="ad-placeholder">[Left Ad]</div>
+</div>
+<div class="side-ad right-ad">
+  <div class="ad-placeholder">[Right Ad]</div>
+</div>
+
+<!-- Wrap main content -->
+<div class="page-content">
+
+<!-- TI-84 Table Function Blog Section -->
+<section class="blog">
+  <style>
+    .blog a { color: #333; font-weight: 600; text-decoration: underline; }
+    .blog a:hover { color: #ff6600; }
+    .blog .highlighted { background-color: #fff3cd; transition: background-color 1.5s ease; }
+    .blog .toc { margin-bottom: 18px; text-align: left; }
+    .blog .toc h3 { margin-bottom: 10px; }
+    .blog .toc ul { list-style: disc; margin-left: 20px; }
+    .blog h1 { font-family: 'Montserrat', sans-serif; font-size: 2rem; margin-top: 8px; }
+    .blog p { line-height: 1.6; color: inherit; }
+    .blog h2 { margin-top: 20px; color: inherit; }
+    .blog h3 { margin-top: 14px; color: inherit; }
+    .blog .step-card {
+      border: 1px solid #ff6600;
+      border-radius: 10px;
+      padding: 14px;
+      margin: 12px 0;
+      background-color: #fff8f0;
+    }
+    .blog .step-card h3 { margin: 0 0 8px 0; color: #ff6600; }
+    .blog table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+    .blog table th, .blog table td { border: 1px solid rgba(0,0,0,0.08); padding: 10px; text-align: left; }
+    body.dark-mode .blog a { color: #e6e6ff; }
+    body.dark-mode .blog table th, body.dark-mode .blog table td { border-color: rgba(255,255,255,0.06); }
+    body.dark-mode .blog .step-card { background-color: #4a3b2d; border-color: #ffb366; color: #fff; }
+  </style>
+
+  <h1>📝 How to Make a Table on TI-84 Plus (Super Simple Guide)</h1>
+  <p>The Table feature on the TI-84 Plus is one of the fastest ways to see how a function behaves. Whether you’re graphing, checking homework, or just exploring math, a table shows instant x–y values for any equation you enter.</p>
+  <p>This guide walks you step by step in a clean, human-friendly format that anyone can follow—even beginners.</p>
+
+  <!-- Table of Contents -->
+  <nav class="toc" aria-label="Article table of contents">
+    <h3>Quick Navigation</h3>
+    <ul>
+      <li><a href="#step1">Step 1: Enter Your Function</a></li>
+      <li><a href="#step2">Step 2: Open the Table</a></li>
+      <li><a href="#step3">Step 3: Adjust Table Settings</a></li>
+      <li><a href="#step4">Step 4: AUTO vs ASK Mode</a></li>
+      <li><a href="#step5">Step 5: Editing or Clearing a Function</a></li>
+      <li><a href="#step6">Step 6: What You Can Do With the Table</a></li>
+      <li><a href="#step7">Step 7: Practice Using Our Online TI-84</a></li>
+    </ul>
+  </nav>
+
+  <!-- Step 1 -->
+  <div class="step-card" id="step1">
+    <h3>Step 1: Enter Your Function in the Y= Menu</h3>
+    <p>Before you can see a table, you need to enter a function:</p>
+    <ul>
+      <li>Press <strong>Y=</strong></li>
+      <li>Move to <strong>Y1</strong></li>
+      <li>Type your function (example: <code>x^2 + 3x</code>)</li>
+      <li>Press <strong>ENTER</strong></li>
+      <li>You can enter multiple functions in <strong>Y2, Y3</strong>, etc. The table will display all of them automatically.</li>
+    </ul>
+  </div>
+
+  <!-- Step 2 -->
+  <div class="step-card" id="step2">
+    <h3>Step 2: Open the Table</h3>
+    <p>To see your function values:</p>
+    <ul>
+      <li>Press <strong>2ND</strong></li>
+      <li>Press <strong>GRAPH</strong> (this opens <strong>TABLE</strong>)</li>
+      <li>You’ll see x-values on the left and the corresponding y-values on the right.</li>
+    </ul>
+  </div>
+
+  <!-- Step 3 -->
+  <div class="step-card" id="step3">
+    <h3>Step 3: Adjust the Table Settings (TblStart & ΔTbl)</h3>
+    <p>Control how your table behaves:</p>
+    <ul>
+      <li>Press <strong>2ND</strong> then <strong>WINDOW</strong> (opens <strong>TBLSET</strong>)</li>
+      <li><strong>TblStart</strong>: set where the table begins (0, -10, etc.)</li>
+      <li><strong>ΔTbl</strong>: step size for x-values (1 = standard, 0.1 = fine, 5 = large)</li>
+      <li>After adjusting, press <strong>TABLE</strong> again to see updated values.</li>
+    </ul>
+  </div>
+
+  <!-- Step 4 -->
+  <div class="step-card" id="step4">
+    <h3>Step 4: AUTO vs ASK Mode</h3>
+    <p>Decide how x-values are entered:</p>
+    <ul>
+      <li><strong>AUTO:</strong> Calculator fills x-values automatically (ideal for most students)</li>
+      <li><strong>ASK:</strong> You type x-values manually. Great for specific points like x = 2.5</li>
+      <li>To use ASK mode: switch Indpnt → ASK, press TABLE, type x-value, press ENTER</li>
+    </ul>
+  </div>
+
+  <!-- Step 5 -->
+  <div class="step-card" id="step5">
+    <h3>Step 5: Editing or Clearing a Function</h3>
+    <ul>
+      <li>Press <strong>Y=</strong></li>
+      <li>Press <strong>CLEAR</strong> on the old function</li>
+      <li>Type your new equation</li>
+      <li>Return to <strong>TABLE</strong> to see the updated table</li>
+    </ul>
+  </div>
+
+  <!-- Step 6 -->
+  <div class="step-card" id="step6">
+    <h3>Step 6: What You Can Do With the TI-84 Table</h3>
+    <ul>
+      <li>✔ Find roots of functions (look for y-values near 0)</li>
+      <li>✔ Check homework answers quickly</li>
+      <li>✔ Compare multiple functions side by side (Y1 vs Y2)</li>
+      <li>✔ Explore patterns in algebra, sequences, and graphs</li>
+    </ul>
+    <p>The table is simple but powerful — use it to understand any function better.</p>
+  </div>
+
+  <!-- Step 7 -->
+  <div class="step-card" id="step7">
+    <h3>Step 7: Practice Using Our TI-84 Online Calculator</h3>
+    <p>Follow every step above using our free online version — no physical calculator needed:</p>
+    <p>👉 <a href="https://mycalculatorpal.com/ti84-calculator" target="_blank">Try the TI-84 Online Now</a></p>
+  </div>
+
+  <!-- Smooth Scroll + Highlight Script -->
+  <script>
+    document.querySelectorAll('.blog a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href') || '';
+        if (!href.startsWith('#')) return;
+        const targetId = href.substring(1);
+        const target = document.getElementById(targetId);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          target.classList.add('highlighted');
+          setTimeout(() => target.classList.remove('highlighted'), 1500);
+        }
+      });
+    });
+  </script>
+</section>
