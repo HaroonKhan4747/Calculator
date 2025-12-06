@@ -746,7 +746,7 @@ footer nav a:hover {
 
 <!-- Quick FAQs -->
 <section class="faqs">
-  <h2>Quick FAQs About Making a Table on the TI-84 Plus</h2>
+  <h2>Quick FAQs About Graphing a List on the TI-84 Plus</h2>
   <style>
     .faqs a {
       color: #333;
@@ -765,78 +765,64 @@ footer nav a:hover {
   <div class="faq-list">
 
     <div class="faq-item">
-      <button class="faq-question">Why isn’t my TI-84 table showing values?</button>
+      <button class="faq-question">Can I graph multiple lists at the same time?</button>
       <div class="faq-answer" style="display:none;">
-        <p>The table may be blank if the function is turned off, deleted, or if <strong>TBLSET</strong> is set incorrectly. Check your <strong>Y= menu</strong>, ensure the function is active, and verify <strong>AUTO mode</strong> is enabled in TBLSET.</p>
+        <p>Yes, the TI-84 Plus allows multiple STAT PLOTS. Assign different Xlist and Ylist pairs to Plot1, Plot2, and Plot3, and use different markers or colors for distinction.</p>
       </div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-question">How do I change the starting value of the TI-84 table?</button>
+      <button class="faq-question">What should I do if my scatter plot looks empty?</button>
       <div class="faq-answer" style="display:none;">
-        <p>Press <strong>2ND → WINDOW</strong> to open <strong>TBLSET</strong>. Adjust <strong>TblStart</strong> to choose where the table begins. This is useful for negative values or large x-ranges.</p>
+        <p>Check that your Xlist and Ylist have matching data lengths. Also, ensure your WINDOW settings or use <strong>ZOOM → 9:ZoomStat</strong> to auto-scale the graph to your data range.</p>
       </div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-question">What does ΔTbl mean on the TI-84?</button>
+      <button class="faq-question">How do I change the marker style for points?</button>
       <div class="faq-answer" style="display:none;">
-        <p><strong>ΔTbl</strong> controls the step size between x-values (e.g., 1, 0.5, 5). Smaller steps give more detail, while larger steps make the table scroll faster.</p>
+        <p>Press <strong>2ND → Y=</strong>, select your plot, and under <strong>Mark</strong> choose a shape (square, X, dot, triangle) for your points.</p>
       </div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-question">Should I use AUTO or ASK mode when using the table?</button>
+      <button class="faq-question">Can I graph a list without entering formulas?</button>
       <div class="faq-answer" style="display:none;">
-        <p><strong>AUTO mode</strong> automatically fills x-values. <strong>ASK mode</strong> lets you type in specific values like x = 2.5 or x = –7. Use ASK mode for homework or exam questions that require exact points.</p>
+        <p>Absolutely. You only need to input your data into lists (L1, L2, etc.) and use STAT PLOT. No equations are required for plotting lists.</p>
       </div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-question">Why are there multiple columns in my TI-84 table?</button>
+      <button class="faq-question">How do I add a trendline to my graph?</button>
       <div class="faq-answer" style="display:none;">
-        <p>If you entered equations into <strong>Y1, Y2, Y3…</strong> the table will show a column for each equation. Turn off unwanted ones by deselecting their equals sign in the <strong>Y= menu</strong>.</p>
+        <p>Use <strong>STAT → CALC</strong> to choose a regression type (linear, quadratic, etc.) and overlay the equation on your scatter plot for trend analysis.</p>
       </div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-question">Can I create a table without graphing on the TI-84?</button>
+      <button class="faq-question">Is it possible to graph lists with negative values?</button>
       <div class="faq-answer" style="display:none;">
-        <p>Yes. Enter a function in <strong>Y=</strong>, then go directly to <strong>TABLE</strong>. Graphing is not required to generate x-y pairs.</p>
+        <p>Yes. Ensure your WINDOW settings include negative ranges for Xmin and/or Ymin, so all points appear within the graph frame.</p>
       </div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-question">Why is my TI-84 table skipping values?</button>
+      <button class="faq-question">Why does my graph look squished or stretched?</button>
       <div class="faq-answer" style="display:none;">
-        <p>This happens when <strong>ΔTbl</strong> is set too large. Set a smaller step size like <strong>1</strong> or <strong>0.1</strong> in TBLSET to view more detailed values.</p>
+        <p>This usually happens if your Xscale and Yscale are very different. Adjust the scales or use <strong>ZoomStat</strong> for proportional visualization.</p>
       </div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-question">Do TI-84 Plus and TI-84 Plus CE have the same table features?</button>
+      <button class="faq-question">Can I save my graphs for later reference?</button>
       <div class="faq-answer" style="display:none;">
-        <p>Yes — both models share identical table, graphing, and TBLSET functionality. The CE version simply has a color screen and faster performance.</p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-question">Can I make a table for a piecewise function?</button>
-      <div class="faq-answer" style="display:none;">
-        <p>Yes. Enter each piece into separate lines like <strong>Y1, Y2, Y3</strong>, then use <strong>ASK mode</strong> to check values only within the correct domain of each piece.</p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-question">How do I clear the TI-84 table?</button>
-      <div class="faq-answer" style="display:none;">
-        <p>The TI-84 table clears automatically when you delete or edit a function in the <strong>Y= menu</strong>. Simply press <strong>CLEAR</strong> on the function to reset the table.</p>
+        <p>The TI-84 Plus does not save plots as images, but you can leave the lists and plots stored in memory. Re-graphing will recreate the plot.</p>
       </div>
     </div>
 
   </div>
 </section>
-
+  
 <!-- Smooth Scroll + Highlight Script -->
 <script>
   document.querySelectorAll('.faqs a').forEach(link => {
@@ -866,82 +852,66 @@ footer nav a:hover {
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Why isn’t my TI-84 table showing values?",
+      "name": "Can I graph multiple lists at the same time?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The TI-84 table may appear blank if the function is turned off, deleted, or if TBLSET is set incorrectly. Ensure your function is active in the Y= menu and that AUTO mode is enabled."
+        "text": "Yes, the TI-84 Plus allows multiple STAT PLOTS. Assign different Xlist and Ylist pairs to Plot1, Plot2, and Plot3, and use different markers or colors for distinction."
       }
     },
     {
       "@type": "Question",
-      "name": "How do I change the starting value of the TI-84 table?",
+      "name": "What should I do if my scatter plot looks empty?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Press 2ND → WINDOW to open TBLSET and adjust TblStart. This controls where the table begins."
+        "text": "Check that your Xlist and Ylist have matching data lengths. Also, ensure your WINDOW settings or use ZoomStat to auto-scale the graph to your data range."
       }
     },
     {
       "@type": "Question",
-      "name": "What does ΔTbl mean on the TI-84?",
+      "name": "How do I change the marker style for points?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "ΔTbl sets the step size between x-values in the table. Smaller steps give more detail; larger steps scroll faster."
+        "text": "Press 2ND → Y=, select your plot, and under Mark choose a shape (square, X, dot, triangle) for your points."
       }
     },
     {
       "@type": "Question",
-      "name": "Should I use AUTO or ASK mode?",
+      "name": "Can I graph a list without entering formulas?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "AUTO mode auto-generates x-values, while ASK mode lets you manually input specific values like 2.5 or -7."
+        "text": "Yes. You only need to input your data into lists (L1, L2, etc.) and use STAT PLOT. No equations are required for plotting lists."
       }
     },
     {
       "@type": "Question",
-      "name": "Why are there multiple y-columns in my TI-84 table?",
+      "name": "How do I add a trendline to my graph?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "If multiple equations are entered in Y1, Y2, Y3, the table shows a column for each. Disable unwanted ones by deselecting their equals sign."
+        "text": "Use STAT → CALC to choose a regression type (linear, quadratic, etc.) and overlay the equation on your scatter plot for trend analysis."
       }
     },
     {
       "@type": "Question",
-      "name": "Can I make a table without graphing?",
+      "name": "Is it possible to graph lists with negative values?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, you do not need to graph the function. Enter it in Y= and go straight to the TABLE screen."
+        "text": "Yes. Ensure your WINDOW settings include negative ranges for Xmin and/or Ymin, so all points appear within the graph frame."
       }
     },
     {
       "@type": "Question",
-      "name": "Why is my TI-84 table skipping values?",
+      "name": "Why does my graph look squished or stretched?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "This happens when ΔTbl is too large. Reduce it in TBLSET to see all intermediate values."
+        "text": "This usually happens if your Xscale and Yscale are very different. Adjust the scales or use ZoomStat for proportional visualization."
       }
     },
     {
       "@type": "Question",
-      "name": "Do TI-84 Plus and TI-84 Plus CE have the same table features?",
+      "name": "Can I save my graphs for later reference?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, both calculators have identical table and TBLSET functionality. The CE model simply has a color display and faster performance."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I create a table for a piecewise function?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Enter each piece in separate Y= lines and use ASK mode to test values in the appropriate domain."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I clear the table?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Clear the equation in Y= and the table resets automatically."
+        "text": "The TI-84 Plus does not save plots as images, but you can leave the lists and plots stored in memory. Re-graphing will recreate the plot."
       }
     }
   ]
