@@ -682,6 +682,210 @@ footer nav a:hover {
   </script>
 </section>
 
+<!-- Quick FAQs -->
+<section class="faqs">
+  <h2>Quick FAQs About Making a Table on the TI-84 Plus</h2>
+  <style>
+    .faqs a {
+      color: #333;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+    .faqs a:hover {
+      color: #ff6600;
+    }
+    .highlighted {
+      background-color: #fff3cd;
+      transition: background-color 1.5s ease;
+    }
+  </style>
+
+  <div class="faq-list">
+
+    <div class="faq-item">
+      <button class="faq-question">Why isn’t my TI-84 table showing values?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>The table may be blank if the function is turned off, deleted, or if <strong>TBLSET</strong> is set incorrectly. Check your <strong>Y= menu</strong>, ensure the function is active, and verify <strong>AUTO mode</strong> is enabled in TBLSET.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">How do I change the starting value of the TI-84 table?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>Press <strong>2ND → WINDOW</strong> to open <strong>TBLSET</strong>. Adjust <strong>TblStart</strong> to choose where the table begins. This is useful for negative values or large x-ranges.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">What does ΔTbl mean on the TI-84?</button>
+      <div class="faq-answer" style="display:none;">
+        <p><strong>ΔTbl</strong> controls the step size between x-values (e.g., 1, 0.5, 5). Smaller steps give more detail, while larger steps make the table scroll faster.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Should I use AUTO or ASK mode when using the table?</button>
+      <div class="faq-answer" style="display:none;">
+        <p><strong>AUTO mode</strong> automatically fills x-values. <strong>ASK mode</strong> lets you type in specific values like x = 2.5 or x = –7. Use ASK mode for homework or exam questions that require exact points.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Why are there multiple columns in my TI-84 table?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>If you entered equations into <strong>Y1, Y2, Y3…</strong> the table will show a column for each equation. Turn off unwanted ones by deselecting their equals sign in the <strong>Y= menu</strong>.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Can I create a table without graphing on the TI-84?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>Yes. Enter a function in <strong>Y=</strong>, then go directly to <strong>TABLE</strong>. Graphing is not required to generate x-y pairs.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Why is my TI-84 table skipping values?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>This happens when <strong>ΔTbl</strong> is set too large. Set a smaller step size like <strong>1</strong> or <strong>0.1</strong> in TBLSET to view more detailed values.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Do TI-84 Plus and TI-84 Plus CE have the same table features?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>Yes — both models share identical table, graphing, and TBLSET functionality. The CE version simply has a color screen and faster performance.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Can I make a table for a piecewise function?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>Yes. Enter each piece into separate lines like <strong>Y1, Y2, Y3</strong>, then use <strong>ASK mode</strong> to check values only within the correct domain of each piece.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">How do I clear the TI-84 table?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>The TI-84 table clears automatically when you delete or edit a function in the <strong>Y= menu</strong>. Simply press <strong>CLEAR</strong> on the function to reset the table.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Smooth Scroll + Highlight Script -->
+<script>
+  document.querySelectorAll('.faqs a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href').substring(1);
+      const target = document.getElementById(targetId);
+      if (target) {
+        e.preventDefault();
+        if (history.pushState) {
+          history.pushState(null, null, '#' + targetId);
+        } else {
+          location.hash = targetId;
+        }
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        target.classList.add('highlighted');
+        setTimeout(() => target.classList.remove('highlighted'), 1500);
+      }
+    });
+  });
+</script>
+
+<!-- FAQ Schema for Google Rich Results -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why isn’t my TI-84 table showing values?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The TI-84 table may appear blank if the function is turned off, deleted, or if TBLSET is set incorrectly. Ensure your function is active in the Y= menu and that AUTO mode is enabled."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I change the starting value of the TI-84 table?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Press 2ND → WINDOW to open TBLSET and adjust TblStart. This controls where the table begins."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does ΔTbl mean on the TI-84?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ΔTbl sets the step size between x-values in the table. Smaller steps give more detail; larger steps scroll faster."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I use AUTO or ASK mode?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AUTO mode auto-generates x-values, while ASK mode lets you manually input specific values like 2.5 or -7."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why are there multiple y-columns in my TI-84 table?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If multiple equations are entered in Y1, Y2, Y3, the table shows a column for each. Disable unwanted ones by deselecting their equals sign."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I make a table without graphing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, you do not need to graph the function. Enter it in Y= and go straight to the TABLE screen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is my TI-84 table skipping values?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This happens when ΔTbl is too large. Reduce it in TBLSET to see all intermediate values."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do TI-84 Plus and TI-84 Plus CE have the same table features?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, both calculators have identical table and TBLSET functionality. The CE model simply has a color display and faster performance."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I create a table for a piecewise function?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Enter each piece in separate Y= lines and use ASK mode to test values in the appropriate domain."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I clear the table?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Clear the equation in Y= and the table resets automatically."
+      }
+    }
+  ]
+}
+</script>
+
  <!-- ✅ Related Calculators Section -->
 <section class="related-calculators">
   <h2>Related Calculators</h2>
