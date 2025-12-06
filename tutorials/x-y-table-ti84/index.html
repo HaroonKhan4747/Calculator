@@ -846,27 +846,6 @@ footer nav a:hover {
   </div>
 </section>
 
-<!-- Smooth Scroll + Highlight Script -->
-<script>
-  document.querySelectorAll('.faqs a').forEach(link => {
-    link.addEventListener('click', function(e) {
-      const targetId = this.getAttribute('href').substring(1);
-      const target = document.getElementById(targetId);
-      if (target) {
-        e.preventDefault();
-        if (history.pushState) {
-          history.pushState(null, null, '#' + targetId);
-        } else {
-          location.hash = targetId;
-        }
-        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        target.classList.add('highlighted');
-        setTimeout(() => target.classList.remove('highlighted'), 1500);
-      }
-    });
-  });
-</script>
-
 <!-- FAQ Schema for Google Rich Results -->
 <script type="application/ld+json">
 {
