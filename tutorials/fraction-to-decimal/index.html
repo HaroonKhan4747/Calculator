@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>TI-84 Calculator Online – Free Graphing & Emulator Tool | MyCalculatorPal</title>
+ <meta name="description" content="Try our free TI-84 Calculator Online for graphing, equations, and stats. Works like the TI-84 Plus CE—no download or sign-up needed.">
+
+   <!-- ✅ Paste your Google AdSense verification meta tag here -->
+  <meta name="google-adsense-account" content="ca-pub-8850694506252841">
+
+   <!-- Favicon for modern browsers -->
+<link rel="icon" type="image/png" href="/favicon.png">
+
+<!-- Favicon for older browsers / fallback -->
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <!-- Canonical URL -->
+  <link rel="canonical" href="https://mycalculatorpal.com/ti84-calculator/Index.html" />
+
+    <!-- Robots Meta Tag -->
+  <meta name="robots" content="index, follow" />
+
+  <!-- Optional SEO Enhancements -->
+  <meta name="author" content="MyCalculatorPal">
+  <meta name="keywords" content="TI-84 calculator online, TI 84 Plus graphing calculator, TI-84 Plus CE emulator, free TI-84 calculator, online graphing calculator, TI 83 84 Plus calculator, TI-84 calculator for students, Texas Instruments TI 84 online, TI-84 Plus CE graphing tool, TI-84 emulator online">
+  
+   <!-- ✅ Add this line below -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+ <style>
+/* Extra CSS specific to this calculator (main style in style.css handles general styling) */
+
+/* General Reset and Fonts */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', 'Roboto', sans-serif;
+  background: #f4f6f9;
+  color: #222;
+  line-height: 1.7;
+  text-align: center;
+}
+
+/* Show desktop toggle only on screens wider than 680px */
+.desktop-toggle {
+  display: inline-block;
+  margin-right: 12px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+}
+
+/* Hide mobile toggle on desktop */
+.mobile-toggle {
+  display: none;
+}
+
+/* Mobile styles */
+@media (max-width: 680px) {
+  .desktop-toggle {
+    display: none;
+  }
+  .mobile-toggle {
+    display: inline-block;
+    margin-left: 10px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+  }
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  background: linear-gradient(90deg, #0a0a0a, #1b1b1b);
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  position: relative;
+  z-index: 1001; /* keeps header above side ads */
+}
+
+header .logo a {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+
+header nav {
+  display: flex;
+  gap: 18px;
+}
+
+header nav a {
+  color: #eee;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+header nav a:hover {
+  text-decoration: underline;
+  color: #00bcd4;
+  text-shadow: 0 0 8px #00bcd4;
+}
+
+/* Hero Section */
+.hero {
+  padding: 60px 20px;
+}
+
+.hero h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.6rem;
+  margin-bottom: 10px;
+  color: #111;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  color: #555;
+}
+  
+/* Calculator Section – TI-84 Specific Adjustments */
+.calculator .card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 14px;
+  padding: 15px 15px;
+  width: 100%;
+  max-width: 500px; /* slightly smaller for iframe */
+  margin: 35px auto;
+  text-align: center; /* center iframe */
+  box-shadow: 0 0 20px rgba(0, 188, 212, 0.2);
+  transition: all 0.3s ease;
+}
+
+.calculator .card:hover {
+  box-shadow: 0 0 25px rgba(0, 188, 212, 0.35);
+  transform: translateY(-3px);
+}
+
+/* TI-84 iframe styling */
+.calculator .card iframe {
+  width: 100%;
+  height: 720px; /* match TI-84 emulator height */
+  border: 0;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+/* Results Box */
+.calc-results {
+  background: rgba(255,255,255,0.97);
+  border-radius: 14px;
+  padding: 25px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 0 20px rgba(0, 188, 212, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 35px auto;
+  text-align: left;
+}
+
+.calc-results h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #111;
+}
+
+.calc-results p {
+  background: #f7f9fb;
+  border-radius: 10px;
+  padding: 12px 15px;
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Spinner Loader */
+#spinner {
+  display: none;
+  margin: 20px auto;
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #111;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* TI-84 Action Buttons */
+.ti84-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.ti84-buttons button {
+  padding: 12px 25px;
+  background: linear-gradient(90deg, #00bcd4, #0097a7);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+  transition: all 0.3s ease;
+}
+
+.ti84-buttons button:hover {
+  background: linear-gradient(90deg, #0097a7, #007c91);
+  box-shadow: 0 0 20px rgba(0, 188, 212, 0.6);
+  transform: translateY(-2px);
+}
+
+/* Ad Banners (inline, in-page) */
+.ad-banner {
+  text-align: center;
+  padding: 25px 0;
+}
+
+.ad-placeholder {
+  display: inline-block;
+  background: #f0f0f0;
+  padding: 40px;
+  border: 1px dashed #ccc;
+  font-size: 0.9rem;
+  color: #888;
+  border-radius: 12px;
+}
+
+/* ✅ Side Ads (fixed on desktop) */
+.side-ad {
+  position: fixed;
+  top: 80px; /* below header */
+  width: auto; /* let AdSense control width */
+  max-width: 160px; /* standard skyscraper */
+  min-height: 600px; /* standard height */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 1000;
+}
+
+.side-ad.left-ad {
+  left: 0;
+}
+
+.side-ad.right-ad {
+  right: 0;
+}
+
+/* Blog Section */
+.blog {
+  padding: 45px 25px;
+  max-width: 820px;
+  margin: 40px auto;
+  background: rgba(255,255,255,0.95);
+  border-radius: 14px;
+  box-shadow: 0 0 20px rgba(0, 188, 212, 0.2);
+  text-align: left;
+}
+
+.blog h2 {
+  margin-bottom: 20px;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+}
+
+.blog p {
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+/* FAQs Section */
+.faqs {
+  padding: 45px 25px;
+  max-width: 820px;
+  margin: 40px auto;
+  background: rgba(255,255,255,0.95);
+  border-radius: 14px;
+  box-shadow: 0 0 20px rgba(0, 188, 212, 0.2);
+}
+
+.faqs h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #111;
+}
+
+.faq-item {
+  margin-bottom: 18px;
+}
+
+.faq-question {
+  width: 100%;
+  padding: 14px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #fff;
+  text-align: left;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+.faq-question:hover {
+  background: #e0f7fa;
+  box-shadow: 0 0 10px rgba(0, 188, 212, 0.3);
+}
+
+.faq-answer {
+  padding: 12px 16px;
+  margin-top: 5px;
+  background: #f7f9fb;
+  border-left: 3px solid #00bcd4;
+  border-radius: 8px;
+  display: none;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #000;
+  color: #fff;
+  font-size: 0.85rem;
+  position: relative;
+  z-index: 1001; /* keep above ads */
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 25px;
+  background: #0a0a0a;
+  color: #fff;
+  font-size: 0.9rem;
+  letter-spacing: 0.3px;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+}
+
+footer nav a {
+  color: #ddd;
+  margin: 0 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+footer nav a:hover {
+  color: #00bcd4;
+  text-shadow: 0 0 6px #00bcd4;
+}
+  
+/* Hide hamburger in desktop */
+.hamburger {
+  display: none;
+}
+
+/* Mobile View */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  header nav {
+    display: none;
+    flex-direction: column;
+    background: #000;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    padding: 10px;
+    text-align: center;
+  }
+
+  header nav.active {
+    display: flex;
+  }
+
+  .calculator .card,
+  .calc-results,
+  .blog,
+  .faqs,
+  .ad-placeholder {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    max-width: 100%;
+    width: 90%;
+    display: block;
+    box-sizing: border-box;
+  }
+
+  img, iframe {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  /* ✅ Hide side ads on mobile */
+  .side-ad {
+    display: none !important;
+  }
+}
+
+/* Hide the unwanted footer/disclaimer under the TI-84 iframe */
+.calculator iframe {
+  display: block;
+  width: 100%;
+  height: 705px; /* slightly less than full height to crop bottom text */
+  border: none;
+  overflow: hidden;
+  clip-path: inset(0 0 30px 0); /* hides bottom 30px (adjust if needed) */
+}
+
+/* Related Calculators Section */
+.related-calculators {
+  padding: 45px 25px;
+  max-width: 820px;
+  margin: 40px auto;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 14px;
+  box-shadow: 0 0 20px rgba(0, 188, 212, 0.2);
+  text-align: center;
+}
+
+.related-calculators h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.7rem;
+  margin-bottom: 25px;
+  color: #111;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.related-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.related-links a {
+  background: linear-gradient(90deg, #00bcd4, #0097a7);
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  padding: 12px 25px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(0, 188, 212, 0.3);
+}
+
+.related-links a:hover {
+  background: linear-gradient(90deg, #0097a7, #007c91);
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(0, 188, 212, 0.6);
+}
+
+/* 🚫 TEMPORARY — Hide ALL ads until AdSense is approved */
+.ad-banner,
+.side-ad {
+  display: none !important;
+}
+/* ✅ Delete the block above when AdSense is ready */
+</style>
+
+<!-- Header -->
+<body>
+<header>
+  <div class="logo"><a href="https://mycalculatorpal.com/">MyCalculatorPal</a></div>
+
+  <nav id="nav-menu">
+    <!-- Desktop Dark Mode Toggle (before Home) -->
+    <button id="darkModeToggle" class="desktop-toggle">🌙</button>
+
+    <a href="https://mycalculatorpal.com/">Home</a>
+    <a href="https://mycalculatorpal.com/about.html">About</a>
+    <a href="https://mycalculatorpal.com/contact.html">Contact</a>
+  </nav>
+  
+  <!-- Mobile Dark Mode Toggle first -->
+  <button id="darkModeToggleMobile" class="mobile-toggle">🌙</button>
+
+  <div class="hamburger" id="hamburger">☰</div>
+</header>
+
+<!-- Side Ads -->
+<div class="side-ad left-ad">
+  <div class="ad-placeholder">[Left Ad]</div>
+</div>
+<div class="side-ad right-ad">
+  <div class="ad-placeholder">[Right Ad]</div>
+</div>
+
+<!-- Wrap main content -->
+<div class="page-content">
+
+<!-- Hero -->
+<section class="hero">
+  <h1>Online TI-84 Calculator</h1>
+  <p>Use our fast and free TI-84 Plus online calculator to graph equations, solve problems, and learn every function with step-by-step tutorials.</p>
+
+ <div class="hero-buttons">
+  <a href="https://mycalculatorpal.com/ti84-calculator/Index.html" class="btn-primary">
+    Open TI-84 Calculator
+  </a>
+  <a href="#tutorials" class="btn-secondary">View Tutorials</a>
+</div>
+</section>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 60px 20px;
+  }
+  .hero-buttons {
+    margin-top: 25px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+  }
+
+  /* Primary Button */
+  .btn-primary {
+    padding: 12px 25px;
+    background: linear-gradient(90deg, #00bcd4, #0097a7);
+    color: #fff;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+    transition: all 0.3s ease;
+  }
+  .btn-primary:hover {
+    background: linear-gradient(90deg, #0097a7, #007c91);
+    box-shadow: 0 0 20px rgba(0, 188, 212, 0.6);
+    transform: translateY(-2px);
+  }
+
+  /* Secondary Button */
+  .btn-secondary {
+    padding: 12px 25px;
+    background: linear-gradient(90deg, #00bcd4, #0097a7);
+    color: #fff;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+    transition: all 0.3s ease;
+  }
+  .btn-secondary:hover {
+    background: linear-gradient(90deg, #0097a7, #007c91);
+    box-shadow: 0 0 20px rgba(0, 188, 212, 0.6);
+    transform: translateY(-2px);
+  }
+</style>
+
+<!-- TI-84 Fraction to Decimal Calculator Blog Section -->
+<section class="blog">
+  <style>
+    .blog a { color: #333; font-weight: 600; text-decoration: underline; }
+    .blog a:hover { color: #ff6600; }
+    .blog .highlighted { background-color: #fff3cd; transition: background-color 1.5s ease; }
+    .blog .toc { margin-bottom: 18px; text-align: left; }
+    .blog .toc h3 { margin-bottom: 10px; }
+    .blog .toc ul { list-style: disc; margin-left: 20px; }
+    .blog h1 { font-family: 'Montserrat', sans-serif; font-size: 2rem; margin-top: 8px; }
+    .blog p { line-height: 1.6; color: inherit; }
+    .blog h2 { margin-top: 20px; color: inherit; }
+    .blog h3 { margin-top: 14px; color: inherit; }
+    .blog .steps-container { display: flex; flex-wrap: wrap; gap: 12px; margin: 12px 0; }
+    .blog .step-card { flex: 1 1 30%; border: 1px solid #ff6600; border-radius: 10px; padding: 14px; background-color: #fff8f0; min-width: 200px; }
+    .blog .step-card h3 { margin: 0 0 8px 0; color: #ff6600; font-size: 1rem; }
+    .blog table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+    .blog table th, .blog table td { border: 1px solid rgba(0,0,0,0.08); padding: 10px; text-align: left; }
+    body.dark-mode .blog a { color: #e6e6ff; }
+    body.dark-mode .blog table th, body.dark-mode .blog table td { border-color: rgba(255,255,255,0.06); }
+    body.dark-mode .blog .step-card { background-color: #4a3b2d; border-color: #ffb366; color: #fff; }
+  </style>
+
+  <h1>TI-84 Fraction to Decimal Calculator Online: Simple Guide & How It Works</h1>
+
+  <p>If you often use a TI-84 Plus calculator, you already know how helpful it is for converting fractions into decimals. But sometimes you don’t have your physical calculator with you — or you want a fast way to get the same result on your phone or computer. That’s where a TI-84 fraction to decimal calculator online becomes extremely useful.</p>
+
+  <p>This guide explains how these online tools work, why they’re accurate, and how you can use them just like the real TI-84.</p>
+
+  <!-- Table of Contents -->
+  <nav class="toc" aria-label="Article table of contents">
+    <h3>Quick Navigation</h3>
+    <ul>
+      <li><a href="#what">What Is an Online TI-84 Fraction to Decimal Calculator?</a></li>
+      <li><a href="#why">Why Use It Instead of Manual Conversion?</a></li>
+      <li><a href="#steps">How to Use the Online Calculator</a></li>
+      <li><a href="#examples">Examples of Fraction-to-Decimal Conversions</a></li>
+      <li><a href="#uses">Common Uses for Students & Teachers</a></li>
+      <li><a href="#tips">Tips for Accurate Conversions</a></li>
+    </ul>
+  </nav>
+
+  <div class="steps-container">
+
+    <!-- Step 1 -->
+    <div class="step-card" id="what">
+      <h3>What Is a TI-84 Fraction to Decimal Calculator Online?</h3>
+      <p>This online tool mimics the behavior of a TI-84 Plus and allows you to:</p>
+      <ul>
+        <li>Convert fractions to decimals instantly</li>
+        <li>Enter simple or complex fractions</li>
+        <li>Use TI-84 style fraction formatting</li>
+        <li>Access it on any device — laptop, tablet, or phone</li>
+      </ul>
+      <p>It's perfect when you need quick, accurate conversions without a physical calculator.</p>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step-card" id="why">
+      <h3>Why Use It Instead of Manual Conversion?</h3>
+      <p>A TI-84 emulator online gives you:</p>
+      <ul>
+        <li><strong>Speed</strong> — no complicated math required</li>
+        <li><strong>Accuracy</strong> — uses the same logic as the TI-84 Plus</li>
+        <li><strong>Convenience</strong> — ideal for homework or quick checks</li>
+        <li><strong>Consistency</strong> — familiar TI-84 layout and behavior</li>
+      </ul>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="step-card" id="steps">
+      <h3>How to Use a TI-84 Fraction to Decimal Calculator Online</h3>
+      <p>Using the tool is very simple:</p>
+      <ul>
+        <li><strong>Enter the fraction</strong> just like on the TI-84 (e.g., <code>1 ÷ 3</code>, <code>2 + 1 ÷ 4</code>)</li>
+        <li><strong>Press ENTER</strong> — the tool instantly converts it to a decimal</li>
+        <li>If needed, click <strong>MATH → DECIMAL</strong> to switch formats</li>
+      </ul>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="step-card" id="examples">
+      <h3>Examples of Fraction to Decimal Conversion</h3>
+      <p>Here are common conversions you can test:</p>
+      <ul>
+        <li><strong>1/2 → 0.5</strong></li>
+        <li><strong>7/8 → 0.875</strong></li>
+        <li><strong>22/7 → 3.142857…</strong></li>
+      </ul>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="step-card" id="uses">
+      <h3>Common Uses</h3>
+      <p>Students and teachers use this tool for:</p>
+      <ul>
+        <li>Algebra and pre-algebra</li>
+        <li>Statistics and probability</li>
+        <li>Chemistry and physics calculations</li>
+        <li>ACT/SAT prep</li>
+        <li>Checking multi-step homework</li>
+      </ul>
+    </div>
+
+    <!-- Step 6 -->
+    <div class="step-card" id="tips">
+      <h3>Tips for Accurate Fraction Conversions</h3>
+      <ul>
+        <li>Use parentheses for complex fractions</li>
+        <li>Make sure division is typed correctly</li>
+        <li>Convert decimals back to fractions to verify answers</li>
+        <li>Use it to double-check longer calculations</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <h2>Final Thoughts</h2>
+  <p>A TI-84 fraction to decimal calculator online is fast, accurate, and incredibly convenient. It works like the real TI-84 Plus, making it perfect for students, teachers, and anyone needing quick fraction conversions. If you're familiar with the TI-84, the online version feels natural — and it works on any device.</p>
+
+  <script>
+    document.querySelectorAll('.blog a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href') || '';
+        if (!href.startsWith('#')) return;
+        const targetId = href.substring(1);
+        const target = document.getElementById(targetId);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          target.classList.add('highlighted');
+          setTimeout(() => target.classList.remove('highlighted'), 1500);
+        }
+      });
+    });
+  </script>
+</section>
+
+<!-- Quick FAQs -->
+<section class="faqs">
+  <h2>Quick FAQs About TI-84 Fraction to Decimal Conversion</h2>
+  <style>
+    .faqs a {
+      color: #333;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+    .faqs a:hover {
+      color: #ff6600;
+    }
+    .highlighted {
+      background-color: #fff3cd;
+      transition: background-color 1.5s ease;
+    }
+  </style>
+
+  <div class="faq-list">
+
+    <div class="faq-item">
+      <button class="faq-question">How do I convert a fraction to a decimal on a TI-84 Plus?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>Enter the fraction using the <strong>ALPHA → Y= template</strong>, then press <strong>ENTER</strong>. If it shows a fraction, press <strong>MATH → ENTER → ENTER</strong> to convert it to a decimal.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Why does the TI-84 sometimes show a fraction instead of a decimal?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>The TI-84 displays exact answers by default. Use <strong>MATH → 2:►Dec</strong> to force a decimal format when needed, especially for homework or exam requirements.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Can a TI-84 convert mixed numbers to decimals?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>Yes. Type mixed numbers with parentheses like <strong>(3 + 1/4)</strong>, then convert using <strong>MATH → ENTER → ENTER</strong> for a decimal result.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">How do I switch between fractional and decimal form quickly?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>Use <strong>MATH → 1:►Frac</strong> to convert to a fraction or <strong>MATH → 2:►Dec</strong> to convert to a decimal instantly.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Does an online TI-84 emulator convert fractions the same way?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>Yes — a good online TI-84 emulator uses the same menus, layout, and math functions as the physical calculator, so fraction-to-decimal results match perfectly.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Why do some fractions convert into long repeating decimals?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>Some rational numbers produce repeating decimals. The TI-84 rounds them based on screen precision. Switching to <strong>►Frac</strong> may show the exact form again.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Can the TI-84 simplify a decimal back into a fraction?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>Yes — press <strong>MATH → 1:►Frac</strong> to turn a decimal into a simplified fraction when possible.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Do TI-84 Plus and TI-84 Plus CE convert fractions the same way?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>Both models use identical math algorithms. The CE version simply has a color screen and faster processing, but conversions work the same.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Why is my TI-84 giving the wrong decimal value?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>This usually happens when parentheses are missing or if the fraction was entered incorrectly. Always structure complex fractions clearly using templates or parentheses.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Do I need a physical TI-84 to convert fractions online?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>No — online TI-84 calculators recreate the same conversion steps, making them perfect for homework or quick checks when you don’t have the device with you.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Smooth Scroll + Highlight Script -->
+<script>
+  document.querySelectorAll('.faqs a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href').substring(1);
+      const target = document.getElementById(targetId);
+      if (target) {
+        e.preventDefault();
+        if (history.pushState) {
+          history.pushState(null, null, '#' + targetId);
+        } else {
+          location.hash = targetId;
+        }
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        target.classList.add('highlighted');
+        setTimeout(() => target.classList.remove('highlighted'), 1500);
+      }
+    });
+  });
+</script>
+
+<!-- FAQ Schema for Google Rich Results -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I convert a fraction to a decimal on a TI-84 Plus?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Enter the fraction using the ALPHA → Y= template, press ENTER, and use MATH → ENTER → ENTER if the result displays as a fraction."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the TI-84 sometimes show a fraction instead of a decimal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The TI-84 prioritizes exact answers. Use MATH → 2:►Dec to force a decimal output when needed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can a TI-84 convert mixed numbers to decimals?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Enter mixed numbers using parentheses such as (3 + 1/4), then convert using MATH → ENTER → ENTER."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I switch quickly between fraction and decimal format?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use MATH → 1:►Frac to convert to fraction or MATH → 2:►Dec to convert to decimal."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does an online TI-84 emulator convert fractions the same way?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Online TI-84 emulators use the same interface and algorithms as the physical calculator."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do some fractions convert into repeating decimals?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Repeating decimals occur when the fraction cannot be expressed with finite decimal places. The TI-84 rounds based on screen precision."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can the TI-84 simplify a decimal back into a fraction?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Press MATH → 1:►Frac to convert a decimal into a simplified fraction when possible."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do TI-84 Plus and TI-84 Plus CE convert fractions the same way?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both models share the same math engine, so fractional and decimal conversions are identical."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is my TI-84 giving the wrong decimal value?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Incorrect decimal answers usually result from missing parentheses or incorrect fraction entry."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a physical TI-84 to convert fractions online?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Online TI-84 calculators replicate the same conversion functions, making them ideal for quick checks without the device."
+      }
+    }
+  ]
+}
+</script>
+
+ <!-- ✅ Related Calculators Section -->
+<section class="related-calculators">
+  <h2>Related Calculators</h2>
+  <div class="related-links">
+     <a href="/age-calculator/">Age Calculator</a>
+    <a href="/animal-age-calculator/">Animal Age Calculator</a>
+    <a href="/bmi-health-calculator/">BMI Health Calculator</a>
+    <a href="/calorie-calculator/">Calorie Calculator</a>
+  </div>
+</section>
+
+  <!-- Footer -->
+  <footer>
+  <p>&copy; 2025 MyCalculatorPal. All rights reserved.</p>
+  <nav>
+    <a href="https://mycalculatorpal.com/contact.html">Contact</a> |
+    <a href="https://mycalculatorpal.com/privacy.html">Privacy Policy</a> |
+    <a href="https://mycalculatorpal.com/terms.html">Terms & Conditions</a>
+  </nav>
+</footer>
+
+ <style>
+  /* Smooth transition for all elements */
+  body, body * {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Dark Mode Base */
+  body.dark-mode {
+    background-color: #0A0A0A;
+    color: #ffffff;
+  }
+
+  /* Glowing Cards */
+  body.dark-mode .blog,
+  body.dark-mode .faqs,
+  body.dark-mode .related-calculators,
+  body.dark-mode .card.calc-results,
+  body.dark-mode .card.calc-inputs,
+  body.dark-mode .input-field {
+    background: rgba(10, 10, 10, 0.9);
+    border-radius: 18px;
+    box-shadow: 0 0 36px rgba(155, 93, 229, 0.14);
+    border: 1px solid rgba(155, 93, 229, 0.12);
+    color: #ffffff;
+  }
+
+  /* Keep calculator inner cards glowing */
+  body.dark-mode .calc-inputs,
+  body.dark-mode .calc-results {
+    background: rgba(10, 10, 10, 0.9) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 0 36px rgba(155, 93, 229, 0.14) !important;
+    border: 1px solid rgba(155, 93, 229, 0.12) !important;
+    color: #ffffff !important;
+    padding: 24px !important;
+  }
+
+  /* Remove outer full-width card effect */
+  body.dark-mode .calculator {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+
+  /* Texts */
+  body.dark-mode h1,
+  body.dark-mode h2,
+  body.dark-mode h3,
+  body.dark-mode p,
+  body.dark-mode a {
+    color: #ffffff;
+  }
+
+  body.dark-mode a:hover {
+    color: #b57fff;
+  }
+
+  /* Buttons */
+  body.dark-mode button,
+  body.dark-mode .btn-primary,
+  body.dark-mode .btn-secondary,
+  body.dark-mode .btn,
+  body.dark-mode a.button,
+  body.dark-mode input[type="button"],
+  body.dark-mode input[type="submit"] {
+    background: linear-gradient(135deg, #9b5de5, #7a3dc0);
+    color: white;
+    box-shadow: 0 0 25px rgba(155, 93, 229, 0.25);
+    border: none;
+  }
+
+  body.dark-mode button:hover {
+    box-shadow: 0 0 35px rgba(155, 93, 229, 0.4);
+  }
+
+  /* Toggle Button */
+  .dark-toggle {
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    background: linear-gradient(135deg, #9b5de5, #7a3dc0);
+    color: #fff;
+    box-shadow: 0 0 20px rgba(155, 93, 229, 0.4);
+    transition: all 0.3s ease;
+  }
+
+  .dark-toggle:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(155, 93, 229, 0.6);
+  }
+
+  /* Match header gradient */
+  body.dark-mode .dark-toggle {
+    background: linear-gradient(90deg, #0a0a0a, #1b1b1b) !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 18px rgba(255, 255, 255, 0.12) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  body.dark-mode .dark-toggle:hover {
+    box-shadow: 0 0 28px rgba(255, 255, 255, 0.18) !important;
+  }
+
+  /* Related Calculators Buttons */
+  body.dark-mode .related-links a {
+    background: linear-gradient(135deg, #9b5de5, #7a3dc0) !important;
+    color: #fff !important;
+    box-shadow: 0 6px 18px rgba(155, 93, 229, 0.18) !important;
+    border: none !important;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  }
+
+  body.dark-mode .related-links a:hover {
+    box-shadow: 0 0 35px rgba(155, 93, 229, 0.4);
+    transform: translateY(-2px);
+  }
+
+  /* Toggle Strong Override */
+  #darkModeToggle.dark-toggle,
+  #darkModeToggleMobile.dark-toggle,
+  body.dark-mode #darkModeToggle.dark-toggle,
+  body.dark-mode #darkModeToggleMobile.dark-toggle,
+  body.dark-mode .dark-toggle#darkModeToggle,
+  body.dark-mode .dark-toggle#darkModeToggleMobile {
+    background: linear-gradient(90deg, #0a0a0a, #1b1b1b) !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 14px rgba(0,0,0,0.45) !important;
+    border: 50px solid rgba(255,255,255,0.04) !important;
+  }
+
+  /* FAQ Fix: make open sections dark */
+  body.dark-mode details,
+  body.dark-mode details[open] {
+    background: rgba(10, 10, 10, 0.95) !important;
+    color: #fff !important;
+    border-radius: 12px;
+    box-shadow: 0 0 24px rgba(155, 93, 229, 0.1);
+    border: 1px solid rgba(155, 93, 229, 0.15);
+    padding: 12px 16px;
+  }
+
+  body.dark-mode summary:hover {
+    color: #b57fff !important;
+  }
+
+  /* Calculate button consistent with related links */
+  body.dark-mode .calculate-btn {
+    background: linear-gradient(135deg, #9b5de5, #7a3dc0);
+    color: #fff;
+    box-shadow: 0 6px 18px rgba(155,93,229,0.18);
+    border: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  body.dark-mode .calculate-btn:hover {
+    box-shadow: 0 0 35px rgba(155, 93, 229, 0.4);
+    transform: translateY(-2px);
+ }
+
+  /* Input Fields */
+  body.dark-mode .calc-inputs .input-field,
+  body.dark-mode input[type="date"],
+  body.dark-mode input[type="number"],
+  body.dark-mode select {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  /* Result Paragraph Styling */
+  body.dark-mode .calc-results p {
+    background: rgba(255, 255, 255, 0.03);
+    color: #e6e6e6;
+    border-left: 3px solid rgba(155, 93, 229, 0.6);
+    border-radius: 8px;
+    padding: 10px 14px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.45);
+    margin: 8px 0;
+  }
+
+  /* Responsive toggle spacing */
+  @media (min-width: 680px) { #darkModeToggle { margin-right: 12px; } }
+  @media (max-width: 679px) { #darkModeToggleMobile { margin-left: 12px; } }
+
+ /* 🌙 Dark Mode Styles for FAQs */
+body.dark-mode .faqs {
+  background: rgba(10, 10, 10, 0.9);
+  box-shadow: 0 0 36px rgba(155, 93, 229, 0.14); /* purple glow to match calculator */
+  border: 1px solid rgba(155, 93, 229, 0.12);
+}
+
+body.dark-mode .faq-question {
+  background: rgba(10, 10, 10, 0.75);
+  color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+}
+
+body.dark-mode .faq-question:hover {
+  background: rgba(155, 93, 229, 0.08);
+}
+
+body.dark-mode .faq-answer {
+  background: rgba(10, 10, 10, 0.85);
+  color: #e0e0e0;
+  border-left: 3px solid rgba(155, 93, 229, 0.6); /* purple accent for consistency */
+}
+
+/* Make calculator labels white in dark mode */
+body.dark-mode .calc-inputs label {
+  color: #ffffff !important;
+}
+
+/* Make select placeholder text white */
+body.dark-mode .calc-inputs select option:first-child {
+  color: #ffffff !important;
+}
+
+/* Make input placeholders white */
+body.dark-mode .calc-inputs input::placeholder {
+  color: #ffffff !important;
+  opacity: 1; /* ensures full brightness */
+}
+</style>
+
+<script>
+  const body = document.body;
+  const toggleDesktop = document.getElementById('darkModeToggle');
+  const toggleMobile = document.getElementById('darkModeToggleMobile');
+
+  // Load saved mode
+  if (localStorage.getItem('dark-mode') === 'true') {
+    body.classList.add('dark-mode');
+    if (toggleDesktop) toggleDesktop.textContent = '☀️';
+    if (toggleMobile) toggleMobile.textContent = '☀️';
+  }
+
+  function toggleDarkMode() {
+    body.classList.toggle('dark-mode');
+    const isDark = body.classList.contains('dark-mode');
+    if (toggleDesktop) toggleDesktop.textContent = isDark ? '☀️' : '🌙';
+    if (toggleMobile) toggleMobile.textContent = isDark ? '☀️' : '🌙';
+    localStorage.setItem('dark-mode', isDark);
+    syncToggleColors();
+  }
+
+  function syncToggleColors() {
+    // Header gradient stays same in both modes
+    const headerGrad = 'transparent';
+
+    const tD = document.getElementById('darkModeToggle');
+    const tM = document.getElementById('darkModeToggleMobile');
+
+    if (tD) {
+      tD.style.background = headerGrad;
+      tD.style.border = 'none';
+      tD.style.boxShadow = 'none';
+    }
+
+    if (tM) {
+      tM.style.background = headerGrad;
+      tM.style.border = 'none';
+      tM.style.boxShadow = 'none';
+    }
+  }
+
+  // Initial sync
+  syncToggleColors();
+
+  // Listeners
+  if (toggleDesktop) toggleDesktop.addEventListener('click', toggleDarkMode);
+  if (toggleMobile) toggleMobile.addEventListener('click', toggleDarkMode);
+</script>
+
+<script>
+  // Toggle FAQ answers
+  document.querySelectorAll(".faq-question").forEach(button => {
+    button.addEventListener("click", () => {
+      const faqItem = button.parentElement;
+      const answer = faqItem.querySelector(".faq-answer");
+
+      // Close other open FAQs
+      document.querySelectorAll(".faq-answer").forEach(a => {
+        if (a !== answer) a.style.display = "none";
+      });
+
+      // Toggle current answer
+      if (answer.style.display === "block") {
+        answer.style.display = "none";
+      } else {
+        answer.style.display = "block";
+      }
+    });
+  });
+</script>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('nav-menu');
+
+  if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+  }
+</script>
+</body>
+</html>
