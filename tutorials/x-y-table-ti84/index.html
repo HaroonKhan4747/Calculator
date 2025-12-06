@@ -773,78 +773,114 @@ footer nav a:hover {
 
   <div class="faq-list">
 
+    <!-- Quick FAQs -->
+<section class="faqs">
+  <h2>Quick FAQs About X-Y Tables on the TI-84 Plus</h2>
+  <style>
+    .faqs a {
+      color: #333;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+    .faqs a:hover {
+      color: #ff6600;
+    }
+    .highlighted {
+      background-color: #fff3cd;
+      transition: background-color 1.5s ease;
+    }
+  </style>
+
+  <div class="faq-list">
+
     <div class="faq-item">
-      <button class="faq-question">Why isn’t my TI-84 table showing values?</button>
+      <button class="faq-question">Can I create an x-y table without entering a graph first?</button>
       <div class="faq-answer" style="display:none;">
-        <p>The table may be blank if the function is turned off, deleted, or if <strong>TBLSET</strong> is set incorrectly. Check your <strong>Y= menu</strong>, ensure the function is active, and verify <strong>AUTO mode</strong> is enabled in TBLSET.</p>
+        <p>Yes! On the TI-84 Plus, you can enter your function in <strong>Y=</strong> and go straight to <strong>TABLE</strong>. Graphing is optional, so you can view x-y pairs instantly.</p>
       </div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-question">How do I change the starting value of the TI-84 table?</button>
+      <button class="faq-question">How do I view multiple functions in one x-y table?</button>
       <div class="faq-answer" style="display:none;">
-        <p>Press <strong>2ND → WINDOW</strong> to open <strong>TBLSET</strong>. Adjust <strong>TblStart</strong> to choose where the table begins. This is useful for negative values or large x-ranges.</p>
+        <p>Enter each function into <strong>Y1, Y2, Y3</strong>, etc. The table automatically creates a separate column for each function, allowing side-by-side comparisons of y-values.</p>
       </div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-question">What does ΔTbl mean on the TI-84?</button>
+      <button class="faq-question">What’s the easiest way to check specific x-values?</button>
       <div class="faq-answer" style="display:none;">
-        <p><strong>ΔTbl</strong> controls the step size between x-values (e.g., 1, 0.5, 5). Smaller steps give more detail, while larger steps make the table scroll faster.</p>
+        <p>Use <strong>ASK mode</strong> in TBLSET. You can manually enter the x-values you want to test and see corresponding y-values without scrolling through a full table.</p>
       </div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-question">Should I use AUTO or ASK mode when using the table?</button>
+      <button class="faq-question">Can I include negative and decimal x-values in the table?</button>
       <div class="faq-answer" style="display:none;">
-        <p><strong>AUTO mode</strong> automatically fills x-values. <strong>ASK mode</strong> lets you type in specific values like x = 2.5 or x = –7. Use ASK mode for homework or exam questions that require exact points.</p>
+        <p>Absolutely! Set <strong>TblStart</strong> to a negative value and choose a small <strong>ΔTbl</strong> like 0.1 to include decimals. This is great for analyzing function behavior in detail.</p>
       </div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-question">Why are there multiple columns in my TI-84 table?</button>
+      <button class="faq-question">How can I practice x-y tables without a physical TI-84?</button>
       <div class="faq-answer" style="display:none;">
-        <p>If you entered equations into <strong>Y1, Y2, Y3…</strong> the table will show a column for each equation. Turn off unwanted ones by deselecting their equals sign in the <strong>Y= menu</strong>.</p>
+        <p>You can use our online TI-84 Plus emulator. Enter functions and create x-y tables just like on a real calculator: <a href="https://mycalculatorpal.com/ti84-calculator" target="_blank">Try it here</a>.</p>
       </div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-question">Can I create a table without graphing on the TI-84?</button>
+      <button class="faq-question">What is the difference between AUTO and ASK modes for x-y tables?</button>
       <div class="faq-answer" style="display:none;">
-        <p>Yes. Enter a function in <strong>Y=</strong>, then go directly to <strong>TABLE</strong>. Graphing is not required to generate x-y pairs.</p>
+        <p><strong>AUTO mode</strong> fills the table automatically based on TblStart and ΔTbl. <strong>ASK mode</strong> allows you to type exact x-values. ASK is ideal for homework or exam-specific points.</p>
       </div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-question">Why is my TI-84 table skipping values?</button>
+      <button class="faq-question">Can I clear or reset an x-y table?</button>
       <div class="faq-answer" style="display:none;">
-        <p>This happens when <strong>ΔTbl</strong> is set too large. Set a smaller step size like <strong>1</strong> or <strong>0.1</strong> in TBLSET to view more detailed values.</p>
+        <p>Yes. Clearing or editing a function in the <strong>Y=</strong> menu will automatically reset the table. Simply remove unused functions to avoid clutter.</p>
       </div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-question">Do TI-84 Plus and TI-84 Plus CE have the same table features?</button>
+      <button class="faq-question">How do I find intersections or roots using the table?</button>
       <div class="faq-answer" style="display:none;">
-        <p>Yes — both models share identical table, graphing, and TBLSET functionality. The CE version simply has a color screen and faster performance.</p>
+        <p>Look for x-values where y = 0 or where two columns have the same y-value. This method is faster than calculating manually and works well for linear and quadratic functions.</p>
       </div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-question">Can I make a table for a piecewise function?</button>
+      <button class="faq-question">Can I create an x-y table for trigonometric functions?</button>
       <div class="faq-answer" style="display:none;">
-        <p>Yes. Enter each piece into separate lines like <strong>Y1, Y2, Y3</strong>, then use <strong>ASK mode</strong> to check values only within the correct domain of each piece.</p>
+        <p>Yes! Enter the function (like <code>sin(x)</code>) in Y=, set your TblStart and ΔTbl, and view y-values for each x. This helps analyze patterns and cycles easily.</p>
       </div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-question">How do I clear the TI-84 table?</button>
+      <button class="faq-question">How can I quickly compare multiple x-y tables?</button>
       <div class="faq-answer" style="display:none;">
-        <p>The TI-84 table clears automatically when you delete or edit a function in the <strong>Y= menu</strong>. Simply press <strong>CLEAR</strong> on the function to reset the table.</p>
+        <p>Enter each function into Y1, Y2, Y3, etc., and view them side-by-side. Using AUTO mode with the same ΔTbl ensures uniform x-values for easy comparison.</p>
       </div>
     </div>
 
   </div>
 </section>
+
+<!-- Smooth Scroll + Highlight Script -->
+<script>
+  document.querySelectorAll('.faqs a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href').substring(1);
+      const target = document.getElementById(targetId);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        target.classList.add('highlighted');
+        setTimeout(() => target.classList.remove('highlighted'), 1500);
+      }
+    });
+  });
+</script>
 
 <!-- FAQ Schema for Google Rich Results -->
 <script type="application/ld+json">
@@ -854,82 +890,82 @@ footer nav a:hover {
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Why isn’t my TI-84 table showing values?",
+      "name": "Can I create an x-y table without entering a graph first?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The TI-84 table may appear blank if the function is turned off, deleted, or if TBLSET is set incorrectly. Ensure your function is active in the Y= menu and that AUTO mode is enabled."
+        "text": "Yes! On the TI-84 Plus, you can enter your function in Y= and go straight to TABLE. Graphing is optional."
       }
     },
     {
       "@type": "Question",
-      "name": "How do I change the starting value of the TI-84 table?",
+      "name": "How do I view multiple functions in one x-y table?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Press 2ND → WINDOW to open TBLSET and adjust TblStart. This controls where the table begins."
+        "text": "Enter each function into Y1, Y2, Y3, etc. The table will display a column for each function, allowing easy comparisons."
       }
     },
     {
       "@type": "Question",
-      "name": "What does ΔTbl mean on the TI-84?",
+      "name": "What’s the easiest way to check specific x-values?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "ΔTbl sets the step size between x-values in the table. Smaller steps give more detail; larger steps scroll faster."
+        "text": "Use ASK mode in TBLSET. Manually enter the x-values you want to test to see corresponding y-values."
       }
     },
     {
       "@type": "Question",
-      "name": "Should I use AUTO or ASK mode?",
+      "name": "Can I include negative and decimal x-values in the table?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "AUTO mode auto-generates x-values, while ASK mode lets you manually input specific values like 2.5 or -7."
+        "text": "Yes, set TblStart to a negative value and choose a small ΔTbl like 0.1 to include decimals."
       }
     },
     {
       "@type": "Question",
-      "name": "Why are there multiple y-columns in my TI-84 table?",
+      "name": "How can I practice x-y tables without a physical TI-84?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "If multiple equations are entered in Y1, Y2, Y3, the table shows a column for each. Disable unwanted ones by deselecting their equals sign."
+        "text": "Use our online TI-84 Plus emulator to enter functions and create x-y tables: https://mycalculatorpal.com/ti84-calculator"
       }
     },
     {
       "@type": "Question",
-      "name": "Can I make a table without graphing?",
+      "name": "What is the difference between AUTO and ASK modes for x-y tables?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, you do not need to graph the function. Enter it in Y= and go straight to the TABLE screen."
+        "text": "AUTO mode fills x-values automatically, while ASK mode allows manual entry of specific x-values."
       }
     },
     {
       "@type": "Question",
-      "name": "Why is my TI-84 table skipping values?",
+      "name": "Can I clear or reset an x-y table?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "This happens when ΔTbl is too large. Reduce it in TBLSET to see all intermediate values."
+        "text": "Clearing or editing a function in the Y= menu will automatically reset the table."
       }
     },
     {
       "@type": "Question",
-      "name": "Do TI-84 Plus and TI-84 Plus CE have the same table features?",
+      "name": "How do I find intersections or roots using the table?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, both calculators have identical table and TBLSET functionality. The CE model simply has a color display and faster performance."
+        "text": "Look for x-values where y = 0 or where two columns have the same y-value."
       }
     },
     {
       "@type": "Question",
-      "name": "Can I create a table for a piecewise function?",
+      "name": "Can I create an x-y table for trigonometric functions?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Enter each piece in separate Y= lines and use ASK mode to test values in the appropriate domain."
+        "text": "Yes, enter the function in Y=, set TblStart and ΔTbl, and view y-values for each x."
       }
     },
     {
       "@type": "Question",
-      "name": "How do I clear the table?",
+      "name": "How can I quickly compare multiple x-y tables?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Clear the equation in Y= and the table resets automatically."
+        "text": "Enter each function in Y1, Y2, Y3 and use the same ΔTbl in AUTO mode to compare tables side-by-side."
       }
     }
   ]
