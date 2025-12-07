@@ -932,6 +932,84 @@ footer nav a:hover {
 }
 </script>
 
+<!-- More TI-84 Tutorials Card -->
+<section class="tutorial-card">
+  <h2>More TI-84 Plus Tutorials</h2>
+
+  <style>
+    .tutorial-card {
+      margin: 40px 0;
+      padding: 25px;
+      border-radius: 12px;
+      background: #f8f8f8;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    }
+
+    .tutorial-card h2 {
+      text-align: center;
+      font-size: 26px;
+      margin-bottom: 20px;
+      font-weight: 700;
+      color: #222;
+    }
+
+    .tutorial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .tutorial-button {
+      display: block;
+      text-align: center;
+      padding: 14px;
+      background: #ffffff;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+      border: 2px solid #ddd;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+
+    .tutorial-button:hover {
+      background: #ff6600;
+      color: #fff;
+      border-color: #ff6600;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .tutorial-button.highlighted {
+      background: #fff3cd !important;
+      border-color: #ffaf3f !important;
+    }
+  </style>
+
+  <div class="tutorial-grid">
+    <a href="/fraction-to-decimal" class="tutorial-button">TI-84 Fraction to Decimal</a>
+    <a href="/how-to-graph-a-list-on-ti-84" class="tutorial-button">Graph a List on TI-84</a>
+    <a href="/how-to-make-table-in-ti84" class="tutorial-button">Make a Table on TI-84</a>
+    <a href="/x-y-table-ti84" class="tutorial-button">X-Y Table on TI-84</a>
+    <a href="/system-of-equations" class="tutorial-button">Solve System of Equations</a>
+    <a href="/linear-regression" class="tutorial-button">TI-84 Linear Regression</a>
+  </div>
+</section>
+
+<!-- Highlight Click Animation -->
+<script>
+  document.querySelectorAll('.tutorial-button').forEach(btn => {
+    btn.addEventListener('click', function() {
+      this.classList.add('highlighted');
+      setTimeout(() => {
+        this.classList.remove('highlighted');
+      }, 1500);
+    });
+  });
+</script>
+  
  <!-- ✅ Related Calculators Section -->
 <section class="related-calculators">
   <h2>Related Calculators</h2>
@@ -1262,84 +1340,6 @@ body.dark-mode .calc-inputs input::placeholder {
       navMenu.classList.toggle('active');
     });
   }
-</script>
-
-<!-- More TI-84 Tutorials Card -->
-<section class="tutorial-card">
-  <h2>More TI-84 Plus Tutorials</h2>
-
-  <style>
-    .tutorial-card {
-      margin: 40px 0;
-      padding: 25px;
-      border-radius: 12px;
-      background: #f8f8f8;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-    }
-
-    .tutorial-card h2 {
-      text-align: center;
-      font-size: 26px;
-      margin-bottom: 20px;
-      font-weight: 700;
-      color: #222;
-    }
-
-    .tutorial-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 15px;
-      margin-top: 20px;
-    }
-
-    .tutorial-button {
-      display: block;
-      text-align: center;
-      padding: 14px;
-      background: #ffffff;
-      border-radius: 10px;
-      font-size: 16px;
-      font-weight: 600;
-      color: #333;
-      border: 2px solid #ddd;
-      text-decoration: none;
-      transition: all 0.25s ease;
-    }
-
-    .tutorial-button:hover {
-      background: #ff6600;
-      color: #fff;
-      border-color: #ff6600;
-      transform: translateY(-3px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
-
-    .tutorial-button.highlighted {
-      background: #fff3cd !important;
-      border-color: #ffaf3f !important;
-    }
-  </style>
-
-  <div class="tutorial-grid">
-    <a href="/fraction-to-decimal" class="tutorial-button">TI-84 Fraction to Decimal</a>
-    <a href="/how-to-graph-a-list-on-ti-84" class="tutorial-button">Graph a List on TI-84</a>
-    <a href="/how-to-make-table-in-ti84" class="tutorial-button">Make a Table on TI-84</a>
-    <a href="/x-y-table-ti84" class="tutorial-button">X-Y Table on TI-84</a>
-    <a href="/system-of-equations" class="tutorial-button">Solve System of Equations</a>
-    <a href="/linear-regression" class="tutorial-button">TI-84 Linear Regression</a>
-  </div>
-</section>
-
-<!-- Highlight Click Animation -->
-<script>
-  document.querySelectorAll('.tutorial-button').forEach(btn => {
-    btn.addEventListener('click', function() {
-      this.classList.add('highlighted');
-      setTimeout(() => {
-        this.classList.remove('highlighted');
-      }, 1500);
-    });
-  });
 </script>
 </body>
 </html>
