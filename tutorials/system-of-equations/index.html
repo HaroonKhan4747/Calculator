@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>TI-84 Calculator Online – Free Graphing & Emulator Tool | MyCalculatorPal</title>
+ <meta name="description" content="Try our free TI-84 Calculator Online for graphing, equations, and stats. Works like the TI-84 Plus CE—no download or sign-up needed.">
+
+   <!-- ✅ Paste your Google AdSense verification meta tag here -->
+  <meta name="google-adsense-account" content="ca-pub-8850694506252841">
+
+   <!-- Favicon for modern browsers -->
+<link rel="icon" type="image/png" href="/favicon.png">
+
+<!-- Favicon for older browsers / fallback -->
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <!-- Canonical URL -->
+  <link rel="canonical" href="https://mycalculatorpal.com/ti84-calculator/Index.html" />
+
+    <!-- Robots Meta Tag -->
+  <meta name="robots" content="index, follow" />
+
+  <!-- Optional SEO Enhancements -->
+  <meta name="author" content="MyCalculatorPal">
+  <meta name="keywords" content="TI-84 calculator online, TI 84 Plus graphing calculator, TI-84 Plus CE emulator, free TI-84 calculator, online graphing calculator, TI 83 84 Plus calculator, TI-84 calculator for students, Texas Instruments TI 84 online, TI-84 Plus CE graphing tool, TI-84 emulator online">
+  
+   <!-- ✅ Add this line below -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+ <style>
+/* Extra CSS specific to this calculator (main style in style.css handles general styling) */
+
+/* General Reset and Fonts */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', 'Roboto', sans-serif;
+  background: #f4f6f9;
+  color: #222;
+  line-height: 1.7;
+  text-align: center;
+}
+
+/* Show desktop toggle only on screens wider than 680px */
+.desktop-toggle {
+  display: inline-block;
+  margin-right: 12px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+}
+
+/* Hide mobile toggle on desktop */
+.mobile-toggle {
+  display: none;
+}
+
+/* Mobile styles */
+@media (max-width: 680px) {
+  .desktop-toggle {
+    display: none;
+  }
+  .mobile-toggle {
+    display: inline-block;
+    margin-left: 10px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+  }
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  background: linear-gradient(90deg, #0a0a0a, #1b1b1b);
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  position: relative;
+  z-index: 1001; /* keeps header above side ads */
+}
+
+header .logo a {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+
+header nav {
+  display: flex;
+  gap: 18px;
+}
+
+header nav a {
+  color: #eee;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+header nav a:hover {
+  text-decoration: underline;
+  color: #00bcd4;
+  text-shadow: 0 0 8px #00bcd4;
+}
+
+/* Hero Section */
+.hero {
+  padding: 60px 20px;
+}
+
+.hero h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.6rem;
+  margin-bottom: 10px;
+  color: #111;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  color: #555;
+}
+  
+/* Calculator Section – TI-84 Specific Adjustments */
+.calculator .card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 14px;
+  padding: 15px 15px;
+  width: 100%;
+  max-width: 500px; /* slightly smaller for iframe */
+  margin: 35px auto;
+  text-align: center; /* center iframe */
+  box-shadow: 0 0 20px rgba(0, 188, 212, 0.2);
+  transition: all 0.3s ease;
+}
+
+.calculator .card:hover {
+  box-shadow: 0 0 25px rgba(0, 188, 212, 0.35);
+  transform: translateY(-3px);
+}
+
+/* TI-84 iframe styling */
+.calculator .card iframe {
+  width: 100%;
+  height: 720px; /* match TI-84 emulator height */
+  border: 0;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+/* Results Box */
+.calc-results {
+  background: rgba(255,255,255,0.97);
+  border-radius: 14px;
+  padding: 25px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 0 20px rgba(0, 188, 212, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 35px auto;
+  text-align: left;
+}
+
+.calc-results h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #111;
+}
+
+.calc-results p {
+  background: #f7f9fb;
+  border-radius: 10px;
+  padding: 12px 15px;
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Spinner Loader */
+#spinner {
+  display: none;
+  margin: 20px auto;
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #111;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* TI-84 Action Buttons */
+.ti84-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.ti84-buttons button {
+  padding: 12px 25px;
+  background: linear-gradient(90deg, #00bcd4, #0097a7);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+  transition: all 0.3s ease;
+}
+
+.ti84-buttons button:hover {
+  background: linear-gradient(90deg, #0097a7, #007c91);
+  box-shadow: 0 0 20px rgba(0, 188, 212, 0.6);
+  transform: translateY(-2px);
+}
+
+/* Ad Banners (inline, in-page) */
+.ad-banner {
+  text-align: center;
+  padding: 25px 0;
+}
+
+.ad-placeholder {
+  display: inline-block;
+  background: #f0f0f0;
+  padding: 40px;
+  border: 1px dashed #ccc;
+  font-size: 0.9rem;
+  color: #888;
+  border-radius: 12px;
+}
+
+/* ✅ Side Ads (fixed on desktop) */
+.side-ad {
+  position: fixed;
+  top: 80px; /* below header */
+  width: auto; /* let AdSense control width */
+  max-width: 160px; /* standard skyscraper */
+  min-height: 600px; /* standard height */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 1000;
+}
+
+.side-ad.left-ad {
+  left: 0;
+}
+
+.side-ad.right-ad {
+  right: 0;
+}
+
+/* Blog Section */
+.blog {
+  padding: 45px 25px;
+  max-width: 820px;
+  margin: 40px auto;
+  background: rgba(255,255,255,0.95);
+  border-radius: 14px;
+  box-shadow: 0 0 20px rgba(0, 188, 212, 0.2);
+  text-align: left;
+}
+
+.blog h2 {
+  margin-bottom: 20px;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+}
+
+.blog p {
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+/* FAQs Section */
+.faqs {
+  padding: 45px 25px;
+  max-width: 820px;
+  margin: 40px auto;
+  background: rgba(255,255,255,0.95);
+  border-radius: 14px;
+  box-shadow: 0 0 20px rgba(0, 188, 212, 0.2);
+}
+
+.faqs h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #111;
+}
+
+.faq-item {
+  margin-bottom: 18px;
+}
+
+.faq-question {
+  width: 100%;
+  padding: 14px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #fff;
+  text-align: left;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+.faq-question:hover {
+  background: #e0f7fa;
+  box-shadow: 0 0 10px rgba(0, 188, 212, 0.3);
+}
+
+.faq-answer {
+  padding: 12px 16px;
+  margin-top: 5px;
+  background: #f7f9fb;
+  border-left: 3px solid #00bcd4;
+  border-radius: 8px;
+  display: none;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #000;
+  color: #fff;
+  font-size: 0.85rem;
+  position: relative;
+  z-index: 1001; /* keep above ads */
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 25px;
+  background: #0a0a0a;
+  color: #fff;
+  font-size: 0.9rem;
+  letter-spacing: 0.3px;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+}
+
+footer nav a {
+  color: #ddd;
+  margin: 0 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+footer nav a:hover {
+  color: #00bcd4;
+  text-shadow: 0 0 6px #00bcd4;
+}
+  
+/* Hide hamburger in desktop */
+.hamburger {
+  display: none;
+}
+
+/* Mobile View */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  header nav {
+    display: none;
+    flex-direction: column;
+    background: #000;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    padding: 10px;
+    text-align: center;
+  }
+
+  header nav.active {
+    display: flex;
+  }
+
+  .calculator .card,
+  .calc-results,
+  .blog,
+  .faqs,
+  .ad-placeholder {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    max-width: 100%;
+    width: 90%;
+    display: block;
+    box-sizing: border-box;
+  }
+
+  img, iframe {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  /* ✅ Hide side ads on mobile */
+  .side-ad {
+    display: none !important;
+  }
+}
+
+/* Hide the unwanted footer/disclaimer under the TI-84 iframe */
+.calculator iframe {
+  display: block;
+  width: 100%;
+  height: 705px; /* slightly less than full height to crop bottom text */
+  border: none;
+  overflow: hidden;
+  clip-path: inset(0 0 30px 0); /* hides bottom 30px (adjust if needed) */
+}
+
+/* Related Calculators Section */
+.related-calculators {
+  padding: 45px 25px;
+  max-width: 820px;
+  margin: 40px auto;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 14px;
+  box-shadow: 0 0 20px rgba(0, 188, 212, 0.2);
+  text-align: center;
+}
+
+.related-calculators h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.7rem;
+  margin-bottom: 25px;
+  color: #111;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.related-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.related-links a {
+  background: linear-gradient(90deg, #00bcd4, #0097a7);
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  padding: 12px 25px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(0, 188, 212, 0.3);
+}
+
+.related-links a:hover {
+  background: linear-gradient(90deg, #0097a7, #007c91);
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(0, 188, 212, 0.6);
+}
+
+/* 🚫 TEMPORARY — Hide ALL ads until AdSense is approved */
+.ad-banner,
+.side-ad {
+  display: none !important;
+}
+/* ✅ Delete the block above when AdSense is ready */
+</style>
+
+<!-- Header -->
+<body>
+<header>
+  <div class="logo"><a href="https://mycalculatorpal.com/">MyCalculatorPal</a></div>
+
+  <nav id="nav-menu">
+    <!-- Desktop Dark Mode Toggle (before Home) -->
+    <button id="darkModeToggle" class="desktop-toggle">🌙</button>
+
+    <a href="https://mycalculatorpal.com/">Home</a>
+    <a href="https://mycalculatorpal.com/about.html">About</a>
+    <a href="https://mycalculatorpal.com/contact.html">Contact</a>
+  </nav>
+  
+  <!-- Mobile Dark Mode Toggle first -->
+  <button id="darkModeToggleMobile" class="mobile-toggle">🌙</button>
+
+  <div class="hamburger" id="hamburger">☰</div>
+</header>
+
+<!-- Side Ads -->
+<div class="side-ad left-ad">
+  <div class="ad-placeholder">[Left Ad]</div>
+</div>
+<div class="side-ad right-ad">
+  <div class="ad-placeholder">[Right Ad]</div>
+</div>
+
+<!-- Wrap main content -->
+<div class="page-content">
+
+<!-- Hero -->
+<section class="hero">
+  <h1>Online TI-84 Calculator</h1>
+  <p>Use our fast and free TI-84 Plus online calculator to graph equations, solve problems, and learn every function with step-by-step tutorials.</p>
+
+ <div class="hero-buttons">
+  <a href="https://mycalculatorpal.com/ti84-calculator/Index.html" class="btn-primary">
+    Open TI-84 Calculator
+  </a>
+  <a href="#tutorials" class="btn-secondary">View Tutorials</a>
+</div>
+</section>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 60px 20px;
+  }
+  .hero-buttons {
+    margin-top: 25px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+  }
+
+  /* Primary Button */
+  .btn-primary {
+    padding: 12px 25px;
+    background: linear-gradient(90deg, #00bcd4, #0097a7);
+    color: #fff;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+    transition: all 0.3s ease;
+  }
+  .btn-primary:hover {
+    background: linear-gradient(90deg, #0097a7, #007c91);
+    box-shadow: 0 0 20px rgba(0, 188, 212, 0.6);
+    transform: translateY(-2px);
+  }
+
+  /* Secondary Button */
+  .btn-secondary {
+    padding: 12px 25px;
+    background: linear-gradient(90deg, #00bcd4, #0097a7);
+    color: #fff;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+    transition: all 0.3s ease;
+  }
+  .btn-secondary:hover {
+    background: linear-gradient(90deg, #0097a7, #007c91);
+    box-shadow: 0 0 20px rgba(0, 188, 212, 0.6);
+    transform: translateY(-2px);
+  }
+</style>
+
+<!-- TI-84 Solve System of Equations Blog Section -->
+<section class="blog">
+  <style>
+    .blog a { color: #333; font-weight: 600; text-decoration: underline; }
+    .blog a:hover { color: #ff6600; }
+    .blog .highlighted { background-color: #fff3cd; transition: background-color 1.5s ease; }
+    .blog .toc { margin-bottom: 18px; text-align: left; }
+    .blog .toc h3 { margin-bottom: 10px; }
+    .blog .toc ul { list-style: disc; margin-left: 20px; }
+    .blog h1 { font-family: 'Montserrat', sans-serif; font-size: 2rem; margin-top: 8px; }
+    .blog p { line-height: 1.6; color: inherit; }
+    .blog h2 { margin-top: 20px; color: inherit; }
+    .blog h3 { margin-top: 14px; color: inherit; }
+    .blog .steps-container { display: flex; flex-wrap: wrap; gap: 12px; margin: 12px 0; }
+    .blog .step-card { flex: 1 1 30%; border: 1px solid #ff6600; border-radius: 10px; padding: 14px; background-color: #fff8f0; min-width: 200px; }
+    .blog .step-card h3 { margin: 0 0 8px 0; color: #ff6600; font-size: 1rem; }
+    .blog table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+    .blog table th, .blog table td { border: 1px solid rgba(0,0,0,0.08); padding: 10px; text-align: left; }
+    body.dark-mode .blog a { color: #e6e6ff; }
+    body.dark-mode .blog table th, body.dark-mode .blog table td { border-color: rgba(255,255,255,0.06); }
+    body.dark-mode .blog .step-card { background-color: #4a3b2d; border-color: #ffb366; color: #fff; }
+  </style>
+
+  <h1>📝 How to Solve a System of Equations on TI-84 Online: Step-by-Step Guide</h1>
+
+  <p>Solving systems of equations can be tricky manually, but with a TI-84 Plus (or its online emulator) it becomes fast and accurate. Whether you are checking homework, preparing for exams, or exploring linear algebra concepts, using an online TI-84 system solver helps you get results instantly.</p>
+
+  <p>This guide will show you step-by-step how to input equations, solve them using TI-84 online tools, and interpret the solutions, all in a beginner-friendly, practical way.</p>
+
+  <!-- Table of Contents -->
+  <nav class="toc" aria-label="Article table of contents">
+    <h3>Quick Navigation</h3>
+    <ul>
+      <li><a href="#step1">Step 1: Access the Online TI-84 Solver</a></li>
+      <li><a href="#step2">Step 2: Enter Your System of Equations</a></li>
+      <li><a href="#step3">Step 3: Use the MATRIX or SOLVE Function</a></li>
+      <li><a href="#step4">Step 4: Select the Solution Method</a></li>
+      <li><a href="#step5">Step 5: Interpret the Results</a></li>
+      <li><a href="#step6">Step 6: Examples of Solving Systems</a></li>
+      <li><a href="#step7">Step 7: Check Solutions for Accuracy</a></li>
+      <li><a href="#step8">Step 8: Practice With Multiple Systems</a></li>
+    </ul>
+  </nav>
+
+  <div class="steps-container">
+
+    <!-- Step 1 -->
+    <div class="step-card" id="step1">
+      <h3>Step 1: Access the Online TI-84 Solver</h3>
+      <p>Open a web-based TI-84 Plus emulator. You can use <a href="https://mycalculatorpal.com/ti84-calculator" target="_blank">our online TI-84</a> for instant access without a physical calculator.</p>
+      <p><em>Tip:</em> Familiarity with the TI-84 interface helps you navigate quickly between menus.</p>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step-card" id="step2">
+      <h3>Step 2: Enter Your System of Equations</h3>
+      <p>Decide whether your system is linear or nonlinear. Enter each equation using the <strong>Y=</strong> menu or <strong>MATRIX</strong> input:</p>
+      <ul>
+        <li>Linear example: 2x + 3y = 5, x – y = 1</li>
+        <li>Nonlinear example: y = x² + 2, y = 3x + 1</li>
+      </ul>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="step-card" id="step3">
+      <h3>Step 3: Use the MATRIX or SOLVE Function</h3>
+      <p>For linear systems, use <strong>MATRIX → EDIT → A</strong> to input coefficients and <strong>B</strong> for constants, then press <strong>2ND → MATRIX → MATH → rref(</strong> or <strong>Solve(</strong> function.</p>
+      <p>For nonlinear systems, graph both equations and use <strong>2ND → TRACE → intersect</strong> to find points of intersection.</p>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="step-card" id="step4">
+      <h3>Step 4: Select the Solution Method</h3>
+      <ul>
+        <li><strong>Graphical:</strong> Find intersections visually (best for 2-variable systems).</li>
+        <li><strong>Matrix/Algebraic:</strong> Use rref( for exact solutions.</li>
+        <li><strong>Online solver:</strong> Emulates TI-84 steps automatically and gives answers.</li>
+      </ul>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="step-card" id="step5">
+      <h3>Step 5: Interpret the Results</h3>
+      <p>The calculator shows solutions as:</p>
+      <ul>
+        <li>Single solution (x = 1, y = 2)</li>
+        <li>No solution (parallel lines)</li>
+        <li>Infinite solutions (same line)</li>
+      </ul>
+      <p>For nonlinear systems, each intersection point corresponds to a solution.</p>
+    </div>
+
+    <!-- Step 6 -->
+    <div class="step-card" id="step6">
+      <h3>Step 6: Examples of Solving Systems</h3>
+      <p>Linear System Example:</p>
+      <ul>
+        <li>Equation 1: x + y = 6</li>
+        <li>Equation 2: 2x – y = 3</li>
+        <li>Solution using MATRIX/SOLVE: x = 3, y = 3</li>
+      </ul>
+      <p>Nonlinear System Example:</p>
+      <ul>
+        <li>Equation 1: y = x²</li>
+        <li>Equation 2: y = 2x + 3</li>
+        <li>Intersection points: x = 1, y = 1 and x = -3, y = -3</li>
+      </ul>
+    </div>
+
+    <!-- Step 7 -->
+    <div class="step-card" id="step7">
+      <h3>Step 7: Check Solutions for Accuracy</h3>
+      <ul>
+        <li>Substitute the solution back into both original equations</li>
+        <li>Verify that all equations are satisfied</li>
+        <li>Use the online TI-84 to quickly cross-check results</li>
+      </ul>
+    </div>
+
+    <!-- Step 8 -->
+    <div class="step-card" id="step8">
+      <h3>Step 8: Practice With Multiple Systems</h3>
+      <p>To gain confidence:</p>
+      <ul>
+        <li>Try solving 2-variable and 3-variable systems</li>
+        <li>Test both linear and nonlinear examples</li>
+        <li>Use the online TI-84 emulator to practice anytime</li>
+      </ul>
+      <p><a href="https://mycalculatorpal.com/ti84-calculator" target="_blank">Practice Solving Systems Online</a></p>
+    </div>
+
+  </div>
+
+  <h2>🔹 Key Tips for Solving Systems on TI-84</h2>
+  <ul>
+    <li>Always check the system type (linear vs nonlinear) before choosing a solution method.</li>
+    <li>Use parentheses for clarity in complex expressions.</li>
+    <li>Double-check your constants and coefficients when using MATRIX functions.</li>
+    <li>Graphing helps visualize solutions and identify multiple intersections.</li>
+    <li>Label equations clearly when using multiple functions.</li>
+  </ul>
+
+  <h2>🔹 Common Mistakes to Avoid</h2>
+  <ul>
+    <li>Entering coefficients or constants incorrectly in the MATRIX</li>
+    <li>Forgetting to switch to the correct solution method (rref vs intersect)</li>
+    <li>Ignoring negative or fractional solutions</li>
+    <li>Not checking solutions by substitution</li>
+  </ul>
+
+  <h2>🔹 Final Thoughts</h2>
+  <p>Solving systems of equations online using a TI-84 emulator is fast, accurate, and beginner-friendly. Whether for homework, exam prep, or self-practice, mastering these steps ensures you can solve both linear and nonlinear systems confidently. Use our <a href="https://mycalculatorpal.com/ti84-calculator" target="_blank">online TI-84 Plus calculator</a> to practice anywhere, without needing the physical calculator.</p>
+
+  <script>
+    document.querySelectorAll('.blog a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href') || '';
+        if (!href.startsWith('#')) return;
+        const targetId = href.substring(1);
+        const target = document.getElementById(targetId);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          target.classList.add('highlighted');
+          setTimeout(() => target.classList.remove('highlighted'), 1500);
+        }
+      });
+    });
+  </script>
+</section>
+
+ <!-- Quick FAQs -->
+<section class="faqs">
+  <h2>Quick FAQs About Solving Systems of Equations on the TI-84 Plus</h2>
+  <style>
+    .faqs a {
+      color: #333;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+    .faqs a:hover {
+      color: #ff6600;
+    }
+    .highlighted {
+      background-color: #fff3cd;
+      transition: background-color 1.5s ease;
+    }
+  </style>
+
+  <div class="faq-list">
+
+    <div class="faq-item">
+      <button class="faq-question">Can I solve systems of equations without a physical TI-84?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>Yes! You can use our <a href="https://mycalculatorpal.com/ti84-calculator" target="_blank">online TI-84 Plus emulator</a> to enter equations and solve systems instantly.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">How do I input a system of linear equations?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>Use the <strong>MATRIX</strong> menu: enter coefficients in matrix A and constants in matrix B. Then use the <strong>rref(</strong> or <strong>Solve(</strong> function to find the solution.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Can I solve nonlinear systems on the TI-84?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>Yes. Enter each equation in the <strong>Y=</strong> menu and use the <strong>2ND → TRACE → intersect</strong> function to find intersection points, which are the solutions.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">What is the difference between graphical and matrix methods?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>Graphical methods find intersections visually and work best for 2-variable systems. Matrix/algebraic methods give exact solutions for linear systems using rref or Solve.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">How do I check if my solution is correct?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>Substitute the solution into each original equation to ensure all equations are satisfied. The online TI-84 also lets you quickly verify results.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Can the TI-84 handle 3-variable systems?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>Yes. Use matrices: enter the 3x3 coefficients in matrix A and constants in matrix B, then solve with rref( or Solve(.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">What if a system has no solution or infinite solutions?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>The TI-84 will indicate no solution (inconsistent system) or infinite solutions (dependent system) when using matrix methods. Graphically, parallel lines indicate no solution, overlapping lines indicate infinite solutions.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Can I solve systems with fractional or decimal coefficients?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>Yes, the TI-84 handles fractions and decimals equally well in both matrix and graphical methods.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">How do I solve multiple systems quickly?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>Use the online TI-84 to input multiple systems in succession and switch between matrix and graph modes as needed to save time.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Can I visualize solutions for nonlinear systems?</button>
+      <div class="faq-answer" style="display:none;">
+        <p>Yes, graph each equation and use the intersect function. Each intersection point corresponds to a solution of the system.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Smooth Scroll + Highlight Script -->
+<script>
+  document.querySelectorAll('.faqs a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href').substring(1);
+      const target = document.getElementById(targetId);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        target.classList.add('highlighted');
+        setTimeout(() => target.classList.remove('highlighted'), 1500);
+      }
+    });
+  });
+</script>
+
+<!-- FAQ Schema for Google Rich Results -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I solve systems of equations without a physical TI-84?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, you can use the online TI-84 Plus emulator to enter equations and solve systems instantly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I input a system of linear equations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use the MATRIX menu: enter coefficients in matrix A and constants in matrix B, then use rref( or Solve( to find solutions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I solve nonlinear systems on the TI-84?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, enter each equation in Y= and use the 2ND → TRACE → intersect function to find intersection points."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between graphical and matrix methods?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Graphical methods show intersections visually for 2-variable systems. Matrix methods give exact solutions using rref or Solve."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I check if my solution is correct?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Substitute the solution into each original equation or use the online TI-84 to verify results."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can the TI-84 handle 3-variable systems?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, enter the 3x3 coefficient matrix and constant matrix, then solve using rref( or Solve(."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if a system has no solution or infinite solutions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The TI-84 will indicate no solution (inconsistent) or infinite solutions (dependent). Graphically, parallel lines show no solution, overlapping lines show infinite solutions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I solve systems with fractional or decimal coefficients?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, the TI-84 handles fractions and decimals equally well in matrix or graphical methods."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I solve multiple systems quickly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use the online TI-84 to input multiple systems in succession and switch between matrix and graph modes as needed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I visualize solutions for nonlinear systems?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, graph each equation and use the intersect function. Each intersection point corresponds to a solution."
+      }
+    }
+  ]
+}
+</script>
+
+ <!-- ✅ Related Calculators Section -->
+<section class="related-calculators">
+  <h2>Related Calculators</h2>
+  <div class="related-links">
+     <a href="/age-calculator/">Age Calculator</a>
+    <a href="/animal-age-calculator/">Animal Age Calculator</a>
+    <a href="/bmi-health-calculator/">BMI Health Calculator</a>
+    <a href="/calorie-calculator/">Calorie Calculator</a>
+  </div>
+</section>
+
+  <!-- Footer -->
+  <footer>
+  <p>&copy; 2025 MyCalculatorPal. All rights reserved.</p>
+  <nav>
+    <a href="https://mycalculatorpal.com/contact.html">Contact</a> |
+    <a href="https://mycalculatorpal.com/privacy.html">Privacy Policy</a> |
+    <a href="https://mycalculatorpal.com/terms.html">Terms & Conditions</a>
+  </nav>
+</footer>
+
+ <style>
+  /* Smooth transition for all elements */
+  body, body * {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Dark Mode Base */
+  body.dark-mode {
+    background-color: #0A0A0A;
+    color: #ffffff;
+  }
+
+  /* Glowing Cards */
+  body.dark-mode .blog,
+  body.dark-mode .faqs,
+  body.dark-mode .related-calculators,
+  body.dark-mode .card.calc-results,
+  body.dark-mode .card.calc-inputs,
+  body.dark-mode .input-field {
+    background: rgba(10, 10, 10, 0.9);
+    border-radius: 18px;
+    box-shadow: 0 0 36px rgba(155, 93, 229, 0.14);
+    border: 1px solid rgba(155, 93, 229, 0.12);
+    color: #ffffff;
+  }
+
+  /* Keep calculator inner cards glowing */
+  body.dark-mode .calc-inputs,
+  body.dark-mode .calc-results {
+    background: rgba(10, 10, 10, 0.9) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 0 36px rgba(155, 93, 229, 0.14) !important;
+    border: 1px solid rgba(155, 93, 229, 0.12) !important;
+    color: #ffffff !important;
+    padding: 24px !important;
+  }
+
+  /* Remove outer full-width card effect */
+  body.dark-mode .calculator {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+
+  /* Texts */
+  body.dark-mode h1,
+  body.dark-mode h2,
+  body.dark-mode h3,
+  body.dark-mode p,
+  body.dark-mode a {
+    color: #ffffff;
+  }
+
+  body.dark-mode a:hover {
+    color: #b57fff;
+  }
+
+  /* Buttons */
+  body.dark-mode button,
+  body.dark-mode .btn-primary,
+  body.dark-mode .btn-secondary,
+  body.dark-mode .btn,
+  body.dark-mode a.button,
+  body.dark-mode input[type="button"],
+  body.dark-mode input[type="submit"] {
+    background: linear-gradient(135deg, #9b5de5, #7a3dc0);
+    color: white;
+    box-shadow: 0 0 25px rgba(155, 93, 229, 0.25);
+    border: none;
+  }
+
+  body.dark-mode button:hover {
+    box-shadow: 0 0 35px rgba(155, 93, 229, 0.4);
+  }
+
+  /* Toggle Button */
+  .dark-toggle {
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    background: linear-gradient(135deg, #9b5de5, #7a3dc0);
+    color: #fff;
+    box-shadow: 0 0 20px rgba(155, 93, 229, 0.4);
+    transition: all 0.3s ease;
+  }
+
+  .dark-toggle:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(155, 93, 229, 0.6);
+  }
+
+  /* Match header gradient */
+  body.dark-mode .dark-toggle {
+    background: linear-gradient(90deg, #0a0a0a, #1b1b1b) !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 18px rgba(255, 255, 255, 0.12) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  body.dark-mode .dark-toggle:hover {
+    box-shadow: 0 0 28px rgba(255, 255, 255, 0.18) !important;
+  }
+
+  /* Related Calculators Buttons */
+  body.dark-mode .related-links a {
+    background: linear-gradient(135deg, #9b5de5, #7a3dc0) !important;
+    color: #fff !important;
+    box-shadow: 0 6px 18px rgba(155, 93, 229, 0.18) !important;
+    border: none !important;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  }
+
+  body.dark-mode .related-links a:hover {
+    box-shadow: 0 0 35px rgba(155, 93, 229, 0.4);
+    transform: translateY(-2px);
+  }
+
+  /* Toggle Strong Override */
+  #darkModeToggle.dark-toggle,
+  #darkModeToggleMobile.dark-toggle,
+  body.dark-mode #darkModeToggle.dark-toggle,
+  body.dark-mode #darkModeToggleMobile.dark-toggle,
+  body.dark-mode .dark-toggle#darkModeToggle,
+  body.dark-mode .dark-toggle#darkModeToggleMobile {
+    background: linear-gradient(90deg, #0a0a0a, #1b1b1b) !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 14px rgba(0,0,0,0.45) !important;
+    border: 50px solid rgba(255,255,255,0.04) !important;
+  }
+
+  /* FAQ Fix: make open sections dark */
+  body.dark-mode details,
+  body.dark-mode details[open] {
+    background: rgba(10, 10, 10, 0.95) !important;
+    color: #fff !important;
+    border-radius: 12px;
+    box-shadow: 0 0 24px rgba(155, 93, 229, 0.1);
+    border: 1px solid rgba(155, 93, 229, 0.15);
+    padding: 12px 16px;
+  }
+
+  body.dark-mode summary:hover {
+    color: #b57fff !important;
+  }
+
+  /* Calculate button consistent with related links */
+  body.dark-mode .calculate-btn {
+    background: linear-gradient(135deg, #9b5de5, #7a3dc0);
+    color: #fff;
+    box-shadow: 0 6px 18px rgba(155,93,229,0.18);
+    border: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  body.dark-mode .calculate-btn:hover {
+    box-shadow: 0 0 35px rgba(155, 93, 229, 0.4);
+    transform: translateY(-2px);
+ }
+
+  /* Input Fields */
+  body.dark-mode .calc-inputs .input-field,
+  body.dark-mode input[type="date"],
+  body.dark-mode input[type="number"],
+  body.dark-mode select {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  /* Result Paragraph Styling */
+  body.dark-mode .calc-results p {
+    background: rgba(255, 255, 255, 0.03);
+    color: #e6e6e6;
+    border-left: 3px solid rgba(155, 93, 229, 0.6);
+    border-radius: 8px;
+    padding: 10px 14px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.45);
+    margin: 8px 0;
+  }
+
+  /* Responsive toggle spacing */
+  @media (min-width: 680px) { #darkModeToggle { margin-right: 12px; } }
+  @media (max-width: 679px) { #darkModeToggleMobile { margin-left: 12px; } }
+
+ /* 🌙 Dark Mode Styles for FAQs */
+body.dark-mode .faqs {
+  background: rgba(10, 10, 10, 0.9);
+  box-shadow: 0 0 36px rgba(155, 93, 229, 0.14); /* purple glow to match calculator */
+  border: 1px solid rgba(155, 93, 229, 0.12);
+}
+
+body.dark-mode .faq-question {
+  background: rgba(10, 10, 10, 0.75);
+  color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+}
+
+body.dark-mode .faq-question:hover {
+  background: rgba(155, 93, 229, 0.08);
+}
+
+body.dark-mode .faq-answer {
+  background: rgba(10, 10, 10, 0.85);
+  color: #e0e0e0;
+  border-left: 3px solid rgba(155, 93, 229, 0.6); /* purple accent for consistency */
+}
+
+/* Make calculator labels white in dark mode */
+body.dark-mode .calc-inputs label {
+  color: #ffffff !important;
+}
+
+/* Make select placeholder text white */
+body.dark-mode .calc-inputs select option:first-child {
+  color: #ffffff !important;
+}
+
+/* Make input placeholders white */
+body.dark-mode .calc-inputs input::placeholder {
+  color: #ffffff !important;
+  opacity: 1; /* ensures full brightness */
+}
+</style>
+
+<script>
+  const body = document.body;
+  const toggleDesktop = document.getElementById('darkModeToggle');
+  const toggleMobile = document.getElementById('darkModeToggleMobile');
+
+  // Load saved mode
+  if (localStorage.getItem('dark-mode') === 'true') {
+    body.classList.add('dark-mode');
+    if (toggleDesktop) toggleDesktop.textContent = '☀️';
+    if (toggleMobile) toggleMobile.textContent = '☀️';
+  }
+
+  function toggleDarkMode() {
+    body.classList.toggle('dark-mode');
+    const isDark = body.classList.contains('dark-mode');
+    if (toggleDesktop) toggleDesktop.textContent = isDark ? '☀️' : '🌙';
+    if (toggleMobile) toggleMobile.textContent = isDark ? '☀️' : '🌙';
+    localStorage.setItem('dark-mode', isDark);
+    syncToggleColors();
+  }
+
+  function syncToggleColors() {
+    // Header gradient stays same in both modes
+    const headerGrad = 'transparent';
+
+    const tD = document.getElementById('darkModeToggle');
+    const tM = document.getElementById('darkModeToggleMobile');
+
+    if (tD) {
+      tD.style.background = headerGrad;
+      tD.style.border = 'none';
+      tD.style.boxShadow = 'none';
+    }
+
+    if (tM) {
+      tM.style.background = headerGrad;
+      tM.style.border = 'none';
+      tM.style.boxShadow = 'none';
+    }
+  }
+
+  // Initial sync
+  syncToggleColors();
+
+  // Listeners
+  if (toggleDesktop) toggleDesktop.addEventListener('click', toggleDarkMode);
+  if (toggleMobile) toggleMobile.addEventListener('click', toggleDarkMode);
+</script>
+
+<script>
+  // Toggle FAQ answers
+  document.querySelectorAll(".faq-question").forEach(button => {
+    button.addEventListener("click", () => {
+      const faqItem = button.parentElement;
+      const answer = faqItem.querySelector(".faq-answer");
+
+      // Close other open FAQs
+      document.querySelectorAll(".faq-answer").forEach(a => {
+        if (a !== answer) a.style.display = "none";
+      });
+
+      // Toggle current answer
+      if (answer.style.display === "block") {
+        answer.style.display = "none";
+      } else {
+        answer.style.display = "block";
+      }
+    });
+  });
+</script>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('nav-menu');
+
+  if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+  }
+</script>
+</body>
+</html>
