@@ -205,33 +205,80 @@ header nav a:hover {
   100% { transform: rotate(360deg); }
 }
 
-/* TI-84 Action Buttons */
-.ti84-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 25px;
-}
+<!-- More TI-84 Tutorials -->
+<section class="more-tutorials">
+  <h2>More TI-84 Plus Tutorials</h2>
 
-.ti84-buttons button {
-  padding: 12px 25px;
-  background: linear-gradient(90deg, #00bcd4, #0097a7);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
-  transition: all 0.3s ease;
-}
+  <style>
+    .more-tutorials {
+      margin: 40px 0;
+      padding: 30px;
+      background: #f4f4f4;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      text-align: center;
+    }
 
-.ti84-buttons button:hover {
-  background: linear-gradient(90deg, #0097a7, #007c91);
-  box-shadow: 0 0 20px rgba(0, 188, 212, 0.6);
-  transform: translateY(-2px);
-}
+    .more-tutorials h2 {
+      font-size: 26px;
+      margin-bottom: 25px;
+      color: #222;
+      font-weight: 700;
+    }
+
+    /* Your TI-84 Button Style */
+    .ti84-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    .ti84-buttons a {
+      padding: 12px 25px;
+      background: linear-gradient(90deg, #00bcd4, #0097a7);
+      color: #fff;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .ti84-buttons a:hover {
+      background: linear-gradient(90deg, #0097a7, #007c91);
+      box-shadow: 0 0 20px rgba(0, 188, 212, 0.6);
+      transform: translateY(-2px);
+    }
+
+    .highlighted {
+      background: #fff3cd !important;
+      color: #333 !important;
+    }
+  </style>
+
+  <div class="ti84-buttons">
+    <a href="/fraction-to-decimal">Fraction to Decimal</a>
+    <a href="/how-to-graph-a-list-on-ti-84">Graph a List</a>
+    <a href="/how-to-make-table-in-ti84">Make a Table</a>
+    <a href="/x-y-table-ti84">X-Y Table</a>
+    <a href="/system-of-equations">System of Equations</a>
+    <a href="/linear-regression">Linear Regression</a>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.ti84-buttons a').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.classList.add('highlighted');
+      setTimeout(() => btn.classList.remove('highlighted'), 1200);
+    });
+  });
+</script>
 
 /* Ad Banners (inline, in-page) */
 .ad-banner {
