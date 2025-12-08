@@ -932,78 +932,141 @@ footer nav a:hover {
 }
 </script>
 
-<!-- More TI-84 Tutorials Card -->
-<section class="tutorial-card">
-  <h2>More TI-84 Plus Tutorials</h2>
+<!-- More TI-84 Tutorials Card (fixed) -->
+<section class="tutorial-card" aria-labelledby="tutorial-card-title">
+  <h2 id="tutorial-card-title">More TI-84 Plus Tutorials</h2>
 
- <style>
-  .tutorial-section {
-    padding: 45px 25px;
-    max-width: 820px;
-    margin: 40px auto;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 14px;
-    box-shadow: 0 0 20px rgba(0, 188, 212, 0.2);
-    text-align: center;
-  }
+  <style>
+    /* container */
+    .tutorial-card {
+      margin: 40px 0;
+      padding: 25px;
+      border-radius: 12px;
+      background: #f8f8f8;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    }
 
-  .tutorial-section h2 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.7rem;
-    margin-bottom: 25px;
-    color: #111;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-  }
+    .tutorial-card h2 {
+      text-align: center;
+      font-size: 26px;
+      margin-bottom: 20px;
+      font-weight: 700;
+      color: #222;
+    }
 
-  /* Tutorial Buttons Container */
-  .tutorial-links {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
+    /* grid */
+    .tutorial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
 
-  .tutorial-links a {
-    background: linear-gradient(90deg, #00bcd4, #0097a7);
-    color: #fff;
-    text-decoration: none;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    padding: 12px 25px;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    box-shadow: 0 3px 10px rgba(0, 188, 212, 0.3);
-    display: inline-block; /* IMPORTANT FIX */
-  }
+    /*
+      Button-like links:
+      - Use high-specificity selector to override global anchor styles
+      - force text-decoration: none and color with !important where needed
+    */
+    .tutorial-grid a.tutorial-button,
+    .tutorial-grid a.tutorial-button:link,
+    .tutorial-grid a.tutorial-button:visited {
+      display: inline-block;
+      text-align: center;
+      padding: 14px;
+      background: #ffffff;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #333 !important;
+      border: 2px solid #ddd;
+      text-decoration: none !important;
+      transition: all 0.25s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      -webkit-tap-highlight-color: transparent; /* mobile tap highlight */
+      cursor: pointer;
+    }
 
-  .tutorial-links a:hover {
-    background: linear-gradient(90deg, #0097a7, #007c91);
-    transform: translateY(-2px);
-    box-shadow: 0 0 15px rgba(0, 188, 212, 0.6);
-  }
-</style>
+    /* Hover / focus / active states */
+    .tutorial-grid a.tutorial-button:hover,
+    .tutorial-grid a.tutorial-button:focus {
+      background: #ff6600;
+      color: #fff !important;
+      border-color: #ff6600;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      outline: none;
+    }
 
-  <div class="tutorial-grid">
-    <a href="/fraction-to-decimal" class="tutorial-button">TI-84 Fraction to Decimal</a>
-    <a href="/how-to-graph-a-list-on-ti-84" class="tutorial-button">Graph a List on TI-84</a>
-    <a href="/how-to-make-table-in-ti84" class="tutorial-button">Make a Table on TI-84</a>
-    <a href="/x-y-table-ti84" class="tutorial-button">X-Y Table on TI-84</a>
-    <a href="/system-of-equations" class="tutorial-button">Solve System of Equations</a>
-    <a href="/linear-regression" class="tutorial-button">TI-84 Linear Regression</a>
+    .tutorial-grid a.tutorial-button:active {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+    }
+
+    /* temporary highlight effect triggered by JS */
+    .tutorial-grid a.tutorial-button.highlighted {
+      background: #fff3cd !important;
+      color: #222 !important;
+      border-color: #ffaf3f !important;
+      box-shadow: 0 8px 30px rgba(255,170,40,0.12) !important;
+      transform: translateY(-4px) !important;
+    }
+
+    /* responsive tweaks */
+    @media (max-width:420px) {
+      .tutorial-card { padding: 18px; }
+      .tutorial-card h2 { font-size: 20px; }
+      .tutorial-grid { gap: 10px; }
+      .tutorial-grid a.tutorial-button { padding: 12px; font-size: 15px; }
+    }
+  </style>
+
+  <div class="tutorial-grid" role="list">
+    <a href="/fraction-to-decimal" class="tutorial-button" role="button" aria-label="TI-84 Fraction to Decimal tutorial">TI-84 Fraction to Decimal</a>
+    <a href="/how-to-graph-a-list-on-ti-84" class="tutorial-button" role="button" aria-label="Graph a List on TI-84 tutorial">Graph a List on TI-84</a>
+    <a href="/how-to-make-table-in-ti84" class="tutorial-button" role="button" aria-label="Make a Table on TI-84 tutorial">Make a Table on TI-84</a>
+    <a href="/x-y-table-ti84" class="tutorial-button" role="button" aria-label="X-Y Table on TI-84 tutorial">X-Y Table on TI-84</a>
+    <a href="/system-of-equations" class="tutorial-button" role="button" aria-label="Solve System of Equations tutorial">Solve System of Equations</a>
+    <a href="/linear-regression" class="tutorial-button" role="button" aria-label="TI-84 Linear Regression tutorial">TI-84 Linear Regression</a>
   </div>
 </section>
 
-<!-- Highlight Click Animation -->
 <script>
-  document.querySelectorAll('.tutorial-button').forEach(btn => {
-    btn.addEventListener('click', function() {
-      this.classList.add('highlighted');
-      setTimeout(() => {
-        this.classList.remove('highlighted');
-      }, 1500);
+  (function() {
+    const buttons = document.querySelectorAll('.tutorial-grid a.tutorial-button');
+    if (!buttons.length) return;
+
+    buttons.forEach(btn => {
+      // ensure links behave as buttons visually before navigation
+      btn.addEventListener('click', function(e) {
+        // If user holds ctrl/meta (open in new tab) or middle click, don't intercept
+        if (e.ctrlKey || e.metaKey || e.button === 1) return;
+
+        e.preventDefault();
+
+        // highlight
+        this.classList.add('highlighted');
+
+        // small delay so highlight shows, then navigate
+        const href = this.getAttribute('href');
+        setTimeout(() => {
+          // sanity: ensure href exists
+          if (href) {
+            // If href is internal relative, normalize
+            // If you host on GitHub Pages, ensure case and path are correct
+            window.location.href = href;
+          }
+        }, 220); // short, feels snappy but visible
+      });
+
+      // accessibility: keyboard Enter / Space should trigger same effect
+      btn.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          this.click();
+        }
+      });
     });
-  });
+  })();
 </script>
   
  <!-- ✅ Related Calculators Section -->
