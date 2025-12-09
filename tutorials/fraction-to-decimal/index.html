@@ -965,49 +965,41 @@ footer nav a:hover {
       margin-top: 20px;
     }
 
-    /* BUTTON STYLE (your related-links gradient style) */
-    .tutorial-grid a.tutorial-button,
-    .tutorial-grid a.tutorial-button:link,
-    .tutorial-grid a.tutorial-button:visited {
-      background: linear-gradient(90deg, #00bcd4, #0097a7);
-      color: #fff !important;
-      text-decoration: none !important;
-      font-family: 'Poppins', sans-serif;
-      font-weight: 600;
-      padding: 12px 25px;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-      box-shadow: 0 3px 10px rgba(0, 188, 212, 0.3);
-      display: inline-block;
-      cursor: pointer;
-      border: none;
-    }
+   /* BUTTON STYLE (clean, no after-color) */
+.tutorial-grid a.tutorial-button,
+.tutorial-grid a.tutorial-button:link,
+.tutorial-grid a.tutorial-button:visited {
+  background: linear-gradient(90deg, #00bcd4, #0097a7);
+  color: #fff !important;
+  text-decoration: none !important;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  padding: 12px 25px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(0, 188, 212, 0.3);
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+}
 
-    .tutorial-grid a.tutorial-button:hover,
-    .tutorial-grid a.tutorial-button:focus {
-      background: linear-gradient(90deg, #0097a7, #007c91);
-      transform: translateY(-2px);
-      box-shadow: 0 0 15px rgba(0, 188, 212, 0.6);
-      outline: none;
-    }
+/* Hover / focus gradient only */
+.tutorial-grid a.tutorial-button:hover,
+.tutorial-grid a.tutorial-button:focus {
+  background: linear-gradient(90deg, #0097a7, #007c91);
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(0, 188, 212, 0.6);
+  outline: none;
+}
 
-    /* highlight animation stays same */
-    .tutorial-grid a.tutorial-button.highlighted {
-      background: #fff3cd !important;
-      color: #222 !important;
-      border: 2px solid #ffaf3f !important;
-      box-shadow: 0 8px 30px rgba(255,170,40,0.12) !important;
-      transform: translateY(-4px) !important;
-    }
-
-    /* responsive */
-    @media (max-width:420px) {
-      .tutorial-card { padding: 18px; }
-      .tutorial-card h2 { font-size: 20px; }
-      .tutorial-grid { gap: 10px; }
-      .tutorial-grid a.tutorial-button { padding: 12px; font-size: 15px; }
-    }
-  </style>
+/* responsive tweaks */
+@media (max-width:420px) {
+  .tutorial-card { padding: 18px; }
+  .tutorial-card h2 { font-size: 20px; }
+  .tutorial-grid { gap: 10px; }
+  .tutorial-grid a.tutorial-button { padding: 12px; font-size: 15px; }
+}
+</style>
 
   <div class="tutorial-grid" role="list">
     <a href="https://mycalculatorpal.com/tutorials/system-of-equations/" class="tutorial-button" role="button" aria-label="TI-84 Fraction to Decimal tutorial">TI-84 Fraction to Decimal</a>
